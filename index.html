@@ -350,7 +350,7 @@ button.apply.alt{border:2px solid var(--sea)}
   <div class="wrap">
     <p>TrueShift Jobs is a free list of part-time and full-time jobs and apprenticeships in London. It is not an employer or a recruitment agency and never charges jobseekers.</p>
     <p class="credit" id="credit"></p>
-    <p id="feedback">Ideas, a broken link or a job that has closed? <a href="#" id="fblink">Send feedback</a>.</p>
+    <p id="feedback">Ideas, a broken link or a job that has closed? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeW3k2cq7yW0AW4c_R-y6liaAuuLxNshU0PUutiYNMoTfz62w/viewform" id="fblink" target="_blank" rel="noopener noreferrer">Send feedback</a>.</p>
     <p>Jobs link to the employer's own advert. Always read the full advert and check the details before you apply. Pay rates and rules shown were checked on 24 November 2026.</p>
     <p>&copy; 2026 TrueShift Jobs. All rights reserved.</p>
   </div>
@@ -514,7 +514,6 @@ el('borough').addEventListener('change',e=>{state.borough=e.target.value;render(
 el('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
 el('q').addEventListener('input',e=>{state.q=e.target.value.trim();render()});
 fillBoroughs();render();
-{const u=['taaktomee','gmail.com'].join('@'),a=el('fblink');a.href='mailto:'+u+'?subject='+encodeURIComponent('TrueShift Jobs feedback');}
 fetch('feed.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d)addFeed(d)}).catch(()=>{}).finally(()=>{feedReady=true;render(true);credit()});
 const CVS={
  Students:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
