@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-24T16:54:48Z",
+  "generated": "2026-11-24T16:59:06Z",
   "sources": {
     "Teaching Vacancies": {
       "fetched": 6632,
-      "kept": 255,
+      "kept": 260,
       "dropped": {
-        "senior role": 138,
-        "not entry level": 130,
+        "senior role": 126,
+        "not entry level": 128,
         "too old or closed": 86
       }
     },
@@ -14,19 +14,19 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7298,
+      "fetched": 7771,
       "uniqueFromSearches": 4278,
-      "kept": 1509,
+      "kept": 1497,
       "dropped": {
-        "too old or closed": 919,
-        "senior role": 671,
-        "blocked words": 63,
+        "too old or closed": 915,
+        "senior role": 683,
+        "blocked words": 58,
         "below adult minimum wage": 34,
-        "not entry level": 509,
-        "remote or not in London": 83,
-        "blocked advertiser": 97,
-        "outside London": 242,
-        "London area not given": 151
+        "not entry level": 537,
+        "remote or not in London": 84,
+        "blocked advertiser": 89,
+        "outside London": 263,
+        "London area not given": 118
       }
     },
     "Adzuna": {
@@ -41,27 +41,27 @@
       }
     }
   },
-  "total": 1357,
-  "duplicatesRemoved": 1744,
+  "total": 1400,
+  "duplicatesRemoved": 1843,
   "byRegion": {
-    "Central": 319,
-    "North": 159,
-    "East": 333,
-    "South": 291,
-    "West": 255
+    "Central": 336,
+    "North": 162,
+    "East": 340,
+    "South": 301,
+    "West": 261
   },
   "byJobType": {
-    "Part-time": 790,
-    "Full-time": 429,
-    "Not stated": 138
+    "Part-time": 801,
+    "Full-time": 436,
+    "Not stated": 163
   },
-  "carriedOver": 1208,
-  "areaApproximate": 144,
-  "apprenticeships": 35,
+  "carriedOver": 1357,
+  "areaApproximate": 154,
+  "apprenticeships": 44,
   "apprenticeshipLevels": {
+    "not stated": 19,
     "3": 16,
     "6": 1,
-    "not stated": 10,
     "2": 7,
     "4": 1
   }
