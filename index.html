@@ -514,7 +514,7 @@ el('borough').addEventListener('change',e=>{state.borough=e.target.value;render(
 el('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
 el('q').addEventListener('input',e=>{state.q=e.target.value.trim();render()});
 fillBoroughs();render();
-{const u=['taaktomee','gmail.com'].join('@'),a=el('fblink');a.href='mailto:'+u+'?subject='+encodeURIComponent('TrueShift Jobs feedback');a.textContent='Send feedback ('+u+')'}
+{const u=['taaktomee','gmail.com'].join('@'),a=el('fblink');a.href='mailto:'+u+'?subject='+encodeURIComponent('TrueShift Jobs feedback');}
 fetch('feed.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d)addFeed(d)}).catch(()=>{}).finally(()=>{feedReady=true;render(true);credit()});
 const CVS={
  Students:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
