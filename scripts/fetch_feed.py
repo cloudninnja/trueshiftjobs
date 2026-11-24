@@ -609,7 +609,21 @@ def fetch_reed(key, status):
                 time.sleep(0.4)
                 if len(results) < 100:
                     break
-    for kw in ("apprentice", "apprenticeship"):  # apprenticeships across London
+    for borough in BOROUGH_REGION:  # apprenticeships borough by borough, so vague "London" adverts get a best guess
+        q = urllib.parse.urlencode({"keywords": "apprentice", "locationName": borough + ", London",
+                                    "distanceFromLocation": 2, "resultsToTake": 100})
+        try:
+            res = http_json("https://www.reed.co.uk/api/1.0/search?" + q, headers={"Authorization": auth})
+        except urllib.error.HTTPError as e:
+            status.setdefault("errors", []).append("%s apprentice: HTTP %s" % (borough, e.code))
+            continue
+        results = res.get("results") or []
+        fetched += len(results)
+        for r in results:
+            if r.get("jobId") not in raw:
+                raw[r.get("jobId")] = (r, "", borough)
+        time.sleep(0.4)
+    for kw in ("apprentice", "apprenticeship"):  # then across London
         for p in range(REED_APPRENTICE_PAGES):
             q = urllib.parse.urlencode({"keywords": kw, "locationName": "London", "distanceFromLocation": 15,
                                         "resultsToTake": 100, "resultsToSkip": p * 100})

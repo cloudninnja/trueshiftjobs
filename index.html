@@ -131,6 +131,7 @@ footer p{margin:0 0 6px;max-width:80ch}
 .cvbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .apply.alt{background:#fff;color:var(--ink);border:2px solid var(--sea)}
 button.apply{border:0;font:inherit;font-weight:600;cursor:pointer}
+[hidden]{display:none!important}
 button.apply.alt{border:2px solid var(--sea)}
 .cvmsg{min-height:22px;margin:8px 0 0;font-size:14px;color:var(--muted)}
 .tips{margin:0;padding-left:18px;color:var(--ink)}
@@ -484,7 +485,7 @@ function render(keepLimit){
   const mb=el('more');
   if(shown.length){
     el('list').innerHTML=shown.slice(0,limit).map(card).join('');
-    mb.hidden=shown.length<=limit;mb.textContent='Show more jobs ('+(shown.length-limit)+' more)';
+    mb.hidden=shown.length<=limit;mb.textContent='Show more jobs ('+Math.max(0,shown.length-limit)+' more)';
     return;
   }
   mb.hidden=true;
@@ -499,7 +500,7 @@ document.querySelector('.chips').addEventListener('click',e=>{const c=e.target.c
 el('list').addEventListener('click',e=>{const b=e.target.closest('.star');if(!b)return;const k=b.dataset.k;saved=saved.includes(k)?saved.filter(x=>x!==k):saved.concat([k]);saves.set(saved);render(true)});
 el('jtype').addEventListener('change',e=>{state.jtype=e.target.value;render()});
 el('level').addEventListener('change',e=>{state.level=e.target.value;render()});
-el('more').addEventListener('click',()=>{limit+=30;render(true)});
+el('more').addEventListener('click',()=>{if(jobs.filter(j=>matches(j,false)).length>limit){limit+=30;render(true)}});
 function credit(){
   const s=new Set(jobs.filter(j=>j.source).map(j=>j.source)),parts=[];
   if(s.has('Reed'))parts.push('<a href="https://www.reed.co.uk">reed.co.uk</a>');
