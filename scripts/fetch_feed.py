@@ -175,7 +175,7 @@ VAGUE_LONDON = re.compile(
 NOT_LONDON = re.compile(
     r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
     r"nationwide|various locations|multiple locations)\s*$", re.I)
-RULES_VERSION = 6  # bump when the rules change, so older feed jobs are not carried over
+RULES_VERSION = 7  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -353,6 +353,9 @@ def tidy_salary(value, unit=""):
     s = clean(value, 120)
     if not s:
         return "", ""
+    if re.fullmatch(r"[\d,.]+(\s*(-|–|to)\s*[\d,.]+)?", s):
+        s = re.sub(r"([\d,.]+)", r"£\1", s)  # bare numbers are pounds
+    s = re.sub(r"\bp\.\s?a\.?(?=[\s,;)]|$)", " pa ", s, flags=re.I)
     fte = bool(re.search(r"\bFTE\b|full[- ]time equivalent", s, re.I))
     actual = bool(re.search(r"\bactual\b", s, re.I))
     hourly = bool(re.search(r"\b(hourly|per hour|an hour|ph)\b|/\s*h(ou)?r\b", s, re.I))
@@ -368,6 +371,14 @@ def tidy_salary(value, unit=""):
     extras = [e for e in extras if e]
     s = re.sub(r"\s+", " ", s).strip(" ,;-/")
     amounts = re.findall(r"£([\d,]+(?:\.\d+)?)", s)
+    if not amounts:
+        # A pay scale code such as "BEX 08.1" or "MPS/UPS": no amount to put a unit on.
+        return ("Pay scale: " + s)[:110] if s else "", ""
+    try:
+        if not hourly and all(float(a.replace(",", "")) < 100 for a in amounts):
+            hourly = True  # £14.80 is an hourly rate, whatever the unit field says
+    except ValueError:
+        pass
     if hourly or (not yearly and str(unit).upper() == "HOUR"):
         s += " an hour"
     elif yearly or str(unit).upper() == "YEAR":
