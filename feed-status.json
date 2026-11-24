@@ -1,72 +1,89 @@
 {
-  "generated": "2026-11-24T17:58:08Z",
+  "generated": "2026-11-24T19:37:47Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6644,
-      "kept": 531,
+      "fetched": 6652,
+      "kept": 513,
       "dropped": {
         "too old or closed": 86
       }
     },
     "Employer": {
-      "skipped": "no EMPLOYER_JOBS_CSV secret"
+      "fetched": 0,
+      "columns": [
+        "Timestamp",
+        "Job title",
+        "Company name",
+        "Company website",
+        "Borough",
+        "Area or postcode",
+        "Job type",
+        "Hours",
+        "Pay",
+        "Closing date",
+        "How to apply",
+        "Job description",
+        "Status"
+      ],
+      "kept": 0,
+      "dropped": {}
     },
     "Find an apprenticeship": {
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7771,
-      "uniqueFromSearches": 4279,
-      "kept": 2702,
+      "fetched": 7774,
+      "uniqueFromSearches": 4289,
+      "kept": 2716,
       "dropped": {
-        "too old or closed": 916,
-        "blocked words": 57,
-        "below adult minimum wage": 34,
+        "too old or closed": 914,
+        "below adult minimum wage": 35,
         "remote or not in London": 85,
+        "blocked words": 57,
         "blocked advertiser": 89,
-        "outside London": 270,
-        "London area not given": 126
+        "outside London": 268,
+        "London area not given": 125
       }
     },
     "Adzuna": {
-      "fetched": 419,
-      "kept": 374,
+      "fetched": 415,
+      "kept": 379,
       "dropped": {
-        "below adult minimum wage": 1,
-        "blocked words": 4
+        "remote or not in London": 2,
+        "blocked words": 5
       }
     }
   },
-  "total": 2854,
-  "duplicatesRemoved": 753,
+  "total": 3014,
+  "duplicatesRemoved": 3448,
   "byRegion": {
-    "Central": 805,
-    "North": 312,
-    "East": 626,
-    "South": 570,
-    "West": 541
+    "Central": 895,
+    "North": 319,
+    "East": 652,
+    "South": 589,
+    "West": 559
   },
   "byJobType": {
-    "Part-time": 931,
-    "Full-time": 1581,
-    "Not stated": 342
+    "Part-time": 952,
+    "Full-time": 1682,
+    "Not stated": 380
   },
-  "carriedOver": 0,
-  "areaApproximate": 308,
-  "apprenticeships": 46,
+  "carriedOver": 2854,
+  "areaApproximate": 330,
+  "apprenticeships": 47,
   "apprenticeshipLevels": {
-    "not stated": 19,
+    "not stated": 20,
     "3": 18,
     "6": 1,
     "2": 7,
     "4": 1
   },
   "byGroup": {
-    "Students": 399,
-    "Newcomers": 480,
-    "Experienced": 1486,
-    "Parents": 316,
-    "(none)": 469,
-    "Apprentices": 46
+    "Parents": 333,
+    "Newcomers": 501,
+    "Experienced": 1586,
+    "Students": 416,
+    "(none)": 489,
+    "Apprentices": 47
   }
 }
