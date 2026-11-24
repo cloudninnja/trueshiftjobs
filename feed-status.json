@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-24T16:12:51Z",
+  "generated": "2026-11-24T16:16:57Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6606,
-      "kept": 254,
+      "fetched": 6609,
+      "kept": 249,
       "dropped": {
-        "senior role": 140,
-        "not entry level": 128,
+        "senior role": 132,
+        "not entry level": 131,
         "too old or closed": 86
       }
     },
@@ -14,54 +14,55 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 6301,
-      "uniqueFromSearches": 3660,
-      "kept": 1254,
+      "fetched": 6299,
+      "uniqueFromSearches": 3659,
+      "kept": 1250,
       "dropped": {
-        "too old or closed": 853,
-        "senior role": 639,
-        "blocked words": 60,
+        "too old or closed": 883,
+        "senior role": 634,
+        "blocked words": 64,
         "below adult minimum wage": 34,
         "remote or not in London": 78,
-        "not entry level": 480,
-        "blocked advertiser": 97,
-        "outside London": 132,
-        "London area not given": 33
+        "not entry level": 468,
+        "blocked advertiser": 104,
+        "outside London": 122,
+        "London area not given": 22
       }
     },
     "Adzuna": {
-      "fetched": 309,
-      "kept": 88,
+      "fetched": 308,
+      "kept": 86,
       "dropped": {
-        "not entry level": 65,
-        "senior role": 128,
+        "not entry level": 63,
+        "senior role": 130,
         "below adult minimum wage": 1,
+        "remote or not in London": 1,
         "blocked words": 4
       }
     }
   },
-  "total": 1236,
-  "duplicatesRemoved": 360,
+  "total": 1208,
+  "duplicatesRemoved": 377,
   "byRegion": {
-    "Central": 267,
-    "North": 153,
-    "East": 312,
-    "South": 269,
-    "West": 235
+    "Central": 259,
+    "North": 152,
+    "East": 307,
+    "South": 263,
+    "West": 227
   },
   "byJobType": {
-    "Part-time": 786,
-    "Full-time": 403,
-    "Not stated": 47
+    "Part-time": 770,
+    "Full-time": 395,
+    "Not stated": 43
   },
   "carriedOver": 0,
-  "areaApproximate": 128,
-  "apprenticeships": 38,
+  "areaApproximate": 126,
+  "apprenticeships": 31,
   "apprenticeshipLevels": {
     "3": 16,
-    "not stated": 14,
     "6": 1,
     "4": 1,
-    "2": 6
+    "2": 5,
+    "not stated": 8
   }
 }
