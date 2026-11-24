@@ -165,7 +165,7 @@ GROUP_RULES = {
                             r"driver|delivery|labourer|team member|crew|retail|catering)", re.I),
 }
 SOURCE_RANK = {"Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
-SITE_NAME = {"Teaching Vacancies": "Teaching Vacancies (GOV.UK)", "Reed": "Reed", "Adzuna": "Adzuna"}
+SITE_NAME = {"Teaching Vacancies": "Teaching Vacancies", "Reed": "Reed", "Adzuna": "Adzuna"}
 
 TODAY = date.today()
 
@@ -233,6 +233,13 @@ def borough_from_text(*texts):
         if m:
             return PLACE_BOROUGH[m.group(1)]
     return None
+
+
+def tidy_area(area, borough):
+    a = re.sub(r",?\s*(greater )?london$", "", clean(area, 60), flags=re.I).strip(" ,")
+    if not a or a.lower() in ("london", "uk", (borough or "").lower()):
+        return ""
+    return a
 
 
 def money(n):
@@ -320,7 +327,7 @@ def make_job(source, sid, title, employer, borough, area, job_type, lo, hi, link
         "employer": clean(employer, 100),
         "borough": borough,
         "region": BOROUGH_REGION.get(borough, ""),
-        "area": clean(area, 60),
+        "area": tidy_area(area, borough),
         "jobType": job_type,
         "pay": hourly,
         "salary": salary,
@@ -412,7 +419,10 @@ def fetch_teaching_vacancies(status):
                        parse_date(d.get("datePosted")), parse_date(d.get("validThrough")), text)
         sv = clean(sal.get("value"), 80)
         if sv:
-            job["salary"] = sv + (" a year" if str(sal.get("unitText", "")).upper() == "YEAR" and "year" not in sv.lower() else "")
+            sv = re.sub(r"\s*\bFTE\b", " a year (full-time equivalent)", sv)
+            if str(sal.get("unitText", "")).upper() == "YEAR" and "year" not in sv.lower():
+                sv += " a year"
+            job["salary"] = sv
         jobs.append((job, text))
     return jobs
 
@@ -550,7 +560,6 @@ def note_for(job):
     c = parse_date(job.get("closes"))
     if c:
         bits.append("Closes " + c.strftime("%-d %B %Y") + ".")
-    bits.append("Check the advert before you apply.")
     return " ".join(bits)
 
 

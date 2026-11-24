@@ -108,6 +108,11 @@ footer p{margin:0 0 6px;max-width:80ch}
 .steps li{background:var(--sea);border-radius:12px;padding:14px;color:var(--sub);font-size:15px}
 .steps b{display:block;color:#fff;margin-bottom:4px;font-size:16px}
 .steps a{color:var(--sky)}
+.stamp.feed{color:var(--muted)}
+.jt{font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.also{font-size:13px;color:var(--muted)}
+.morewrap{display:flex;justify-content:center;margin-top:18px}
+.credit{font-size:13px}
 .new{font-size:12px;font-weight:700;background:var(--pink);color:var(--ink);border-radius:999px;padding:2px 8px;white-space:nowrap}
 .star{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;min-height:44px;padding:0 14px;font:inherit;font-size:14px;cursor:pointer}
 .star[aria-pressed=true]{background:var(--soft);border-color:var(--sea);font-weight:600}
@@ -158,7 +163,7 @@ button.apply.alt{border:2px solid var(--sea)}
     <div class="top">
       <div>
         <p class="brand">TrueShift Jobs</p>
-        <h1>Checked part-time jobs across London</h1>
+        <h1>Real part-time and full-time jobs across London</h1>
         <p class="lead">Real, still-open jobs for students, parents returning to work and people new to the UK. No fake or expired adverts, so your time goes on jobs that are really there. Pick who you are, choose your area and apply on the employer's own advert.</p>
         <ul class="facts">
           <li>New jobs <b id="updated">every morning</b></li>
@@ -196,6 +201,11 @@ button.apply.alt{border:2px solid var(--sea)}
     <div class="bar">
       <input class="ctl" id="q" type="search" placeholder="Search job, employer or area" aria-label="Search jobs">
       <select class="ctl" id="borough" aria-label="Borough"></select>
+      <select class="ctl" id="jtype" aria-label="Job type">
+        <option value="All">Part-time and full-time</option>
+        <option value="Part-time">Part-time only</option>
+        <option value="Full-time">Full-time only</option>
+      </select>
       <select class="ctl" id="sort" aria-label="Sort jobs">
         <option value="new">Newest first</option>
         <option value="pay">Highest pay</option>
@@ -214,6 +224,7 @@ button.apply.alt{border:2px solid var(--sea)}
     <div class="quick" id="quick" aria-live="polite"></div>
     <p class="count" id="count" aria-live="polite"></p>
     <div class="list" id="list"></div>
+    <div class="morewrap"><button class="apply alt" type="button" id="more" hidden>Show more jobs</button></div>
   </div>
 </header>
 
@@ -221,6 +232,7 @@ button.apply.alt{border:2px solid var(--sea)}
   <div class="wrap">
     <h2>How every job is checked</h2>
     <p class="intro">A job only appears here after it passes all eight checks. Claude, an AI assistant, does the checks every morning and re-checks each job daily, removing it once it closes. Anything it cannot confirm is looked at by a person first. The same job often appears on several job sites, so we show it once, linked to the employer's own advert where there is one. We never ask you for money or personal details.</p>
+    <p class="intro">Jobs marked <b>Listed on Reed</b>, <b>Adzuna</b> or <b>Teaching Vacancies</b> come straight from those sites' official job feeds. We keep only London jobs posted in the last 30 days, show each job once across all the sites, and leave out senior roles, pay below the minimum wage and common scam wording. These jobs have not been checked one by one, so always read the advert before you apply.</p>
     <ol class="checks">
       <li><b>Still open</b>First posted in the last 30 days and still taking applications.</li>
       <li><b>Real employer</b>A registered company or well-known brand with a working website.</li>
@@ -315,13 +327,14 @@ button.apply.alt{border:2px solid var(--sea)}
 
 <footer class="band">
   <div class="wrap">
-    <p>TrueShift Jobs is a free list of part-time jobs. It is not an employer or a recruitment agency and never charges jobseekers.</p>
+    <p>TrueShift Jobs is a free list of part-time and full-time jobs in London. It is not an employer or a recruitment agency and never charges jobseekers.</p>
+    <p class="credit" id="credit"></p>
     <p>Jobs link to the employer's own advert. Always read the full advert and check the details before you apply. Pay rates and rules shown were checked on 24 November 2026.</p>
     <p>&copy; 2026 TrueShift Jobs. All rights reserved.</p>
   </div>
 </footer>
 
-<script id="jobs-data" type="application/json" data-updated="2026-11-24">[{"title": "Student Support Assistant (Inclusion)", "employer": "West Thames College", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "30 hours a week, term time only (38 weeks a year)", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/student-support-assistant-teaching-and-general-support-inclusion", "posted": "2026-11-11", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent. £18,987 to £19,306 a year for term-time hours. Supporting students with disabilities or learning difficulties. Enhanced DBS check needed. Closes 1 December 2026."}, {"title": "Science Teacher, one day a week", "employer": "The Green School Trust", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "One day a week (Tuesdays), 1-year fixed term from 4 January 2027", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/science-teacher-x1-day-a-week-tuesday-fixed-term-1-year", "posted": "2026-11-13", "found": "2026-11-24", "checks": "8/8", "notes": "For qualified science teachers returning to work. Paid on the teacher pay scale (MPS/UPS). Closes 27 November 2026 at 9am."}, {"title": "Customer Delivery Driver", "employer": "Asda", "borough": "Hounslow", "region": "West", "area": "Feltham", "bestFor": "Parents", "hours": "19.5 hours a week, day shifts, with some weekends and evenings on a rota", "pay": "£14.35", "link": "https://www.asda.jobs/jobs/customer-delivery-driver-in-feltham.39800", "posted": "2026-11-20", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent part-time job at the Longford Centre store. Needs a full or automatic UK driving licence held for at least 12 months. Closes 3 December 2026. Also on: Part-Time UK"}]</script>
+<script id="jobs-data" type="application/json" data-updated="2026-11-24">[{"title": "Student Support Assistant (Inclusion)", "employer": "West Thames College", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "30 hours a week, term time only (38 weeks a year)", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/student-support-assistant-teaching-and-general-support-inclusion", "posted": "2026-11-11", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent. £18,987 to £19,306 a year for term-time hours. Supporting students with disabilities or learning difficulties. Enhanced DBS check needed. Closes 1 December 2026.", "jobType": "Part-time"}, {"title": "Science Teacher, one day a week", "employer": "The Green School Trust", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "One day a week (Tuesdays), 1-year fixed term from 4 January 2027", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/science-teacher-x1-day-a-week-tuesday-fixed-term-1-year", "posted": "2026-11-13", "found": "2026-11-24", "checks": "8/8", "notes": "For qualified science teachers returning to work. Paid on the teacher pay scale (MPS/UPS). Closes 27 November 2026 at 9am.", "jobType": "Part-time"}, {"title": "Customer Delivery Driver", "employer": "Asda", "borough": "Hounslow", "region": "West", "area": "Feltham", "bestFor": "Parents", "hours": "19.5 hours a week, day shifts, with some weekends and evenings on a rota", "pay": "£14.35", "link": "https://www.asda.jobs/jobs/customer-delivery-driver-in-feltham.39800", "posted": "2026-11-20", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent part-time job at the Longford Centre store. Needs a full or automatic UK driving licence held for at least 12 months. Closes 3 December 2026. Also on: Part-Time UK", "jobType": "Part-time"}]</script>
 <script>
 {
 const REGIONS={
@@ -335,6 +348,24 @@ const el=id=>document.getElementById(id);
 const src=el('jobs-data');
 let jobs=[];
 try{jobs=JSON.parse(src.textContent||'[]');if(!Array.isArray(jobs))jobs=[]}catch(e){jobs=[]}
+let feedReady=false,feedInfo=null,limit=30;
+const tok=s=>new Set(String(s||'').toLowerCase().replace(/\([^)]*\)/g,' ').replace(/\b(part[- ]?time|full[- ]?time|temporary|temp|permanent|immediate start|urgent)\b/g,' ').match(/[a-z]+/g)||[]);
+const emp=s=>String(s||'').toLowerCase().replace(/\b(ltd|limited|plc|llp|uk|group|the|stores)\b/g,' ').replace(/[^a-z0-9]+/g,'');
+const lnk=s=>String(s||'').replace(/[?#].*$/,'').replace(/\/$/,'').toLowerCase();
+function sameJob(a,b){
+  if(a.link&&b.link&&lnk(a.link)===lnk(b.link))return true;
+  if(a.borough!==b.borough)return false;
+  const ea=emp(a.employer),eb=emp(b.employer);
+  if(!ea||!eb||!(ea.startsWith(eb)||eb.startsWith(ea)))return false;
+  const ta=tok(a.title),tb=tok(b.title);if(!ta.size||!tb.size)return false;
+  let n=0;ta.forEach(w=>{if(tb.has(w))n++});return n/(ta.size+tb.size-n)>=0.75;
+}
+function addFeed(d){
+  const list=(d&&Array.isArray(d.jobs))?d.jobs:[];
+  const checked=jobs.filter(j=>!j.source);
+  jobs=checked.concat(list.filter(f=>f&&f.title&&f.borough&&f.source&&!checked.some(c=>sameJob(c,f))));
+  feedInfo=d;
+}
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl=u=>{try{const x=new URL(String(u));return(x.protocol==='https:'||x.protocol==='http:')?x.href:''}catch(e){return ''}};
 const regionOf=j=>{if(j.region&&REGIONS[j.region])return j.region;for(const r in REGIONS)if(REGIONS[r].includes(j.borough))return r;return ''};
@@ -343,20 +374,20 @@ const dateOf=j=>j.posted||j.found||'';
 const fmtDate=d=>{const t=new Date(d+'T12:00:00');return isNaN(t)?'':t.toLocaleDateString('en-GB',{day:'numeric',month:'short'})};
 const groupsOf=j=>(Array.isArray(j.bestFor)?j.bestFor:String(j.bestFor||'').split(',')).map(s=>s.trim()).filter(Boolean);
 const store={get(){try{return JSON.parse(localStorage.getItem('trueshift-filters')||'{}')}catch(e){return{}}},set(v){try{localStorage.setItem('trueshift-filters',JSON.stringify(v))}catch(e){}}};
-const state=Object.assign({region:'All',group:'All',borough:'All',q:'',sort:'new'},store.get());
+const state=Object.assign({region:'All',group:'All',borough:'All',q:'',sort:'new',jtype:'All'},store.get());
 const saves={get(){try{return JSON.parse(localStorage.getItem('trueshift-saved')||'[]')}catch(e){return[]}},set(v){try{localStorage.setItem('trueshift-saved',JSON.stringify(v))}catch(e){}}};
 let saved=saves.get();if(!Array.isArray(saved))saved=[];
 const keyOf=j=>String(j.link||'')+'|'+String(j.title||'')+'|'+String(j.employer||'');
 const GOV={share:'https://www.gov.uk/prove-right-to-work/get-a-share-code-online',childcare:'https://www.gov.uk/tax-free-childcare',flex:'https://www.gov.uk/flexible-working'};
 const QUICK={
- All:{h:'Find a real job in three steps',p:'Every job here is checked and still open.',s:[['Pick who you are','Choose student, parent or new to the UK above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
+ All:{h:'Find a real job in three steps',p:'Jobs with a Checked stamp passed all 8 checks. The rest come from official job feeds, each listed once and posted in the last 30 days.',s:[['Pick who you are','Choose student, parent or new to the UK above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
  Students:{h:'Quick start for students',p:'Jobs with evening, weekend or flexible shifts.',s:[['Know your hours','On a Student visa at degree level you can work up to 20 hours a week in term time, and full time in official holidays.'],['Know your pay','The legal minimum is £12.71 an hour at 21 and over, and £10.85 at 18 to 20.'],['Say when you can work','Put your free days and hours at the top of your CV so employers can fit you in fast.']]},
  Parents:{h:'Quick start for parents',p:'Jobs with school hours, term-time or part-time shifts.',s:[['Look for school hours','Jobs marked for parents fit around the school day or term time.'],['Ask for flexibility','You can ask for flexible working, such as set hours, from your first day in a job.'],['Get help with childcare','Working parents may get funded childcare hours and Tax-Free Childcare. <a href="'+GOV.childcare+'">Check on GOV.UK</a>.']]},
  Newcomers:{h:'Quick start if you are new to the UK',p:'Entry-level jobs that offer training, with a normal right-to-work check.',s:[['Get your share code ready','With an eVisa, get a right-to-work share code on <a href="'+GOV.share+'">GOV.UK</a>. It starts with W and lasts 90 days.'],['Start with entry-level shifts','Jobs marked for newcomers are entry level and offer training.'],['Stay safe','Never pay for a job, and never send your passport before a real interview.']]},
  Saved:{h:'Your saved jobs',p:'Saved on this device only. Jobs that close are removed from the list.',s:[['Apply soon','Jobs can close quickly, so apply to the ones you like today.'],['Check the hours','Make sure the shifts fit your week before you apply.'],['Come back tomorrow','New jobs are added every morning.']]}
 };
 const EMPTY={
- All:['The first checked jobs are on their way','We are checking new part-time openings across London right now. Come back soon: new jobs are added every morning.'],
+ All:['The first checked jobs are on their way','We are collecting new openings across London right now. Come back soon: new jobs are added every morning.'],
  Students:['No student jobs here yet','New jobs are added every morning. Meanwhile, your university or college job service is a good place to look.'],
  Parents:['No parent-friendly jobs here yet','New jobs are added every morning. Meanwhile, the flexible-work job sites Flexa and Ten2Two list part-time roles.'],
  Newcomers:['No jobs for newcomers here yet','New jobs are added every morning. Get your share code ready now so you can apply as soon as one appears.'],
@@ -375,6 +406,7 @@ function fillBoroughs(){
 function matches(j,ignoreRegion){
   if(!ignoreRegion&&state.region!=='All'&&regionOf(j)!==state.region)return false;
   if(!ignoreRegion&&state.borough!=='All'&&j.borough!==state.borough)return false;
+  if(state.jtype&&state.jtype!=='All'&&j.jobType!==state.jtype)return false;
   if(state.group==='Saved'){if(!saved.includes(keyOf(j)))return false}
   else if(state.group!=='All'&&!groupsOf(j).includes(state.group))return false;
   if(state.q){const hay=[j.title,j.employer,j.borough,j.area,j.hours,j.notes].join(' ').toLowerCase();if(!hay.includes(state.q.toLowerCase()))return false}
@@ -385,22 +417,27 @@ function card(j){
   const pay=payNum(j)?'£'+payNum(j).toFixed(2)+'<small>per hour</small>':'<small class="nopay">Pay in advert</small>';
   const tags=groupsOf(j).map(g=>'<span class="tag">'+esc(groupLabel[g]||g)+'</span>').join('');
   const posted=fmtDate(j.posted||'');
-  const isNew=!!(j.found&&j.found===src.dataset.updated);
+  const isFeed=!!j.source;
+  const feedDay=String((feedInfo&&feedInfo.generated)||'').slice(0,10);
+  const isNew=isFeed?!!(j.posted&&feedDay&&(Date.parse(feedDay)-Date.parse(j.posted))<=86400000):!!(j.found&&j.found===src.dataset.updated);
+  const note=String(j.notes||'').replace(/^Listed on [^.]+\.\s*/,'');
+  const stamp=isFeed?'<span class="stamp feed">Listed on '+esc(j.source)+'</span>':'<span class="stamp">'+tick+'Checked '+esc(j.checks||'')+'</span>';
   const k=keyOf(j);const on=saved.includes(k);
   return '<article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title">'+esc(j.title)+'</h3><div class="pay">'+pay+'</div></div>'
     +'<p class="emp">'+esc(j.employer)+'</p>'
-    +'<p class="where">'+esc([j.area,j.borough].filter(Boolean).join(', '))+'</p>'
+    +'<p class="where">'+esc([(j.area&&j.area.toLowerCase()!==String(j.borough||'').toLowerCase()&&!/^(greater )?london$/i.test(j.area))?j.area:'',j.borough].filter(Boolean).join(', '))+'</p>'
     +(j.hours?'<p class="hours">'+esc(j.hours)+'</p>':'')
     +(tags?'<div class="tags">'+tags+'</div>':'')
-    +(j.notes?'<p class="note">'+esc(j.notes)+'</p>':'')
-    +'<div class="t-meta"><span class="stamp">'+tick+'Checked '+esc(j.checks||'')+'</span>'
+    +(note?'<p class="note">'+esc(note)+'</p>':'')
+    +'<div class="t-meta">'+stamp+(j.jobType?' <span class="jt">'+esc(j.jobType)+'</span>':'')
     +(isNew?' <span class="new">New today</span>':'')
-    +(posted?' <span class="posted">Posted '+esc(posted)+'</span>':'')+'</div>'
+    +(posted?' <span class="posted">Posted '+esc(posted)+'</span>':'')+(j.alsoOn&&j.alsoOn.length?' <span class="also">Also on '+esc(j.alsoOn.join(', '))+'</span>':'')+'</div>'
     +'</div><div class="t-foot"><button class="star" type="button" data-k="'+esc(k)+'" aria-pressed="'+on+'">'+(on?'Saved':'Save')+'</button>'
     +(url?'<a class="apply" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Apply on advert</a>':'')
     +'</div></article>';
 }
-function render(){
+function render(keepLimit){
+  if(!keepLimit)limit=30;
   store.set(state);
   document.querySelectorAll('.reg').forEach(b=>{
     const r=b.dataset.r;
@@ -408,17 +445,23 @@ function render(){
     b.querySelector('b').textContent=jobs.filter(j=>regionOf(j)===r&&matches(j,true)).length;
   });
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(state.group===c.dataset.g)));
-  saved=saved.filter(k=>jobs.some(j=>keyOf(j)===k));saves.set(saved);
+  if(feedReady){saved=saved.filter(k=>jobs.some(j=>keyOf(j)===k));saves.set(saved)}
   el('savedn').textContent=saved.length;
   const qk=QUICK[state.group]||QUICK.All;
   el('quick').innerHTML='<div><h2>'+qk.h+'</h2><p class="sub">'+qk.p+'</p></div><ol class="steps">'+qk.s.map(s=>'<li><b>'+s[0]+'</b>'+s[1]+'</li>').join('')+'</ol>';
-  el('q').value=state.q;el('sort').value=state.sort;
+  el('q').value=state.q;el('sort').value=state.sort;el('jtype').value=state.jtype||'All';
   const shown=jobs.filter(j=>matches(j,false)).sort((a,b)=>state.sort==='pay'?payNum(b)-payNum(a):String(dateOf(b)).localeCompare(String(dateOf(a))));
   el('total').textContent=jobs.length;
   const where=state.borough!=='All'?state.borough:(state.region!=='All'?state.region+' London':'all of London');
   const who={All:'',Students:' for students',Parents:' for parents',Newcomers:' for people new to the UK',Saved:' saved'}[state.group]||'';
   el('count').innerHTML='<b>'+shown.length+'</b> '+(shown.length===1?'job':'jobs')+esc(who)+' in '+esc(where);
-  if(shown.length){el('list').innerHTML=shown.map(card).join('');return}
+  const mb=el('more');
+  if(shown.length){
+    el('list').innerHTML=shown.slice(0,limit).map(card).join('');
+    mb.hidden=shown.length<=limit;mb.textContent='Show more jobs ('+(shown.length-limit)+' more)';
+    return;
+  }
+  mb.hidden=true;
   const e=(jobs.length&&state.group==='All')?['No jobs match these filters','Try another area or borough, or clear your search. New jobs are added every morning.']:(EMPTY[state.group]||EMPTY.All);
   el('list').innerHTML='<div class="empty"><h3>'+e[0]+'</h3><p>'+e[1]+'</p></div>';
 }
@@ -427,11 +470,21 @@ if(up){const t=new Date(up+'T12:00:00');if(!isNaN(t))el('updated').textContent=t
 el('compass').addEventListener('click',e=>{const b=e.target.closest('.reg');if(!b)return;state.region=state.region===b.dataset.r?'All':b.dataset.r;state.borough='All';fillBoroughs();render()});
 el('allbtn').addEventListener('click',()=>{state.region='All';state.borough='All';fillBoroughs();render()});
 document.querySelector('.chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;state.group=c.dataset.g;render()});
-el('list').addEventListener('click',e=>{const b=e.target.closest('.star');if(!b)return;const k=b.dataset.k;saved=saved.includes(k)?saved.filter(x=>x!==k):saved.concat([k]);saves.set(saved);render()});
+el('list').addEventListener('click',e=>{const b=e.target.closest('.star');if(!b)return;const k=b.dataset.k;saved=saved.includes(k)?saved.filter(x=>x!==k):saved.concat([k]);saves.set(saved);render(true)});
+el('jtype').addEventListener('change',e=>{state.jtype=e.target.value;render()});
+el('more').addEventListener('click',()=>{limit+=30;render(true)});
+function credit(){
+  const s=new Set(jobs.filter(j=>j.source).map(j=>j.source)),parts=[];
+  if(s.has('Reed'))parts.push('<a href="https://www.reed.co.uk">reed.co.uk</a>');
+  if(s.has('Adzuna'))parts.push('<a href="https://www.adzuna.co.uk">Jobs by Adzuna</a>');
+  if(s.has('Teaching Vacancies'))parts.push('<a href="https://teaching-vacancies.service.gov.uk">GOV.UK Teaching Vacancies</a> (Open Government Licence v3.0)');
+  el('credit').innerHTML=parts.length?'Job feeds: '+parts.join(' · ')+'.':'';
+}
 el('borough').addEventListener('change',e=>{state.borough=e.target.value;render()});
 el('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
 el('q').addEventListener('input',e=>{state.q=e.target.value.trim();render()});
 fillBoroughs();render();
+fetch('feed.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d)addFeed(d)}).catch(()=>{}).finally(()=>{feedReady=true;render(true);credit()});
 const CVS={
  Students:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
   sections:[['Personal statement',['p','[Your course and year] student looking for part-time [evening / weekend] work in [type of work, e.g. retail or hospitality]. [Two or three strengths, e.g. friendly, reliable and quick to learn].']],
