@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-24T21:56:35Z",
+  "generated": "2026-11-24T21:59:55Z",
   "sources": {
     "Teaching Vacancies": {
       "fetched": 6659,
-      "kept": 530,
+      "kept": 528,
       "dropped": {
-        "too old or closed": 84
+        "too old or closed": 86
       }
     },
     "Employer": {
@@ -33,16 +33,16 @@
     },
     "Reed": {
       "fetched": 7770,
-      "uniqueFromSearches": 4313,
-      "kept": 2740,
+      "uniqueFromSearches": 4254,
+      "kept": 2690,
       "dropped": {
-        "too old or closed": 910,
+        "too old or closed": 908,
         "below adult minimum wage": 35,
-        "remote or not in London": 84,
-        "blocked words": 57,
-        "blocked advertiser": 89,
-        "outside London": 257,
-        "London area not given": 141
+        "remote or not in London": 83,
+        "blocked words": 59,
+        "blocked advertiser": 83,
+        "outside London": 272,
+        "London area not given": 124
       }
     },
     "Adzuna": {
@@ -54,21 +54,21 @@
       }
     }
   },
-  "total": 2852,
-  "duplicatesRemoved": 800,
+  "total": 2912,
+  "duplicatesRemoved": 3540,
   "byRegion": {
-    "Central": 791,
-    "North": 315,
-    "East": 627,
-    "South": 569,
-    "West": 550
+    "Central": 807,
+    "North": 316,
+    "East": 636,
+    "South": 589,
+    "West": 564
   },
   "byJobType": {
-    "Part-time": 931,
-    "Full-time": 1595,
-    "Not stated": 326
+    "Part-time": 942,
+    "Full-time": 1635,
+    "Not stated": 335
   },
-  "carriedOver": 0,
+  "carriedOver": 2852,
   "areaApproximate": 312,
   "apprenticeships": 47,
   "apprenticeshipLevels": {
@@ -79,12 +79,12 @@
     "4": 1
   },
   "byGroup": {
-    "Students": 398,
-    "Parents": 325,
-    "Newcomers": 478,
-    "Experienced": 1464,
-    "(none)": 446,
-    "Graduates": 58,
+    "Students": 410,
+    "Parents": 334,
+    "Newcomers": 492,
+    "Experienced": 1499,
+    "(none)": 449,
+    "Graduates": 60,
     "Apprentices": 47
   }
 }
