@@ -425,7 +425,7 @@ function card(j){
   const k=keyOf(j);const on=saved.includes(k);
   return '<article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title">'+esc(j.title)+'</h3><div class="pay">'+pay+'</div></div>'
     +'<p class="emp">'+esc(j.employer)+'</p>'
-    +'<p class="where">'+esc([(j.area&&j.area.toLowerCase()!==String(j.borough||'').toLowerCase()&&!/^(greater )?london$/i.test(j.area))?j.area:'',j.borough].filter(Boolean).join(', '))+'</p>'
+    +'<p class="where">'+esc([(j.area&&j.area.toLowerCase()!==String(j.borough||'').toLowerCase()&&!/^(greater )?london$/i.test(j.area))?j.area:'',j.borough].filter(Boolean).join(', ')+(j.approx?' (area approximate)':''))+'</p>'
     +(j.hours?'<p class="hours">'+esc(j.hours)+'</p>':'')
     +(tags?'<div class="tags">'+tags+'</div>':'')
     +(note?'<p class="note">'+esc(note)+'</p>':'')

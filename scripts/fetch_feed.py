@@ -133,10 +133,10 @@ LONDON_POSTCODE = re.compile(
 
 # Who a job is for, and which jobs to leave out.
 SENIOR = re.compile(
-    r"\b(senior|head of|director|principal|consultant|specialist|engineer|developer|solicitor|"
-    r"lawyer|accountant|analyst|architect|surveyor|psycholog\w*|psychiatr\w*|therapist|pharmacist|"
-    r"doctor|surgeon|registrar|dentist|executive|partner|professor|lecturer|"
-    r"(general|area|regional|store|project|programme|account|operations|branch|deputy) manager)\b", re.I)
+    r"\b(senior|head of|head chef|head teacher|headteacher|director|principal|consultant|specialist|"
+    r"engineer|developer|solicitor|lawyer|accountant|analyst|architect|surveyor|psycholog\w*|"
+    r"psychiatr\w*|therapist|pharmacist|doctor|surgeon|registrar|dentist|executive|partner|professor|"
+    r"lecturer|chief|lead|buyer|responsible individual|financial advis[eo]r|(?<!trainee )manager)\b", re.I)
 ENTRY = re.compile(
     r"\b(assistant|operative|cleaner|cleaning|porter|barista|waiter|waitress|waiting|server|"
     r"bartender|bar staff|kitchen|commis|chef|cook|catering|receptionist|front of house|host|"
@@ -150,7 +150,21 @@ ENTRY = re.compile(
 BLOCK = re.compile(
     r"(commission only|self[- ]employed|franchise|be your own boss|multi[- ]level|\bmlm\b|"
     r"telegram|whatsapp|upfront fee|registration fee|uber eats|deliveroo|gopuff|amazon flex|"
-    r"just eat rider)", re.I)
+    r"just eat rider|this is a training course|fees apply|cost of (the )?training is|paid emails|"
+    r"paid surveys|earn cashback)", re.I)
+# Advertisers whose "jobs" are paid training courses, paid-survey or cashback schemes, or self-employed work.
+BLOCK_EMPLOYERS = ("itolrecruit", "qualifynation", "opiniongroups", "cashback", "maid2clean")
+REMOTE = re.compile(r"\b(remote|work from home|working from home|home[- ]based|wfh)\b", re.I)
+
+# Locations.
+UK_POSTCODE = re.compile(r"^\s*([A-Z]{1,2}\d[A-Z\d]?)\s*(\d[A-Z]{2})\s*$", re.I)
+POSTCODE_IN_TEXT = re.compile(r"\b([A-Z]{1,2}\d[A-Z\d]?) ?(\d[A-Z]{2})\b")
+VAGUE_LONDON = re.compile(
+    r"^\s*(((north|south|east|west)(\s+(east|west))?|central|inner|outer|greater)\s*)?(london)?\s*$", re.I)
+NOT_LONDON = re.compile(
+    r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
+    r"nationwide|various locations|multiple locations)\s*$", re.I)
+RULES_VERSION = 2  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -236,10 +250,49 @@ def borough_from_text(*texts):
 
 
 def tidy_area(area, borough):
-    a = re.sub(r",?\s*(greater )?london$", "", clean(area, 60), flags=re.I).strip(" ,")
-    if not a or a.lower() in ("london", "uk", (borough or "").lower()):
+    a = clean(area, 60)
+    if UK_POSTCODE.match(a) or VAGUE_LONDON.match(a) or NOT_LONDON.match(a):
+        return ""
+    a = re.sub(r",?\s*(((north|south|east|west)(\s+(east|west))?|central|greater)\s+)?london$", "", a,
+               flags=re.I).strip(" ,")
+    a = re.sub(r",\s*((north|south|east|west)(\s+(east|west))?|central)$", "", a, flags=re.I).strip(" ,")
+    if not a or a.lower() in ("london", "uk", "city of", (borough or "").lower()):
         return ""
     return a
+
+
+def locate(loc, title, employer, text, pc_info, guess):
+    """Work out a job's borough.
+
+    Returns (borough, area, approximate, reason_to_drop). Postcodes are looked up
+    exactly; place names are matched against London towns; for adverts that only
+    say "London" the title, employer or a postcode in the advert is tried before
+    falling back to the borough the job board matched (marked approximate).
+    """
+    loc = clean(loc, 80)
+    if NOT_LONDON.match(loc) or REMOTE.search(str(title or "")):
+        return None, "", False, "remote or not in London"
+    m = UK_POSTCODE.match(loc)
+    if m:
+        hit = pc_info.get((m.group(1) + m.group(2)).upper())
+        if hit:
+            b, ward = hit
+            return (b, ward, False, None) if b else (None, "", False, "outside London")
+    elif not VAGUE_LONDON.match(loc):
+        b = borough_from_text(loc)
+        if b:
+            return b, loc, False, None
+        return None, "", False, "outside London"
+    b = borough_from_text(title, employer)
+    if b:
+        return b, "", False, None
+    for pm in POSTCODE_IN_TEXT.finditer(str(text or "")):
+        hit = pc_info.get((pm.group(1) + pm.group(2)).upper())
+        if hit and hit[0]:
+            return hit[0], hit[1], False, None
+    if guess:
+        return guess, "", True, None
+    return None, "", False, "London area not given"
 
 
 def money(n):
@@ -302,8 +355,14 @@ def groups_for(job, text):
 def keep(job, text):
     """Audience, safety and pay rules. Returns a reason to drop, or None."""
     t = job["title"]
+    where = job.pop("_drop", None)
+    if where:
+        return where
     if BLOCK.search(t + " " + text):
         return "blocked words"
+    emp = norm_emp(job.get("employer"))
+    if emp and any(emp.startswith(b) for b in BLOCK_EMPLOYERS):
+        return "blocked advertiser"
     if SENIOR.search(t):
         return "senior role"
     if job.get("jobType") != "Part-time" and not ENTRY.search(t):
@@ -342,21 +401,29 @@ def make_job(source, sid, title, employer, borough, area, job_type, lo, hi, link
 
 
 # ---------------------------------------------------------------- postcodes.io
-def boroughs_for_postcodes(postcodes):
+def pc_key(p):
+    return re.sub(r"\s+", "", str(p or "")).upper()
+
+
+def postcode_info(postcodes, status=None):
+    """{POSTCODE without spaces: (London borough or '' if outside London, ward name)} for valid postcodes."""
     out = {}
-    pcs = sorted({p.upper().strip() for p in postcodes if p})
+    pcs = sorted({pc_key(p) for p in postcodes if p})
     for i in range(0, len(pcs), 100):
         chunk = pcs[i:i + 100]
         try:
             res = http_json("https://api.postcodes.io/postcodes", {"postcodes": chunk})
         except Exception as e:  # noqa: BLE001
             print("postcodes.io lookup failed:", e, file=sys.stderr)
+            if status is not None:
+                status["postcodeLookupError"] = str(e)[:200]
             return out
         for item in res.get("result") or []:
             r = item.get("result") or {}
+            if not r:
+                continue
             d = r.get("admin_district")
-            if d in BOROUGH_REGION:
-                out[str(item.get("query", "")).upper().strip()] = d
+            out[pc_key(item.get("query"))] = (d if d in BOROUGH_REGION else "", clean(r.get("admin_ward"), 60))
     return out
 
 
@@ -403,19 +470,23 @@ def fetch_teaching_vacancies(status):
         if not (region.lower() == "london" or LONDON_POSTCODE.match(pc)):
             continue
         cands.append((d, addr, pc))
-    by_pc = boroughs_for_postcodes([pc for _, _, pc in cands])
+    by_pc = postcode_info([pc for _, _, pc in cands], status)
     jobs = []
     for d, addr, pc in cands:
-        borough = by_pc.get(pc.upper()) or borough_from_text(addr.get("addressLocality"), addr.get("streetAddress"))
+        hit = by_pc.get(pc_key(pc))
+        if hit and not hit[0]:
+            continue  # postcode is outside London
+        borough = (hit and hit[0]) or borough_from_text(addr.get("addressLocality"), addr.get("streetAddress"))
         if not borough:
             continue
+        locality = addr.get("addressLocality") or (hit[1] if hit else "")
         et = [str(x).upper() for x in (d.get("employmentType") or [])]
         jt = "Part-time" if "PART_TIME" in et else ("Full-time" if "FULL_TIME" in et else "")
         sal = ((d.get("baseSalary") or {}).get("value") or {})
         text = clean(d.get("description"), 3000) + " " + str(sal.get("value") or "")
         job = make_job("Teaching Vacancies", d.get("url") or d.get("title"), d.get("title"),
                        (d.get("hiringOrganization") or {}).get("name"), borough,
-                       addr.get("addressLocality"), jt, None, None, d.get("url"),
+                       locality, jt, None, None, d.get("url"),
                        parse_date(d.get("datePosted")), parse_date(d.get("validThrough")), text)
         sv = clean(sal.get("value"), 80)
         if sv:
@@ -429,7 +500,7 @@ def fetch_teaching_vacancies(status):
 
 def fetch_reed(key, status):
     auth = "Basic " + base64.b64encode((key + ":").encode()).decode()
-    jobs, fetched = [], 0
+    raw, fetched = {}, 0
     for borough in BOROUGH_REGION:
         for jt, flag in (("Part-time", "partTime"), ("Full-time", "fullTime")):
             for p in range(REED_PAGES):
@@ -446,16 +517,34 @@ def fetch_reed(key, status):
                 results = res.get("results") or []
                 fetched += len(results)
                 for r in results:
-                    text = str(r.get("jobDescription") or "")
-                    b = borough_from_text(r.get("locationName")) or borough
-                    job = make_job("Reed", r.get("jobId"), r.get("jobTitle"), r.get("employerName"), b,
-                                   r.get("locationName"), jt, r.get("minimumSalary"), r.get("maximumSalary"),
-                                   r.get("jobUrl"), parse_date(r.get("date")), parse_date(r.get("expirationDate")), text)
-                    jobs.append((job, text))
+                    jid = r.get("jobId")
+                    if jid not in raw:
+                        raw[jid] = (r, jt, borough)  # borough = the first borough search that found it
                 time.sleep(0.4)
                 if len(results) < 100:
                     break
     status["fetched"] = fetched
+    status["uniqueFromSearches"] = len(raw)
+    pcs = []
+    for r, _, _ in raw.values():
+        loc = clean(r.get("locationName"), 80)
+        if UK_POSTCODE.match(loc):
+            pcs.append(loc)
+        pcs += [m.group(1) + m.group(2) for m in POSTCODE_IN_TEXT.finditer(str(r.get("jobDescription") or ""))][:2]
+    pc_info = postcode_info(pcs, status)
+    jobs = []
+    for jid, (r, jt, guess) in raw.items():
+        text = clean(r.get("jobDescription"), 3000)
+        b, area, is_approx, why = locate(r.get("locationName"), r.get("jobTitle"), r.get("employerName"),
+                                         text, pc_info, guess)
+        job = make_job("Reed", jid, r.get("jobTitle"), r.get("employerName"), b or "",
+                       area, jt, r.get("minimumSalary"), r.get("maximumSalary"),
+                       r.get("jobUrl"), parse_date(r.get("date")), parse_date(r.get("expirationDate")), text)
+        if is_approx:
+            job["approx"] = True
+        if why:
+            job["_drop"] = why
+        jobs.append((job, text))
     return jobs
 
 
@@ -491,12 +580,21 @@ def fetch_adzuna(app_id, app_key, status):
     jobs = []
     for r in raw:
         b = r.get("_borough")
+        title = str(r.get("title") or "")
+        is_approx = False
+        if not b:
+            b = borough_from_text(title, (r.get("company") or {}).get("display_name"))
         if not b and r.get("latitude") and r.get("longitude"):
             b = by_pt.get((round(float(r["latitude"]), 4), round(float(r["longitude"]), 4)))
+            areas = (r.get("location") or {}).get("area") or []
+            is_approx = bool(b) and (len(areas) < 3 or bool(VAGUE_LONDON.match(str(areas[-1]))))
         if not b:
             continue
         ct = r.get("contract_time")
         jt = "Part-time" if ct == "part_time" else ("Full-time" if ct == "full_time" else "")
+        if not jt:
+            jt = ("Part-time" if re.search(r"part[- ]?time", title, re.I)
+                  else "Full-time" if re.search(r"full[- ]?time", title, re.I) else "")
         predicted = str(r.get("salary_is_predicted", "0")) == "1"
         lo = None if predicted else r.get("salary_min")
         hi = None if predicted else r.get("salary_max")
@@ -504,6 +602,10 @@ def fetch_adzuna(app_id, app_key, status):
         job = make_job("Adzuna", r.get("id"), r.get("title"), (r.get("company") or {}).get("display_name"), b,
                        (r.get("location") or {}).get("display_name"), jt, lo, hi, r.get("redirect_url"),
                        parse_date(r.get("created")), None, text)
+        if is_approx:
+            job["approx"] = True
+        if REMOTE.search(title):
+            job["_drop"] = "remote or not in London"
         jobs.append((job, text))
     return jobs
 
@@ -602,7 +704,9 @@ def main():
     previous = []
     if FEED.exists():
         try:
-            previous = [j for j in json.loads(FEED.read_text()).get("jobs", []) if fresh(j)]
+            prev = json.loads(FEED.read_text())
+            if prev.get("rulesVersion") == RULES_VERSION:
+                previous = [j for j in prev.get("jobs", []) if fresh(j)]
         except Exception:  # noqa: BLE001
             previous = []
     for j in previous:
@@ -622,9 +726,9 @@ def main():
         by_region[j["region"]] = by_region.get(j["region"], 0) + 1
         by_type[j.get("jobType") or "Not stated"] += 1
     status.update({"total": len(jobs), "duplicatesRemoved": dupes, "byRegion": by_region, "byJobType": by_type,
-                   "carriedOver": len(previous)})
+                   "carriedOver": len(previous), "areaApproximate": sum(1 for j in jobs if j.get("approx"))})
     FEED.write_text(json.dumps({"generated": status["generated"], "maxAgeDays": MAX_AGE_DAYS,
-                                "jobs": jobs}, ensure_ascii=False, separators=(",", ":")))
+                                "rulesVersion": RULES_VERSION, "jobs": jobs}, ensure_ascii=False, separators=(",", ":")))
     STATUS.write_text(json.dumps(status, indent=2, ensure_ascii=False))
     print(json.dumps(status, indent=2))
     if not jobs and all("error" in s or "skipped" in s for s in status["sources"].values()):

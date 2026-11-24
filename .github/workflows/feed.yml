@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "17 5 * * *"   # every day at 05:17 UTC (05:17 London time in winter, 06:17 in summer)
   workflow_dispatch:        # lets you run it any time from the Actions tab
+  push:                     # runs again whenever the feed script itself changes
+    branches: [main]
+    paths: ["scripts/**", ".github/workflows/feed.yml"]
 
 permissions:
   contents: write
