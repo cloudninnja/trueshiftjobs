@@ -57,6 +57,8 @@ h1{font-weight:300;font-size:clamp(34px,5vw,52px);line-height:1.05;letter-spacin
 .t-title{font-size:19px;font-weight:700;line-height:1.25;margin:0}
 .pay{font-size:22px;font-weight:700;white-space:nowrap;text-align:right;line-height:1.1}
 .pay small{display:block;font-size:13px;font-weight:400;color:var(--muted)}
+.pay small.nopay{white-space:normal;max-width:64px;line-height:1.25}
+.t-head .t-title{min-width:0}
 .emp{margin:0;font-weight:600}
 .where,.hours{margin:0;color:var(--muted);font-size:15px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
@@ -220,7 +222,7 @@ button.apply.alt{border:2px solid var(--sea)}
     <h2>How every job is checked</h2>
     <p class="intro">A job only appears here after it passes all eight checks. Claude, an AI assistant, does the checks every morning and re-checks each job daily, removing it once it closes. Anything it cannot confirm is looked at by a person first. The same job often appears on several job sites, so we show it once, linked to the employer's own advert where there is one. We never ask you for money or personal details.</p>
     <ol class="checks">
-      <li><b>Still open</b>First posted in the last 10 days and still taking applications.</li>
+      <li><b>Still open</b>First posted in the last 30 days and still taking applications.</li>
       <li><b>Real employer</b>A registered company or well-known brand with a working website.</li>
       <li><b>Clear advert</b>Duties, hours, pay and location are all stated.</li>
       <li><b>Real contact</b>A named contact, a company email or a known job site.</li>
@@ -268,8 +270,8 @@ button.apply.alt{border:2px solid var(--sea)}
   <div class="wrap cvgrid">
     <div class="cvside">
       <h2>Free UK CV template</h2>
-      <p class="intro">Not sure what a UK CV looks like? Pick the example closest to you, then copy it or download it for Word and swap in your own details.</p>
-      <div class="chips cvtabs" role="tablist" aria-label="CV examples">
+      <p class="intro">Not sure what a UK CV looks like? Pick the template closest to you, then copy it or download it for Word and fill in the parts in [square brackets].</p>
+      <div class="chips cvtabs" role="tablist" aria-label="CV templates">
         <button class="chip" type="button" role="tab" data-cv="Students" aria-selected="true" aria-pressed="true">Student</button>
         <button class="chip" type="button" role="tab" data-cv="Parents" aria-selected="false" aria-pressed="false">Parent returning to work</button>
         <button class="chip" type="button" role="tab" data-cv="Newcomers" aria-selected="false" aria-pressed="false">New to the UK</button>
@@ -289,7 +291,7 @@ button.apply.alt{border:2px solid var(--sea)}
         <li>If you have a National Insurance number, say so, but don't write the number.</li>
       </ul>
     </div>
-    <article class="paper" id="cvpaper" aria-label="Sample CV"></article>
+    <article class="paper" id="cvpaper" aria-label="CV template"></article>
   </div>
 </section>
 
@@ -319,7 +321,7 @@ button.apply.alt{border:2px solid var(--sea)}
   </div>
 </footer>
 
-<script id="jobs-data" type="application/json" data-updated="2026-11-24">[{"title": "Customer Delivery Driver", "employer": "Asda", "borough": "Hounslow", "region": "West", "area": "Feltham", "bestFor": "Parents", "hours": "19.5 hours a week, day shifts, with some weekends and evenings on a rota", "pay": "£14.35", "link": "https://www.asda.jobs/jobs/customer-delivery-driver-in-feltham.39800", "posted": "2026-11-20", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent part-time job at the Longford Centre store. Needs a full or automatic UK driving licence held for at least 12 months. Closes 3 December 2026. Also on: Part-Time UK"}]</script>
+<script id="jobs-data" type="application/json" data-updated="2026-11-24">[{"title": "Student Support Assistant (Inclusion)", "employer": "West Thames College", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "30 hours a week, term time only (38 weeks a year)", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/student-support-assistant-teaching-and-general-support-inclusion", "posted": "2026-11-11", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent. £18,987 to £19,306 a year for term-time hours. Supporting students with disabilities or learning difficulties. Enhanced DBS check needed. Closes 1 December 2026."}, {"title": "Science Teacher, one day a week", "employer": "The Green School Trust", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "One day a week (Tuesdays), 1-year fixed term from 4 January 2027", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/science-teacher-x1-day-a-week-tuesday-fixed-term-1-year", "posted": "2026-11-13", "found": "2026-11-24", "checks": "8/8", "notes": "For qualified science teachers returning to work. Paid on the teacher pay scale (MPS/UPS). Closes 27 November 2026 at 9am."}, {"title": "Customer Delivery Driver", "employer": "Asda", "borough": "Hounslow", "region": "West", "area": "Feltham", "bestFor": "Parents", "hours": "19.5 hours a week, day shifts, with some weekends and evenings on a rota", "pay": "£14.35", "link": "https://www.asda.jobs/jobs/customer-delivery-driver-in-feltham.39800", "posted": "2026-11-20", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent part-time job at the Longford Centre store. Needs a full or automatic UK driving licence held for at least 12 months. Closes 3 December 2026. Also on: Part-Time UK"}]</script>
 <script>
 {
 const REGIONS={
@@ -380,7 +382,7 @@ function matches(j,ignoreRegion){
 }
 function card(j){
   const url=safeUrl(j.link);
-  const pay=payNum(j)?'£'+payNum(j).toFixed(2)+'<small>per hour</small>':'<small>Pay in advert</small>';
+  const pay=payNum(j)?'£'+payNum(j).toFixed(2)+'<small>per hour</small>':'<small class="nopay">Pay in advert</small>';
   const tags=groupsOf(j).map(g=>'<span class="tag">'+esc(groupLabel[g]||g)+'</span>').join('');
   const posted=fmtDate(j.posted||'');
   const isNew=!!(j.found&&j.found===src.dataset.updated);
@@ -431,27 +433,27 @@ el('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
 el('q').addEventListener('input',e=>{state.q=e.target.value.trim();render()});
 fillBoroughs();render();
 const CVS={
- Students:{name:'Priya Shah',contact:'Kingston upon Thames · 07700 900123 · priya.shah@example.com',
-  sections:[['Personal statement',['p','Second-year Business student looking for part-time evening and weekend work in retail or hospitality. Friendly, reliable and quick to learn, with experience serving customers and handling cash.']],
-   ['When I can work',['p','Weekday evenings from 5pm and weekends. Up to 20 hours a week in term time, and full time in university holidays.']],
-   ['Experience',['r','Volunteer, charity shop, Surbiton','June 2025 to now'],['l',['Serve customers and take payments on the till','Sort and price donated stock','Keep the shop floor tidy and welcoming']],['r','Summer cashier, family shop','July to August 2024'],['l',['Handled cash and card payments','Restocked shelves and helped with deliveries']]],
-   ['Education',['r','BA Business Management, London university','2024 to 2027 (expected)'],['r','A levels: Economics (B), Maths (B), English (C)','2024']],
-   ['Skills',['l',['Customer service and cash handling','Microsoft Word, Excel and email','English (fluent), Gujarati (fluent)']]],
+ Students:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
+  sections:[['Personal statement',['p','[Your course and year] student looking for part-time [evening / weekend] work in [type of work, e.g. retail or hospitality]. [Two or three strengths, e.g. friendly, reliable and quick to learn].']],
+   ['When I can work',['p','[Days and times you are free, e.g. weekday evenings from 5pm and weekends]. Up to [20] hours a week in term time, and full time in university holidays.']],
+   ['Experience',['r','[Job or volunteer role], [Employer], [Town]','[Month Year] to [Month Year or now]'],['l',['[What you did, starting with an action word, e.g. Served customers at the till]','[Another task or something you achieved]','[A skill you used, e.g. handling cash]']],['r','[Another role, e.g. summer or weekend job], [Employer]','[Month Year] to [Month Year]'],['l',['[What you did]','[What you learned]']]],
+   ['Education',['r','[Course name], [University or college]','[Start year] to [End year] (expected)'],['r','[Earlier qualifications and grades, e.g. A levels]','[Year]']],
+   ['Skills',['l',['[Skill, e.g. customer service]','[Computer skills, e.g. Word, Excel and email]','[Languages you speak and how well]']]],
    ['References',['p','Available on request.']]]},
- Parents:{name:'Sarah Thompson',contact:'Hounslow · 07700 900456 · sarah.thompson@example.com',
-  sections:[['Personal statement',['p','Organised and dependable parent returning to work after a career break. Looking for part-time work in school hours, with five years of office and customer service experience.']],
-   ['When I can work',['p','Monday to Friday, 9:30am to 2:30pm, in term time. Can start straight away.']],
-   ['Experience',['r','Career break: full-time parent','2019 to 2025'],['l',['Volunteer class reader at a local primary school since 2023','Organised a busy family schedule and budget']],['r','Office administrator, estate agency, Hounslow','2014 to 2019'],['l',['Answered phones and emails and booked viewings','Kept client records accurate and up to date','Welcomed visitors and handled enquiries']]],
-   ['Education',['r','Level 2 Certificate in Business Administration','2013'],['r','GCSEs including English and Maths','2011']],
-   ['Skills',['l',['Diary management and record keeping','Microsoft Word, Excel and email','Calm, friendly phone manner']]],
+ Parents:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
+  sections:[['Personal statement',['p','[Two strengths, e.g. organised and dependable] parent returning to work after a career break. Looking for part-time work [in school hours], with [number] years of [type of work] experience.']],
+   ['When I can work',['p','[Days and times, e.g. Monday to Friday, 9:30am to 2:30pm, in term time]. Can start [straight away / from a date].']],
+   ['Experience',['r','Career break: full-time parent','[Year] to [Year]'],['l',['[Anything you did in this time, e.g. volunteering at a school or running a club]','[A skill you used, e.g. managing a busy schedule and budget]']],['r','[Your last job title], [Employer], [Town]','[Year] to [Year]'],['l',['[Main task, starting with an action word]','[Another task]','[Something you were good at or proud of]']]],
+   ['Education',['r','[Qualification, e.g. Level 2 Certificate in Business Administration]','[Year]'],['r','[School qualifications, e.g. GCSEs including English and Maths]','[Year]']],
+   ['Skills',['l',['[Skill, e.g. record keeping]','[Computer skills, e.g. Word, Excel and email]','[A personal strength, e.g. calm, friendly phone manner]']]],
    ['References',['p','Available on request.']]]},
- Newcomers:{name:'Daniel Mensah',contact:'Croydon · 07700 900789 · daniel.mensah@example.com',
-  sections:[['Personal statement',['p','Hard-working and punctual, recently moved to London. Looking for warehouse, retail or hospitality shifts, with three years of stock and customer service experience.']],
-   ['Right to work',['p','I have the right to work in the UK and a National Insurance number. I can provide a share code.']],
-   ['When I can work',['p','Flexible, including early mornings, nights and weekends.']],
-   ['Experience',['r','Stock assistant, supermarket, Accra, Ghana','2021 to 2024'],['l',['Unloaded deliveries and kept shelves full','Checked dates and rotated stock','Helped customers find products']]],
-   ['Education',['r','Senior High School Certificate, Ghana','2020']],
-   ['Skills',['l',['Stock handling and teamwork','English (fluent), Twi (native)','Happy to train and learn new systems']]],
+ Newcomers:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
+  sections:[['Personal statement',['p','[Two strengths, e.g. hard-working and punctual], recently moved to [area]. Looking for [type of work, e.g. warehouse, retail or hospitality] shifts, with [number] years of [type of work] experience.']],
+   ['Right to work',['p','I have the right to work in the UK [and a National Insurance number]. I can provide a share code.']],
+   ['When I can work',['p','[When you are free, e.g. flexible, including early mornings, nights and weekends].']],
+   ['Experience',['r','[Job title], [Employer or type of business], [Town, Country]','[Year] to [Year]'],['l',['[Main task, starting with an action word, e.g. Unloaded deliveries]','[Another task]','[How you helped customers or your team]']]],
+   ['Education',['r','[Highest qualification], [Country]','[Year]']],
+   ['Skills',['l',['[Skill, e.g. stock handling and teamwork]','[Languages you speak and how well, e.g. English (fluent)]','[e.g. Happy to train and learn new systems]']]],
    ['References',['p','Available on request.']]]}
 };
 let cvKey='Students';
@@ -465,7 +467,7 @@ function cvHtml(c){
       else o+='<ul>'+p[1].map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
     }
   }
-  return o+'<p class="samp">Sample CV with made-up details. Replace them with your own.</p>';
+  return o+'<p class="samp">CV template. Replace everything in [square brackets] with your own details, and delete any line that does not apply to you.</p>';
 }
 function cvText(c){
   let o=c.name+'\n'+c.contact+'\n';
