@@ -168,7 +168,7 @@ VAGUE_LONDON = re.compile(
 NOT_LONDON = re.compile(
     r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
     r"nationwide|various locations|multiple locations)\s*$", re.I)
-RULES_VERSION = 3  # bump when the rules change, so older feed jobs are not carried over
+RULES_VERSION = 4  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -186,6 +186,10 @@ SOURCE_RANK = {"Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, 
 SITE_NAME = {"Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
              "Reed": "Reed", "Adzuna": "Adzuna"}
 APPRENTICE = re.compile(r"\bapprentice(ship)?s?\b", re.I)
+# Staff who run apprenticeships, not apprentices.
+APPRENTICE_STAFF = re.compile(
+    r"\b(assessor|manager|lead|coach|tutor|trainer|co-?ordinator|director|head of|recruiter|consultant|"
+    r"educator|portfolio|lecturer|mentor|verifier|iqa)\b", re.I)
 GENERIC_WARD = {"town", "central", "village", "park", "north", "south", "east", "west", "centre", "riverside"}
 
 TODAY = date.today()
@@ -322,6 +326,50 @@ def pay_fields(lo, hi, hint_full_time):
     return "", txt + " a year", None
 
 
+def tidy_salary(value, unit=""):
+    """Turn free-text school salaries into plain English. Returns (salary text, hourly text or '')."""
+    s = clean(value, 120)
+    if not s:
+        return "", ""
+    fte = bool(re.search(r"\bFTE\b|full[- ]time equivalent", s, re.I))
+    actual = bool(re.search(r"\bactual\b", s, re.I))
+    hourly = bool(re.search(r"\b(hourly|per hour|an hour|ph)\b|/\s*h(ou)?r\b", s, re.I))
+    yearly = bool(re.search(r"\b(annually|per annum|per year|a year|pa)\b|\dpa\b", s, re.I))
+    s = re.sub(r"\(\s*(FTE|actual)\s*\)|\b(FTE|actual)\b", " ", s, flags=re.I)
+    s = re.sub(r"\b(annually|per annum|per year|a year|hourly|per hour|an hour|ph|pa)\b|/\s*h(ou)?r\b", " ", s, flags=re.I)
+    s = re.sub(r"(\d)pa\b", r"\1", s)
+    s = re.sub(r"(\d)\.00\b", r"\1", s)
+    s = re.sub(r"£\s*(\d{4,})", lambda m: "£{:,}".format(int(m.group(1))), s)
+    s = re.sub(r"(£[\d,.]+)\s*(-|–|to)\s*(£[\d,.]+)", r"\1 to \3", s)
+    extras = []
+    s = re.sub(r"\(([^()]*)\)", lambda m: extras.append(re.sub(r"\s+", " ", m.group(1)).strip(" ,;-")) or " ", s)
+    extras = [e for e in extras if e]
+    s = re.sub(r"\s+", " ", s).strip(" ,;-/")
+    amounts = re.findall(r"£([\d,]+(?:\.\d+)?)", s)
+    if hourly or (not yearly and str(unit).upper() == "HOUR"):
+        s += " an hour"
+    elif yearly or str(unit).upper() == "YEAR":
+        s += " a year"
+    if fte and extras and "£" in extras[0]:
+        extras[0] += " full-time equivalent"
+        fte = False
+    if fte:
+        extras.append("full-time equivalent")
+    elif actual:
+        extras.append("actual pay")
+    if extras:
+        s += " (" + "; ".join(extras) + ")"
+    hourly_txt = ""
+    if hourly and amounts:
+        try:
+            v = float(amounts[0].replace(",", ""))
+            if 5 < v < 100:
+                hourly_txt = money(v)
+        except ValueError:
+            pass
+    return s[:110], hourly_txt
+
+
 def norm_emp(s):
     s = re.sub(r"\b(ltd|limited|plc|llp|uk|group|the|stores|holdings|services|& co|co)\b", " ", str(s or "").lower())
     return re.sub(r"[^a-z0-9]+", "", s)
@@ -418,7 +466,7 @@ def make_job(source, sid, title, employer, borough, area, job_type, lo, hi, link
         "found": TODAY.isoformat(),
         "_hourly": floor,
     }
-    if source == "Find an apprenticeship" or APPRENTICE.search(job["title"]):
+    if source == "Find an apprenticeship" or (APPRENTICE.search(job["title"]) and not APPRENTICE_STAFF.search(job["title"])):
         job["apprenticeship"] = True
         lv = apprenticeship_level(str(title) + " " + str(text))
         if lv:
@@ -525,12 +573,11 @@ def fetch_teaching_vacancies(status):
                        (d.get("hiringOrganization") or {}).get("name"), borough,
                        locality, jt, None, None, d.get("url"),
                        parse_date(d.get("datePosted")), parse_date(d.get("validThrough")), text)
-        sv = clean(sal.get("value"), 80)
+        sv, hourly = tidy_salary(sal.get("value"), sal.get("unitText"))
         if sv:
-            sv = re.sub(r"\s*\bFTE\b", " a year (full-time equivalent)", sv)
-            if str(sal.get("unitText", "")).upper() == "YEAR" and "year" not in sv.lower():
-                sv += " a year"
             job["salary"] = sv
+        if hourly:
+            job["pay"] = hourly
         jobs.append((job, text))
     return jobs
 
