@@ -355,6 +355,9 @@ def tidy_salary(value, unit=""):
         return "", ""
     if re.fullmatch(r"[\d,.]+(\s*(-|–|to)\s*[\d,.]+)?", s):
         s = re.sub(r"([\d,.]+)", r"£\1", s)  # bare numbers are pounds
+    elif "£" not in s:
+        # money written without a pound sign, e.g. "From 18.20" or "25,000 - 27,000 per annum"
+        s = re.sub(r"(?<![\w.])(\d{1,2}\.\d{2}|\d{1,3}(?:,\d{3})+|\d{4,6})(?![\w.])", r"£\1", s)
     s = re.sub(r"\bp\.\s?a\.?(?=[\s,;)]|$)", " pa ", s, flags=re.I)
     fte = bool(re.search(r"\bFTE\b|full[- ]time equivalent", s, re.I))
     actual = bool(re.search(r"\bactual\b", s, re.I))
@@ -373,7 +376,7 @@ def tidy_salary(value, unit=""):
     amounts = re.findall(r"£([\d,]+(?:\.\d+)?)", s)
     if not amounts:
         # A pay scale code such as "BEX 08.1" or "MPS/UPS": no amount to put a unit on.
-        return ("Pay scale: " + s)[:110] if s else "", ""
+        return ("Pay: " + s)[:110] if s else "", ""
     try:
         if not hourly and all(float(a.replace(",", "")) < 100 for a in amounts):
             hourly = True  # £14.80 is an hourly rate, whatever the unit field says
