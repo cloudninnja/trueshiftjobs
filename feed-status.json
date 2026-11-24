@@ -1,50 +1,55 @@
 {
-  "generated": "2026-11-24T15:43:00Z",
+  "generated": "2026-11-24T16:04:54Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6576,
-      "kept": 262,
+      "fetched": 6598,
+      "kept": 258,
       "dropped": {
-        "senior role": 84,
-        "not entry level": 189,
-        "too old or closed": 94
+        "senior role": 137,
+        "not entry level": 131,
+        "too old or closed": 85
       }
     },
     "Reed": {
       "fetched": 6126,
-      "kept": 2741,
+      "uniqueFromSearches": 3497,
+      "kept": 1222,
       "dropped": {
-        "too old or closed": 1347,
-        "senior role": 951,
-        "below adult minimum wage": 55,
-        "blocked words": 90,
-        "not entry level": 942
+        "too old or closed": 843,
+        "senior role": 622,
+        "blocked words": 55,
+        "below adult minimum wage": 33,
+        "remote or not in London": 77,
+        "not entry level": 466,
+        "blocked advertiser": 91,
+        "outside London": 88
       }
     },
     "Adzuna": {
       "fetched": 250,
-      "kept": 78,
+      "kept": 71,
       "dropped": {
-        "senior role": 91,
-        "not entry level": 74,
+        "not entry level": 50,
+        "senior role": 116,
         "below adult minimum wage": 1,
         "blocked words": 4
       }
     }
   },
-  "total": 1451,
-  "duplicatesRemoved": 1630,
+  "total": 1183,
+  "duplicatesRemoved": 368,
   "byRegion": {
-    "Central": 254,
-    "North": 197,
-    "East": 405,
-    "South": 315,
-    "West": 280
+    "Central": 246,
+    "North": 150,
+    "East": 304,
+    "South": 261,
+    "West": 222
   },
   "byJobType": {
-    "Part-time": 924,
-    "Full-time": 508,
-    "Not stated": 19
+    "Part-time": 772,
+    "Full-time": 396,
+    "Not stated": 15
   },
-  "carriedOver": 0
+  "carriedOver": 0,
+  "areaApproximate": 119
 }
