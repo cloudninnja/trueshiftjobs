@@ -1,1 +1,50 @@
-{"note":"The nightly feed has not run yet."}
+{
+  "generated": "2026-11-24T15:43:00Z",
+  "sources": {
+    "Teaching Vacancies": {
+      "fetched": 6576,
+      "kept": 262,
+      "dropped": {
+        "senior role": 84,
+        "not entry level": 189,
+        "too old or closed": 94
+      }
+    },
+    "Reed": {
+      "fetched": 6126,
+      "kept": 2741,
+      "dropped": {
+        "too old or closed": 1347,
+        "senior role": 951,
+        "below adult minimum wage": 55,
+        "blocked words": 90,
+        "not entry level": 942
+      }
+    },
+    "Adzuna": {
+      "fetched": 250,
+      "kept": 78,
+      "dropped": {
+        "senior role": 91,
+        "not entry level": 74,
+        "below adult minimum wage": 1,
+        "blocked words": 4
+      }
+    }
+  },
+  "total": 1451,
+  "duplicatesRemoved": 1630,
+  "byRegion": {
+    "Central": 254,
+    "North": 197,
+    "East": 405,
+    "South": 315,
+    "West": 280
+  },
+  "byJobType": {
+    "Part-time": 924,
+    "Full-time": 508,
+    "Not stated": 19
+  },
+  "carriedOver": 0
+}
