@@ -10,11 +10,16 @@ Sources (each is skipped if its key is missing or it fails):
   - Reed Jobseeker API (secret REED_API_KEY)
   - Adzuna API (secrets ADZUNA_APP_ID and ADZUNA_APP_KEY)
   - GOV.UK Find an apprenticeship, Display advert API (secret APPRENTICESHIP_API_KEY)
+  - Jobs posted by employers through the TrueShift Google Form, once approved
+    (secret EMPLOYER_JOBS_CSV: the published CSV link of the sheet's Public tab)
 Borough lookups use postcodes.io (free, no key).
 
 Runs on GitHub Actions; uses only the Python standard library.
 """
 import base64
+import csv
+import hashlib
+import io
 import json
 import os
 import re
@@ -170,7 +175,7 @@ VAGUE_LONDON = re.compile(
 NOT_LONDON = re.compile(
     r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
     r"nationwide|various locations|multiple locations)\s*$", re.I)
-RULES_VERSION = 4  # bump when the rules change, so older feed jobs are not carried over
+RULES_VERSION = 5  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -184,8 +189,8 @@ GROUP_RULES = {
                             r"housekeep|room attendant|care assistant|carer|support worker|security|"
                             r"driver|delivery|labourer|team member|crew|retail|catering)", re.I),
 }
-SOURCE_RANK = {"Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
-SITE_NAME = {"Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
+SOURCE_RANK = {"Employer": -1, "Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
+SITE_NAME = {"Employer": "TrueShift Jobs", "Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
              "Reed": "Reed", "Adzuna": "Adzuna"}
 APPRENTICE = re.compile(r"\bapprentice(ship)?s?\b", re.I)
 # Staff who run apprenticeships, not apprentices.
@@ -219,6 +224,19 @@ def http_json(url, data=None, headers=None, timeout=40):
                 time.sleep(3 * (attempt + 1))
                 continue
             raise
+        except (urllib.error.URLError, TimeoutError) as e:
+            last = e
+            time.sleep(3 * (attempt + 1))
+    raise last
+
+
+def http_text(url, timeout=40):
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    last = None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read().decode("utf-8-sig")
         except (urllib.error.URLError, TimeoutError) as e:
             last = e
             time.sleep(3 * (attempt + 1))
@@ -435,10 +453,10 @@ def keep(job, text):
     if emp and any(emp.startswith(b) for b in BLOCK_EMPLOYERS):
         return "blocked advertiser"
     if not job.get("apprenticeship"):
-        if SENIOR.search(t):
-            return "senior role"
-        if job.get("jobType") != "Part-time" and not ENTRY.search(t):
-            return "not entry level"
+        if SENIOR.search(t) or (job.get("jobType") != "Part-time" and not ENTRY.search(t)):
+            # Senior and professional jobs are kept, but only under the Experienced tab.
+            job["experienced"] = True
+            job["bestFor"] = "Experienced"
     floor = job.pop("_hourly", None)
     if floor is not None:
         if re.search(r"apprentice", t, re.I):
@@ -817,6 +835,73 @@ def fetch_apprenticeships(key, status):
     return jobs
 
 
+def apply_link(text):
+    t = clean(text, 300)
+    m = re.search(r"https?://\S+", t)
+    if m:
+        return m.group(0).rstrip(".,)")
+    m = re.search(r"[\w.+-]+@[\w-]+(\.[\w-]+)+", t)
+    if m:
+        return "mailto:" + m.group(0)
+    m = re.search(r"\b(www\.)?[a-z0-9-]+(\.[a-z0-9-]+)*\.(co\.uk|com|org|uk|net|org\.uk|london)(/\S*)?", t, re.I)
+    if m:
+        return "https://" + m.group(0)
+    return ""
+
+
+def fetch_employer_posts(url, status):
+    """Approved jobs from the employer Google Form (published Public tab, CSV)."""
+    rows = list(csv.reader(io.StringIO(http_text(url))))
+    status["fetched"] = max(0, len(rows) - 1)
+    if not rows:
+        return []
+    head = [h.strip().lower() for h in rows[0]]
+
+    def col(*words):
+        for i, h in enumerate(head):
+            if any(w in h for w in words):
+                return i
+        return None
+    idx = {k: col(*w) for k, w in {
+        "time": ("timestamp",), "title": ("job title",), "company": ("company name", "employer"),
+        "borough": ("borough",), "area": ("area", "postcode"), "type": ("job type",), "hours": ("hours",),
+        "pay": ("pay", "salary"), "closes": ("closing",), "apply": ("how to apply", "apply"),
+        "desc": ("description", "about the job"), "status": ("status",)}.items()}
+    jobs = []
+    for r in rows[1:]:
+        get = lambda k: (r[idx[k]].strip() if idx[k] is not None and idx[k] < len(r) else "")
+        if not get("title") or (idx["status"] is not None and get("status").lower() != "approved"):
+            continue
+        borough = get("borough") if get("borough") in BOROUGH_REGION else borough_from_text(get("borough"), get("area"))
+        jtype = get("type").lower()
+        jt = "Part-time" if "part" in jtype else "Full-time"
+        pay_txt = clean(get("pay"), 80)
+        nums = [float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*(?:\.\d+)?", pay_txt)]
+        lo = min(nums) if nums else None
+        hourly = lo is not None and lo < 100
+        desc = clean(get("desc"), 600)
+        text = " ".join([get("title"), desc, get("hours")])
+        sid = hashlib.sha1((get("time") + "|" + get("title") + "|" + get("company")).encode()).hexdigest()[:12]
+        job = make_job("Employer", sid, get("title"), get("company"), borough or "", get("area"), jt,
+                       lo if hourly else None, lo if hourly else None, apply_link(get("apply")),
+                       parse_date(get("time")) or TODAY, parse_date(get("closes")), text)
+        if not hourly and pay_txt:
+            job["salary"] = tidy_salary(pay_txt)[0] or pay_txt
+        if get("hours"):
+            job["hours"] = clean(get("hours"), 120)
+        if desc:
+            job["about"] = desc[:300]
+        if "apprentice" in jtype:
+            job["apprenticeship"] = True
+            job["bestFor"] = "Apprentices"
+        if not borough:
+            job["_drop"] = "London area not given"
+        elif not job["link"]:
+            job["_drop"] = "no way to apply"
+        jobs.append((job, text))
+    return jobs
+
+
 # ---------------------------------------------------------------- merge
 def fresh(job):
     c = parse_date(job.get("closes"))
@@ -866,7 +951,10 @@ def dedupe(jobs):
 
 
 def note_for(job):
-    bits = ["Listed on " + SITE_NAME[job["source"]] + "."]
+    bits = ["Posted directly by the employer."] if job["source"] == "Employer" else \
+        ["Listed on " + SITE_NAME[job["source"]] + "."]
+    if job.get("about"):
+        bits.append(job["about"].rstrip(".") + ".")
     if job.get("apprenticeship"):
         lv = job.get("level")
         course = job.get("course")
@@ -909,6 +997,11 @@ def main():
         st["dropped"] = reasons
 
     run("Teaching Vacancies", fetch_teaching_vacancies)
+    emp_csv = os.environ.get("EMPLOYER_JOBS_CSV", "").strip()
+    if emp_csv:
+        run("Employer", fetch_employer_posts, emp_csv)
+    else:
+        status["sources"]["Employer"] = {"skipped": "no EMPLOYER_JOBS_CSV secret"}
     faa_key = os.environ.get("APPRENTICESHIP_API_KEY", "").strip()
     if faa_key:
         run("Find an apprenticeship", fetch_apprenticeships, faa_key)
@@ -948,7 +1041,10 @@ def main():
     by_region = {r: 0 for r in REGIONS}
     by_type = {"Part-time": 0, "Full-time": 0, "Not stated": 0}
     by_level = {}
+    by_group = {}
     for j in jobs:
+        for g in [x.strip() for x in str(j.get("bestFor") or "").split(",") if x.strip()] or ["(none)"]:
+            by_group[g] = by_group.get(g, 0) + 1
         if j.get("apprenticeship"):
             lv = str(j.get("level") or "not stated")
             by_level[lv] = by_level.get(lv, 0) + 1
@@ -956,7 +1052,8 @@ def main():
         by_type[j.get("jobType") or "Not stated"] += 1
     status.update({"total": len(jobs), "duplicatesRemoved": dupes, "byRegion": by_region, "byJobType": by_type,
                    "carriedOver": len(previous), "areaApproximate": sum(1 for j in jobs if j.get("approx")),
-                   "apprenticeships": sum(by_level.values()), "apprenticeshipLevels": by_level})
+                   "apprenticeships": sum(by_level.values()), "apprenticeshipLevels": by_level,
+                   "byGroup": by_group})
     FEED.write_text(json.dumps({"generated": status["generated"], "maxAgeDays": MAX_AGE_DAYS,
                                 "rulesVersion": RULES_VERSION, "jobs": jobs}, ensure_ascii=False, separators=(",", ":")))
     STATUS.write_text(json.dumps(status, indent=2, ensure_ascii=False))
