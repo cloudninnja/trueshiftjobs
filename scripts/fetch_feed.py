@@ -9,6 +9,7 @@ Sources (each is skipped if its key is missing or it fails):
   - GOV.UK Teaching Vacancies open API (no key, Open Government Licence)
   - Reed Jobseeker API (secret REED_API_KEY)
   - Adzuna API (secrets ADZUNA_APP_ID and ADZUNA_APP_KEY)
+  - GOV.UK Find an apprenticeship, Display advert API (secret APPRENTICESHIP_API_KEY)
 Borough lookups use postcodes.io (free, no key).
 
 Runs on GitHub Actions; uses only the Python standard library.
@@ -38,6 +39,8 @@ UA = "TrueShiftJobs/1.0 (+https://trueshiftjobs.com)"
 REED_PAGES = int(os.environ.get("REED_PAGES", "1"))      # 100 jobs a page
 ADZUNA_PAGES = int(os.environ.get("ADZUNA_PAGES", "1"))  # 50 jobs a page
 TV_MAX_PAGES = int(os.environ.get("TV_MAX_PAGES", "120"))
+FAA_MAX_PAGES = int(os.environ.get("FAA_MAX_PAGES", "40"))  # 100 apprenticeships a page
+LONDON_LAT, LONDON_LON = 51.5072, -0.1276
 
 REGIONS = {
     "Central": ["City of London", "Westminster", "Camden", "Islington",
@@ -160,11 +163,12 @@ REMOTE = re.compile(r"\b(remote|work from home|working from home|home[- ]based|w
 UK_POSTCODE = re.compile(r"^\s*([A-Z]{1,2}\d[A-Z\d]?)\s*(\d[A-Z]{2})\s*$", re.I)
 POSTCODE_IN_TEXT = re.compile(r"\b([A-Z]{1,2}\d[A-Z\d]?) ?(\d[A-Z]{2})\b")
 VAGUE_LONDON = re.compile(
-    r"^\s*(((north|south|east|west)(\s+(east|west))?|central|inner|outer|greater)\s*)?(london)?\s*$", re.I)
+    r"^\s*(((north|south|east|west)(\s+(east|west))?|central|inner|outer|greater)\s*)?(london)?\s*"
+    r"(,\s*(uk|united kingdom|england|gb))?\s*$", re.I)
 NOT_LONDON = re.compile(
     r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
     r"nationwide|various locations|multiple locations)\s*$", re.I)
-RULES_VERSION = 2  # bump when the rules change, so older feed jobs are not carried over
+RULES_VERSION = 3  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -178,8 +182,11 @@ GROUP_RULES = {
                             r"housekeep|room attendant|care assistant|carer|support worker|security|"
                             r"driver|delivery|labourer|team member|crew|retail|catering)", re.I),
 }
-SOURCE_RANK = {"Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
-SITE_NAME = {"Teaching Vacancies": "Teaching Vacancies", "Reed": "Reed", "Adzuna": "Adzuna"}
+SOURCE_RANK = {"Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
+SITE_NAME = {"Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
+             "Reed": "Reed", "Adzuna": "Adzuna"}
+APPRENTICE = re.compile(r"\bapprentice(ship)?s?\b", re.I)
+GENERIC_WARD = {"town", "central", "village", "park", "north", "south", "east", "west", "centre", "riverside"}
 
 TODAY = date.today()
 
@@ -341,9 +348,23 @@ def same_job(a, b):
     return len(ta & tb) / len(ta | tb) >= 0.75
 
 
+def apprenticeship_level(text):
+    t = str(text or "").lower()
+    m = re.search(r"\blevel\s*([2-7])\b", t)
+    if m:
+        return int(m.group(1))
+    for word, lv in (("degree apprentice", 6), ("higher apprentice", 4), ("advanced apprentice", 3),
+                     ("intermediate apprentice", 2)):
+        if word in t:
+            return lv
+    return None
+
+
 def groups_for(job, text):
     out = []
     jt = job.get("jobType")
+    if job.get("apprenticeship"):
+        return "Apprentices"
     for g, rx in GROUP_RULES.items():
         if g in ("Students", "Parents") and jt == "Full-time":
             continue
@@ -363,10 +384,11 @@ def keep(job, text):
     emp = norm_emp(job.get("employer"))
     if emp and any(emp.startswith(b) for b in BLOCK_EMPLOYERS):
         return "blocked advertiser"
-    if SENIOR.search(t):
-        return "senior role"
-    if job.get("jobType") != "Part-time" and not ENTRY.search(t):
-        return "not entry level"
+    if not job.get("apprenticeship"):
+        if SENIOR.search(t):
+            return "senior role"
+        if job.get("jobType") != "Part-time" and not ENTRY.search(t):
+            return "not entry level"
     floor = job.pop("_hourly", None)
     if floor is not None:
         if re.search(r"apprentice", t, re.I):
@@ -396,11 +418,25 @@ def make_job(source, sid, title, employer, borough, area, job_type, lo, hi, link
         "found": TODAY.isoformat(),
         "_hourly": floor,
     }
+    if source == "Find an apprenticeship" or APPRENTICE.search(job["title"]):
+        job["apprenticeship"] = True
+        lv = apprenticeship_level(str(title) + " " + str(text))
+        if lv:
+            job["level"] = lv
     job["bestFor"] = groups_for(job, title + " " + text)
     return job
 
 
 # ---------------------------------------------------------------- postcodes.io
+def nice_ward(ward, postcode):
+    """A ward name people will recognise, or the postcode district when the ward name is too generic."""
+    w = clean(ward, 60)
+    if w and w.lower() not in GENERIC_WARD and len(w) > 3:
+        return w
+    m = UK_POSTCODE.match(str(postcode or ""))
+    return m.group(1).upper() if m else ""
+
+
 def pc_key(p):
     return re.sub(r"\s+", "", str(p or "")).upper()
 
@@ -423,7 +459,8 @@ def postcode_info(postcodes, status=None):
             if not r:
                 continue
             d = r.get("admin_district")
-            out[pc_key(item.get("query"))] = (d if d in BOROUGH_REGION else "", clean(r.get("admin_ward"), 60))
+            out[pc_key(item.get("query"))] = (d if d in BOROUGH_REGION else "",
+                                             nice_ward(r.get("admin_ward"), r.get("postcode")))
     return out
 
 
@@ -523,6 +560,22 @@ def fetch_reed(key, status):
                 time.sleep(0.4)
                 if len(results) < 100:
                     break
+    for p in range(5):
+        q = urllib.parse.urlencode({"keywords": "apprentice", "locationName": "London", "distanceFromLocation": 15,
+                                    "resultsToTake": 100, "resultsToSkip": p * 100})
+        try:
+            res = http_json("https://www.reed.co.uk/api/1.0/search?" + q, headers={"Authorization": auth})
+        except urllib.error.HTTPError as e:
+            status.setdefault("errors", []).append("apprentice search: HTTP %s" % e.code)
+            break
+        results = res.get("results") or []
+        fetched += len(results)
+        for r in results:
+            if r.get("jobId") not in raw:
+                raw[r.get("jobId")] = (r, "Full-time" if r.get("fullTime") else "Part-time" if r.get("partTime") else "", None)
+        time.sleep(0.4)
+        if len(results) < 100:
+            break
     status["fetched"] = fetched
     status["uniqueFromSearches"] = len(raw)
     pcs = []
@@ -568,6 +621,23 @@ def fetch_adzuna(app_id, app_key, status):
             time.sleep(0.5)
             if len(results) < 50:
                 break
+    for p in range(1, 3):  # apprenticeships across London
+        q = urllib.parse.urlencode({
+            "app_id": app_id, "app_key": app_key, "results_per_page": 50, "where": "London",
+            "max_days_old": MAX_AGE_DAYS, "sort_by": "date", "what_or": "apprentice apprenticeship",
+            "content-type": "application/json"})
+        res = http_json("https://api.adzuna.com/v1/api/jobs/gb/search/%d?%s" % (p, q))
+        results = res.get("results") or []
+        raw.extend(results)
+        time.sleep(0.5)
+        if len(results) < 50:
+            break
+    seen, uniq = set(), []
+    for r in raw:
+        if r.get("id") not in seen:
+            seen.add(r.get("id"))
+            uniq.append(r)
+    raw = uniq
     status["fetched"] = len(raw)
     need = []
     for r in raw:
@@ -610,8 +680,86 @@ def fetch_adzuna(app_id, app_key, status):
     return jobs
 
 
+def faa_pay(wage):
+    """(hourly text, salary text, hourly floor) from a Find an apprenticeship wage object."""
+    wage = wage or {}
+    wt = str(wage.get("wageType") or "")
+    amt = wage.get("wageAmount")
+    unit = str(wage.get("wageUnit") or "")
+    if wt == "ApprenticeshipMinimum":
+        return money(APPRENTICE_HOURLY), "Apprentice minimum wage (" + money(APPRENTICE_HOURLY) + " an hour)", None
+    if wt == "NationalMinimum":
+        return "", "National Minimum Wage for your age", None
+    if wt == "CompetitiveSalary":
+        return "", "Competitive salary", None
+    if isinstance(amt, (int, float)) and amt > 0:
+        if unit == "Annually":
+            return "", money(amt) + " a year", None
+        if unit == "Monthly":
+            return "", money(amt) + " a month", None
+        if unit == "Weekly":
+            return "", money(amt) + " a week", None
+        return pay_fields(amt, amt, True)
+    return "", "", None
+
+
+def fetch_apprenticeships(key, status):
+    """GOV.UK Find an apprenticeship: every advert within 20 miles of central London, newest first."""
+    headers = {"X-Version": "2", "Ocp-Apim-Subscription-Key": key}
+    raw, page, pages = [], 1, 1
+    while page <= min(pages, FAA_MAX_PAGES):
+        q = urllib.parse.urlencode({"Lat": LONDON_LAT, "Lon": LONDON_LON, "DistanceInMiles": 20,
+                                    "PageSize": 100, "PageNumber": page, "Sort": "AgeDesc"})
+        res = http_json("https://api.apprenticeships.education.gov.uk/vacancies/vacancy?" + q, headers=headers)
+        pages = int(res.get("totalPages") or 1)
+        raw.extend(res.get("vacancies") or [])
+        page += 1
+        time.sleep(0.3)
+    status["fetched"] = len(raw)
+    pcs = [a.get("postcode") for v in raw for a in (v.get("addresses") or []) if a.get("postcode")]
+    info = postcode_info(pcs, status)
+    jobs = []
+    for v in raw:
+        hit, pc = None, ""
+        for a in v.get("addresses") or []:
+            h = info.get(pc_key(a.get("postcode")))
+            if h and h[0]:
+                hit, pc = h, a.get("postcode")
+                break
+        course = v.get("course") or {}
+        text = " ".join(str(x or "") for x in (v.get("description"), course.get("title")))
+        hours = v.get("hoursPerWeek")
+        jt = "Part-time" if isinstance(hours, (int, float)) and 0 < hours < 30 else "Full-time"
+        job = make_job("Find an apprenticeship", v.get("vacancyReference"), v.get("title"), v.get("employerName"),
+                       hit[0] if hit else "", hit[1] if hit else "", jt, None, None,
+                       v.get("vacancyUrl"), parse_date(v.get("postedDate")), parse_date(v.get("closingDate")), text)
+        job["pay"], job["salary"], _ = faa_pay(v.get("wage"))
+        if isinstance(course.get("level"), int) and 2 <= course["level"] <= 7:
+            job["level"] = course["level"]
+        ctitle = re.sub(r"\s*\(level \d\)\s*$", "", clean(course.get("title"), 90), flags=re.I)
+        if ctitle:
+            job["course"] = ctitle[0].upper() + ctitle[1:]
+        st = parse_date(v.get("startDate"))
+        if st:
+            job["start"] = st.isoformat()
+        wk = clean((v.get("wage") or {}).get("workingWeekDescription"), 120)
+        if isinstance(hours, (int, float)) and hours > 0:
+            job["hours"] = ("%g hours a week" % hours) + (". " + wk if wk else "")
+        elif wk:
+            job["hours"] = wk
+        if not hit:
+            job["_drop"] = "outside London"
+        jobs.append((job, text))
+    return jobs
+
+
 # ---------------------------------------------------------------- merge
 def fresh(job):
+    c = parse_date(job.get("closes"))
+    if job.get("apprenticeship") and c:
+        # Apprenticeships are advertised months ahead: keep them while they are still open.
+        p = parse_date(job.get("posted"))
+        return c >= TODAY and not (p and p > TODAY + timedelta(days=1))
     p = parse_date(job.get("posted"))
     if not p or p > TODAY + timedelta(days=1) or (TODAY - p).days > MAX_AGE_DAYS:
         return False
@@ -655,6 +803,14 @@ def dedupe(jobs):
 
 def note_for(job):
     bits = ["Listed on " + SITE_NAME[job["source"]] + "."]
+    if job.get("apprenticeship"):
+        lv = job.get("level")
+        course = job.get("course")
+        head = ("Level %d apprenticeship" % lv) if lv else "Apprenticeship"
+        bits.append(head + (": " + course if course else "") + ".")
+        s = parse_date(job.get("start"))
+        if s:
+            bits.append("Starts " + s.strftime("%-d %B %Y") + ".")
     if job.get("salary") and not job.get("pay"):
         bits.append(job["salary"][0].upper() + job["salary"][1:] + ".")
     elif job.get("salary") and " to " in job["salary"]:
@@ -689,6 +845,11 @@ def main():
         st["dropped"] = reasons
 
     run("Teaching Vacancies", fetch_teaching_vacancies)
+    faa_key = os.environ.get("APPRENTICESHIP_API_KEY", "").strip()
+    if faa_key:
+        run("Find an apprenticeship", fetch_apprenticeships, faa_key)
+    else:
+        status["sources"]["Find an apprenticeship"] = {"skipped": "no APPRENTICESHIP_API_KEY secret"}
     reed_key = os.environ.get("REED_API_KEY", "").strip()
     if reed_key:
         run("Reed", fetch_reed, reed_key)
@@ -722,11 +883,16 @@ def main():
 
     by_region = {r: 0 for r in REGIONS}
     by_type = {"Part-time": 0, "Full-time": 0, "Not stated": 0}
+    by_level = {}
     for j in jobs:
+        if j.get("apprenticeship"):
+            lv = str(j.get("level") or "not stated")
+            by_level[lv] = by_level.get(lv, 0) + 1
         by_region[j["region"]] = by_region.get(j["region"], 0) + 1
         by_type[j.get("jobType") or "Not stated"] += 1
     status.update({"total": len(jobs), "duplicatesRemoved": dupes, "byRegion": by_region, "byJobType": by_type,
-                   "carriedOver": len(previous), "areaApproximate": sum(1 for j in jobs if j.get("approx"))})
+                   "carriedOver": len(previous), "areaApproximate": sum(1 for j in jobs if j.get("approx")),
+                   "apprenticeships": sum(by_level.values()), "apprenticeshipLevels": by_level})
     FEED.write_text(json.dumps({"generated": status["generated"], "maxAgeDays": MAX_AGE_DAYS,
                                 "rulesVersion": RULES_VERSION, "jobs": jobs}, ensure_ascii=False, separators=(",", ":")))
     STATUS.write_text(json.dumps(status, indent=2, ensure_ascii=False))

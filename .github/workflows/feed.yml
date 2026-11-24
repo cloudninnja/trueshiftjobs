@@ -31,6 +31,7 @@ jobs:
           REED_API_KEY: ${{ secrets.REED_API_KEY }}
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+          APPRENTICESHIP_API_KEY: ${{ secrets.APPRENTICESHIP_API_KEY }}
         run: python scripts/fetch_feed.py
 
       - name: Save the new feed
