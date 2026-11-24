@@ -167,7 +167,13 @@ button.apply.alt{border:2px solid var(--sea)}
 @media(max-width:860px){.cvgrid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:860px){.guides{grid-template-columns:minmax(0,1fr)}.safe .cols{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){.top{grid-template-columns:minmax(0,1fr)}.compass{max-width:460px;width:100%;justify-self:center}}
-@media(max-width:600px){.compass{grid-template-rows:repeat(3,minmax(84px,auto));gap:8px}.reg{min-height:84px}#borough,#sort{flex:1 1 45%}}
+@media(max-width:600px){.compass{grid-template-rows:repeat(3,minmax(84px,auto));gap:8px}.reg{min-height:84px}
+ .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bar #q{grid-column:1/-1}.bar .ctl{width:100%;min-width:0}
+ .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(-1 * max(5vw,16px));padding:2px max(5vw,16px) 6px}
+ .chips::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;white-space:nowrap}
+ .quick .steps{display:none}.quick{padding:16px 18px}.quick h2{font-size:1.15rem}
+ .lead{font-size:1.02rem}}
+html,body{overflow-x:hidden}
 @media(prefers-reduced-motion:reduce){.reg{transition:none}}
 </style>
 </head>
@@ -217,7 +223,7 @@ button.apply.alt{border:2px solid var(--sea)}
       <input class="ctl" id="q" type="search" placeholder="Search job, employer or area" aria-label="Search jobs">
       <select class="ctl" id="borough" aria-label="Borough"></select>
       <select class="ctl" id="jtype" aria-label="Job type">
-        <option value="All">Part-time and full-time</option>
+        <option value="All">All job types</option>
         <option value="Part-time">Part-time only</option>
         <option value="Full-time">Full-time only</option>
       </select>
@@ -285,7 +291,7 @@ button.apply.alt{border:2px solid var(--sea)}
   <div class="wrap">
     <h2>How every job is checked</h2>
     <p class="intro">A job only appears here after it passes all eight checks. Claude, an AI assistant, does the checks every morning and re-checks each job daily, removing it once it closes. Anything it cannot confirm is looked at by a person first. The same job often appears on several job sites, so we show it once, linked to the employer's own advert where there is one. We never ask you for money or personal details.</p>
-    <p class="intro">Jobs marked <b>Listed on Reed</b>, <b>Adzuna</b> or <b>Teaching Vacancies</b> come straight from those sites' official job feeds. We keep only London jobs posted in the last 30 days, except apprenticeships, which stay until their closing date because they are often advertised months ahead. We show each job once across all the sites, list senior and professional roles under Experienced, and leave out pay below the minimum wage and common scam wording. Jobs marked <b>Posted by employer</b> were sent to us directly by the employer and checked by a person before going live. These jobs have not been checked one by one, so always read the advert before you apply.</p>
+    <p class="intro">Jobs marked <b>Listed on Reed</b>, <b>Adzuna</b> or <b>Teaching Vacancies</b> come straight from those sites' official job feeds. We keep only London jobs posted in the last 30 days, except apprenticeships, which stay until their closing date because they are often advertised months ahead. We show each job once across all the sites, list senior and professional roles under Experienced, and leave out pay below the minimum wage and common scam wording. These feed jobs have not been checked one by one, so always read the advert before you apply. Jobs marked <b>Posted by employer</b> were sent to us directly by the employer and checked by a person before going live.</p>
     <ol class="checks">
       <li><b>Still open</b>First posted in the last 30 days and still taking applications.</li>
       <li><b>Real employer</b>A registered company or well-known brand with a working website.</li>
@@ -511,7 +517,8 @@ function matches(j,ignoreRegion){
 }
 function card(j){
   const url=safeUrl(j.link);
-  const pay=payNum(j)?'£'+payNum(j).toFixed(2)+'<small>per hour</small>':'<small class="nopay">Pay in advert</small>';
+  const sal=String(j.salary||'');const sm=sal.match(/£[\d,]+(?:\.\d+)?/);const unit=/an hour/.test(sal)?'per hour':/a week/.test(sal)?'per week':/a month/.test(sal)?'per month':/a year/.test(sal)?'per year':'';
+  const pay=payNum(j)?'£'+payNum(j).toFixed(2)+'<small>per hour</small>':(sm&&unit?sm[0].replace(/\.\d+$/,'')+'<small>'+unit+(/full-time equivalent/.test(sal)?' (FTE)':'')+'</small>':'<small class="nopay">Pay in advert</small>');
   const tags=groupsOf(j).map(g=>'<span class="tag">'+esc(groupLabel[g]||g)+'</span>').join('');
   const posted=fmtDate(j.posted||'');
   const isFeed=!!j.source;
