@@ -40,6 +40,8 @@ REED_PAGES = int(os.environ.get("REED_PAGES", "1"))      # 100 jobs a page
 ADZUNA_PAGES = int(os.environ.get("ADZUNA_PAGES", "1"))  # 50 jobs a page
 TV_MAX_PAGES = int(os.environ.get("TV_MAX_PAGES", "120"))
 FAA_MAX_PAGES = int(os.environ.get("FAA_MAX_PAGES", "40"))  # 100 apprenticeships a page
+REED_APPRENTICE_PAGES = int(os.environ.get("REED_APPRENTICE_PAGES", "10"))   # per keyword, 100 a page
+ADZUNA_APPRENTICE_PAGES = int(os.environ.get("ADZUNA_APPRENTICE_PAGES", "4"))  # 50 a page
 LONDON_LAT, LONDON_LON = 51.5072, -0.1276
 
 REGIONS = {
@@ -607,22 +609,23 @@ def fetch_reed(key, status):
                 time.sleep(0.4)
                 if len(results) < 100:
                     break
-    for p in range(5):
-        q = urllib.parse.urlencode({"keywords": "apprentice", "locationName": "London", "distanceFromLocation": 15,
-                                    "resultsToTake": 100, "resultsToSkip": p * 100})
-        try:
-            res = http_json("https://www.reed.co.uk/api/1.0/search?" + q, headers={"Authorization": auth})
-        except urllib.error.HTTPError as e:
-            status.setdefault("errors", []).append("apprentice search: HTTP %s" % e.code)
-            break
-        results = res.get("results") or []
-        fetched += len(results)
-        for r in results:
-            if r.get("jobId") not in raw:
-                raw[r.get("jobId")] = (r, "Full-time" if r.get("fullTime") else "Part-time" if r.get("partTime") else "", None)
-        time.sleep(0.4)
-        if len(results) < 100:
-            break
+    for kw in ("apprentice", "apprenticeship"):  # apprenticeships across London
+        for p in range(REED_APPRENTICE_PAGES):
+            q = urllib.parse.urlencode({"keywords": kw, "locationName": "London", "distanceFromLocation": 15,
+                                        "resultsToTake": 100, "resultsToSkip": p * 100})
+            try:
+                res = http_json("https://www.reed.co.uk/api/1.0/search?" + q, headers={"Authorization": auth})
+            except urllib.error.HTTPError as e:
+                status.setdefault("errors", []).append("%s search: HTTP %s" % (kw, e.code))
+                break
+            results = res.get("results") or []
+            fetched += len(results)
+            for r in results:
+                if r.get("jobId") not in raw:
+                    raw[r.get("jobId")] = (r, "", None)
+            time.sleep(0.4)
+            if len(results) < 100:
+                break
     status["fetched"] = fetched
     status["uniqueFromSearches"] = len(raw)
     pcs = []
@@ -668,7 +671,7 @@ def fetch_adzuna(app_id, app_key, status):
             time.sleep(0.5)
             if len(results) < 50:
                 break
-    for p in range(1, 3):  # apprenticeships across London
+    for p in range(1, ADZUNA_APPRENTICE_PAGES + 1):  # apprenticeships across London
         q = urllib.parse.urlencode({
             "app_id": app_id, "app_key": app_key, "results_per_page": 50, "where": "London",
             "max_days_old": MAX_AGE_DAYS, "sort_by": "date", "what_or": "apprentice apprenticeship",
