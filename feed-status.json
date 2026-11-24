@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-24T19:37:47Z",
+  "generated": "2026-11-24T20:01:41Z",
   "sources": {
     "Teaching Vacancies": {
       "fetched": 6652,
-      "kept": 513,
+      "kept": 523,
       "dropped": {
-        "too old or closed": 86
+        "too old or closed": 85
       }
     },
     "Employer": {
@@ -33,43 +33,43 @@
     },
     "Reed": {
       "fetched": 7774,
-      "uniqueFromSearches": 4289,
-      "kept": 2716,
+      "uniqueFromSearches": 4263,
+      "kept": 2719,
       "dropped": {
-        "too old or closed": 914,
+        "too old or closed": 910,
+        "blocked words": 59,
         "below adult minimum wage": 35,
-        "remote or not in London": 85,
-        "blocked words": 57,
-        "blocked advertiser": 89,
-        "outside London": 268,
-        "London area not given": 125
+        "remote or not in London": 84,
+        "blocked advertiser": 83,
+        "outside London": 252,
+        "London area not given": 121
       }
     },
     "Adzuna": {
-      "fetched": 415,
-      "kept": 379,
+      "fetched": 413,
+      "kept": 367,
       "dropped": {
-        "remote or not in London": 2,
+        "remote or not in London": 6,
         "blocked words": 5
       }
     }
   },
-  "total": 3014,
-  "duplicatesRemoved": 3448,
+  "total": 2827,
+  "duplicatesRemoved": 782,
   "byRegion": {
-    "Central": 895,
-    "North": 319,
-    "East": 652,
-    "South": 589,
-    "West": 559
+    "Central": 784,
+    "North": 311,
+    "East": 622,
+    "South": 571,
+    "West": 539
   },
   "byJobType": {
-    "Part-time": 952,
-    "Full-time": 1682,
-    "Not stated": 380
+    "Part-time": 931,
+    "Full-time": 1574,
+    "Not stated": 322
   },
-  "carriedOver": 2854,
-  "areaApproximate": 330,
+  "carriedOver": 0,
+  "areaApproximate": 294,
   "apprenticeships": 47,
   "apprenticeshipLevels": {
     "not stated": 20,
@@ -79,11 +79,12 @@
     "4": 1
   },
   "byGroup": {
-    "Parents": 333,
-    "Newcomers": 501,
-    "Experienced": 1586,
-    "Students": 416,
-    "(none)": 489,
+    "Parents": 321,
+    "Newcomers": 481,
+    "Students": 398,
+    "Experienced": 1433,
+    "(none)": 450,
+    "Graduates": 57,
     "Apprentices": 47
   }
 }
