@@ -181,7 +181,7 @@ button.apply.alt{border:2px solid var(--sea)}
         <p class="lead">Real, still-open jobs and apprenticeships across London, for students, people new to the UK, school leavers, graduates, parents returning to work and experienced professionals. No fake or expired adverts, so your time goes on jobs that are really there. Pick who you are, choose your area and apply on the employer's own advert.</p>
         <ul class="facts">
           <li>New jobs <b id="updated">every morning</b></li>
-          <li><b id="total">0</b> jobs listed</li>
+          <li id="totalline"><b id="total">0</b> jobs listed</li>
           <li>Always free to use</li>
           <li><a href="#cv">Free UK CV template</a></li>
           <li class="postjob" hidden><a class="postlink" href="#" target="_blank" rel="noopener noreferrer">Employers: post a job free</a></li>
@@ -536,7 +536,9 @@ function render(keepLimit){
   el('q').value=state.q;el('sort').value=state.sort;el('jtype').value=state.jtype||'All';
   el('level').hidden=state.group!=='Apprentices';el('cat').hidden=state.group!=='Experienced';el('cat').value=state.cat||'All';el('level').value=state.level||'All';
   const shown=jobs.filter(j=>matches(j,false)).sort((a,b)=>state.sort==='pay'?payNum(b)-payNum(a):String(dateOf(b)).localeCompare(String(dateOf(a))));
-  el('total').textContent=jobs.length;
+  {const nm={Students:'student',Newcomers:'new to the UK',Apprentices:'apprenticeship',Graduates:'graduate',Parents:'parent',Experienced:'experienced &amp; professional',Saved:'saved'}[state.group];
+   const inTab=jobs.filter(j=>matches(j,true)).length;
+   el('totalline').innerHTML=nm?'Map shows <b>'+inTab+'</b> '+nm+' jobs of <b id="total">'+jobs.length+'</b> listed':'<b id="total">'+jobs.length+'</b> jobs listed';}
   const where=state.borough!=='All'?state.borough:(state.region!=='All'?state.region+' London':'all of London');
   const who={All:'',Students:' for students',Parents:' for parents',Newcomers:' for people new to the UK',Experienced:' for experienced professionals',Graduates:' for graduates',Saved:' saved'}[state.group]||'';
   const noun=state.group==='Apprentices'?(shown.length===1?'apprenticeship':'apprenticeships'):(shown.length===1?'job':'jobs');
