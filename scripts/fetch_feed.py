@@ -856,6 +856,7 @@ def fetch_employer_posts(url, status):
     if not rows:
         return []
     head = [h.strip().lower() for h in rows[0]]
+    status["columns"] = [h.strip() for h in rows[0]]
 
     def col(*words):
         for i, h in enumerate(head):

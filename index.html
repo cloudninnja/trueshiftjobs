@@ -404,7 +404,7 @@ const saves={get(){try{return JSON.parse(localStorage.getItem('trueshift-saved')
 let saved=saves.get();if(!Array.isArray(saved))saved=[];
 const keyOf=j=>String(j.link||'')+'|'+String(j.title||'')+'|'+String(j.employer||'');
 const GOV={share:'https://www.gov.uk/prove-right-to-work/get-a-share-code-online',childcare:'https://www.gov.uk/tax-free-childcare',flex:'https://www.gov.uk/flexible-working'};
-const POST_JOB_URL='';
+const POST_JOB_URL='https://docs.google.com/forms/d/e/1FAIpQLSffGDqOjiYqc4nUqb8718dL8k-iunQDuiS1cucR1s7sq0_1vQ/viewform';
 const QUICK={
  All:{h:'Find a real job in three steps',p:'Jobs with a Checked stamp passed all 8 checks. The rest come from official job feeds, each listed once and posted in the last 30 days.',s:[['Pick who you are','Choose student, parent, new to the UK, apprentice or experienced above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
  Students:{h:'Quick start for students',p:'Jobs with evening, weekend or flexible shifts.',s:[['Know your hours','On a Student visa at degree level you can work up to 20 hours a week in term time, and full time in official holidays.'],['Know your pay','The legal minimum is £12.71 an hour at 21 and over, and £10.85 at 18 to 20.'],['Say when you can work','Put your free days and hours at the top of your CV so employers can fit you in fast.']]},
