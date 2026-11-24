@@ -1,0 +1,35 @@
+name: Build audience pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["index.html", "scripts/build_pages.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build pages
+        run: python scripts/build_pages.py
+      - name: Save pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add jobs sitemap.xml robots.txt
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Audience pages $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1

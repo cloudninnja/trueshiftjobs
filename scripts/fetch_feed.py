@@ -175,7 +175,7 @@ VAGUE_LONDON = re.compile(
 NOT_LONDON = re.compile(
     r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
     r"nationwide|various locations|multiple locations)\s*$", re.I)
-RULES_VERSION = 5  # bump when the rules change, so older feed jobs are not carried over
+RULES_VERSION = 6  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -193,6 +193,8 @@ SOURCE_RANK = {"Employer": -1, "Find an apprenticeship": 0, "Teaching Vacancies"
 SITE_NAME = {"Employer": "TrueShift Jobs", "Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
              "Reed": "Reed", "Adzuna": "Adzuna"}
 APPRENTICE = re.compile(r"\bapprentice(ship)?s?\b", re.I)
+GRADUATE = re.compile(r"\b(graduates?|grad scheme|trainee|junior|entry[- ]level|placement|internship|intern)\b", re.I)
+GRAD_SENIOR = re.compile(r"\b(senior|lead|head|director|principal|chief|partner)\b", re.I)
 # Staff who run apprenticeships, not apprentices.
 APPRENTICE_STAFF = re.compile(
     r"\b(assessor|manager|lead|coach|tutor|trainer|co-?ordinator|director|head of|recruiter|consultant|"
@@ -433,6 +435,8 @@ def groups_for(job, text):
     jt = job.get("jobType")
     if job.get("apprenticeship"):
         return "Apprentices"
+    if job.get("graduate"):
+        out.append("Graduates")
     for g, rx in GROUP_RULES.items():
         if g in ("Students", "Parents") and jt == "Full-time":
             continue
@@ -452,7 +456,7 @@ def keep(job, text):
     emp = norm_emp(job.get("employer"))
     if emp and any(emp.startswith(b) for b in BLOCK_EMPLOYERS):
         return "blocked advertiser"
-    if not job.get("apprenticeship"):
+    if not job.get("apprenticeship") and not job.get("graduate"):
         if SENIOR.search(t) or (job.get("jobType") != "Part-time" and not ENTRY.search(t)):
             # Senior and professional jobs are kept, but only under the Experienced tab.
             job["experienced"] = True
@@ -491,6 +495,10 @@ def make_job(source, sid, title, employer, borough, area, job_type, lo, hi, link
         lv = apprenticeship_level(str(title) + " " + str(text))
         if lv:
             job["level"] = lv
+    t0 = str(job["title"])
+    if not job.get("apprenticeship") and GRADUATE.search(t0) and not GRAD_SENIOR.search(t0) and \
+            ("graduate" in t0.lower() or not re.search(r"\bmanager\b", t0, re.I)):
+        job["graduate"] = True
     job["bestFor"] = groups_for(job, title + " " + text)
     return job
 

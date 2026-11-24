@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TrueShift Jobs London</title>
+<meta name="description" content="Free list of real, still-open jobs across London, updated every morning. Part-time, full-time, apprenticeships and graduate jobs, sorted by borough, with no duplicates or scams.">
+<link rel="canonical" href="https://trueshiftjobs.com/">
+<meta property="og:title" content="TrueShift Jobs London">
+<meta property="og:description" content="Real, still-open London jobs, updated every morning and sorted by borough. Free to use.">
+<meta property="og:url" content="https://trueshiftjobs.com/">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -131,6 +137,11 @@ footer p{margin:0 0 6px;max-width:80ch}
 .cvbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .apply.alt{background:#fff;color:var(--ink);border:2px solid var(--sea)}
 button.apply{border:0;font:inherit;font-weight:600;cursor:pointer}
+.pagelinks{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.pagelinks a{display:block;padding:12px 16px;border-radius:12px;background:#fff;color:#0b4f8a;font-weight:600;text-decoration:none;border:1px solid #d6e2ee}
+.pagelinks a:hover{text-decoration:underline}
+.seo p{max-width:72ch}
+.seo h2{margin-top:0}
 [hidden]{display:none!important}
 button.apply.alt{border:2px solid var(--sea)}
 .cvmsg{min-height:22px;margin:8px 0 0;font-size:14px;color:var(--muted)}
@@ -167,7 +178,7 @@ button.apply.alt{border:2px solid var(--sea)}
       <div>
         <p class="brand">TrueShift Jobs</p>
         <h1>Real part-time and full-time jobs across London</h1>
-        <p class="lead">Real, still-open jobs and apprenticeships across London, for students, school leavers, parents returning to work, people new to the UK and experienced professionals. No fake or expired adverts, so your time goes on jobs that are really there. Pick who you are, choose your area and apply on the employer's own advert.</p>
+        <p class="lead">Real, still-open jobs and apprenticeships across London, for students, people new to the UK, school leavers, graduates, parents returning to work and experienced professionals. No fake or expired adverts, so your time goes on jobs that are really there. Pick who you are, choose your area and apply on the employer's own advert.</p>
         <ul class="facts">
           <li>New jobs <b id="updated">every morning</b></li>
           <li><b id="total">0</b> jobs listed</li>
@@ -243,10 +254,11 @@ button.apply.alt{border:2px solid var(--sea)}
       <div class="chips">
         <button class="chip" type="button" data-g="All" aria-pressed="true">Anyone</button>
         <button class="chip" type="button" data-g="Students" aria-pressed="false">A student</button>
-        <button class="chip" type="button" data-g="Parents" aria-pressed="false">A parent returning to work</button>
         <button class="chip" type="button" data-g="Newcomers" aria-pressed="false">Someone new to the UK</button>
         <button class="chip" type="button" data-g="Apprentices" aria-pressed="false">An apprentice</button>
-        <button class="chip" type="button" data-g="Experienced" aria-pressed="false">An experienced professional</button>
+        <button class="chip" type="button" data-g="Graduates" aria-pressed="false">A graduate</button>
+        <button class="chip" type="button" data-g="Parents" aria-pressed="false">A parent returning to work</button>
+        <button class="chip" type="button" data-g="Experienced" aria-pressed="false">Experienced &amp; Professional</button>
         <button class="chip saved" type="button" data-g="Saved" aria-pressed="false">Saved jobs <span id="savedn">0</span></button>
       </div>
     </div>
@@ -364,6 +376,20 @@ button.apply.alt{border:2px solid var(--sea)}
   </div>
 </section>
 
+<section class="band pages" id="pages">
+  <div class="wrap">
+    <h2>Find London jobs for you</h2>
+    <ul class="pagelinks">
+      <li><a href="/jobs/students/">Part-time jobs for students</a></li>
+      <li><a href="/jobs/new-to-the-uk/">Jobs for people new to the UK</a></li>
+      <li><a href="/jobs/apprenticeships/">Apprenticeships in London</a></li>
+      <li><a href="/jobs/graduates/">Graduate and junior jobs</a></li>
+      <li><a href="/jobs/parents-returning-to-work/">Jobs for parents returning to work</a></li>
+      <li><a href="/jobs/experienced-professionals/">Jobs for experienced professionals</a></li>
+    </ul>
+  </div>
+</section>
+
 <footer class="band">
   <div class="wrap">
     <p>TrueShift Jobs is a free list of part-time and full-time jobs and apprenticeships in London. It is not an employer or a recruitment agency and never charges jobseekers.</p>
@@ -424,13 +450,17 @@ const CATS=[["Education", "Education and teaching", "\\b(hlta|ta|teaching assist
 const catRe=CATS.map(c=>[c[0],new RegExp(c[2],'i')]);
 const catOf=j=>{if(j._cat)return j._cat;const t=String(j.title||'');const m=catRe.find(c=>c[1].test(t));return j._cat=m?m[0]:'Other'};
 const POST_JOB_URL='https://docs.google.com/forms/d/e/1FAIpQLSffGDqOjiYqc4nUqb8718dL8k-iunQDuiS1cucR1s7sq0_1vQ/viewform';
+const PAGES={Students:'students',Newcomers:'new-to-the-uk',Apprentices:'apprenticeships',Graduates:'graduates',Parents:'parents-returning-to-work',Experienced:'experienced-professionals'};
+const ONSITE=/(^|\.)trueshiftjobs\.com$/.test(location.hostname);
+if(window.PAGE_GROUP)state.group=window.PAGE_GROUP;
 const QUICK={
- All:{h:'Find a real job in three steps',p:'Jobs with a Checked stamp passed all 8 checks. The rest come from official job feeds, each listed once and posted in the last 30 days.',s:[['Pick who you are','Choose student, parent, new to the UK, apprentice or experienced above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
+ All:{h:'Find a real job in three steps',p:'Jobs with a Checked stamp passed all 8 checks. The rest come from official job feeds, each listed once and posted in the last 30 days.',s:[['Pick who you are','Choose student, new to the UK, apprentice, graduate, parent or experienced above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
  Students:{h:'Quick start for students',p:'Jobs with evening, weekend or flexible shifts.',s:[['Know your hours','On a Student visa at degree level you can work up to 20 hours a week in term time, and full time in official holidays.'],['Know your pay','The legal minimum is £12.71 an hour at 21 and over, and £10.85 at 18 to 20.'],['Say when you can work','Put your free days and hours at the top of your CV so employers can fit you in fast.']]},
  Parents:{h:'Quick start for parents',p:'Jobs with school hours, term-time or part-time shifts.',s:[['Look for school hours','Jobs marked for parents fit around the school day or term time.'],['Ask for flexibility','You can ask for flexible working, such as set hours, from your first day in a job.'],['Get help with childcare','Working parents may get funded childcare hours and Tax-Free Childcare. <a href="'+GOV.childcare+'">Check on GOV.UK</a>.']]},
  Newcomers:{h:'Quick start if you are new to the UK',p:'Entry-level jobs that offer training, with a normal right-to-work check.',s:[['Get your share code ready','With an eVisa, get a right-to-work share code on <a href="'+GOV.share+'">GOV.UK</a>. It starts with W and lasts 90 days.'],['Start with entry-level shifts','Jobs marked for newcomers are entry level and offer training.'],['Stay safe','Never pay for a job, and never send your passport before a real interview.']]},
  Apprentices:{h:'Quick start for apprenticeships',p:'Paid jobs with training towards a qualification, from Level 2 up to degree level. Shown until their closing date.',s:[['Pick your level','Level 3 matches A levels. Level 4 to 5 are higher apprenticeships, and Level 6 to 7 are degree apprenticeships.'],['Know your pay','At least £8.00 an hour if you are under 19 or in your first year, then the minimum wage for your age. You never pay for the training.'],['Check the dates','Many apprenticeships start in September and close months before. Each advert shows its start and closing dates.']]},
  Experienced:{h:'Quick start for experienced professionals',p:'Professional, skilled and senior roles across London, from the same official job feeds.',s:[['Search your field','Type a job title or skill in the search box, such as accountant, engineer or nurse.'],['Filter by area','Tap a part of London on the map, then pick your borough.'],['Check the advert','Salaries are shown where the advert gives them. Always read the full advert before you apply.']]},
+ Graduates:{h:'Quick start for graduates',p:'Graduate schemes, internships, trainee and junior roles across London.',s:[['Search your field','Type a subject or job, such as finance, engineering or marketing.'],['Check the start date','Many graduate schemes start in September and close months before. Read each advert for dates.'],['Use your degree','Put your degree, projects and any part-time work near the top of your CV.']]},
  Saved:{h:'Your saved jobs',p:'Saved on this device only. Jobs that close are removed from the list.',s:[['Apply soon','Jobs can close quickly, so apply to the ones you like today.'],['Check the hours','Make sure the shifts fit your week before you apply.'],['Come back tomorrow','New jobs are added every morning.']]}
 };
 const EMPTY={
@@ -440,10 +470,11 @@ const EMPTY={
  Newcomers:['No jobs for newcomers here yet','New jobs are added every morning. Get your share code ready now so you can apply as soon as one appears.'],
  Apprentices:['No apprenticeships here yet','New adverts are added every morning. You can also search <a href="https://www.findapprenticeship.service.gov.uk">GOV.UK Find an apprenticeship</a>.'],
  Experienced:['No experienced roles here yet','Try another area or borough, or clear your search. New jobs are added every morning.'],
+ Graduates:['No graduate jobs here yet','Try another area, or look under Experienced &amp; Professional for junior roles. New jobs are added every morning.'],
  Saved:['You have not saved any jobs yet','Tap Save on any job to keep it here on this device.']
 };
 const tick='<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const groupLabel={Students:'Students',Parents:'Parents',Newcomers:'New to the UK',Apprentices:'Apprenticeship',Experienced:'Experienced'};
+const groupLabel={Students:'Students',Parents:'Parents',Newcomers:'New to the UK',Apprentices:'Apprenticeship',Experienced:'Experienced',Graduates:'Graduates'};
 const catOk=j=>state.group!=='Experienced'||!state.cat||state.cat==='All'||catOf(j)===state.cat;
 const levelOk=j=>{if(state.group!=='Apprentices'||!state.level||state.level==='All')return true;const l=Number(j.level)||0;return state.level==='4'?(l===4||l===5):state.level==='6'?(l===6||l===7):l===Number(state.level)};
 
@@ -507,7 +538,7 @@ function render(keepLimit){
   const shown=jobs.filter(j=>matches(j,false)).sort((a,b)=>state.sort==='pay'?payNum(b)-payNum(a):String(dateOf(b)).localeCompare(String(dateOf(a))));
   el('total').textContent=jobs.length;
   const where=state.borough!=='All'?state.borough:(state.region!=='All'?state.region+' London':'all of London');
-  const who={All:'',Students:' for students',Parents:' for parents',Newcomers:' for people new to the UK',Experienced:' for experienced professionals',Saved:' saved'}[state.group]||'';
+  const who={All:'',Students:' for students',Parents:' for parents',Newcomers:' for people new to the UK',Experienced:' for experienced professionals',Graduates:' for graduates',Saved:' saved'}[state.group]||'';
   const noun=state.group==='Apprentices'?(shown.length===1?'apprenticeship':'apprenticeships'):(shown.length===1?'job':'jobs');
   el('count').innerHTML='<b>'+shown.length+'</b> '+noun+esc(who)+' in '+esc(where);
   const mb=el('more');
@@ -524,7 +555,7 @@ const up=src.dataset.updated;
 if(up){const t=new Date(up+'T12:00:00');if(!isNaN(t))el('updated').textContent=t.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
 el('compass').addEventListener('click',e=>{const b=e.target.closest('.reg');if(!b)return;state.region=state.region===b.dataset.r?'All':b.dataset.r;state.borough='All';fillBoroughs();render()});
 el('allbtn').addEventListener('click',()=>{state.region='All';state.borough='All';fillBoroughs();render()});
-document.querySelector('.chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;state.group=c.dataset.g;render()});
+document.querySelector('.chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;state.group=c.dataset.g;render();if(ONSITE&&history.replaceState){try{history.replaceState(null,'',PAGES[state.group]?'/jobs/'+PAGES[state.group]+'/':'/')}catch(err){}}});
 el('list').addEventListener('click',e=>{const b=e.target.closest('.star');if(!b)return;const k=b.dataset.k;saved=saved.includes(k)?saved.filter(x=>x!==k):saved.concat([k]);saves.set(saved);render(true)});
 el('jtype').addEventListener('change',e=>{state.jtype=e.target.value;render()});
 el('cat').addEventListener('change',e=>{state.cat=e.target.value;render()});
@@ -543,7 +574,7 @@ el('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
 el('q').addEventListener('input',e=>{state.q=e.target.value.trim();render()});
 fillBoroughs();render();
 if(POST_JOB_URL){document.querySelectorAll('.postlink').forEach(a=>a.href=POST_JOB_URL);document.querySelectorAll('.postjob').forEach(e=>e.hidden=false)}
-fetch('feed.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d)addFeed(d)}).catch(()=>{}).finally(()=>{feedReady=true;render(true);credit()});
+fetch(ONSITE?'/feed.json':'feed.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d)addFeed(d)}).catch(()=>{}).finally(()=>{feedReady=true;render(true);credit()});
 const CVS={
  Students:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
   sections:[['Personal statement',['p','[Your course and year] student looking for part-time [evening / weekend] work in [type of work, e.g. retail or hospitality]. [Two or three strengths, e.g. friendly, reliable and quick to learn].']],
