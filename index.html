@@ -217,6 +217,22 @@ button.apply.alt{border:2px solid var(--sea)}
         <option value="4">Level 4 to 5 (higher)</option>
         <option value="6">Level 6 to 7 (degree)</option>
       </select>
+      <select class="ctl" id="cat" aria-label="Job category" hidden>
+        <option value="All">All categories</option>
+        <option value="Education">Education and teaching</option>
+        <option value="Health">Health, care and childcare</option>
+        <option value="Legal">Legal</option>
+        <option value="HR">HR and recruitment</option>
+        <option value="Sales">Sales and marketing</option>
+        <option value="Finance">Finance and accounting</option>
+        <option value="IT">IT and digital</option>
+        <option value="Engineering">Engineering and construction</option>
+        <option value="Housing">Housing, charity and public sector</option>
+        <option value="Admin">Admin and office</option>
+        <option value="Hospitality">Hospitality, retail and customer service</option>
+        <option value="Logistics">Transport and logistics</option>
+        <option value="Other">Other</option>
+      </select>
       <select class="ctl" id="sort" aria-label="Sort jobs">
         <option value="new">Newest first</option>
         <option value="pay">Highest pay</option>
@@ -399,11 +415,14 @@ const dateOf=j=>j.posted||j.found||'';
 const fmtDate=d=>{const t=new Date(d+'T12:00:00');return isNaN(t)?'':t.toLocaleDateString('en-GB',{day:'numeric',month:'short'})};
 const groupsOf=j=>(Array.isArray(j.bestFor)?j.bestFor:String(j.bestFor||'').split(',')).map(s=>s.trim()).filter(Boolean);
 const store={get(){try{return JSON.parse(localStorage.getItem('trueshift-filters')||'{}')}catch(e){return{}}},set(v){try{localStorage.setItem('trueshift-filters',JSON.stringify(v))}catch(e){}}};
-const state=Object.assign({region:'All',group:'All',borough:'All',q:'',sort:'new',jtype:'All',level:'All'},store.get());
+const state=Object.assign({region:'All',group:'All',borough:'All',q:'',sort:'new',jtype:'All',level:'All',cat:'All'},store.get());
 const saves={get(){try{return JSON.parse(localStorage.getItem('trueshift-saved')||'[]')}catch(e){return[]}},set(v){try{localStorage.setItem('trueshift-saved',JSON.stringify(v))}catch(e){}}};
 let saved=saves.get();if(!Array.isArray(saved))saved=[];
 const keyOf=j=>String(j.link||'')+'|'+String(j.title||'')+'|'+String(j.employer||'');
 const GOV={share:'https://www.gov.uk/prove-right-to-work/get-a-share-code-online',childcare:'https://www.gov.uk/tax-free-childcare',flex:'https://www.gov.uk/flexible-working'};
+const CATS=[["Education", "Education and teaching", "\\b(hlta|ta|teaching assistant|playground|teacher|teaching|tutor|tuition|lecturer|school|senco|sendco|education|head of (year|department|learning|science|maths|english)|deputy head|curriculum|pastoral|cover supervisor|attendance|behaviour mentor|learning support|early years|nursery|exams? officer)\\b"], ["Health", "Health, care and childcare", "\\b(nurse|nursing|care|carer|health|healthcare|clinical|clinic|medical|doctor|gp|pharmac\\w*|dental|dentist|physio\\w*|occupational therap\\w*|therap\\w*|midwi\\w*|social work\\w*|support worker|psycholog\\w*|radiograph\\w*|paramedic|hca|mental health|nhs|ward|nanny|childcare|child care|family support)\\b"], ["Legal", "Legal", "\\b(legal|solicitor|lawyer|paralegal|conveyanc\\w*|litigation|barrister|counsel|law)\\b"], ["HR", "HR and recruitment", "\\b(hr|human resources|recruit\\w*|talent|people partner|people advisor|people & culture|people and culture|reward|learning and development|l&d|resourcer|training manager)\\b"], ["Sales", "Sales and marketing", "\\b(telesales|business developer|events?|sales|business development|account manager|account executive|marketing|brand|seo|social media|content|communications|pr|media|advertising|copywriter|ecommerce|e-commerce|creative|creator)\\b"], ["Finance", "Finance and accounting", "\\b(account(ant|s|ing)?|finance|financial|payroll|audit(or)?|tax|bookkeep\\w*|credit control|treasury|actuar\\w*|underwrit\\w*|insurance|banking|investment|fund|wealth|mortgage|paraplanner|controller|cash|debt|epm|anaplan)\\b"], ["IT", "IT and digital", "\\b(it|ict|software|developer|devops|cloud|data|cyber|network|infrastructure|systems engineer|systems administrator|sysadmin|technical support|technical lead|helpdesk|service desk|digital|web|technology|programmer|sql|python|java|\\.net|c#|azure|aws|salesforce|sap|crm|erp|dynamics|d365|product owner|scrum|business analyst|ux|ui|software tester|test analyst|qa|solutions? architect|crestron)\\b"], ["Engineering", "Engineering and construction", "\\b(h&s|health and safety|cad|design manager|meter|workshop|production|engineer|engineering|construction|site manager|area manager|quantity surveyor|surveyor|electrician|electrical|mechanical|plumb\\w*|hvac|building|architect|civil|structural|project manager|estimator|maintenance|facilities|gas|technician|manufacturing|commissioning|m&e|slinger|mains|vehicle|mot)\\b"], ["Housing", "Housing, charity and public sector", "\\b(housing|homeless\\w*|resident|tenan\\w*|case ?worker|council|policy|outreach|grants?|charity|fundrais\\w*|volunteer|community|allocations|lettings)\\b"], ["Admin", "Admin and office", "\\b(admin\\w*|office|secretary|pa|personal assistant|executive assistant|receptionist|data entry|coordinator|co-ordinator|clerk|operations)\\b"], ["Hospitality", "Hospitality, retail and customer service", "\\b(cafe|caf\u00e9|chef|kitchen|restaurant|hotel|bar|catering|hospitality|retail|store|shop|branch|customer service|call centre|contact centre|front of house|housekeep\\w*|duty manager|runner)\\b"], ["Logistics", "Transport and logistics", "\\b(driver|logistics|warehouse|transport|supply chain|procurement|buyer|fleet|delivery|courier|forklift)\\b"]];
+const catRe=CATS.map(c=>[c[0],new RegExp(c[2],'i')]);
+const catOf=j=>{if(j._cat)return j._cat;const t=String(j.title||'');const m=catRe.find(c=>c[1].test(t));return j._cat=m?m[0]:'Other'};
 const POST_JOB_URL='https://docs.google.com/forms/d/e/1FAIpQLSffGDqOjiYqc4nUqb8718dL8k-iunQDuiS1cucR1s7sq0_1vQ/viewform';
 const QUICK={
  All:{h:'Find a real job in three steps',p:'Jobs with a Checked stamp passed all 8 checks. The rest come from official job feeds, each listed once and posted in the last 30 days.',s:[['Pick who you are','Choose student, parent, new to the UK, apprentice or experienced above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
@@ -425,6 +444,7 @@ const EMPTY={
 };
 const tick='<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const groupLabel={Students:'Students',Parents:'Parents',Newcomers:'New to the UK',Apprentices:'Apprenticeship',Experienced:'Experienced'};
+const catOk=j=>state.group!=='Experienced'||!state.cat||state.cat==='All'||catOf(j)===state.cat;
 const levelOk=j=>{if(state.group!=='Apprentices'||!state.level||state.level==='All')return true;const l=Number(j.level)||0;return state.level==='4'?(l===4||l===5):state.level==='6'?(l===6||l===7):l===Number(state.level)};
 
 function fillBoroughs(){
@@ -439,6 +459,7 @@ function matches(j,ignoreRegion){
   if(!ignoreRegion&&state.borough!=='All'&&j.borough!==state.borough)return false;
   if(state.jtype&&state.jtype!=='All'&&j.jobType!==state.jtype)return false;
   if(!levelOk(j))return false;
+  if(!catOk(j))return false;
   if(state.group==='Saved'){if(!saved.includes(keyOf(j)))return false}
   else if(state.group!=='All'&&!groupsOf(j).includes(state.group))return false;
   if(state.q){const hay=[j.title,j.employer,j.borough,j.area,j.hours,j.notes].join(' ').toLowerCase();if(!hay.includes(state.q.toLowerCase()))return false}
@@ -482,7 +503,7 @@ function render(keepLimit){
   const qk=QUICK[state.group]||QUICK.All;
   el('quick').innerHTML='<div><h2>'+qk.h+'</h2><p class="sub">'+qk.p+'</p></div><ol class="steps">'+qk.s.map(s=>'<li><b>'+s[0]+'</b>'+s[1]+'</li>').join('')+'</ol>';
   el('q').value=state.q;el('sort').value=state.sort;el('jtype').value=state.jtype||'All';
-  el('level').hidden=state.group!=='Apprentices';el('level').value=state.level||'All';
+  el('level').hidden=state.group!=='Apprentices';el('cat').hidden=state.group!=='Experienced';el('cat').value=state.cat||'All';el('level').value=state.level||'All';
   const shown=jobs.filter(j=>matches(j,false)).sort((a,b)=>state.sort==='pay'?payNum(b)-payNum(a):String(dateOf(b)).localeCompare(String(dateOf(a))));
   el('total').textContent=jobs.length;
   const where=state.borough!=='All'?state.borough:(state.region!=='All'?state.region+' London':'all of London');
@@ -506,6 +527,7 @@ el('allbtn').addEventListener('click',()=>{state.region='All';state.borough='All
 document.querySelector('.chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;state.group=c.dataset.g;render()});
 el('list').addEventListener('click',e=>{const b=e.target.closest('.star');if(!b)return;const k=b.dataset.k;saved=saved.includes(k)?saved.filter(x=>x!==k):saved.concat([k]);saves.set(saved);render(true)});
 el('jtype').addEventListener('change',e=>{state.jtype=e.target.value;render()});
+el('cat').addEventListener('change',e=>{state.cat=e.target.value;render()});
 el('level').addEventListener('change',e=>{state.level=e.target.value;render()});
 el('more').addEventListener('click',()=>{if(jobs.filter(j=>matches(j,false)).length>limit){limit+=30;render(true)}});
 function credit(){
