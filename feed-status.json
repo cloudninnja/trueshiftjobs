@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T14:40:01Z",
+  "generated": "2026-11-25T14:56:52Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6731,
-      "kept": 552,
+      "fetched": 6747,
+      "kept": 546,
       "dropped": {
-        "too old or closed": 88
+        "too old or closed": 87
       }
     },
     "Employer": {
@@ -30,12 +30,12 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5751815</id><reference>C9824-26-00041</reference><title>BANK GP Athlone House Rehab Unit Bedded-NW</title><description>Are you a GP with a passion for rehabilitation and older adult care?We're looking for an experienced and enthusiastic GP Clinical Lead to join our wel...</description><employer>Central London Community Health Trust</employer><type>Bank</type><salary>£77.79</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T14:36:56.194313971</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9824-26-00041</url><locations><location>London, W9 3XZ</location></locations></vacancyDetails><vacancyDetails><id>5751876</id><reference>M0073-26-00006</reference><title>Oral &amp; Maxillofacial Surgery (OMFS) Outpatient Nurse</title><description>Xyla Elective Care is seeking experienced OMFS Outpatient Nurses to support a developing weekend Oral &amp; Maxillofacial Surgery (OMFS) service in Enfiel...</description><employer>Xyla</employer><type>Locum</type><salary>£438.82</salary><closeDate>2027-03-01</closeDate><postDate>2026-11-25T14:36:53.523791506</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/M0073-26-00006</url><locations><location>Enfield, EN2 8JL</location></locations></vacancyDetails><vacancyDetails><id>5751860</id><reference>C9200-26-00007</reference><title>Diagnostic Neuro Radiographer</title><description>Due to internal promotion we now have a band 6 Neuroradiographer post avai",
-      "fetched": 2170,
-      "pages": 218,
-      "kept": 1519,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5751983</id><reference>C9282-26-00025</reference><title>Locum Consultant Radiologist</title><description>The locum consultant post has been created as a new position to support increased activity within the diagnostic radiology department and to expand th...</description><employer>The Royal Marsden NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£113565.00 to £150569.00</salary><closeDate>2026-12-16</closeDate><postDate>2026-11-25T14:57:28.074982630</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9282-26-00025</url><locations><location>Chelsea, SW3 6JJ</location></locations></vacancyDetails><vacancyDetails><id>5751925</id><reference>C9151-26-00043</reference><title>Critical Care Lead Pharmacist</title><description>Band 8a Specialist Pharmacist - Critical Care &amp; Theatres Full-time | Permanent Are you an experienced and forward-thinking pharmacist looking for your...</description><employer>Frimley Health NHS Foundation Trust</employer><type>Permanent</type><salary>£59798.00 to £67020.00</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T14:49:31.281153036</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9151-26-00043</url><locations><location>Slough, SL2 4HL</location></locations></vacancyDetails><vacancyDetails><id>5751908</id><reference>C9151-26-00042</reference><title>Elective Bookings Officer</title><description>Elective Bookings Officer (Band 3)37.5 hour",
+      "fetched": 2180,
+      "pages": 219,
+      "kept": 1522,
       "dropped": {
-        "outside London": 649,
+        "outside London": 656,
         "too old or closed": 2
       }
     },
@@ -46,43 +46,39 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7721,
-      "uniqueFromSearches": 4340,
-      "kept": 2806,
+      "fetched": 7722,
+      "uniqueFromSearches": 4290,
+      "kept": 2776,
       "dropped": {
-        "too old or closed": 846,
+        "too old or closed": 856,
         "blocked words": 59,
         "below adult minimum wage": 36,
-        "remote or not in London": 83,
-        "blocked advertiser": 99,
-        "outside London": 269,
-        "London area not given": 142
+        "remote or not in London": 81,
+        "blocked advertiser": 98,
+        "outside London": 253,
+        "London area not given": 131
       }
     },
     "Adzuna": {
-      "fetched": 420,
-      "kept": 369,
-      "dropped": {
-        "blocked words": 12
-      }
+      "error": "HTTPError: HTTP Error 503: Service Temporarily Unavailable"
     }
   },
   "total": 5000,
-  "duplicatesRemoved": 5028,
+  "duplicatesRemoved": 4812,
   "byRegion": {
-    "Central": 1619,
+    "Central": 1626,
     "North": 476,
-    "East": 1069,
-    "South": 949,
-    "West": 887
+    "East": 1072,
+    "South": 945,
+    "West": 881
   },
   "byJobType": {
-    "Part-time": 1172,
-    "Full-time": 2137,
-    "Not stated": 1691
+    "Part-time": 1174,
+    "Full-time": 2129,
+    "Not stated": 1697
   },
-  "carriedOver": 4794,
-  "areaApproximate": 466,
+  "carriedOver": 5000,
+  "areaApproximate": 471,
   "apprenticeships": 44,
   "apprenticeshipLevels": {
     "3": 22,
@@ -92,12 +88,12 @@
     "2": 5
   },
   "byGroup": {
-    "Students": 598,
-    "Parents": 366,
-    "Experienced": 3036,
+    "Students": 601,
+    "Parents": 364,
+    "Experienced": 3035,
     "(none)": 661,
-    "Newcomers": 680,
-    "Graduates": 89,
+    "Newcomers": 681,
+    "Graduates": 90,
     "Apprentices": 44
   }
 }
