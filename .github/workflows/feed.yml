@@ -32,6 +32,7 @@ jobs:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           APPRENTICESHIP_API_KEY: ${{ secrets.APPRENTICESHIP_API_KEY }}
+          CAREERJET_API_KEY: ${{ secrets.CAREERJET_API_KEY }}
           EMPLOYER_JOBS_CSV: ${{ secrets.EMPLOYER_JOBS_CSV || 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQABrLZoHkkK4tXTue7feLKOT60bibkHlmTm-TDOI1_U0kqkR59G78kMY3N9ISRjm-mbA5oHRlLC1Ha/pub?gid=265293053&single=true&output=csv' }}
         run: python scripts/fetch_feed.py
 

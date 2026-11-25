@@ -104,7 +104,7 @@ PAGES = [
         "lead": "Skilled, professional and senior roles across London, filtered by category and borough.",
         "heading": "Professional jobs across London, without the noise",
         "body": [
-            "Job sites often show the same role many times through different agencies, alongside old adverts that have already been filled. This page brings together professional and senior roles from Reed, Adzuna and Teaching Vacancies, shows each job once and keeps only adverts posted in the last 30 days.",
+            "Job sites often show the same role many times through different agencies, alongside old adverts that have already been filled. This page brings together professional and senior roles from the main UK job sites and official public-sector feeds, shows each job once and keeps only adverts posted in the last 30 days.",
             "<b>Filter by category.</b> Choose IT and digital, finance and accounting, engineering and construction, education, health and care, legal, HR, sales and marketing, or the public and charity sector, then narrow it down to your part of London.",
             "<b>Check the salary.</b> Where an advert gives a salary we show it on the card. School and public-sector roles often show a full-time equivalent salary, which is reduced pro rata for part-time hours.",
             "<b>Apply direct where you can.</b> Each card links to the original advert. Where the employer has posted the job itself, we link to the employer's own page or email.",
@@ -156,7 +156,7 @@ def jobs_html(jobs, limit=40):
         title = esc(j.get("title", ""))
         title = '<a href="%s"%s style="color:inherit">%s</a>' % (esc(href), rel, title) if href else title
         where = ", ".join(x for x in (j.get("area"), j.get("borough")) if x)
-        src = "Posted by employer" if j.get("source") == "Employer" else "Listed on " + esc(j.get("source", ""))
+        src = {"Employer": "Posted by employer", "Adzuna": "Jobs by Adzuna"}.get(j.get("source"), "Live advert")
         out.append(
             '<article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title">%s</h3>'
             '<div class="pay"><small>%s</small></div></div><p class="t-emp">%s</p><p class="where">%s</p>'

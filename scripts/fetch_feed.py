@@ -10,6 +10,7 @@ Sources (each is skipped if its key is missing or it fails):
   - Reed Jobseeker API (secret REED_API_KEY)
   - Adzuna API (secrets ADZUNA_APP_ID and ADZUNA_APP_KEY)
   - NHS Jobs public search feed (no key needed)
+  - Careerjet publisher API (secret CAREERJET_API_KEY)
   - GOV.UK Find an apprenticeship, Display advert API (secret APPRENTICESHIP_API_KEY)
   - Jobs posted by employers through the TrueShift Google Form, once approved
     (secret EMPLOYER_JOBS_CSV: the published CSV link of the sheet's Public tab)
@@ -47,6 +48,7 @@ UA = "TrueShiftJobs/1.0 (+https://trueshiftjobs.com)"
 REED_PAGES = int(os.environ.get("REED_PAGES", "1"))      # 100 jobs a page
 ADZUNA_PAGES = int(os.environ.get("ADZUNA_PAGES", "1"))  # 50 jobs a page
 TV_MAX_PAGES = int(os.environ.get("TV_MAX_PAGES", "120"))
+CAREERJET_PAGES = int(os.environ.get("CAREERJET_PAGES", "2"))  # per borough, 100 a page
 NHS_MAX_PAGES = int(os.environ.get("NHS_MAX_PAGES", "400"))  # 10 jobs a page
 FAA_MAX_PAGES = int(os.environ.get("FAA_MAX_PAGES", "40"))  # 100 apprenticeships a page
 REED_APPRENTICE_PAGES = int(os.environ.get("REED_APPRENTICE_PAGES", "10"))   # per keyword, 100 a page
@@ -193,8 +195,8 @@ GROUP_RULES = {
                             r"housekeep|room attendant|care assistant|carer|support worker|security|"
                             r"driver|delivery|labourer|team member|crew|retail|catering)", re.I),
 }
-SOURCE_RANK = {"Employer": -1, "NHS Jobs": 0, "Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
-SITE_NAME = {"Employer": "TrueShift Jobs", "NHS Jobs": "NHS Jobs", "Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
+SOURCE_RANK = {"Employer": -1, "NHS Jobs": 0, "Careerjet": 3, "Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
+SITE_NAME = {"Employer": "TrueShift Jobs", "NHS Jobs": "NHS Jobs", "Careerjet": "Careerjet", "Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
              "Reed": "Reed", "Adzuna": "Adzuna"}
 APPRENTICE = re.compile(r"\bapprentice(ship)?s?\b", re.I)
 GRADUATE = re.compile(r"\b(graduates?|grad scheme|trainee|junior|entry[- ]level|placement|internship|intern)\b", re.I)
@@ -894,6 +896,61 @@ def fetch_nhs(status):
     return jobs
 
 
+def runner_ip():
+    try:
+        return http_text("https://api.ipify.org", timeout=15).strip()
+    except Exception:  # noqa: BLE001
+        return "127.0.0.1"
+
+
+def fetch_careerjet(key, status):
+    """Careerjet publisher API: newest jobs borough by borough (vague locations get the searched borough)."""
+    auth = "Basic " + base64.b64encode((key + ":").encode()).decode()
+    ip = runner_ip()
+    raw, fetched = {}, 0
+    for borough in BOROUGH_REGION:
+        for page in range(1, CAREERJET_PAGES + 1):
+            q = urllib.parse.urlencode({"locale_code": "en_GB", "location": borough + ", London", "radius": 3,
+                                        "sort": "date", "page_size": 100, "page": page, "fragment_size": 300,
+                                        "user_ip": ip, "user_agent": UA})
+            res = http_json("https://search.api.careerjet.net/v4/query?" + q, headers={"Authorization": auth})
+            if res.get("type") != "JOBS":
+                status.setdefault("locationMessages", {})[borough] = res.get("message")
+                break
+            jobs = res.get("jobs") or []
+            fetched += len(jobs)
+            for r in jobs:
+                k = r.get("url") or (str(r.get("title")) + "|" + str(r.get("company")))
+                if k not in raw:
+                    raw[k] = (r, borough)
+            if page >= int(res.get("pages") or 1) or len(jobs) < 100:
+                break
+            time.sleep(0.4)
+        time.sleep(0.3)
+    status["fetched"] = fetched
+    status["uniqueFromSearches"] = len(raw)
+    out = []
+    for k, (r, guess) in raw.items():
+        loc = clean(r.get("locations"), 80)
+        text = clean(r.get("description"), 3000)
+        b, area, is_approx, why = locate(loc, r.get("title"), r.get("company"), text, {}, guess)
+        wh = (str(r.get("title")) + " " + text).lower()
+        jt = "Part-time" if re.search(r"part[- ]?time", wh) else ("Full-time" if re.search(r"full[- ]?time", wh) else "")
+        st = str(r.get("salary_type") or "").upper()
+        lo, hi = r.get("salary_min"), r.get("salary_max")
+        job = make_job("Careerjet", k, r.get("title"), r.get("company"), b or "", area, jt,
+                       lo if st == "H" else None, hi if st == "H" else None, r.get("url"),
+                       any_date(r.get("date")), None, text)
+        if st != "H" and r.get("salary"):
+            job["salary"] = tidy_salary(r.get("salary"), {"Y": "YEAR", "M": "", "W": "", "D": ""}.get(st, ""))[0]
+        if is_approx:
+            job["approx"] = True
+        if why:
+            job["_drop"] = why
+        out.append((job, text))
+    return out
+
+
 def faa_pay(wage):
     """(hourly text, salary text, hourly floor) from a Find an apprenticeship wage object."""
     wage = wage or {}
@@ -1217,6 +1274,11 @@ def main():
     else:
         status["sources"]["Employer"] = {"skipped": "no EMPLOYER_JOBS_CSV secret"}
     run("NHS Jobs", fetch_nhs)
+    cj_key = os.environ.get("CAREERJET_API_KEY", "").strip()
+    if cj_key:
+        run("Careerjet", fetch_careerjet, cj_key)
+    else:
+        status["sources"]["Careerjet"] = {"skipped": "no CAREERJET_API_KEY secret"}
     faa_key = os.environ.get("APPRENTICESHIP_API_KEY", "").strip()
     if faa_key:
         run("Find an apprenticeship", fetch_apprenticeships, faa_key)
