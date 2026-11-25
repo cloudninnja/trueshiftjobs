@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T11:32:39Z",
+  "generated": "2026-11-25T11:38:28Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6676,
-      "kept": 523,
+      "fetched": 6680,
+      "kept": 527,
       "dropped": {
-        "too old or closed": 90
+        "too old or closed": 87
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750518</id><reference>B0441-26-00000</reference><title>GP Practice Receptionist</title><description>We are looking for a friendly, professional and organised Receptionist to join our busy primary care team. As one of the first points of contact for p...</description><employer>LCW UCC</employer><type>Permanent</type><salary>£27008.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:33:21.962590600</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/B0441-26-00000</url><locations><location>London, W12 0HS</location><location>London, W6 8RF</location></locations></vacancyDetails><vacancyDetails><id>5750757</id><reference>C9392-26-00005</reference><title>Operating Department Practitioner / Anaesthetic Nurse</title><description>To undertake any and all duties required of a theatre practitioner in Anaesthetics with some occasional scrub responsibilities.</description><employer>Royal National Orthopaedic Hospital NHS Trust</employer><type>Permanent</type><salary>£36943.00 to £44900.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:30:40.504439276</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9392-26-00005</url><locations><location>Stanmore, HA7 4LP</location></locations></vacancyDetails><vacancyDetails><id>5750663</id><reference>C9371-26-00029</reference><title>Co-Production Enabler</title><description>Slough Mental Health Services' Co-production Pathway is se",
-      "fetched": 2110,
-      "pages": 212,
-      "kept": 1475,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750830</id><reference>C9196-26-00021</reference><title>Senior Clinical Fellow in Severe Respiratory Failure (ECMO)</title><description>The critical care department at GSTT has an international reputation for clinical excellence and a prominent research profile. As well as serving the ...</description><employer>Guy's and St Thomas' NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£76582.00</salary><closeDate>2026-11-28</closeDate><postDate>2026-11-25T11:36:56.137918892</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9196-26-00021</url><locations><location>London, SE1 7EH</location></locations></vacancyDetails><vacancyDetails><id>5749922</id><reference>A6066-26-00000</reference><title>Practice Manager</title><description>Derry Court Medical Practice is seeking an experienced and motivated Practice Manager to lead the operational, financial, and strategic management of ...</description><employer>Derry Court Medical Practice</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-24</closeDate><postDate>2026-11-25T11:36:15.280598208</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/A6066-26-00000</url><locations><location>SOUTH OCKENDON, RM15 5GN</location></locations></vacancyDetails><vacancyDetails><id>5750029</id><reference>C9824-26-00032</reference><title>SCPHN School Nurse</title><description>Central London Community Healthcare NHS Trust (CLCH) has an",
+      "fetched": 2120,
+      "pages": 213,
+      "kept": 1476,
       "dropped": {
-        "outside London": 633,
-        "too old or closed": 2
+        "outside London": 634,
+        "too old or closed": 10
       }
     },
     "Careerjet": {
@@ -47,16 +47,16 @@
     },
     "Reed": {
       "fetched": 7718,
-      "uniqueFromSearches": 4327,
-      "kept": 2793,
+      "uniqueFromSearches": 4294,
+      "kept": 2768,
       "dropped": {
         "too old or closed": 857,
-        "below adult minimum wage": 36,
-        "remote or not in London": 83,
+        "below adult minimum wage": 35,
+        "remote or not in London": 82,
         "blocked words": 59,
         "blocked advertiser": 96,
-        "outside London": 261,
-        "London area not given": 142
+        "outside London": 258,
+        "London area not given": 139
       }
     },
     "Adzuna": {
@@ -67,21 +67,21 @@
       }
     }
   },
-  "total": 4721,
-  "duplicatesRemoved": 5135,
+  "total": 4728,
+  "duplicatesRemoved": 5117,
   "byRegion": {
-    "Central": 1496,
+    "Central": 1501,
     "North": 465,
     "East": 1025,
-    "South": 888,
-    "West": 847
+    "South": 891,
+    "West": 846
   },
   "byJobType": {
-    "Part-time": 1139,
-    "Full-time": 2005,
-    "Not stated": 1577
+    "Part-time": 1143,
+    "Full-time": 2006,
+    "Not stated": 1579
   },
-  "carriedOver": 4712,
+  "carriedOver": 4721,
   "areaApproximate": 432,
   "apprenticeships": 52,
   "apprenticeshipLevels": {
@@ -92,11 +92,11 @@
     "2": 6
   },
   "byGroup": {
-    "Experienced": 2836,
-    "(none)": 634,
-    "Newcomers": 650,
+    "Experienced": 2840,
+    "(none)": 635,
+    "Newcomers": 651,
     "Students": 570,
-    "Parents": 350,
+    "Parents": 352,
     "Graduates": 81,
     "Apprentices": 52
   }
