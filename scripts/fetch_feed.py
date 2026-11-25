@@ -9,6 +9,7 @@ Sources (each is skipped if its key is missing or it fails):
   - GOV.UK Teaching Vacancies open API (no key, Open Government Licence)
   - Reed Jobseeker API (secret REED_API_KEY)
   - Adzuna API (secrets ADZUNA_APP_ID and ADZUNA_APP_KEY)
+  - NHS Jobs public search feed (no key needed)
   - GOV.UK Find an apprenticeship, Display advert API (secret APPRENTICESHIP_API_KEY)
   - Jobs posted by employers through the TrueShift Google Form, once approved
     (secret EMPLOYER_JOBS_CSV: the published CSV link of the sheet's Public tab)
@@ -28,6 +29,8 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -44,6 +47,7 @@ UA = "TrueShiftJobs/1.0 (+https://trueshiftjobs.com)"
 REED_PAGES = int(os.environ.get("REED_PAGES", "1"))      # 100 jobs a page
 ADZUNA_PAGES = int(os.environ.get("ADZUNA_PAGES", "1"))  # 50 jobs a page
 TV_MAX_PAGES = int(os.environ.get("TV_MAX_PAGES", "120"))
+NHS_MAX_PAGES = int(os.environ.get("NHS_MAX_PAGES", "400"))  # 10 jobs a page
 FAA_MAX_PAGES = int(os.environ.get("FAA_MAX_PAGES", "40"))  # 100 apprenticeships a page
 REED_APPRENTICE_PAGES = int(os.environ.get("REED_APPRENTICE_PAGES", "10"))   # per keyword, 100 a page
 ADZUNA_APPRENTICE_PAGES = int(os.environ.get("ADZUNA_APPRENTICE_PAGES", "4"))  # 50 a page
@@ -189,8 +193,8 @@ GROUP_RULES = {
                             r"housekeep|room attendant|care assistant|carer|support worker|security|"
                             r"driver|delivery|labourer|team member|crew|retail|catering)", re.I),
 }
-SOURCE_RANK = {"Employer": -1, "Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
-SITE_NAME = {"Employer": "TrueShift Jobs", "Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
+SOURCE_RANK = {"Employer": -1, "NHS Jobs": 0, "Find an apprenticeship": 0, "Teaching Vacancies": 0, "Reed": 1, "Adzuna": 2}
+SITE_NAME = {"Employer": "TrueShift Jobs", "NHS Jobs": "NHS Jobs", "Find an apprenticeship": "Find an apprenticeship", "Teaching Vacancies": "Teaching Vacancies",
              "Reed": "Reed", "Adzuna": "Adzuna"}
 APPRENTICE = re.compile(r"\bapprentice(ship)?s?\b", re.I)
 GRADUATE = re.compile(r"\b(graduates?|grad scheme|trainee|junior|entry[- ]level|placement|internship|intern)\b", re.I)
@@ -784,6 +788,106 @@ def fetch_adzuna(app_id, app_key, status):
     return jobs
 
 
+def _tag(e):
+    return e.tag.split("}")[-1].lower()
+
+
+def _kids(e):
+    return {_tag(c): c for c in list(e)}
+
+
+def _txt(e):
+    return clean("".join(e.itertext()), 3000) if e is not None else ""
+
+
+def _first(k, *names):
+    for n in names:
+        if k.get(n) is not None:
+            return k.get(n)
+    return None
+
+
+def any_date(s):
+    s = str(s or "").strip()
+    d = parse_date(s[:10])
+    if d:
+        return d
+    try:
+        return parsedate_to_datetime(s).date()
+    except (TypeError, ValueError):
+        return None
+
+
+def fetch_nhs(status):
+    """NHS Jobs public search feed: London vacancies, newest first, until adverts pass 30 days old."""
+    raw, page, stop = [], 1, False
+    cutoff = TODAY - timedelta(days=MAX_AGE_DAYS)
+    while page <= NHS_MAX_PAGES and not stop:
+        q = urllib.parse.urlencode({"location": "London", "distance": 15, "sort": "publicationDateDesc", "page": page})
+        text = http_text("https://www.jobs.nhs.uk/api/v1/search_xml?" + q)
+        if page == 1:
+            status["sample"] = text[:1500]
+        root = ET.fromstring(text.encode("utf-8"))
+        items = [e for e in root.iter() if _tag(e) in ("vacancydetails", "vacancy", "item")]
+        if not items:
+            break
+        for e in items:
+            k = _kids(e)
+            posted = any_date(_txt(_first(k, "postdate", "publicationdate", "pubdate")))
+            if posted and posted < cutoff:
+                stop = True
+            raw.append(k)
+        if len(items) < 10:
+            break
+        page += 1
+        time.sleep(0.3)
+    status["fetched"] = len(raw)
+    status["pages"] = page
+    locs = []
+    for k in raw:
+        node = _first(k, "locations", "location")
+        texts = [_txt(x) for x in node.iter() if _txt(x)] if node is not None else []
+        k["_locs"] = texts
+        for t in texts:
+            m = POSTCODE_IN_TEXT.search(t.upper())
+            if m:
+                locs.append(m.group(1) + m.group(2))
+    info = postcode_info(locs, status)
+    jobs = []
+    for k in raw:
+        borough, area = None, ""
+        for t in k["_locs"]:
+            m = POSTCODE_IN_TEXT.search(t.upper())
+            hit = info.get(pc_key(m.group(1) + m.group(2))) if m else None
+            if hit and hit[0]:
+                borough, area = hit[0], t.split(",")[0]
+                break
+            if not hit:
+                b = borough_from_text(t)
+                if b:
+                    borough, area = b, t.split(",")[0]
+                    break
+        title = _txt(k.get("title"))
+        employer = _txt(_first(k, "employer", "employername"))
+        desc = _txt(k.get("description"))
+        wp = (_txt(k.get("workingpattern")) + " " + _txt(k.get("type"))).lower()
+        jt = "Part-time" if "part" in wp else "Full-time"
+        sal_txt, hourly = tidy_salary(_txt(k.get("salary")), "YEAR")
+        link = _txt(_first(k, "url", "link", "guid"))
+        vid = _txt(_first(k, "id", "reference")) or link
+        job = make_job("NHS Jobs", vid, title, employer, borough or "", area, jt, None, None, link,
+                       any_date(_txt(_first(k, "postdate", "publicationdate", "pubdate"))),
+                       any_date(_txt(_first(k, "closedate", "closingdate"))), title + " " + desc)
+        if sal_txt:
+            job["salary"] = sal_txt
+        if hourly:
+            job["pay"] = hourly
+        if not borough:
+            job["_drop"] = "outside London"
+        jobs.append((job, title + " " + desc))
+    return jobs
+
+
 def faa_pay(wage):
     """(hourly text, salary text, hourly floor) from a Find an apprenticeship wage object."""
     wage = wage or {}
@@ -1106,6 +1210,7 @@ def main():
         run("Employer", fetch_employer_posts, emp_csv)
     else:
         status["sources"]["Employer"] = {"skipped": "no EMPLOYER_JOBS_CSV secret"}
+    run("NHS Jobs", fetch_nhs)
     faa_key = os.environ.get("APPRENTICESHIP_API_KEY", "").strip()
     if faa_key:
         run("Find an apprenticeship", fetch_apprenticeships, faa_key)
