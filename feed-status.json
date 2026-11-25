@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T10:59:03Z",
+  "generated": "2026-11-25T11:21:58Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6649,
-      "kept": 518,
+      "fetched": 6671,
+      "kept": 521,
       "dropped": {
-        "too old or closed": 87
+        "too old or closed": 88
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5749596</id><reference>C9199-8319999-NA-A</reference><title>Decontamination Technician</title><description>Decontamination Technician Band 2 *Please do not apply for this role if you have previously applied in the last six months* We are looking for a enthu...</description><employer>Croydon Health Services NHS Trust</employer><type>Permanent</type><salary>£30142.00</salary><closeDate>2026-12-08</closeDate><postDate>2026-11-25T10:53:17.610767039</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9199-8319999-NA-A</url><locations><location>London, CR7 7YE</location></locations></vacancyDetails><vacancyDetails><id>5750517</id><reference>E0358-26-00009</reference><title>Director of Clinical Services</title><description>Priory Hospital North London Full Time | 37.5 hours per week | Site based Salary is £65,000 per annum</description><employer>Priory Healthcare</employer><type>Permanent</type><salary>£65000.00</salary><closeDate>2026-12-31</closeDate><postDate>2026-11-25T10:52:28.952254617</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0358-26-00009</url><locations><location>The Bourne, N14 6RA</location></locations></vacancyDetails><vacancyDetails><id>5750472</id><reference>E0358-26-00008</reference><title>Director of Clinical Services</title><description>Priory Hospital Avesbury House Full Time | 37.5 hours per week | Site based Salary is £60,000 per annum</description><employer>Priory Heal",
-      "fetched": 2100,
-      "pages": 211,
-      "kept": 1466,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750654</id><reference>C9197-26-00025</reference><title>Anatomical Pathology Technologist</title><description>This is an exciting opportunity for a dedicated Anatomical PathologyTechnologist to join a committed and compassionate team providing a safe, secure a...</description><employer>Lewisham and Greenwich NHS Trust</employer><type>Permanent</type><salary>£32073.00 to £39043.00</salary><closeDate>2026-12-08</closeDate><postDate>2026-11-25T11:22:00.286777072</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9197-26-00025</url><locations><location>London, SE13 6LH</location></locations></vacancyDetails><vacancyDetails><id>5750626</id><reference>C9197-26-00024</reference><title>Clinical Vascular Scientist</title><description>We are seeking exceptionally motivated individuals to join our friendly dynamic team of Vascular Ultrasound Team.Our vascular scientists and specialis...</description><employer>Lewisham and Greenwich NHS Trust</employer><type>Permanent</type><salary>£49387.00 to £56515.00</salary><closeDate>2026-12-08</closeDate><postDate>2026-11-25T11:21:45.764263263</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9197-26-00024</url><locations><location>London, SE18 4QH</location></locations></vacancyDetails><vacancyDetails><id>5750630</id><reference>C9343-26-00019</reference><title>Nursing Associate</title><description>There is an exciting opportunity for newly created roles as Ban",
+      "fetched": 2110,
+      "pages": 212,
+      "kept": 1472,
       "dropped": {
         "outside London": 632,
-        "too old or closed": 2
+        "too old or closed": 6
       }
     },
     "Careerjet": {
@@ -46,43 +46,43 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7722,
-      "uniqueFromSearches": 4261,
-      "kept": 2755,
+      "fetched": 7719,
+      "uniqueFromSearches": 4283,
+      "kept": 2778,
       "dropped": {
-        "too old or closed": 852,
+        "too old or closed": 856,
+        "below adult minimum wage": 35,
+        "remote or not in London": 81,
         "blocked words": 59,
-        "below adult minimum wage": 36,
-        "remote or not in London": 84,
         "blocked advertiser": 96,
-        "outside London": 259,
-        "London area not given": 120
+        "outside London": 251,
+        "London area not given": 127
       }
     },
     "Adzuna": {
-      "fetched": 421,
-      "kept": 350,
+      "fetched": 419,
+      "kept": 353,
       "dropped": {
-        "blocked words": 18
+        "blocked words": 19
       }
     }
   },
-  "total": 4645,
-  "duplicatesRemoved": 5028,
+  "total": 4712,
+  "duplicatesRemoved": 5057,
   "byRegion": {
-    "Central": 1465,
-    "North": 462,
-    "East": 1019,
-    "South": 873,
-    "West": 826
+    "Central": 1495,
+    "North": 465,
+    "East": 1025,
+    "South": 882,
+    "West": 845
   },
   "byJobType": {
-    "Part-time": 1125,
-    "Full-time": 1958,
-    "Not stated": 1562
+    "Part-time": 1139,
+    "Full-time": 1999,
+    "Not stated": 1574
   },
-  "carriedOver": 4584,
-  "areaApproximate": 412,
+  "carriedOver": 4645,
+  "areaApproximate": 432,
   "apprenticeships": 52,
   "apprenticeshipLevels": {
     "3": 22,
@@ -92,12 +92,12 @@
     "2": 6
   },
   "byGroup": {
-    "(none)": 628,
-    "Experienced": 2788,
-    "Newcomers": 639,
-    "Students": 563,
-    "Parents": 342,
-    "Graduates": 79,
+    "(none)": 633,
+    "Experienced": 2830,
+    "Newcomers": 648,
+    "Students": 570,
+    "Parents": 350,
+    "Graduates": 81,
     "Apprentices": 52
   }
 }
