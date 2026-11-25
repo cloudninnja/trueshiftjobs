@@ -7,8 +7,15 @@ selected. Run from the repository root: python scripts/build_pages.py
 """
 import datetime as dt
 import html
+import json
 import pathlib
 import re
+import shutil
+import sys
+from collections import Counter
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from fetch_feed import BOROUGH_REGION, UK_POSTCODE  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://trueshiftjobs.com"
@@ -112,7 +119,209 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
-def build_page(base, p):
+# ---------------------------------------------------------------- job lists in the HTML
+
+def load_jobs():
+    f = ROOT / "feed.json"
+    try:
+        jobs = json.loads(f.read_text()).get("jobs", [])
+    except (OSError, ValueError):
+        return []
+    return sorted(jobs, key=lambda j: j.get("posted") or "", reverse=True)
+
+
+def groups(j):
+    return [g.strip() for g in str(j.get("bestFor") or "").split(",") if g.strip()]
+
+
+def pay_text(j):
+    if j.get("pay"):
+        return j["pay"] + " an hour"
+    return j.get("salary") or ""
+
+
+def nice_date(d):
+    try:
+        x = dt.date.fromisoformat(d)
+        return x.strftime("%-d %b %Y")
+    except (TypeError, ValueError):
+        return ""
+
+
+def jobs_html(jobs, limit=40):
+    out = []
+    for j in jobs[:limit]:
+        href = j.get("page") or j.get("link") or ""
+        rel = "" if j.get("page") else ' rel="nofollow noopener"'
+        title = esc(j.get("title", ""))
+        title = '<a href="%s"%s style="color:inherit">%s</a>' % (esc(href), rel, title) if href else title
+        where = ", ".join(x for x in (j.get("area"), j.get("borough")) if x)
+        src = "Posted by employer" if j.get("source") == "Employer" else "Listed on " + esc(j.get("source", ""))
+        out.append(
+            '<article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title">%s</h3>'
+            '<div class="pay"><small>%s</small></div></div><p class="t-emp">%s</p><p class="where">%s</p>'
+            '<p class="t-note">%s%s. Posted %s.</p></div></article>'
+            % (title, esc(pay_text(j)), esc(j.get("employer", "")), esc(where),
+               esc(j.get("jobType") or ""), (" · " if j.get("jobType") else "") + src, nice_date(j.get("posted"))))
+    return "".join(out)
+
+
+def put_jobs(page, jobs):
+    return re.sub(r"<!--JOBS-->.*?<!--/JOBS-->", lambda m: "<!--JOBS-->" + jobs_html(jobs) + "<!--/JOBS-->",
+                  page, count=1, flags=re.S)
+
+
+def slug(name):
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+# ---------------------------------------------------------------- borough pages
+
+def categories(base):
+    m = re.search(r"const CATS=(\[.*?\]);\n", base)
+    cats = json.loads(m.group(1)) if m else []
+    return [(c[0], c[1], re.compile(c[2], re.I)) for c in cats]
+
+
+def category_of(j, cats):
+    for key, label, rx in cats:
+        if rx.search(j.get("title", "")):
+            return label
+    return None
+
+
+def borough_page(base, borough, jobs, cats, all_jobs_count):
+    region = BOROUGH_REGION[borough]
+    here = [j for j in jobs if j.get("borough") == borough]
+    n = len(here)
+    pt = sum(1 for j in here if j.get("jobType") == "Part-time")
+    ft = sum(1 for j in here if j.get("jobType") == "Full-time")
+    ap = sum(1 for j in here if j.get("apprenticeship"))
+    gr = sum(1 for j in here if "Graduates" in groups(j))
+    top_cats = [c for c, _ in Counter(filter(None, (category_of(j, cats) for j in here))).most_common(3)]
+    top_emps = [e for e, _ in Counter(j.get("employer") for j in here if j.get("employer")).most_common(3)]
+    areas = [a for a, _ in Counter(j.get("area") for j in here if j.get("area")).most_common(4)]
+    near = sorted(b for b, r in BOROUGH_REGION.items() if r == region and b != borough)
+    p = {
+        "slug": slug(borough), "group": None,
+        "title": "Jobs in %s, London: Part-time and Full-time | TrueShift Jobs" % borough,
+        "description": "%d real, still-open jobs in %s, London, updated every morning. Part-time, full-time, apprenticeships and graduate roles, with no duplicates or scams." % (n, borough),
+        "h1": "Jobs in %s, London" % borough,
+        "lead": "%d real, still-open jobs in %s, updated every morning, from part-time shifts to professional roles." % (n, borough),
+        "heading": "Working in %s" % borough,
+    }
+    body = [
+        "Right now there are <b>%d jobs</b> in %s on TrueShift Jobs: %d part-time and %d full-time%s%s. Every job was posted in the last 30 days and is still open, and if the same job is on several job sites we show it once."
+        % (n, borough, pt, ft, (", including %d apprenticeship%s" % (ap, "" if ap == 1 else "s")) if ap else "",
+           (" and %d graduate or junior role%s" % (gr, "" if gr == 1 else "s")) if gr else ""),
+    ]
+    if top_cats:
+        body.append("The most common kinds of work here at the moment are %s." % ", ".join(c.lower() for c in top_cats))
+    if top_emps:
+        body.append("Employers hiring in %s include %s." % (borough, ", ".join(esc(e) for e in top_emps)))
+    if areas:
+        body.append("Jobs are spread across areas such as %s." % ", ".join(esc(a) for a in areas))
+    body.append("%s is in %s London. Nearby boroughs with jobs include %s." % (
+        borough, region, ", ".join('<a href="/jobs/%s/">%s</a>' % (slug(b), b) for b in near)))
+    body.append("From April 2026 the National Minimum Wage is £12.71 an hour for workers aged 21 and over, and many London employers pay the London Living Wage of £14.80. We leave out adverts below the legal minimum, and you should never pay a fee to get a job.")
+    p["body"] = body
+    out = build_page(base, p, borough_jobs=here)
+    out = out.replace("<script>window.PAGE_GROUP=None;</script>\n", "")
+    out = out.replace("<script>", "<script>window.PAGE_BOROUGH=%s;window.PAGE_REGION=%s;</script>\n<script>"
+                      % (json.dumps(borough), json.dumps(region)), 1)
+    return out
+
+
+# ---------------------------------------------------------------- employer job pages
+
+def job_schema(j):
+    posted = j.get("posted") or dt.date.today().isoformat()
+    closes = j.get("closes") or (dt.date.fromisoformat(posted) + dt.timedelta(days=30)).isoformat()
+    desc = "".join("<p>%s</p>" % esc(x) for x in re.split(r"\n+", j.get("description") or j.get("about") or j.get("title")) if x.strip())
+    addr = {"@type": "PostalAddress", "addressLocality": j.get("area") or j.get("borough"),
+            "addressRegion": "London", "addressCountry": "GB"}
+    if UK_POSTCODE.match(j.get("area") or ""):
+        addr["postalCode"] = j["area"]
+        addr["addressLocality"] = j.get("borough")
+    org = {"@type": "Organization", "name": j.get("employer")}
+    if j.get("website"):
+        org["sameAs"] = j["website"]
+    data = {
+        "@context": "https://schema.org/", "@type": "JobPosting",
+        "title": j.get("title"), "description": desc,
+        "datePosted": posted, "validThrough": closes + "T23:59",
+        "employmentType": "PART_TIME" if j.get("jobType") == "Part-time" else "FULL_TIME",
+        "hiringOrganization": org,
+        "jobLocation": {"@type": "Place", "address": addr},
+        "directApply": False,
+    }
+    amt = None
+    unit = None
+    if j.get("pay"):
+        amt, unit = j["pay"], "HOUR"
+    else:
+        m = re.search(r"£([\d,]+(?:\.\d+)?)\s+a (year|week|month)", j.get("salary") or "")
+        if m:
+            amt, unit = m.group(1), {"year": "YEAR", "week": "WEEK", "month": "MONTH"}[m.group(2)]
+    if amt:
+        try:
+            v = float(str(amt).replace("£", "").replace(",", ""))
+            data["baseSalary"] = {"@type": "MonetaryAmount", "currency": "GBP",
+                                  "value": {"@type": "QuantitativeValue", "value": v, "unitText": unit}}
+        except ValueError:
+            pass
+    return json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+
+
+def employer_page(j):
+    url = SITE + j["page"]
+    title = "%s at %s, %s | TrueShift Jobs" % (j.get("title"), j.get("employer"), j.get("borough"))
+    apply = j.get("link") or ""
+    apply_label = "Apply by email" if apply.startswith("mailto:") else "Apply now"
+    desc = "".join("<p>%s</p>" % esc(x) for x in re.split(r"\n+", j.get("description") or j.get("about") or "") if x.strip())
+    facts = [("Where", ", ".join(x for x in (j.get("area"), j.get("borough")) if x)), ("Job type", j.get("jobType")),
+             ("Hours", j.get("hours")), ("Pay", pay_text(j)), ("Posted", nice_date(j.get("posted"))),
+             ("Closes", nice_date(j.get("closes")))]
+    rows = "".join("<tr><th>%s</th><td>%s</td></tr>" % (k, esc(v)) for k, v in facts if v)
+    return """<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>%(title)s</title>
+<meta name="description" content="%(meta)s">
+<link rel="canonical" href="%(url)s">
+<script type="application/ld+json">%(schema)s</script>
+<style>
+body{margin:0;font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;background:#f3f7fb;color:#0b2540}
+.wrap{max-width:760px;margin:0 auto;padding:24px 20px 48px}
+.top{background:#0b2540;color:#fff}.top a{color:#9fd3ff;font-weight:700;text-decoration:none}
+h1{font-size:1.8rem;line-height:1.25;margin:28px 0 4px}.emp{font-size:1.15rem;margin:0 0 18px;color:#36506b}
+table{border-collapse:collapse;margin:0 0 20px}th{text-align:left;padding:4px 18px 4px 0;color:#36506b;font-weight:600}td{padding:4px 0}
+.apply{display:inline-block;background:#0b2540;color:#fff;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:700;margin:8px 0 24px}
+.box{background:#fff;border:1px solid #d6e2ee;border-radius:14px;padding:6px 22px}.note{font-size:.9rem;color:#36506b}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap" style="padding:16px 20px"><a href="/">TrueShift Jobs</a></div></div>
+<main class="wrap">
+<h1>%(h1)s</h1>
+<p class="emp">%(emp)s</p>
+<table>%(rows)s</table>
+%(apply_html)s
+<div class="box">%(desc)s</div>
+<p class="note">This job was posted directly by the employer and checked by a person before going live. Never pay a fee to apply for a job.</p>
+<p><a href="/jobs/%(bslug)s/">More jobs in %(borough)s</a> · <a href="/">All London jobs</a></p>
+</main>
+</body>
+</html>
+""" % {"title": esc(title), "meta": esc(("%s at %s in %s, London. %s" % (j.get("title"), j.get("employer"), j.get("borough"), j.get("about") or ""))[:155]),
+       "url": url, "schema": job_schema(j), "h1": esc(j.get("title")), "emp": esc(j.get("employer")), "rows": rows,
+       "apply_html": ('<a class="apply" href="%s" rel="noopener">%s</a>' % (esc(apply), apply_label)) if apply else "",
+       "desc": desc or "<p>See the advert for full details.</p>", "bslug": slug(j.get("borough") or ""), "borough": esc(j.get("borough") or "London")}
+
+
+def build_page(base, p, borough_jobs=None):
     url = "%s/jobs/%s/" % (SITE, p["slug"])
     out = base
     out = re.sub(r"<title>.*?</title>", "<title>%s</title>" % esc(p["title"]), out, count=1)
@@ -127,7 +336,11 @@ def build_page(base, p):
     out = re.sub(r"<h1>.*?</h1>", "<h1>%s</h1>" % esc(p["h1"]), out, count=1)
     out = re.sub(r'<p class="lead">.*?</p>', '<p class="lead">%s</p>' % esc(p["lead"]), out, count=1, flags=re.S)
     # Select this audience's tab before the page script runs.
-    out = out.replace("<script>", "<script>window.PAGE_GROUP=%r;</script>\n<script>" % p["group"], 1)
+    out = out.replace("<script>", "<script>window.PAGE_GROUP=%s;</script>\n<script>" % (json.dumps(p["group"]) if p["group"] else "None"), 1)
+    if borough_jobs is not None:
+        out = put_jobs(out, borough_jobs)
+    elif p.get("group"):
+        out = put_jobs(out, [j for j in JOBS if p["group"] in groups(j)])
     guide = ('<section class="band info seo" id="guide">\n  <div class="wrap">\n    <h2>%s</h2>\n%s\n'
              '    <p><a href="/">See all London jobs</a></p>\n  </div>\n</section>\n\n'
              % (esc(p["heading"]), "\n".join("    <p>%s</p>" % b for b in p["body"])))
@@ -137,17 +350,45 @@ def build_page(base, p):
     return out
 
 
+JOBS = []
+
+
 def main():
+    global JOBS
+    JOBS = load_jobs()
     base = (ROOT / "index.html").read_text()
+    # The home page gets the newest jobs written into its HTML too.
+    home = put_jobs(base, JOBS)
+    if home != base:
+        (ROOT / "index.html").write_text(home)
+        base = home
+    urls = [SITE + "/"]
     for p in PAGES:
         words = len(re.sub(r"<[^>]+>", " ", " ".join(p["body"])).split())
         assert 200 <= words <= 320, (p["slug"], words)
         d = ROOT / "jobs" / p["slug"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(build_page(base, p))
+        urls.append("%s/jobs/%s/" % (SITE, p["slug"]))
         print("built /jobs/%s/ (%d words)" % (p["slug"], words))
+    cats = categories(base)
+    for b in sorted(BOROUGH_REGION):
+        d = ROOT / "jobs" / slug(b)
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(borough_page(base, b, JOBS, cats, len(JOBS)))
+        urls.append("%s/jobs/%s/" % (SITE, slug(b)))
+    print("built %d borough pages" % len(BOROUGH_REGION))
+    posted = ROOT / "jobs" / "posted"
+    if posted.exists():
+        shutil.rmtree(posted)  # closed jobs disappear with their pages
+    emp = [j for j in JOBS if j.get("source") == "Employer" and j.get("page")]
+    for j in emp:
+        d = ROOT / j["page"].strip("/")
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(employer_page(j))
+        urls.append(SITE + j["page"])
+    print("built %d employer job pages" % len(emp))
     today = dt.date.today().isoformat()
-    urls = [SITE + "/"] + ["%s/jobs/%s/" % (SITE, p["slug"]) for p in PAGES]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls:

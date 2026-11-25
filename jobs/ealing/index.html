@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jobs in Ealing, London: Part-time and Full-time | TrueShift Jobs</title>
+<meta name="description" content="66 real, still-open jobs in Ealing, London, updated every morning. Part-time, full-time, apprenticeships and graduate roles, with no duplicates or scams.">
+<link rel="canonical" href="https://trueshiftjobs.com/jobs/ealing/">
+<meta property="og:title" content="Jobs in Ealing, London: Part-time and Full-time | TrueShift Jobs">
+<meta property="og:description" content="66 real, still-open jobs in Ealing, London, updated every morning. Part-time, full-time, apprenticeships and graduate roles, with no duplicates or scams.">
+<meta property="og:url" content="https://trueshiftjobs.com/jobs/ealing/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday public service: calm, clear, trustworthy, for first-time jobseekers
+   IDEA a printed tear-off job ticket board, sorted on a schematic London compass with the Thames through the middle
+   PICTURE the London compass: five region discs (North, West, Central, East, South) with live job counts, the river running west to east
+   COLOUR deep sea ground #0a2540 in both themes, sky #8fd3ff, white tickets, signal pink #ff5c8a for checked stamps and the active filter
+   TYPE Hanken Grotesk 300 large for the title, Hanken Grotesk for text
+   LAYOUT laptop: title and lead left, compass right, filters under both, tickets in a grid; phone: title, compass, filters, tickets */
+:root{color-scheme:dark;--sea:#0a2540;--sea2:#11335a;--sea3:#1b4673;--sky:#8fd3ff;--pink:#ff5c8a;--paper:#ffffff;--ink:#0a2540;--muted:#4b6178;--line:#d5e2ee;--soft:#e9f5fd;--text:#ffffff;--sub:#c5ddec}
+:root[data-theme=light]{color-scheme:dark}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:24px}
+body{margin:0;background:var(--sea);color:var(--text);font:16px/1.55 "Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
+a{color:var(--sky)}
+.band{padding-block:clamp(28px,4vw,56px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.brand{font-weight:700;font-size:17px;margin:0 0 18px;color:var(--sky)}
+h1{font-weight:300;font-size:clamp(34px,5vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+.lead{color:var(--sub);font-size:17px;max-width:58ch;margin:0 0 18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--sub);font-size:14px;margin:0;padding:0;list-style:none}
+.facts b{color:#fff;font-weight:600}
+.compass{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(96px,auto));gap:12px;padding:8px}
+.compass svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.reg{position:relative;z-index:1;appearance:none;border:2px solid var(--sky);background:var(--sea2);color:#fff;border-radius:999px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 6px;min-height:96px;transition:background .2s,border-color .2s}
+.reg:hover{background:var(--sea3)}
+.reg:focus-visible,.chip:focus-visible,.ctl:focus-visible,.apply:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.reg b{font-size:clamp(24px,3vw,32px);font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.reg span{font-size:14px;color:var(--sub);margin-top:4px}
+.reg[aria-pressed=true]{background:var(--pink);border-color:var(--pink);color:var(--ink)}
+.reg[aria-pressed=true] span{color:var(--ink)}
+.r-north{grid-area:1/2}.r-west{grid-area:2/1}.r-central{grid-area:2/2;border-width:3px}.r-east{grid-area:2/3}.r-south{grid-area:3/2}
+.all{grid-area:1/1;z-index:1;align-self:start;justify-self:start;appearance:none;background:none;border:0;color:var(--sky);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;min-height:44px;padding:0 4px}
+.thames{grid-area:3/3;z-index:1;align-self:end;justify-self:end;color:var(--sky);font-size:13px;padding:4px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:clamp(20px,3vw,32px)}
+.ctl{height:46px;border-radius:10px;border:1px solid #2f5b88;background:#fff;color:var(--ink);font:inherit;font-size:16px;padding:0 12px}
+#q{flex:1 1 240px}
+#borough{flex:0 1 220px}
+#sort{flex:0 1 170px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;border-radius:999px;border:1px solid var(--sky);background:transparent;color:#fff;font:inherit;font-size:15px;padding:0 16px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--sky);color:var(--ink);font-weight:600}
+.count{margin:18px 0 14px;color:var(--sub);font-size:15px}
+.count b{color:#fff}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
+.ticket{background:var(--paper);color:var(--ink);border-radius:14px;display:flex;flex-direction:column}
+.t-body{padding:18px 18px 14px;display:grid;gap:6px}
+.t-head{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}
+.t-title{font-size:19px;font-weight:700;line-height:1.25;margin:0}
+.pay{font-size:22px;font-weight:700;white-space:nowrap;text-align:right;line-height:1.1}
+.pay small{display:block;font-size:13px;font-weight:400;color:var(--muted)}
+.pay small.nopay{white-space:normal;max-width:64px;line-height:1.25}
+.t-head .t-title{min-width:0}
+.emp{margin:0;font-weight:600}
+.where,.hours{margin:0;color:var(--muted);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-size:13px;background:var(--soft);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.note{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.t-meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:6px}
+.t-foot{margin-top:auto;border-top:2px dashed var(--line);padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.stamp{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#b3003a}
+.stamp svg{width:20px;height:20px}
+.posted{font-size:13px;color:var(--muted);white-space:nowrap}
+.apply{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--sea);color:#fff;text-decoration:none;font-weight:600;white-space:nowrap}
+.empty{background:var(--sea2);border:1px solid #2f5b88;border-radius:14px;padding:clamp(20px,3vw,32px);display:grid;gap:8px}
+.empty h3{margin:0;font-size:22px;font-weight:600}
+.empty p{margin:0;color:var(--sub);max-width:62ch}
+.info{background:#fff;color:var(--ink)}
+.info h2,.safe h2{font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1;letter-spacing:-.01em;margin:0 0 8px}
+.info .intro{color:var(--muted);margin:0 0 22px;max-width:65ch}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px 28px;margin:0 0 36px;padding:0;list-style:none;counter-reset:c}
+.checks li{counter-increment:c;padding-left:40px;position:relative}
+.checks li::before{content:counter(c);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--sea);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:600}
+.checks b{display:block}
+.guides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media(min-width:1100px){.guides{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.guide{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--soft)}
+.guide h3{margin:0 0 8px;font-size:20px}
+.guide ul{margin:0;padding-left:18px}
+.guide li{margin-bottom:6px}
+.guide a{color:#0b4f8a}
+.paytable{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:15px}
+.paytable td{padding:4px 0;border-bottom:1px solid var(--line)}
+.paytable td:last-child{text-align:right;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.safe{background:var(--sea2)}
+.safe .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+.safe ul{margin:0;padding-left:18px;color:var(--sub)}
+.safe li{margin-bottom:8px}
+.safe li b{color:#fff}
+.report{background:var(--sea);border-radius:14px;padding:20px;border:1px solid #2f5b88}
+.report p{margin:0 0 10px;color:var(--sub)}
+footer{color:var(--sub);font-size:14px}
+footer p{margin:0 0 6px;max-width:80ch}
+.who{margin-top:clamp(20px,3vw,28px)}
+.who-q{margin:0 0 8px;font-weight:600;color:#fff}
+.chip.saved{border-style:dashed}
+.chip span{font-variant-numeric:tabular-nums}
+.quick{margin-top:16px;background:var(--sea2);border:1px solid #2f5b88;border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:16px 28px;align-items:start}
+.quick h2{margin:0;font-size:22px;font-weight:600;line-height:1.2}
+.quick p.sub{margin:6px 0 0;color:var(--sub);font-size:15px}
+.steps{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.steps li{background:var(--sea);border-radius:12px;padding:14px;color:var(--sub);font-size:15px}
+.steps b{display:block;color:#fff;margin-bottom:4px;font-size:16px}
+.steps a{color:var(--sky)}
+.stamp.feed{color:var(--muted)}
+.jt{font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.also{font-size:13px;color:var(--muted)}
+.morewrap{display:flex;justify-content:center;margin-top:18px}
+.credit{font-size:13px}
+.new{font-size:12px;font-weight:700;background:var(--pink);color:var(--ink);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.star{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;min-height:44px;padding:0 14px;font:inherit;font-size:14px;cursor:pointer}
+.star[aria-pressed=true]{background:var(--soft);border-color:var(--sea);font-weight:600}
+.star:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.foot-r{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:860px){.quick{grid-template-columns:minmax(0,1fr)}.steps{grid-template-columns:minmax(0,1fr)}}
+.cvband{background:var(--soft);color:var(--ink)}
+.cvband h2{font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1;margin:0 0 8px}
+.cvband .intro{color:var(--muted);margin:0 0 16px}
+.cvband h3{font-size:18px;margin:22px 0 8px}
+.cvgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(20px,3vw,40px);align-items:start}
+.cvtabs .chip{color:var(--ink);border-color:var(--sea)}
+.cvtabs .chip[aria-pressed=true]{background:var(--sea);color:#fff}
+.cvbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.apply.alt{background:#fff;color:var(--ink);border:2px solid var(--sea)}
+button.apply{border:0;font:inherit;font-weight:600;cursor:pointer}
+.pagelinks{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.pagelinks a{display:block;padding:12px 16px;border-radius:12px;background:#fff;color:#0b4f8a;font-weight:600;text-decoration:none;border:1px solid #d6e2ee}
+.pagelinks a:hover{text-decoration:underline}
+.boroughlinks{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}.boroughlinks a{padding:8px 12px;font-weight:500}
+.seo p{max-width:72ch}
+.seo h2{margin-top:0}
+[hidden]{display:none!important}
+button.apply.alt{border:2px solid var(--sea)}
+.cvmsg{min-height:22px;margin:8px 0 0;font-size:14px;color:var(--muted)}
+.tips{margin:0;padding-left:18px;color:var(--ink)}
+.tips li{margin-bottom:6px}
+.paper{background:#fff;color:#1d2b38;border-radius:6px;box-shadow:0 1px 0 #c9d8e5,0 12px 30px rgba(10,37,64,.12);padding:clamp(20px,3.5vw,40px);font-size:15px;line-height:1.5}
+.paper h3{margin:0;font-size:24px;color:var(--ink);letter-spacing:-.01em}
+.paper .contact{margin:4px 0 14px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+.paper h4{margin:16px 0 6px;font-size:13px;letter-spacing:.02em;color:var(--sea);border-bottom:1px solid var(--line);padding-bottom:4px}
+.paper p{margin:0 0 6px}
+.paper .role{font-weight:700;margin:8px 0 2px}
+.paper .when{color:var(--muted);font-weight:400}
+.paper ul{margin:2px 0 6px;padding-left:18px}
+.paper .samp{margin-top:16px;font-size:13px;color:var(--muted)}
+.skyline{display:block;width:100%;height:clamp(110px,14vw,170px);margin-top:clamp(18px,3vw,28px)}
+.skyline .near,.skyline .eye circle{fill:#8fd3ff;fill-opacity:.24}
+.skyline .far rect{fill:#8fd3ff;fill-opacity:.11}
+.skyline .eye circle[fill=none],.skyline .eye path{stroke:#8fd3ff;stroke-opacity:.34;fill:none}
+.skyline .eye line{stroke:#8fd3ff;stroke-opacity:.2;stroke-width:1.2}
+.skyline .eye .pod{fill:#8fd3ff;fill-opacity:.4}
+.skyline .clock{fill:#0a2540;fill-opacity:.55}
+.skyline .river{fill:#8fd3ff;fill-opacity:.16}
+@media(max-width:860px){.cvgrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:860px){.guides{grid-template-columns:minmax(0,1fr)}.safe .cols{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.top{grid-template-columns:minmax(0,1fr)}.compass{max-width:460px;width:100%;justify-self:center}}
+@media(max-width:600px){.compass{grid-template-rows:repeat(3,minmax(84px,auto));gap:8px}.reg{min-height:84px}
+ .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bar #q{grid-column:1/-1}.bar .ctl{width:100%;min-width:0}
+ .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(-1 * max(5vw,16px));padding:2px max(5vw,16px) 6px}
+ .chips::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;white-space:nowrap}
+ .quick .steps{display:none}.quick{padding:16px 18px}.quick h2{font-size:1.15rem}
+ .lead{font-size:1.02rem}}
+header.band{overflow-x:clip}
+@media(prefers-reduced-motion:reduce){.reg{transition:none}}
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <p class="brand">TrueShift Jobs</p>
+        <h1>Jobs in Ealing, London</h1>
+        <p class="lead">66 real, still-open jobs in Ealing, updated every morning, from part-time shifts to professional roles.</p>
+        <ul class="facts">
+          <li>New jobs <b id="updated">every morning</b></li>
+          <li id="totalline"><b id="total">0</b> jobs listed</li>
+          <li>Always free to use</li>
+          <li><a href="#cv">Free UK CV template</a></li>
+          <li class="postjob" hidden><a class="postlink" href="#" target="_blank" rel="noopener noreferrer">Employers: post a job free</a></li>
+        </ul>
+      </div>
+      <div class="compass" id="compass" role="group" aria-label="Filter by part of London">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 158 C 40 140, 70 175, 110 155 S 170 135, 200 160 S 260 175, 300 150" fill="none" stroke="#8fd3ff" stroke-opacity=".35" stroke-width="16" stroke-linecap="round"/>
+          <path d="M150 50 V250 M50 150 H250" stroke="#8fd3ff" stroke-opacity=".25" stroke-width="2" stroke-dasharray="4 6"/>
+        </svg>
+        <button class="all" id="allbtn" type="button">All London</button>
+        <button class="reg r-north" type="button" data-r="North" aria-pressed="false"><b>0</b><span>North</span></button>
+        <button class="reg r-west" type="button" data-r="West" aria-pressed="false"><b>0</b><span>West</span></button>
+        <button class="reg r-central" type="button" data-r="Central" aria-pressed="false"><b>0</b><span>Central</span></button>
+        <button class="reg r-east" type="button" data-r="East" aria-pressed="false"><b>0</b><span>East</span></button>
+        <button class="reg r-south" type="button" data-r="South" aria-pressed="false"><b>0</b><span>South</span></button>
+        <span class="thames">River Thames</span>
+      </div>
+    </div>
+    <svg class="skyline" id="skyline" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax slice" role="img" aria-label="London skyline with the Houses of Parliament, Big Ben and the London Eye">
+      <g class="far" id="far"></g>
+      <g class="near">
+        <rect x="420" y="96" width="200" height="54"/>
+        <g id="pinn"></g>
+        <rect x="412" y="58" width="36" height="92"/><path d="M412 58h36l-6-14h-24z"/><path d="M424 44h12l-6-16z"/>
+        <rect x="624" y="44" width="26" height="106"/><circle class="clock" cx="637" cy="62" r="8"/><path d="M620 44h34l-4-8h-26z"/><path d="M626 36h22l-11-30z"/>
+        <path d="M950 150h52l-21-128z"/>
+      </g>
+      <g class="eye" id="eye"><circle cx="790" cy="84" r="62" fill="none" stroke-width="3"/><circle cx="790" cy="84" r="6"/><path d="M790 84L756 150M790 84L824 150" fill="none" stroke-width="4"/></g>
+      <path class="river" d="M0 150 C 120 140, 240 160, 360 150 S 600 140, 720 152 S 960 162, 1080 150 S 1200 146, 1200 146 V170 H0z"/>
+    </svg>
+    <div class="bar">
+      <input class="ctl" id="q" type="search" placeholder="Search job, employer or area" aria-label="Search jobs">
+      <select class="ctl" id="borough" aria-label="Borough"></select>
+      <select class="ctl" id="jtype" aria-label="Job type">
+        <option value="All">All job types</option>
+        <option value="Part-time">Part-time only</option>
+        <option value="Full-time">Full-time only</option>
+      </select>
+      <select class="ctl" id="level" aria-label="Apprenticeship level" hidden>
+        <option value="All">All levels</option>
+        <option value="2">Level 2 (GCSE level)</option>
+        <option value="3">Level 3 (A level)</option>
+        <option value="4">Level 4 to 5 (higher)</option>
+        <option value="6">Level 6 to 7 (degree)</option>
+      </select>
+      <select class="ctl" id="cat" aria-label="Job category" hidden>
+        <option value="All">All categories</option>
+        <option value="Education">Education and teaching</option>
+        <option value="Health">Health, care and childcare</option>
+        <option value="Legal">Legal</option>
+        <option value="HR">HR and recruitment</option>
+        <option value="Sales">Sales and marketing</option>
+        <option value="Finance">Finance and accounting</option>
+        <option value="IT">IT and digital</option>
+        <option value="Engineering">Engineering and construction</option>
+        <option value="Housing">Housing, charity and public sector</option>
+        <option value="Admin">Admin and office</option>
+        <option value="Hospitality">Hospitality, retail and customer service</option>
+        <option value="Logistics">Transport and logistics</option>
+        <option value="Other">Other</option>
+      </select>
+      <select class="ctl" id="sort" aria-label="Sort jobs">
+        <option value="new">Newest first</option>
+        <option value="pay">Highest pay</option>
+      </select>
+    </div>
+    <div class="who" role="group" aria-label="Who are you looking for work as?">
+      <p class="who-q">I'm looking for work as</p>
+      <div class="chips">
+        <button class="chip" type="button" data-g="All" aria-pressed="true">Anyone</button>
+        <button class="chip" type="button" data-g="Students" aria-pressed="false">A student</button>
+        <button class="chip" type="button" data-g="Newcomers" aria-pressed="false">Someone new to the UK</button>
+        <button class="chip" type="button" data-g="Apprentices" aria-pressed="false">An apprentice</button>
+        <button class="chip" type="button" data-g="Graduates" aria-pressed="false">A graduate</button>
+        <button class="chip" type="button" data-g="Parents" aria-pressed="false">A parent returning to work</button>
+        <button class="chip" type="button" data-g="Experienced" aria-pressed="false">Experienced &amp; Professional</button>
+        <button class="chip saved" type="button" data-g="Saved" aria-pressed="false">Saved jobs <span id="savedn">0</span></button>
+      </div>
+    </div>
+    <div class="quick" id="quick" aria-live="polite"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="list" id="list"><!--JOBS--><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/warehouse-operative-kensington/57607444" rel="nofollow noopener" style="color:inherit">Warehouse Operative - Kensington</a></h3><div class="pay"><small>£13.92 an hour</small></div></div><p class="t-emp">ACS Recruitment Solutions Ltd</p><p class="where">Southfield, Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/safeguarding-social-worker/57607100" rel="nofollow noopener" style="color:inherit">Safeguarding Social Worker</a></h3><div class="pay"><small>£41.50 an hour</small></div></div><p class="t-emp">Quickline Recruitment</p><p class="where">Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/acquisitions-and-allocations-manager/57608452" rel="nofollow noopener" style="color:inherit">Acquisitions and Allocations Manager</a></h3><div class="pay"><small>£33.78 an hour</small></div></div><p class="t-emp">Adecco</p><p class="where">Ealing Broadway, Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/level-3-nursery-assistant/57608277" rel="nofollow noopener" style="color:inherit">Level 3 Nursery Assistant</a></h3><div class="pay"><small>£30,000 to £33,000 a year</small></div></div><p class="t-emp">Academics</p><p class="where">Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/details/5977567742?utm_medium=api&amp;utm_source=58580b20" rel="nofollow noopener" style="color:inherit">Stores Operative / Parts Advisor</a></h3><div class="pay"><small>£31,200 a year</small></div></div><p class="t-emp">Excel Resourcing</p><p class="where">Ealing</p><p class="t-note">Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/land/ad/5977567701?se=IHtZvlLo8RGRSJE6vESEnw&amp;utm_medium=api&amp;utm_source=58580b20&amp;v=41C455F6BE0732A331CD7181B7DB1E775E1897F4" rel="nofollow noopener" style="color:inherit">People&amp; Culture Admin</a></h3><div class="pay"><small></small></div></div><p class="t-emp">B&amp;S Group</p><p class="where">Perivale, Greenford, Ealing</p><p class="t-note">Full-time · Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/land/ad/5977567417?se=_i3mvlLo8RGws85x9n5EuQ&amp;utm_medium=api&amp;utm_source=58580b20&amp;v=6D92F2FEB560AE87298FDA8D6179B7A6394A7F28" rel="nofollow noopener" style="color:inherit">SEN Teaching Assistant</a></h3><div class="pay"><small>£26,000 to £28,600 a year</small></div></div><p class="t-emp">Uniform Education</p><p class="where">Acton, Ealing</p><p class="t-note">Full-time · Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/land/ad/5977566960?se=_i3mvlLo8RGws85x9n5EuQ&amp;utm_medium=api&amp;utm_source=58580b20&amp;v=64329CB4BEB35FB86C06096644052524B08ECE92" rel="nofollow noopener" style="color:inherit">Graduate Teaching Assistant</a></h3><div class="pay"><small>£24,700 to £26,000 a year</small></div></div><p class="t-emp">Academics</p><p class="where">Ealing</p><p class="t-note">Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/details/5977505358?utm_medium=api&amp;utm_source=58580b20" rel="nofollow noopener" style="color:inherit">Catering Supervisor</a></h3><div class="pay"><small>£33,779 a year</small></div></div><p class="t-emp">Compass Group</p><p class="where">Bedford Park, Ealing</p><p class="t-note">Full-time · Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/land/ad/5977436121?se=_i3mvlLo8RGws85x9n5EuQ&amp;utm_medium=api&amp;utm_source=58580b20&amp;v=B7B331223A00F01AC53453DB0CEA5BF113FE62F9" rel="nofollow noopener" style="color:inherit">Fire Alarm Service Engineer</a></h3><div class="pay"><small>£43,000 to £49,000 a year</small></div></div><p class="t-emp">Eley Solutions</p><p class="where">Ealing</p><p class="t-note">Full-time · Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/land/ad/5977434658?se=_i3mvlLo8RGws85x9n5EuQ&amp;utm_medium=api&amp;utm_source=58580b20&amp;v=E3477A85FF9DC9F00E55D5101711C51966D83CA9" rel="nofollow noopener" style="color:inherit">Labourer</a></h3><div class="pay"><small>£33,280 to £34,569 a year</small></div></div><p class="t-emp">Madigan Gill</p><p class="where">Southall, Ealing</p><p class="t-note">Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/details/5977343009?utm_medium=api&amp;utm_source=58580b20" rel="nofollow noopener" style="color:inherit">Playground Inspector</a></h3><div class="pay"><small>£34,599 a year</small></div></div><p class="t-emp">Lampton Leisure</p><p class="where">Southall, Ealing</p><p class="t-note">Full-time · Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/details/5976991588?utm_medium=api&amp;utm_source=58580b20" rel="nofollow noopener" style="color:inherit">Clinical Fellow in Anaesthesia</a></h3><div class="pay"><small>£45,715 to £59,406 a year</small></div></div><p class="t-emp">London North West University Healthcare NHS Trust</p><p class="where">Hanwell, Ealing</p><p class="t-note">Full-time · Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/details/5976901782?utm_medium=api&amp;utm_source=58580b20" rel="nofollow noopener" style="color:inherit">Commis Chef Apprentice - The Plough Inn, Ealing</a></h3><div class="pay"><small>£22,568 to £27,040 a year</small></div></div><p class="t-emp">Fuller&#x27;s</p><p class="where">Little Ealing, Ealing</p><p class="t-note">Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/details/5976870185?utm_medium=api&amp;utm_source=58580b20" rel="nofollow noopener" style="color:inherit">Shift Leader Full Time-Fully Flexible GREENFORD STATION</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Wenzel&#x27;s The Bakers</p><p class="where">Perivale, Greenford, Ealing</p><p class="t-note">Full-time · Listed on Adzuna. Posted 24 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/cleaner-in-acton-full-time-part-time-cleaning-jobs-immediate-start/57601091" rel="nofollow noopener" style="color:inherit">Cleaner in Acton - Full-Time &amp; Part-Time Cleaning Jobs - Immediate Start</a></h3><div class="pay"><small>£13.00 an hour</small></div></div><p class="t-emp">Housekeep</p><p class="where">Acton, Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 23 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/cleaning-operative/57602837" rel="nofollow noopener" style="color:inherit">Cleaning Operative</a></h3><div class="pay"><small>£16.01 an hour</small></div></div><p class="t-emp">GXO Logistics</p><p class="where">Central Greenford, Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 23 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.adzuna.co.uk/jobs/details/5976383666?utm_medium=api&amp;utm_source=58580b20" rel="nofollow noopener" style="color:inherit">Apprentice Educator</a></h3><div class="pay"><small>£10,000 a year</small></div></div><p class="t-emp">Busy Bees Nurseries</p><p class="where">Greenford, Ealing</p><p class="t-note">Listed on Adzuna. Posted 23 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/school-business-manager-acton-gardens-primary-school-london" rel="nofollow noopener" style="color:inherit">School Business Manager</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Acton Gardens Primary School</p><p class="where">Ealing</p><p class="t-note">Part-time · Listed on Teaching Vacancies. Posted 20 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/pastoral-leave-maternity-cover-dormers-wells-high-school-southall-middlesex" rel="nofollow noopener" style="color:inherit">Pastoral Leave (Maternity Cover)</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Dormers Wells High School</p><p class="where">Southall, Ealing</p><p class="t-note">Part-time · Listed on Teaching Vacancies. Posted 20 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/reading-lead-dormers-wells-high-school-southall-middlesex" rel="nofollow noopener" style="color:inherit">Reading Lead</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Dormers Wells High School</p><p class="where">Southall, Ealing</p><p class="t-note">Full-time · Listed on Teaching Vacancies. Posted 20 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/assistant-director-send-inclusion/57596681" rel="nofollow noopener" style="color:inherit">Assistant Director SEND &amp; Inclusion</a></h3><div class="pay"><small>£750 to £850 a day</small></div></div><p class="t-emp">Adecco</p><p class="where">Ealing Broadway, Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 20 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/kitchen-team-leader/57590628" rel="nofollow noopener" style="color:inherit">Kitchen Team Leader</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Greene King</p><p class="where">Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 19 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/retail-optical-assistant/57586051" rel="nofollow noopener" style="color:inherit">Retail Optical Assistant</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Vision Express</p><p class="where">Ealing Broadway, Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 18 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/retail-department-manager-west-london/57588340" rel="nofollow noopener" style="color:inherit">Retail Department Manager - West London</a></h3><div class="pay"><small></small></div></div><p class="t-emp">WM Morrisons</p><p class="where">South Acton, Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 18 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/cafe-team-manager/57588758" rel="nofollow noopener" style="color:inherit">Cafe Team Manager</a></h3><div class="pay"><small></small></div></div><p class="t-emp">WM Morrisons</p><p class="where">South Acton, Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 18 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/customer-assistant-market-street-cafe/57588249" rel="nofollow noopener" style="color:inherit">Customer Assistant - Market Street &amp; Cafe</a></h3><div class="pay"><small></small></div></div><p class="t-emp">WM Morrisons</p><p class="where">South Acton, Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 18 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/racquets-manager/57587748" rel="nofollow noopener" style="color:inherit">Racquets Manager</a></h3><div class="pay"><small></small></div></div><p class="t-emp">David Lloyd Clubs</p><p class="where">Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 18 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/ks2-teacher-ark-byron-primary-academy" rel="nofollow noopener" style="color:inherit">KS2 Teacher</a></h3><div class="pay"><small>£41,328 to £65,000 a year</small></div></div><p class="t-emp">Ark Byron Primary Academy</p><p class="where">Ealing</p><p class="t-note">Full-time · Listed on Teaching Vacancies. Posted 17 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/legal-secretary-conveyancing/57583763" rel="nofollow noopener" style="color:inherit">Legal Secretary Conveyancing</a></h3><div class="pay"><small>£17.00 an hour</small></div></div><p class="t-emp">Reed</p><p class="where">Walpole, Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 17 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/benefits-administrator/57584617" rel="nofollow noopener" style="color:inherit">Benefits Administrator</a></h3><div class="pay"><small>£14.85 an hour</small></div></div><p class="t-emp">Reed</p><p class="where">Ealing Broadway, Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 17 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/vice-principal-alec-reed-academy" rel="nofollow noopener" style="color:inherit">Vice Principal</a></h3><div class="pay"><small>£93,611 to £104,484 L19-24 Inner London a year (actual pay)</small></div></div><p class="t-emp">Alec Reed Academy</p><p class="where">Northolt, Ealing</p><p class="t-note">Full-time · Listed on Teaching Vacancies. Posted 16 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/bar-waiting-staff/57577953" rel="nofollow noopener" style="color:inherit">Bar &amp; Waiting Staff</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Greene King</p><p class="where">Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 16 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/school-kitchen-assistant/57580190" rel="nofollow noopener" style="color:inherit">School Kitchen Assistant</a></h3><div class="pay"><small>£50.00 an hour</small></div></div><p class="t-emp">Prospero Teaching</p><p class="where">Southall, Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 16 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/chef-de-partie/57579319" rel="nofollow noopener" style="color:inherit">Chef De Partie</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Greene King</p><p class="where">South Acton, Ealing</p><p class="t-note">Listed on Reed. Posted 16 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/part-time-chef/57568980" rel="nofollow noopener" style="color:inherit">Part Time Chef</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Mitchells &amp; Butlers</p><p class="where">Ealing Broadway, Ealing</p><p class="t-note">Part-time · Listed on Reed. Posted 15 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/experience-block-manager/57562368" rel="nofollow noopener" style="color:inherit">Experience Block Manager</a></h3><div class="pay"><small>£35,000 to £40,000 a year</small></div></div><p class="t-emp">Pear recruitment</p><p class="where">Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 12 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/assistant-branch-manager/57563389" rel="nofollow noopener" style="color:inherit">Assistant Branch Manager</a></h3><div class="pay"><small>£25,000 to £27,500 a year</small></div></div><p class="t-emp">Barnard Marcus</p><p class="where">Ealing Broadway, Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 12 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://www.reed.co.uk/jobs/primary-teacher/57562502" rel="nofollow noopener" style="color:inherit">Primary Teacher</a></h3><div class="pay"><small>£45,784 to £59,649 a year</small></div></div><p class="t-emp">Academics</p><p class="where">Ealing</p><p class="t-note">Full-time · Listed on Reed. Posted 12 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/higher-level-teaching-assistant-greenford-high-school" rel="nofollow noopener" style="color:inherit">Higher Level Teaching Assistant</a></h3><div class="pay"><small>£31,871 to £32,719 Will consider candidates willing to working towards HLTA qualification. a year (actual pay)</small></div></div><p class="t-emp">Greenford High School</p><p class="where">Southall, Ealing</p><p class="t-note">Full-time · Listed on Teaching Vacancies. Posted 11 Nov 2026.</p></div></article><!--/JOBS--></div>
+    <div class="morewrap"><button class="apply alt" type="button" id="more" hidden>Show more jobs</button></div>
+  </div>
+</header>
+
+<section class="band info seo" id="guide">
+  <div class="wrap">
+    <h2>Working in Ealing</h2>
+    <p>Right now there are <b>66 jobs</b> in Ealing on TrueShift Jobs: 22 part-time and 36 full-time, including 1 apprenticeship and 1 graduate or junior role. Every job was posted in the last 30 days and is still open, and if the same job is on several job sites we show it once.</p>
+    <p>The most common kinds of work here at the moment are education and teaching, hospitality, retail and customer service, health, care and childcare.</p>
+    <p>Employers hiring in Ealing include Adecco, GXO Logistics, Academics.</p>
+    <p>Jobs are spread across areas such as Ealing Broadway, Southall, Central Greenford, South Acton.</p>
+    <p>Ealing is in West London. Nearby boroughs with jobs include <a href="/jobs/brent/">Brent</a>, <a href="/jobs/hammersmith-and-fulham/">Hammersmith and Fulham</a>, <a href="/jobs/harrow/">Harrow</a>, <a href="/jobs/hillingdon/">Hillingdon</a>, <a href="/jobs/hounslow/">Hounslow</a>, <a href="/jobs/richmond-upon-thames/">Richmond upon Thames</a>.</p>
+    <p>From April 2026 the National Minimum Wage is £12.71 an hour for workers aged 21 and over, and many London employers pay the London Living Wage of £14.80. We leave out adverts below the legal minimum, and you should never pay a fee to get a job.</p>
+    <p><a href="/">See all London jobs</a></p>
+  </div>
+</section>
+
+<section class="band info" id="checks">
+  <div class="wrap">
+    <h2>How every job is checked</h2>
+    <p class="intro">A job only appears here after it passes all eight checks. Claude, an AI assistant, does the checks every morning and re-checks each job daily, removing it once it closes. Anything it cannot confirm is looked at by a person first. The same job often appears on several job sites, so we show it once, linked to the employer's own advert where there is one. We never ask you for money or personal details.</p>
+    <p class="intro">Jobs marked <b>Listed on Reed</b>, <b>Adzuna</b> or <b>Teaching Vacancies</b> come straight from those sites' official job feeds. We keep only London jobs posted in the last 30 days, except apprenticeships, which stay until their closing date because they are often advertised months ahead. We show each job once across all the sites, list senior and professional roles under Experienced, and leave out pay below the minimum wage and common scam wording. These feed jobs have not been checked one by one, so always read the advert before you apply. Jobs marked <b>Posted by employer</b> were sent to us directly by the employer and checked by a person before going live.</p>
+    <ol class="checks">
+      <li><b>Still open</b>First posted in the last 30 days and still taking applications.</li>
+      <li><b>Real employer</b>A registered company or well-known brand with a working website.</li>
+      <li><b>Clear advert</b>Duties, hours, pay and location are all stated.</li>
+      <li><b>Real contact</b>A named contact, a company email or a known job site.</li>
+      <li><b>Legal pay</b>At or above the UK minimum wage for your age.</li>
+      <li><b>No money asked</b>No fees for training, uniforms, equipment or DBS checks.</li>
+      <li><b>Normal hiring</b>You apply through the employer or a known job site, never WhatsApp or Telegram.</li>
+      <li><b>Fits real lives</b>Hours that suit students, parents or people starting out.</li>
+    </ol>
+    <div class="guides">
+      <article class="guide">
+        <h3>Students</h3>
+        <table class="paytable" aria-label="UK minimum pay from 1 April 2026">
+          <tr><td>Aged 21 and over</td><td>£12.71/hr</td></tr>
+          <tr><td>Aged 18 to 20</td><td>£10.85/hr</td></tr>
+          <tr><td>Aged 16 to 17, apprentices</td><td>£8.00/hr</td></tr>
+        </table>
+        <ul>
+          <li>On a Student visa at degree level you can work up to 20 hours a week in term time (10 below degree level), and full time in official holidays.</li>
+          <li>Check your own university's job service too.</li>
+        </ul>
+      </article>
+      <article class="guide">
+        <h3>Parents returning to work</h3>
+        <ul>
+          <li>You can ask for flexible working, such as school hours or term time only, from your first day in a job.</li>
+          <li>Working parents in England may get up to 30 hours a week of funded childcare from 9 months old.</li>
+          <li>Tax-Free Childcare adds £2 for every £8 you pay in, up to £2,000 per child a year.</li>
+          <li>Check what you can get on <a href="https://www.gov.uk/tax-free-childcare">GOV.UK</a>.</li>
+        </ul>
+      </article>
+      <article class="guide">
+        <h3>Apprenticeships</h3>
+        <ul>
+          <li>An apprenticeship is a paid job with training towards a qualification. Level 3 is the same level as A levels, and Level 6 is degree level.</li>
+          <li>Apprentices get at least £8.00 an hour if under 19 or in the first year, then the minimum wage for their age.</li>
+          <li>You never pay for the training. Walk away from any "apprenticeship" that asks you for a fee.</li>
+          <li>Search all of England on <a href="https://www.findapprenticeship.service.gov.uk">GOV.UK Find an apprenticeship</a>.</li>
+        </ul>
+      </article>
+      <article class="guide">
+        <h3>New to the UK</h3>
+        <ul>
+          <li>Employers must check your right to work before you start.</li>
+          <li>With an eVisa, get a right-to-work share code from <a href="https://www.gov.uk/prove-right-to-work/get-a-share-code-online">GOV.UK</a>. It starts with W and lasts 90 days.</li>
+          <li>Never send passport copies or bank details before a real interview.</li>
+          <li>Citizens Advice and your council's job service can help for free.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band cvband" id="cv">
+  <div class="wrap cvgrid">
+    <div class="cvside">
+      <h2>Free UK CV template</h2>
+      <p class="intro">Not sure what a UK CV looks like? Pick the template closest to you, then copy it or download it for Word and fill in the parts in [square brackets].</p>
+      <div class="chips cvtabs" role="tablist" aria-label="CV templates">
+        <button class="chip" type="button" role="tab" data-cv="Students" aria-selected="true" aria-pressed="true">Student</button>
+        <button class="chip" type="button" role="tab" data-cv="Parents" aria-selected="false" aria-pressed="false">Parent returning to work</button>
+        <button class="chip" type="button" role="tab" data-cv="Newcomers" aria-selected="false" aria-pressed="false">New to the UK</button>
+        <button class="chip" type="button" role="tab" data-cv="Apprentices" aria-selected="false" aria-pressed="false">School leaver or apprentice</button>
+      </div>
+      <div class="cvbtns">
+        <button class="apply" type="button" id="cvcopy">Copy CV text</button>
+        <button class="apply alt" type="button" id="cvdl" hidden>Download for Word</button>
+      </div>
+      <p class="cvmsg" id="cvmsg" aria-live="polite"></p>
+      <h3>UK CV basics</h3>
+      <ul class="tips">
+        <li>Keep it to one page for part-time jobs, two at most.</li>
+        <li>Leave out your photo, age, date of birth, marital status and nationality.</li>
+        <li>Put your most recent job or study first.</li>
+        <li>Say when you can work. Part-time employers look for this first.</li>
+        <li>Explain any gap in a line, such as a career break to raise children.</li>
+        <li>If you have a National Insurance number, say so, but don't write the number.</li>
+      </ul>
+    </div>
+    <article class="paper" id="cvpaper" aria-label="CV template"></article>
+  </div>
+</section>
+
+<section class="band safe" id="safe">
+  <div class="wrap cols">
+    <div>
+      <h2>Stay safe while you apply</h2>
+      <ul>
+        <li><b>Never pay to get a job.</b> Real employers do not charge for training, uniforms or checks.</li>
+        <li><b>Big names get copied.</b> Official Amazon UK warehouse jobs are only on <a href="https://www.jobsatamazon.co.uk/">jobsatamazon.co.uk</a>.</li>
+        <li><b>Be wary of messages out of the blue</b> offering easy money by text, WhatsApp or Telegram.</li>
+        <li><b>Apply only through the link on the job.</b> It takes you to the employer or a known job site.</li>
+      </ul>
+    </div>
+    <div class="report">
+      <p><b>Seen a fake job?</b> Get free advice from <a href="https://www.jobsaware.co.uk/">JobsAware</a>.</p>
+      <p>Report fraud in England, Wales and Northern Ireland to <a href="https://www.reportfraud.police.uk/">Report Fraud</a>, or call 0300 123 2040. In Scotland, call Police Scotland on 101.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band pages" id="pages">
+  <div class="wrap">
+    <h2>Find London jobs for you</h2>
+    <ul class="pagelinks">
+      <li><a href="/jobs/students/">Part-time jobs for students</a></li>
+      <li><a href="/jobs/new-to-the-uk/">Jobs for people new to the UK</a></li>
+      <li><a href="/jobs/apprenticeships/">Apprenticeships in London</a></li>
+      <li><a href="/jobs/graduates/">Graduate and junior jobs</a></li>
+      <li><a href="/jobs/parents-returning-to-work/">Jobs for parents returning to work</a></li>
+      <li><a href="/jobs/experienced-professionals/">Jobs for experienced professionals</a></li>
+    </ul>
+    <h2 style="margin-top:28px">Jobs by London borough</h2>
+    <ul class="pagelinks boroughlinks">
+      <li><a href="/jobs/barking-and-dagenham/">Barking and Dagenham</a></li>
+      <li><a href="/jobs/barnet/">Barnet</a></li>
+      <li><a href="/jobs/bexley/">Bexley</a></li>
+      <li><a href="/jobs/brent/">Brent</a></li>
+      <li><a href="/jobs/bromley/">Bromley</a></li>
+      <li><a href="/jobs/camden/">Camden</a></li>
+      <li><a href="/jobs/city-of-london/">City of London</a></li>
+      <li><a href="/jobs/croydon/">Croydon</a></li>
+      <li><a href="/jobs/ealing/">Ealing</a></li>
+      <li><a href="/jobs/enfield/">Enfield</a></li>
+      <li><a href="/jobs/greenwich/">Greenwich</a></li>
+      <li><a href="/jobs/hackney/">Hackney</a></li>
+      <li><a href="/jobs/hammersmith-and-fulham/">Hammersmith and Fulham</a></li>
+      <li><a href="/jobs/haringey/">Haringey</a></li>
+      <li><a href="/jobs/harrow/">Harrow</a></li>
+      <li><a href="/jobs/havering/">Havering</a></li>
+      <li><a href="/jobs/hillingdon/">Hillingdon</a></li>
+      <li><a href="/jobs/hounslow/">Hounslow</a></li>
+      <li><a href="/jobs/islington/">Islington</a></li>
+      <li><a href="/jobs/kensington-and-chelsea/">Kensington and Chelsea</a></li>
+      <li><a href="/jobs/kingston-upon-thames/">Kingston upon Thames</a></li>
+      <li><a href="/jobs/lambeth/">Lambeth</a></li>
+      <li><a href="/jobs/lewisham/">Lewisham</a></li>
+      <li><a href="/jobs/merton/">Merton</a></li>
+      <li><a href="/jobs/newham/">Newham</a></li>
+      <li><a href="/jobs/redbridge/">Redbridge</a></li>
+      <li><a href="/jobs/richmond-upon-thames/">Richmond upon Thames</a></li>
+      <li><a href="/jobs/southwark/">Southwark</a></li>
+      <li><a href="/jobs/sutton/">Sutton</a></li>
+      <li><a href="/jobs/tower-hamlets/">Tower Hamlets</a></li>
+      <li><a href="/jobs/waltham-forest/">Waltham Forest</a></li>
+      <li><a href="/jobs/wandsworth/">Wandsworth</a></li>
+      <li><a href="/jobs/westminster/">Westminster</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="band">
+  <div class="wrap">
+    <p>TrueShift Jobs is a free list of part-time and full-time jobs and apprenticeships in London. It is not an employer or a recruitment agency and never charges jobseekers.</p>
+    <p class="credit" id="credit"></p>
+    <p class="postjob" hidden>Employers: <a class="postlink" href="#" target="_blank" rel="noopener noreferrer">post a job for free</a>. Every job is checked by a person before it goes live.</p>
+    <p id="feedback">Ideas, a broken link or a job that has closed? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeW3k2cq7yW0AW4c_R-y6liaAuuLxNshU0PUutiYNMoTfz62w/viewform" id="fblink" target="_blank" rel="noopener noreferrer">Send feedback</a>.</p>
+    <p>Jobs link to the employer's own advert. Always read the full advert and check the details before you apply. Pay rates and rules shown were checked on 24 November 2026.</p>
+    <p>&copy; 2026 TrueShift Jobs. All rights reserved.</p>
+  </div>
+</footer>
+
+<script id="jobs-data" type="application/json" data-updated="2026-11-24">[{"title": "Student Support Assistant (Inclusion)", "employer": "West Thames College", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "30 hours a week, term time only (38 weeks a year)", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/student-support-assistant-teaching-and-general-support-inclusion", "posted": "2026-11-11", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent. £18,987 to £19,306 a year for term-time hours. Supporting students with disabilities or learning difficulties. Enhanced DBS check needed. Closes 1 December 2026.", "jobType": "Part-time"}, {"title": "Science Teacher, one day a week", "employer": "The Green School Trust", "borough": "Hounslow", "region": "West", "area": "Isleworth", "bestFor": "Parents", "hours": "One day a week (Tuesdays), 1-year fixed term from 4 January 2027", "pay": "", "link": "https://teaching-vacancies.service.gov.uk/jobs/science-teacher-x1-day-a-week-tuesday-fixed-term-1-year", "posted": "2026-11-13", "found": "2026-11-24", "checks": "8/8", "notes": "For qualified science teachers returning to work. Paid on the teacher pay scale (MPS/UPS). Closes 27 November 2026 at 9am.", "jobType": "Part-time"}, {"title": "Customer Delivery Driver", "employer": "Asda", "borough": "Hounslow", "region": "West", "area": "Feltham", "bestFor": "Parents", "hours": "19.5 hours a week, day shifts, with some weekends and evenings on a rota", "pay": "£14.35", "link": "https://www.asda.jobs/jobs/customer-delivery-driver-in-feltham.39800", "posted": "2026-11-20", "found": "2026-11-24", "checks": "8/8", "notes": "Permanent part-time job at the Longford Centre store. Needs a full or automatic UK driving licence held for at least 12 months. Closes 3 December 2026. Also on: Part-Time UK", "jobType": "Part-time"}]</script>
+<script>window.PAGE_BOROUGH="Ealing";window.PAGE_REGION="West";</script>
+<script>
+{
+const REGIONS={
+  Central:["City of London","Westminster","Camden","Islington","Kensington and Chelsea","Lambeth","Southwark"],
+  North:["Barnet","Enfield","Haringey"],
+  East:["Barking and Dagenham","Bexley","Greenwich","Hackney","Havering","Lewisham","Newham","Redbridge","Tower Hamlets","Waltham Forest"],
+  South:["Bromley","Croydon","Kingston upon Thames","Merton","Sutton","Wandsworth"],
+  West:["Brent","Ealing","Hammersmith and Fulham","Harrow","Hillingdon","Hounslow","Richmond upon Thames"]
+};
+const el=id=>document.getElementById(id);
+const src=el('jobs-data');
+let jobs=[];
+try{jobs=JSON.parse(src.textContent||'[]');if(!Array.isArray(jobs))jobs=[]}catch(e){jobs=[]}
+let feedReady=false,feedInfo=null,limit=30;
+const tok=s=>new Set(String(s||'').toLowerCase().replace(/\([^)]*\)/g,' ').replace(/\b(part[- ]?time|full[- ]?time|temporary|temp|permanent|immediate start|urgent)\b/g,' ').match(/[a-z]+/g)||[]);
+const emp=s=>String(s||'').toLowerCase().replace(/\b(ltd|limited|plc|llp|uk|group|the|stores)\b/g,' ').replace(/[^a-z0-9]+/g,'');
+const lnk=s=>String(s||'').replace(/[?#].*$/,'').replace(/\/$/,'').toLowerCase();
+function sameJob(a,b){
+  if(a.link&&b.link&&lnk(a.link)===lnk(b.link))return true;
+  if(a.borough!==b.borough)return false;
+  const ea=emp(a.employer),eb=emp(b.employer);
+  if(!ea||!eb||!(ea.startsWith(eb)||eb.startsWith(ea)))return false;
+  const ta=tok(a.title),tb=tok(b.title);if(!ta.size||!tb.size)return false;
+  let n=0;ta.forEach(w=>{if(tb.has(w))n++});return n/(ta.size+tb.size-n)>=0.75;
+}
+function addFeed(d){
+  const list=(d&&Array.isArray(d.jobs))?d.jobs:[];
+  const checked=jobs.filter(j=>!j.source);
+  jobs=checked.concat(list.filter(f=>f&&f.title&&f.borough&&f.source&&!checked.some(c=>sameJob(c,f))));
+  feedInfo=d;
+}
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl=u=>{try{const x=new URL(String(u));return(x.protocol==='https:'||x.protocol==='http:'||x.protocol==='mailto:')?x.href:''}catch(e){return ''}};
+const regionOf=j=>{if(j.region&&REGIONS[j.region])return j.region;for(const r in REGIONS)if(REGIONS[r].includes(j.borough))return r;return ''};
+const payNum=j=>{const n=parseFloat(String(j.pay||'').replace(/[^0-9.]/g,''));return isFinite(n)?n:0};
+const dateOf=j=>j.posted||j.found||'';
+const fmtDate=d=>{const t=new Date(d+'T12:00:00');return isNaN(t)?'':t.toLocaleDateString('en-GB',{day:'numeric',month:'short'})};
+const groupsOf=j=>(Array.isArray(j.bestFor)?j.bestFor:String(j.bestFor||'').split(',')).map(s=>s.trim()).filter(Boolean);
+const store={get(){try{return JSON.parse(localStorage.getItem('trueshift-filters')||'{}')}catch(e){return{}}},set(v){try{localStorage.setItem('trueshift-filters',JSON.stringify(v))}catch(e){}}};
+const state=Object.assign({region:'All',group:'All',borough:'All',q:'',sort:'new',jtype:'All',level:'All',cat:'All'},store.get());
+const saves={get(){try{return JSON.parse(localStorage.getItem('trueshift-saved')||'[]')}catch(e){return[]}},set(v){try{localStorage.setItem('trueshift-saved',JSON.stringify(v))}catch(e){}}};
+let saved=saves.get();if(!Array.isArray(saved))saved=[];
+const keyOf=j=>String(j.link||'')+'|'+String(j.title||'')+'|'+String(j.employer||'');
+const GOV={share:'https://www.gov.uk/prove-right-to-work/get-a-share-code-online',childcare:'https://www.gov.uk/tax-free-childcare',flex:'https://www.gov.uk/flexible-working'};
+const CATS=[["Education", "Education and teaching", "\\b(hlta|ta|teaching assistant|playground|teacher|teaching|tutor|tuition|lecturer|school|senco|sendco|education|head of (year|department|learning|science|maths|english)|deputy head|curriculum|pastoral|cover supervisor|attendance|behaviour mentor|learning support|early years|nursery|exams? officer)\\b"], ["Health", "Health, care and childcare", "\\b(nurse|nursing|care|carer|health|healthcare|clinical|clinic|medical|doctor|gp|pharmac\\w*|dental|dentist|physio\\w*|occupational therap\\w*|therap\\w*|midwi\\w*|social work\\w*|support worker|psycholog\\w*|radiograph\\w*|paramedic|hca|mental health|nhs|ward|nanny|childcare|child care|family support)\\b"], ["Legal", "Legal", "\\b(legal|solicitor|lawyer|paralegal|conveyanc\\w*|litigation|barrister|counsel|law)\\b"], ["HR", "HR and recruitment", "\\b(hr|human resources|recruit\\w*|talent|people partner|people advisor|people & culture|people and culture|reward|learning and development|l&d|resourcer|training manager)\\b"], ["Sales", "Sales and marketing", "\\b(telesales|business developer|events?|sales|business development|account manager|account executive|marketing|brand|seo|social media|content|communications|pr|media|advertising|copywriter|ecommerce|e-commerce|creative|creator)\\b"], ["Finance", "Finance and accounting", "\\b(account(ant|s|ing)?|finance|financial|payroll|audit(or)?|tax|bookkeep\\w*|credit control|treasury|actuar\\w*|underwrit\\w*|insurance|banking|investment|fund|wealth|mortgage|paraplanner|controller|cash|debt|epm|anaplan)\\b"], ["IT", "IT and digital", "\\b(it|ict|software|developer|devops|cloud|data|cyber|network|infrastructure|systems engineer|systems administrator|sysadmin|technical support|technical lead|helpdesk|service desk|digital|web|technology|programmer|sql|python|java|\\.net|c#|azure|aws|salesforce|sap|crm|erp|dynamics|d365|product owner|scrum|business analyst|ux|ui|software tester|test analyst|qa|solutions? architect|crestron)\\b"], ["Engineering", "Engineering and construction", "\\b(h&s|health and safety|cad|design manager|meter|workshop|production|engineer|engineering|construction|site manager|area manager|quantity surveyor|surveyor|electrician|electrical|mechanical|plumb\\w*|hvac|building|architect|civil|structural|project manager|estimator|maintenance|facilities|gas|technician|manufacturing|commissioning|m&e|slinger|mains|vehicle|mot)\\b"], ["Housing", "Housing, charity and public sector", "\\b(housing|homeless\\w*|resident|tenan\\w*|case ?worker|council|policy|outreach|grants?|charity|fundrais\\w*|volunteer|community|allocations|lettings)\\b"], ["Admin", "Admin and office", "\\b(admin\\w*|office|secretary|pa|personal assistant|executive assistant|receptionist|data entry|coordinator|co-ordinator|clerk|operations)\\b"], ["Hospitality", "Hospitality, retail and customer service", "\\b(cafe|caf\u00e9|chef|kitchen|restaurant|hotel|bar|catering|hospitality|retail|store|shop|branch|customer service|call centre|contact centre|front of house|housekeep\\w*|duty manager|runner)\\b"], ["Logistics", "Transport and logistics", "\\b(driver|logistics|warehouse|transport|supply chain|procurement|buyer|fleet|delivery|courier|forklift)\\b"]];
+const catRe=CATS.map(c=>[c[0],new RegExp(c[2],'i')]);
+const catOf=j=>{if(j._cat)return j._cat;const t=String(j.title||'');const m=catRe.find(c=>c[1].test(t));return j._cat=m?m[0]:'Other'};
+const POST_JOB_URL='https://docs.google.com/forms/d/e/1FAIpQLSffGDqOjiYqc4nUqb8718dL8k-iunQDuiS1cucR1s7sq0_1vQ/viewform';
+const PAGES={Students:'students',Newcomers:'new-to-the-uk',Apprentices:'apprenticeships',Graduates:'graduates',Parents:'parents-returning-to-work',Experienced:'experienced-professionals'};
+const ONSITE=/(^|\.)trueshiftjobs\.com$/.test(location.hostname);
+if(window.PAGE_GROUP)state.group=window.PAGE_GROUP;
+if(window.PAGE_BOROUGH){state.borough=window.PAGE_BOROUGH;state.region=window.PAGE_REGION||'All';state.group='All'}
+const QUICK={
+ All:{h:'Find a real job in three steps',p:'Jobs with a Checked stamp passed all 8 checks. The rest come from official job feeds, each listed once and posted in the last 30 days.',s:[['Pick who you are','Choose student, new to the UK, apprentice, graduate, parent or experienced above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
+ Students:{h:'Quick start for students',p:'Jobs with evening, weekend or flexible shifts.',s:[['Know your hours','On a Student visa at degree level you can work up to 20 hours a week in term time, and full time in official holidays.'],['Know your pay','The legal minimum is £12.71 an hour at 21 and over, and £10.85 at 18 to 20.'],['Say when you can work','Put your free days and hours at the top of your CV so employers can fit you in fast.']]},
+ Parents:{h:'Quick start for parents',p:'Jobs with school hours, term-time or part-time shifts.',s:[['Look for school hours','Jobs marked for parents fit around the school day or term time.'],['Ask for flexibility','You can ask for flexible working, such as set hours, from your first day in a job.'],['Get help with childcare','Working parents may get funded childcare hours and Tax-Free Childcare. <a href="'+GOV.childcare+'">Check on GOV.UK</a>.']]},
+ Newcomers:{h:'Quick start if you are new to the UK',p:'Entry-level jobs that offer training, with a normal right-to-work check.',s:[['Get your share code ready','With an eVisa, get a right-to-work share code on <a href="'+GOV.share+'">GOV.UK</a>. It starts with W and lasts 90 days.'],['Start with entry-level shifts','Jobs marked for newcomers are entry level and offer training.'],['Stay safe','Never pay for a job, and never send your passport before a real interview.']]},
+ Apprentices:{h:'Quick start for apprenticeships',p:'Paid jobs with training towards a qualification, from Level 2 up to degree level. Shown until their closing date.',s:[['Pick your level','Level 3 matches A levels. Level 4 to 5 are higher apprenticeships, and Level 6 to 7 are degree apprenticeships.'],['Know your pay','At least £8.00 an hour if you are under 19 or in your first year, then the minimum wage for your age. You never pay for the training.'],['Check the dates','Many apprenticeships start in September and close months before. Each advert shows its start and closing dates.']]},
+ Experienced:{h:'Quick start for experienced professionals',p:'Professional, skilled and senior roles across London, from the same official job feeds.',s:[['Search your field','Type a job title or skill in the search box, such as accountant, engineer or nurse.'],['Filter by area','Tap a part of London on the map, then pick your borough.'],['Check the advert','Salaries are shown where the advert gives them. Always read the full advert before you apply.']]},
+ Graduates:{h:'Quick start for graduates',p:'Graduate schemes, internships, trainee and junior roles across London.',s:[['Search your field','Type a subject or job, such as finance, engineering or marketing.'],['Check the start date','Many graduate schemes start in September and close months before. Read each advert for dates.'],['Use your degree','Put your degree, projects and any part-time work near the top of your CV.']]},
+ Saved:{h:'Your saved jobs',p:'Saved on this device only. Jobs that close are removed from the list.',s:[['Apply soon','Jobs can close quickly, so apply to the ones you like today.'],['Check the hours','Make sure the shifts fit your week before you apply.'],['Come back tomorrow','New jobs are added every morning.']]}
+};
+const EMPTY={
+ All:['The first checked jobs are on their way','We are collecting new openings across London right now. Come back soon: new jobs are added every morning.'],
+ Students:['No student jobs here yet','New jobs are added every morning. Meanwhile, your university or college job service is a good place to look.'],
+ Parents:['No parent-friendly jobs here yet','New jobs are added every morning. Meanwhile, the flexible-work job sites Flexa and Ten2Two list part-time roles.'],
+ Newcomers:['No jobs for newcomers here yet','New jobs are added every morning. Get your share code ready now so you can apply as soon as one appears.'],
+ Apprentices:['No apprenticeships here yet','New adverts are added every morning. You can also search <a href="https://www.findapprenticeship.service.gov.uk">GOV.UK Find an apprenticeship</a>.'],
+ Experienced:['No experienced roles here yet','Try another area or borough, or clear your search. New jobs are added every morning.'],
+ Graduates:['No graduate jobs here yet','Try another area, or look under Experienced &amp; Professional for junior roles. New jobs are added every morning.'],
+ Saved:['You have not saved any jobs yet','Tap Save on any job to keep it here on this device.']
+};
+const tick='<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const groupLabel={Students:'Students',Parents:'Parents',Newcomers:'New to the UK',Apprentices:'Apprenticeship',Experienced:'Experienced',Graduates:'Graduates'};
+const catOk=j=>state.group!=='Experienced'||!state.cat||state.cat==='All'||catOf(j)===state.cat;
+const levelOk=j=>{if(state.group!=='Apprentices'||!state.level||state.level==='All')return true;const l=Number(j.level)||0;return state.level==='4'?(l===4||l===5):state.level==='6'?(l===6||l===7):l===Number(state.level)};
+
+function fillBoroughs(){
+  const sel=el('borough');
+  const list=state.region==='All'?Object.values(REGIONS).flat().sort():REGIONS[state.region];
+  if(state.borough!=='All'&&!list.includes(state.borough))state.borough='All';
+  sel.innerHTML='<option value="All">All boroughs</option>'+list.map(b=>'<option value="'+esc(b)+'">'+esc(b)+'</option>').join('');
+  sel.value=state.borough;
+}
+function matches(j,ignoreRegion){
+  if(!ignoreRegion&&state.region!=='All'&&regionOf(j)!==state.region)return false;
+  if(!ignoreRegion&&state.borough!=='All'&&j.borough!==state.borough)return false;
+  if(state.jtype&&state.jtype!=='All'&&j.jobType!==state.jtype)return false;
+  if(!levelOk(j))return false;
+  if(!catOk(j))return false;
+  if(state.group==='Saved'){if(!saved.includes(keyOf(j)))return false}
+  else if(state.group!=='All'&&!groupsOf(j).includes(state.group))return false;
+  if(state.q){const hay=[j.title,j.employer,j.borough,j.area,j.hours,j.notes].join(' ').toLowerCase();if(!hay.includes(state.q.toLowerCase()))return false}
+  return true;
+}
+function card(j){
+  const url=safeUrl(j.link);
+  const sal=String(j.salary||'');const sm=sal.match(/£[\d,]+(?:\.\d+)?/);const unit=/an hour/.test(sal)?'per hour':/a week/.test(sal)?'per week':/a month/.test(sal)?'per month':/a year/.test(sal)?'per year':'';
+  const pay=payNum(j)?'£'+payNum(j).toFixed(2)+'<small>per hour</small>':(sm&&unit?sm[0].replace(/\.\d+$/,'')+'<small>'+unit+(/full-time equivalent/.test(sal)?' (FTE)':'')+'</small>':'<small class="nopay">Pay in advert</small>');
+  const tags=groupsOf(j).map(g=>'<span class="tag">'+esc(groupLabel[g]||g)+'</span>').join('');
+  const posted=fmtDate(j.posted||'');
+  const isFeed=!!j.source;
+  const feedDay=String((feedInfo&&feedInfo.generated)||'').slice(0,10);
+  const isNew=isFeed?!!(j.posted&&feedDay&&(Date.parse(feedDay)-Date.parse(j.posted))<=86400000):!!(j.found&&j.found===src.dataset.updated);
+  const note=String(j.notes||'').replace(/^(Listed on [^.]+|Posted directly by the employer)\.\s*/,'');
+  const stamp=isFeed?(j.source==='Employer'?'<span class="stamp">'+tick+'Posted by employer</span>':'<span class="stamp feed">Listed on '+esc(j.source)+'</span>'):'<span class="stamp">'+tick+'Checked '+esc(j.checks||'')+'</span>';
+  const k=keyOf(j);const on=saved.includes(k);
+  return '<article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title">'+(j.page&&ONSITE?'<a href="'+esc(j.page)+'" style="color:inherit">'+esc(j.title)+'</a>':esc(j.title))+'</h3><div class="pay">'+pay+'</div></div>'
+    +'<p class="emp">'+esc(j.employer)+'</p>'
+    +'<p class="where">'+esc([(j.area&&j.area.toLowerCase()!==String(j.borough||'').toLowerCase()&&!/^(greater )?london$/i.test(j.area))?j.area:'',j.borough].filter(Boolean).join(', ')+(j.approx?' (area approximate)':''))+'</p>'
+    +(j.hours?'<p class="hours">'+esc(j.hours)+'</p>':'')
+    +(tags?'<div class="tags">'+tags+'</div>':'')
+    +(note?'<p class="note">'+esc(note)+'</p>':'')
+    +'<div class="t-meta">'+stamp+(j.level?' <span class="jt">Level '+esc(j.level)+'</span>':'')+(j.jobType?' <span class="jt">'+esc(j.jobType)+'</span>':'')
+    +(isNew?' <span class="new">New today</span>':'')
+    +(posted?' <span class="posted">Posted '+esc(posted)+'</span>':'')+(j.alsoOn&&j.alsoOn.length?' <span class="also">Also on '+esc(j.alsoOn.join(', '))+'</span>':'')+'</div>'
+    +'</div><div class="t-foot"><button class="star" type="button" data-k="'+esc(k)+'" aria-pressed="'+on+'">'+(on?'Saved':'Save')+'</button>'
+    +(url?'<a class="apply" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+(url.startsWith('mailto:')?'Apply by email':'Apply on advert')+'</a>':'')
+    +'</div></article>';
+}
+function render(keepLimit){
+  if(!keepLimit)limit=30;
+  store.set(state);
+  document.querySelectorAll('.reg').forEach(b=>{
+    const r=b.dataset.r;
+    b.setAttribute('aria-pressed',String(state.region===r));
+    b.querySelector('b').textContent=jobs.filter(j=>regionOf(j)===r&&matches(j,true)).length;
+  });
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(state.group===c.dataset.g)));
+  if(feedReady){saved=saved.filter(k=>jobs.some(j=>keyOf(j)===k));saves.set(saved)}
+  el('savedn').textContent=saved.length;
+  const qk=QUICK[state.group]||QUICK.All;
+  el('quick').innerHTML='<div><h2>'+qk.h+'</h2><p class="sub">'+qk.p+'</p></div><ol class="steps">'+qk.s.map(s=>'<li><b>'+s[0]+'</b>'+s[1]+'</li>').join('')+'</ol>';
+  el('q').value=state.q;el('sort').value=state.sort;el('jtype').value=state.jtype||'All';
+  el('level').hidden=state.group!=='Apprentices';el('cat').hidden=state.group!=='Experienced';el('cat').value=state.cat||'All';el('level').value=state.level||'All';
+  const shown=jobs.filter(j=>matches(j,false)).sort((a,b)=>state.sort==='pay'?payNum(b)-payNum(a):String(dateOf(b)).localeCompare(String(dateOf(a))));
+  {const nm={Students:'student',Newcomers:'new to the UK',Apprentices:'apprenticeship',Graduates:'graduate',Parents:'parent',Experienced:'experienced &amp; professional',Saved:'saved'}[state.group];
+   const inTab=jobs.filter(j=>matches(j,true)).length;
+   el('totalline').innerHTML=nm?'Map shows <b>'+inTab+'</b> '+nm+' jobs of <b id="total">'+jobs.length+'</b> listed':'<b id="total">'+jobs.length+'</b> jobs listed';}
+  const where=state.borough!=='All'?state.borough:(state.region!=='All'?state.region+' London':'all of London');
+  const who={All:'',Students:' for students',Parents:' for parents',Newcomers:' for people new to the UK',Experienced:' for experienced professionals',Graduates:' for graduates',Saved:' saved'}[state.group]||'';
+  const noun=state.group==='Apprentices'?(shown.length===1?'apprenticeship':'apprenticeships'):(shown.length===1?'job':'jobs');
+  el('count').innerHTML='<b>'+shown.length+'</b> '+noun+esc(who)+' in '+esc(where);
+  const mb=el('more');
+  if(shown.length){
+    el('list').innerHTML=shown.slice(0,limit).map(card).join('');
+    mb.hidden=shown.length<=limit;mb.textContent='Show more jobs ('+Math.max(0,shown.length-limit)+' more)';
+    return;
+  }
+  mb.hidden=true;
+  const e=(jobs.length&&state.group==='All')?['No jobs match these filters','Try another area or borough, or clear your search. New jobs are added every morning.']:(EMPTY[state.group]||EMPTY.All);
+  el('list').innerHTML='<div class="empty"><h3>'+e[0]+'</h3><p>'+e[1]+'</p></div>';
+}
+const up=src.dataset.updated;
+if(up){const t=new Date(up+'T12:00:00');if(!isNaN(t))el('updated').textContent=t.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
+el('compass').addEventListener('click',e=>{const b=e.target.closest('.reg');if(!b)return;state.region=state.region===b.dataset.r?'All':b.dataset.r;state.borough='All';fillBoroughs();render()});
+el('allbtn').addEventListener('click',()=>{state.region='All';state.borough='All';fillBoroughs();render()});
+document.querySelector('.chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;state.group=c.dataset.g;render();if(ONSITE&&history.replaceState){try{history.replaceState(null,'',PAGES[state.group]?'/jobs/'+PAGES[state.group]+'/':'/')}catch(err){}}});
+el('list').addEventListener('click',e=>{const b=e.target.closest('.star');if(!b)return;const k=b.dataset.k;saved=saved.includes(k)?saved.filter(x=>x!==k):saved.concat([k]);saves.set(saved);render(true)});
+el('jtype').addEventListener('change',e=>{state.jtype=e.target.value;render()});
+el('cat').addEventListener('change',e=>{state.cat=e.target.value;render()});
+el('level').addEventListener('change',e=>{state.level=e.target.value;render()});
+el('more').addEventListener('click',()=>{if(jobs.filter(j=>matches(j,false)).length>limit){limit+=30;render(true)}});
+function credit(){
+  const s=new Set(jobs.filter(j=>j.source).map(j=>j.source)),parts=[];
+  if(s.has('Reed'))parts.push('<a href="https://www.reed.co.uk">reed.co.uk</a>');
+  if(s.has('Adzuna'))parts.push('<a href="https://www.adzuna.co.uk">Jobs by Adzuna</a>');
+  if(s.has('Find an apprenticeship'))parts.push('<a href="https://www.findapprenticeship.service.gov.uk">GOV.UK Find an apprenticeship</a>');
+  if(s.has('Teaching Vacancies'))parts.push('<a href="https://teaching-vacancies.service.gov.uk">GOV.UK Teaching Vacancies</a> (Open Government Licence v3.0)');
+  el('credit').innerHTML=parts.length?'Job feeds: '+parts.join(' · ')+'.':'';
+}
+el('borough').addEventListener('change',e=>{state.borough=e.target.value;render()});
+el('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
+el('q').addEventListener('input',e=>{state.q=e.target.value.trim();render()});
+fillBoroughs();render();
+if(POST_JOB_URL){document.querySelectorAll('.postlink').forEach(a=>a.href=POST_JOB_URL);document.querySelectorAll('.postjob').forEach(e=>e.hidden=false)}
+fetch(ONSITE?'/feed.json':'feed.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d)addFeed(d)}).catch(()=>{}).finally(()=>{feedReady=true;render(true);credit()});
+const CVS={
+ Students:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
+  sections:[['Personal statement',['p','[Your course and year] student looking for part-time [evening / weekend] work in [type of work, e.g. retail or hospitality]. [Two or three strengths, e.g. friendly, reliable and quick to learn].']],
+   ['When I can work',['p','[Days and times you are free, e.g. weekday evenings from 5pm and weekends]. Up to [20] hours a week in term time, and full time in university holidays.']],
+   ['Experience',['r','[Job or volunteer role], [Employer], [Town]','[Month Year] to [Month Year or now]'],['l',['[What you did, starting with an action word, e.g. Served customers at the till]','[Another task or something you achieved]','[A skill you used, e.g. handling cash]']],['r','[Another role, e.g. summer or weekend job], [Employer]','[Month Year] to [Month Year]'],['l',['[What you did]','[What you learned]']]],
+   ['Education',['r','[Course name], [University or college]','[Start year] to [End year] (expected)'],['r','[Earlier qualifications and grades, e.g. A levels]','[Year]']],
+   ['Skills',['l',['[Skill, e.g. customer service]','[Computer skills, e.g. Word, Excel and email]','[Languages you speak and how well]']]],
+   ['References',['p','Available on request.']]]},
+ Parents:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
+  sections:[['Personal statement',['p','[Two strengths, e.g. organised and dependable] parent returning to work after a career break. Looking for part-time work [in school hours], with [number] years of [type of work] experience.']],
+   ['When I can work',['p','[Days and times, e.g. Monday to Friday, 9:30am to 2:30pm, in term time]. Can start [straight away / from a date].']],
+   ['Experience',['r','Career break: full-time parent','[Year] to [Year]'],['l',['[Anything you did in this time, e.g. volunteering at a school or running a club]','[A skill you used, e.g. managing a busy schedule and budget]']],['r','[Your last job title], [Employer], [Town]','[Year] to [Year]'],['l',['[Main task, starting with an action word]','[Another task]','[Something you were good at or proud of]']]],
+   ['Education',['r','[Qualification, e.g. Level 2 Certificate in Business Administration]','[Year]'],['r','[School qualifications, e.g. GCSEs including English and Maths]','[Year]']],
+   ['Skills',['l',['[Skill, e.g. record keeping]','[Computer skills, e.g. Word, Excel and email]','[A personal strength, e.g. calm, friendly phone manner]']]],
+   ['References',['p','Available on request.']]]},
+ Newcomers:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
+  sections:[['Personal statement',['p','[Two strengths, e.g. hard-working and punctual], recently moved to [area]. Looking for [type of work, e.g. warehouse, retail or hospitality] shifts, with [number] years of [type of work] experience.']],
+   ['Right to work',['p','I have the right to work in the UK [and a National Insurance number]. I can provide a share code.']],
+   ['When I can work',['p','[When you are free, e.g. flexible, including early mornings, nights and weekends].']],
+   ['Experience',['r','[Job title], [Employer or type of business], [Town, Country]','[Year] to [Year]'],['l',['[Main task, starting with an action word, e.g. Unloaded deliveries]','[Another task]','[How you helped customers or your team]']]],
+   ['Education',['r','[Highest qualification], [Country]','[Year]']],
+   ['Skills',['l',['[Skill, e.g. stock handling and teamwork]','[Languages you speak and how well, e.g. English (fluent)]','[e.g. Happy to train and learn new systems]']]],
+   ['References',['p','Available on request.']]]},
+ Apprentices:{name:'[Your full name]',contact:'[Your area, e.g. Hounslow] · [Mobile number] · [Email address]',
+  sections:[['Personal statement',['p','[Two strengths, e.g. motivated and organised] school leaver studying [A levels or BTEC subjects]. Looking for a [Level 3 / higher / degree] apprenticeship in [field, e.g. business, engineering or digital], starting [month and year].']],
+   ['Education',['r','[A levels or BTEC]: [Subject] ([predicted or final grade]), [Subject] ([grade]), [Subject] ([grade]), [School or college]','[Start year] to [End year]'],['r','GCSEs: [number] subjects including English ([grade]) and Maths ([grade]), [School]','[Year]']],
+   ['Experience',['r','[Work experience, part-time job or volunteering], [Employer or organisation]','[Month Year] to [Month Year or now]'],['l',['[What you did, starting with an action word, e.g. Helped run the school open day]','[A skill you used, e.g. working in a team]','[Something you achieved or learned]']]],
+   ['Skills and achievements',['l',['[Skill, e.g. Excel, coding or design software]','[An achievement, e.g. Duke of Edinburgh Award, sports team captain or a school prize]','[Languages you speak and how well]']]],
+   ['Why this apprenticeship',['p','[One or two lines on why you want to work in this field and what you hope to learn].']],
+   ['References',['p','Available on request.']]]}
+};
+let cvKey='Students';
+function cvHtml(c){
+  let o='<h3>'+esc(c.name)+'</h3><p class="contact">'+esc(c.contact)+'</p>';
+  for(const [head,...parts] of c.sections){
+    o+='<h4>'+esc(head)+'</h4>';
+    for(const p of parts){
+      if(p[0]==='p')o+='<p>'+esc(p[1])+'</p>';
+      else if(p[0]==='r')o+='<p class="role">'+esc(p[1])+' <span class="when">· '+esc(p[2])+'</span></p>';
+      else o+='<ul>'+p[1].map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
+    }
+  }
+  return o+'<p class="samp">CV template. Replace everything in [square brackets] with your own details, and delete any line that does not apply to you.</p>';
+}
+function cvText(c){
+  let o=c.name+'\n'+c.contact+'\n';
+  for(const [head,...parts] of c.sections){
+    o+='\n'+head.toUpperCase()+'\n';
+    for(const p of parts){
+      if(p[0]==='p')o+=p[1]+'\n';
+      else if(p[0]==='r')o+=p[1]+' ('+p[2]+')\n';
+      else o+=p[1].map(x=>'- '+x).join('\n')+'\n';
+    }
+  }
+  return o;
+}
+function rtfEsc(s){return String(s).replace(/[\\{}]/g,m=>'\\'+m).replace(/[^\x00-\x7f]/g,ch=>'\\u'+(ch.charCodeAt(0)>32767?ch.charCodeAt(0)-65536:ch.charCodeAt(0))+'?')}
+function cvRtf(c){
+  let o='{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Calibri;}}\\f0\\fs22\n{\\b\\fs36 '+rtfEsc(c.name)+'}\\par\n'+rtfEsc(c.contact)+'\\par\n';
+  for(const [head,...parts] of c.sections){
+    o+='\\par{\\b\\fs24 '+rtfEsc(head)+'}\\par\n';
+    for(const p of parts){
+      if(p[0]==='p')o+=rtfEsc(p[1])+'\\par\n';
+      else if(p[0]==='r')o+='{\\b '+rtfEsc(p[1])+'}  '+rtfEsc(p[2])+'\\par\n';
+      else o+=p[1].map(x=>'\\bullet  '+rtfEsc(x)+'\\par').join('\n')+'\n';
+    }
+  }
+  return o+'}';
+}
+function renderCv(){
+  document.querySelectorAll('.cvtabs .chip').forEach(b=>{const on=b.dataset.cv===cvKey;b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-selected',String(on))});
+  el('cvpaper').innerHTML=cvHtml(CVS[cvKey]);
+  el('cvmsg').textContent='';
+}
+document.querySelector('.cvtabs').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;cvKey=b.dataset.cv;renderCv()});
+el('cvcopy').addEventListener('click',()=>{
+  const t=cvText(CVS[cvKey]);
+  const ok=()=>{el('cvmsg').textContent='Copied. Paste it into Word or Google Docs and change the details.'};
+  try{navigator.clipboard.writeText(t).then(ok,()=>{el('cvmsg').textContent='Copy did not work here. Select the CV text and copy it yourself.'})}catch(e){el('cvmsg').textContent='Copy did not work here. Select the CV text and copy it yourself.'}
+});
+let dl=null;const inClaude=!!(window.claude&&window.claude.use);
+if(inClaude){try{window.claude.use('downloads').then(d=>{dl=d;if(d)el('cvdl').hidden=false}).catch(()=>{})}catch(e){}}
+else el('cvdl').hidden=false;
+el('cvdl').addEventListener('click',async()=>{
+  const names={Students:'student',Parents:'parent',Newcomers:'new-to-uk',Apprentices:'apprentice'};
+  const filename='TrueShift-UK-CV-template-'+names[cvKey]+'.rtf';
+  const blob=new Blob([cvRtf(CVS[cvKey])],{type:'application/rtf'});
+  const done=()=>{el('cvmsg').textContent='Downloaded. It opens in Word, Google Docs or Pages.'};
+  const fail=()=>{el('cvmsg').textContent='The download did not finish. You can copy the text instead.'};
+  if(dl){try{await dl.save({filename,data:blob});done()}catch(e){fail()}return}
+  if(inClaude)return;
+  try{const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);done()}catch(e){fail()}
+});
+cvKey=(state.group in CVS)?state.group:'Students';renderCv();
+{
+  const NS='http://www.w3.org/2000/svg';
+  const mk=(t,a)=>{const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);return n};
+  const eye=el('eye');
+  for(let i=0;i<20;i++){const a=i*Math.PI/10;const x=790+62*Math.cos(a),y=84+62*Math.sin(a);eye.appendChild(mk('line',{x1:790,y1:84,x2:x.toFixed(1),y2:y.toFixed(1)}));eye.appendChild(mk('circle',{class:'pod',cx:x.toFixed(1),cy:y.toFixed(1),r:3.2}))}
+  const p=el('pinn');for(let x=452;x<620;x+=14){p.appendChild(mk('path',{d:'M'+x+' 96h6l-3-12z'}))}
+  const far=el('far');let s=7;const rnd=()=>(s=s*16807%2147483647)/2147483647;
+  for(let x=0;x<1200;x+=26+Math.floor(rnd()*22)){if(x>400&&x<870)continue;const h=30+Math.floor(rnd()*70);far.appendChild(mk('rect',{x:x,y:150-h,width:18+Math.floor(rnd()*16),height:h}))}
+}
+}
+</script>
+</body>
+</html>

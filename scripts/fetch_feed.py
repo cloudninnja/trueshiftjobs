@@ -889,7 +889,7 @@ def fetch_employer_posts(url, status):
         "time": ("timestamp",), "title": ("job title",), "company": ("company name", "employer"),
         "borough": ("borough",), "area": ("area", "postcode"), "type": ("job type",), "hours": ("hours",),
         "pay": ("pay", "salary"), "closes": ("closing",), "apply": ("how to apply", "apply"),
-        "desc": ("description", "about the job"), "status": ("status",)}.items()}
+        "desc": ("description", "about the job"), "status": ("status",), "website": ("website",)}.items()}
     jobs = []
     for r in rows[1:]:
         get = lambda k: (r[idx[k]].strip() if idx[k] is not None and idx[k] < len(r) else "")
@@ -903,6 +903,7 @@ def fetch_employer_posts(url, status):
         lo = min(nums) if nums else None
         hourly = lo is not None and lo < 100
         desc = clean(get("desc"), 600)
+        full_desc = clean(get("desc"), 3000)
         text = " ".join([get("title"), desc, get("hours")])
         sid = hashlib.sha1((get("time") + "|" + get("title") + "|" + get("company")).encode()).hexdigest()[:12]
         job = make_job("Employer", sid, get("title"), get("company"), borough or "", get("area"), jt,
@@ -914,6 +915,11 @@ def fetch_employer_posts(url, status):
             job["hours"] = clean(get("hours"), 120)
         if desc:
             job["about"] = desc[:300]
+            job["description"] = full_desc
+        site = get("website")
+        if site:
+            job["website"] = site if site.startswith("http") else "https://" + site
+        job["page"] = "/jobs/posted/%s/" % sid
         if "apprentice" in jtype:
             job["apprenticeship"] = True
             job["bestFor"] = "Apprentices"
