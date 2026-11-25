@@ -27,13 +27,17 @@ body{margin:0;background:var(--sea);color:var(--text);font:16px/1.55 "Hanken Gro
 a{color:var(--sky)}
 .band{padding-block:clamp(28px,4vw,56px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
 .wrap{max-width:min(1680px,100%);margin:0 auto}
-.top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
 .brand{font-weight:700;font-size:17px;margin:0 0 18px;color:var(--sky)}
 h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
 .lead{color:var(--sub);font-size:17px;max-width:58ch;margin:0 0 18px}
 .facts{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--sub);font-size:14px;margin:0;padding:0;list-style:none}
 .facts b{color:#fff;font-weight:600}
-.compass{width:100%;max-width:640px;justify-self:end;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(96px,auto));gap:12px;padding:8px}
+.mapcol{width:100%;max-width:640px;justify-self:end}
+.stepn{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--sky);color:var(--ink);font-size:13px;font-weight:700;margin-right:8px;vertical-align:1px}
+.maplabel{margin:0 0 4px 8px}
+#types:empty{display:none}#types .stypes{margin-top:12px}
+.compass{width:100%;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(96px,auto));gap:12px;padding:8px}
 .compass svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .reg{position:relative;z-index:1;appearance:none;border:2px solid var(--sky);background:var(--sea2);color:#fff;border-radius:999px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 6px;min-height:96px;transition:background .2s,border-color .2s}
 .reg:hover{background:var(--sea3)}
@@ -110,7 +114,7 @@ footer p{margin:0 0 6px;max-width:80ch}
 .who-q{margin:0 0 8px;font-weight:600;color:#fff}
 .chip.saved{border-style:dashed}
 .chip span{font-variant-numeric:tabular-nums}
-.quick{margin-top:16px;background:var(--sea2);border:1px solid #2f5b88;border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:16px 28px;align-items:start}
+.quick{margin-top:16px;background:var(--sea2);border:1px solid #2f5b88;border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:16px 28px;align-items:start}
 .quick h2{margin:0;font-size:22px;font-weight:600;line-height:1.2}
 .quick p.sub{margin:6px 0 0;color:var(--sub);font-size:15px}
 .stypes{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
@@ -180,7 +184,7 @@ button.apply.alt{border:2px solid var(--sea)}
 .skyline .river{fill:#8fd3ff;fill-opacity:.16}
 @media(max-width:860px){.cvgrid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:860px){.guides{grid-template-columns:minmax(0,1fr)}.safe .cols{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:760px){.top{grid-template-columns:minmax(0,1fr)}.compass{max-width:460px;width:100%;justify-self:center}}
+@media(max-width:760px){.top{grid-template-columns:minmax(0,1fr)}.mapcol{max-width:460px;justify-self:center}}
 @media(max-width:600px){.compass{grid-template-rows:repeat(3,minmax(84px,auto));gap:8px}.reg{min-height:84px}
  .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bar #q{grid-column:1/-1}.bar .ctl{width:100%;min-width:0}
  .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(-1 * max(5vw,16px));padding:2px max(5vw,16px) 6px}
@@ -207,7 +211,23 @@ header.band{overflow-x:clip}
           <li><a href="#cv">Free UK CV template</a></li>
           <li class="postjob" hidden><a class="postlink" href="#" target="_blank" rel="noopener noreferrer">Employers: post a job free</a></li>
         </ul>
+        <div class="who" role="group" aria-label="Who are you looking for work as?">
+          <p class="who-q"><span class="stepn">1</span>I'm looking for work as</p>
+          <div class="chips">
+            <button class="chip" type="button" data-g="All" aria-pressed="true">Anyone</button>
+            <button class="chip" type="button" data-g="Students" aria-pressed="false">A student</button>
+            <button class="chip" type="button" data-g="Newcomers" aria-pressed="false">Someone new to the UK</button>
+            <button class="chip" type="button" data-g="Apprentices" aria-pressed="false">An apprentice</button>
+            <button class="chip" type="button" data-g="Graduates" aria-pressed="false">A graduate</button>
+            <button class="chip" type="button" data-g="Parents" aria-pressed="false">A parent returning to work</button>
+            <button class="chip" type="button" data-g="Experienced" aria-pressed="false">Experienced &amp; Professional</button>
+            <button class="chip saved" type="button" data-g="Saved" aria-pressed="false">Saved jobs <span id="savedn">0</span></button>
+          </div>
+        </div>
+        <div id="types"></div>
       </div>
+      <div class="mapcol">
+      <p class="who-q maplabel"><span class="stepn">2</span>Pick your area</p>
       <div class="compass" id="compass" role="group" aria-label="Filter by part of London">
         <svg viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
           <path d="M0 158 C 40 140, 70 175, 110 155 S 170 135, 200 160 S 260 175, 300 150" fill="none" stroke="#8fd3ff" stroke-opacity=".35" stroke-width="16" stroke-linecap="round"/>
@@ -220,6 +240,7 @@ header.band{overflow-x:clip}
         <button class="reg r-east" type="button" data-r="East" aria-pressed="false"><b>0</b><span>East</span></button>
         <button class="reg r-south" type="button" data-r="South" aria-pressed="false"><b>0</b><span>South</span></button>
         <span class="thames">River Thames</span>
+      </div>
       </div>
     </div>
     <svg class="skyline" id="skyline" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax slice" role="img" aria-label="London skyline with the Houses of Parliament, Big Ben and the London Eye">
@@ -269,19 +290,6 @@ header.band{overflow-x:clip}
         <option value="new">Newest first</option>
         <option value="pay">Highest pay</option>
       </select>
-    </div>
-    <div class="who" role="group" aria-label="Who are you looking for work as?">
-      <p class="who-q">I'm looking for work as</p>
-      <div class="chips">
-        <button class="chip" type="button" data-g="All" aria-pressed="true">Anyone</button>
-        <button class="chip" type="button" data-g="Students" aria-pressed="false">A student</button>
-        <button class="chip" type="button" data-g="Newcomers" aria-pressed="false">Someone new to the UK</button>
-        <button class="chip" type="button" data-g="Apprentices" aria-pressed="false">An apprentice</button>
-        <button class="chip" type="button" data-g="Graduates" aria-pressed="false">A graduate</button>
-        <button class="chip" type="button" data-g="Parents" aria-pressed="false">A parent returning to work</button>
-        <button class="chip" type="button" data-g="Experienced" aria-pressed="false">Experienced &amp; Professional</button>
-        <button class="chip saved" type="button" data-g="Saved" aria-pressed="false">Saved jobs <span id="savedn">0</span></button>
-      </div>
     </div>
     <div class="quick" id="quick" aria-live="polite"></div>
     <p class="count" id="count" aria-live="polite"></p>
@@ -541,12 +549,12 @@ if(window.PAGE_GROUP)state.group=window.PAGE_GROUP;
 if(window.PAGE_BOROUGH){state.borough=window.PAGE_BOROUGH;state.region=window.PAGE_REGION||'All';state.group='All'}
 const QUICK={
  All:{h:'Find a real job in three steps',p:'Jobs with a Checked stamp passed all 8 checks. The rest come from official job feeds, each listed once and posted in the last 30 days.',s:[['Pick who you are','Choose student, new to the UK, apprentice, graduate, parent or experienced above to see the jobs that suit you.'],['Choose your area','Tap a part of London on the map, then pick your borough.'],['Apply on the advert','Tap Apply to open the advert. Save jobs to come back to later.']]},
- Students:{h:'Quick start for students',p:'Weekend, evening, holiday and flexible jobs. Tap a job type to narrow the list.',s:[['Know your hours','On a Student visa at degree level you can work up to 20 hours a week in term time, and full time in official holidays.'],['Know your pay','The legal minimum is £12.71 an hour at 21 and over, £10.85 at 18 to 20 and £8.00 at 16 to 17.'],['Get your NI number','<a href="https://www.gov.uk/apply-national-insurance-number">Apply free on GOV.UK</a>. You can start work before it arrives if you can prove your right to work.'],['Get holiday pay','Part-time and casual staff get paid holiday too. If your hours change each week, it builds up at 12.07% of the hours you work.'],['Check your tax','Most students earn under the £12,570 tax-free allowance. If too much tax is taken, you can <a href="https://www.gov.uk/claim-tax-refund">claim it back on GOV.UK</a>.'],['Say when you can work','Put your free days and hours at the top of your CV so employers can fit you in fast.']]},
- Parents:{h:'Quick start for parents',p:'Jobs with school hours, term-time or part-time shifts. Tap a job type to narrow the list.',s:[['Look for school hours','Jobs marked for parents fit around the school day or term time. Schools often hire for term-time only roles.'],['Ask for flexibility','You can ask for flexible working from your first day in a job, up to twice a year. The employer must decide within two months.'],['Get funded childcare','In England, eligible working parents can get 30 hours of funded childcare a week for children from 9 months to school age. <a href="'+GOV.childcare+'">Check on GOV.UK</a>.'],['Use Tax-Free Childcare','The government adds £2 for every £8 you pay for childcare, up to £2,000 per child a year.'],['Explain your break','Add one honest line about your career break to your CV, then show the skills you used in that time.'],['Look for returner roles','Some employers run returner programmes for people coming back after a break. Try searching returner.']]},
- Newcomers:{h:'Quick start if you are new to the UK',p:'Entry-level jobs that offer training, with a normal right-to-work check. Tap a job type to narrow the list.',s:[['Get your share code ready','With an eVisa, get a right-to-work share code on <a href="'+GOV.share+'">GOV.UK</a>. It starts with W and lasts 90 days.'],['Apply for your NI number','<a href="https://www.gov.uk/apply-national-insurance-number">Apply free on GOV.UK</a>. You can start work before it arrives.'],['Open a bank account','Your pay goes into a UK bank account. Many banks and app banks let you open one with your passport and visa.'],['Start with entry-level shifts','Jobs marked for newcomers are entry level and offer training, such as hospitality, care and warehouse work.'],['Know your rights','The minimum wage, paid holiday and a payslip apply to every worker, whatever your nationality.'],['Stay safe','Never pay for a job, and never send your passport before a real interview.']]},
+ Students:{h:'Quick start for students',p:'Weekend, evening, holiday and flexible jobs.',s:[['Know your hours','On a Student visa at degree level you can work up to 20 hours a week in term time, and full time in official holidays.'],['Know your pay','The legal minimum is £12.71 an hour at 21 and over, £10.85 at 18 to 20 and £8.00 at 16 to 17.'],['Get your NI number','<a href="https://www.gov.uk/apply-national-insurance-number">Apply free on GOV.UK</a>. You can start work before it arrives if you can prove your right to work.'],['Get holiday pay','Part-time and casual staff get paid holiday too. If your hours change each week, it builds up at 12.07% of the hours you work.'],['Check your tax','Most students earn under the £12,570 tax-free allowance. If too much tax is taken, you can <a href="https://www.gov.uk/claim-tax-refund">claim it back on GOV.UK</a>.'],['Say when you can work','Put your free days and hours at the top of your CV so employers can fit you in fast.']]},
+ Parents:{h:'Quick start for parents',p:'Jobs with school hours, term-time or part-time shifts.',s:[['Look for school hours','Jobs marked for parents fit around the school day or term time. Schools often hire for term-time only roles.'],['Ask for flexibility','You can ask for flexible working from your first day in a job, up to twice a year. The employer must decide within two months.'],['Get funded childcare','In England, eligible working parents can get 30 hours of funded childcare a week for children from 9 months to school age. <a href="'+GOV.childcare+'">Check on GOV.UK</a>.'],['Use Tax-Free Childcare','The government adds £2 for every £8 you pay for childcare, up to £2,000 per child a year.'],['Explain your break','Add one honest line about your career break to your CV, then show the skills you used in that time.'],['Look for returner roles','Some employers run returner programmes for people coming back after a break. Try searching returner.']]},
+ Newcomers:{h:'Quick start if you are new to the UK',p:'Entry-level jobs that offer training, with a normal right-to-work check.',s:[['Get your share code ready','With an eVisa, get a right-to-work share code on <a href="'+GOV.share+'">GOV.UK</a>. It starts with W and lasts 90 days.'],['Apply for your NI number','<a href="https://www.gov.uk/apply-national-insurance-number">Apply free on GOV.UK</a>. You can start work before it arrives.'],['Open a bank account','Your pay goes into a UK bank account. Many banks and app banks let you open one with your passport and visa.'],['Start with entry-level shifts','Jobs marked for newcomers are entry level and offer training, such as hospitality, care and warehouse work.'],['Know your rights','The minimum wage, paid holiday and a payslip apply to every worker, whatever your nationality.'],['Stay safe','Never pay for a job, and never send your passport before a real interview.']]},
  Apprentices:{h:'Quick start for apprenticeships',p:'Paid jobs with training towards a qualification, from Level 2 up to degree level. Shown until their closing date.',s:[['Pick your level','Level 3 matches A levels. Level 4 to 5 are higher apprenticeships, and Level 6 to 7 are degree apprenticeships.'],['Know your pay','At least £8.00 an hour if you are under 19 or in your first year, then the minimum wage for your age. You never pay for the training.'],['Check the dates','Many apprenticeships start in September and close months before. Each advert shows its start and closing dates.'],['Training is paid time','Part of your working hours is set aside for training with a college or provider, and you are paid for it.'],['Search GOV.UK too','<a href="https://www.findapprenticeship.service.gov.uk">Find an apprenticeship</a> lists more adverts across England.'],['Any age can apply','Apprenticeships are open to anyone 16 or over who is not in full-time education.']]},
- Experienced:{h:'Quick start for experienced professionals',p:'Professional, skilled and senior roles across London. Tap a category to narrow the list.',s:[['Pick a category','Tap a category on the left, or use the category filter, to see one field such as IT, finance or health.'],['Search your field','Type a job title or skill in the search box, such as accountant, engineer or nurse.'],['Filter by area','Tap a part of London on the map, then pick your borough.'],['Read the salary','Salaries are shown where the advert gives them. FTE means the full-time figure, so part-time pay is a share of it.'],['Ask about flexibility','You can request flexible working from your first day in a new job.'],['Check the advert','Always read the full advert before you apply. Some jobs are listed by recruitment agencies.']]},
- Graduates:{h:'Quick start for graduates',p:'Graduate schemes, internships, trainee and junior roles across London. Tap a job type to narrow the list.',s:[['Search your field','Type a subject or job, such as finance, engineering or marketing.'],['Check the start date','Many graduate schemes start in September and close months before. Read each advert for dates.'],['Apply early','Big schemes often open in the autumn and can close early once they have enough applicants.'],['Look beyond schemes','Junior, assistant and trainee roles are open all year and are a great first step.'],['Use your degree','Put your degree, projects and any part-time work near the top of your CV.'],['Know your pay','Internships where you do real work must pay at least the minimum wage.']]},
+ Experienced:{h:'Quick start for experienced professionals',p:'Professional, skilled and senior roles across London.',s:[['Pick a category','Tap a category at the top, or use the category filter, to see one field such as IT, finance or health.'],['Search your field','Type a job title or skill in the search box, such as accountant, engineer or nurse.'],['Filter by area','Tap a part of London on the map, then pick your borough.'],['Read the salary','Salaries are shown where the advert gives them. FTE means the full-time figure, so part-time pay is a share of it.'],['Ask about flexibility','You can request flexible working from your first day in a new job.'],['Check the advert','Always read the full advert before you apply. Some jobs are listed by recruitment agencies.']]},
+ Graduates:{h:'Quick start for graduates',p:'Graduate schemes, internships, trainee and junior roles across London.',s:[['Search your field','Type a subject or job, such as finance, engineering or marketing.'],['Check the start date','Many graduate schemes start in September and close months before. Read each advert for dates.'],['Apply early','Big schemes often open in the autumn and can close early once they have enough applicants.'],['Look beyond schemes','Junior, assistant and trainee roles are open all year and are a great first step.'],['Use your degree','Put your degree, projects and any part-time work near the top of your CV.'],['Know your pay','Internships where you do real work must pay at least the minimum wage.']]},
  Saved:{h:'Your saved jobs',p:'Saved on this device only. Jobs that close are removed from the list.',s:[['Apply soon','Jobs can close quickly, so apply to the ones you like today.'],['Check the hours','Make sure the shifts fit your week before you apply.'],['Come back tomorrow','New jobs are added every morning.']]}
 };
 const EMPTY={
@@ -645,7 +653,8 @@ function render(keepLimit){
   const fq=FAQS[state.group];el('sfaq').hidden=!fq;
   if(fq&&el('sfaq').dataset.g!==state.group){el('sfaq').dataset.g=state.group;el('faqh').textContent=fq.h;el('faqlist').innerHTML=fq.q.map(x=>'<details><summary>'+x[0]+'</summary><p>'+x[1]+'</p></details>').join('')}
   el('quick').classList.toggle('st',!!QUICK[state.group]&&state.group!=='All'&&state.group!=='Saved');
-  el('quick').innerHTML='<div><h2>'+qk.h+'</h2><p class="sub">'+qk.p+'</p>'+qx+'</div><ol class="steps">'+qk.s.map(s=>'<li><b>'+s[0]+'</b>'+s[1]+'</li>').join('')+'</ol>';
+  el('types').innerHTML=qx;
+  el('quick').innerHTML='<div><h2>'+qk.h+'</h2><p class="sub">'+qk.p+'</p></div><ol class="steps">'+qk.s.map(s=>'<li><b>'+s[0]+'</b>'+s[1]+'</li>').join('')+'</ol>';
   el('q').value=state.q;el('sort').value=state.sort;el('jtype').value=state.jtype||'All';
   el('level').hidden=state.group!=='Apprentices';el('cat').hidden=state.group!=='Experienced';el('cat').value=state.cat||'All';el('level').value=state.level||'All';
   const shown=jobs.filter(j=>matches(j,false)).sort((a,b)=>state.sort==='pay'?payNum(b)-payNum(a):String(dateOf(b)).localeCompare(String(dateOf(a))));
@@ -671,7 +680,7 @@ const up=src.dataset.updated;
 if(up){const t=new Date(up+'T12:00:00');if(!isNaN(t))el('updated').textContent=t.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
 el('compass').addEventListener('click',e=>{const b=e.target.closest('.reg');if(!b)return;state.region=state.region===b.dataset.r?'All':b.dataset.r;state.borough='All';fillBoroughs();render()});
 el('allbtn').addEventListener('click',()=>{state.region='All';state.borough='All';fillBoroughs();render()});
-el('quick').addEventListener('click',e=>{const b=e.target.closest('.stype');if(!b)return;if(b.dataset.cat){state.cat=state.cat===b.dataset.cat?'All':b.dataset.cat;render();return}state.stype=state.stype===b.dataset.st?'':b.dataset.st;render()});
+el('types').addEventListener('click',e=>{const b=e.target.closest('.stype');if(!b)return;if(b.dataset.cat){state.cat=state.cat===b.dataset.cat?'All':b.dataset.cat;render();return}state.stype=state.stype===b.dataset.st?'':b.dataset.st;render()});
 function setHead(g){const h=HEADS[g]||HEADS.All;if(!h)return;const h1=document.querySelector('h1');if(h1)h1.textContent=h.h1;const ld=document.querySelector('.lead');if(ld)ld.textContent=h.lead;document.title=h.title}
 document.querySelector('.chips').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;state.group=c.dataset.g;state.stype='';setHead(state.group);render();if(ONSITE&&history.replaceState){try{history.replaceState(null,'',PAGES[state.group]?'/jobs/'+PAGES[state.group]+'/':'/')}catch(err){}}});
 el('list').addEventListener('click',e=>{const b=e.target.closest('.star');if(!b)return;const k=b.dataset.k;saved=saved.includes(k)?saved.filter(x=>x!==k):saved.concat([k]);saves.set(saved);render(true)});
