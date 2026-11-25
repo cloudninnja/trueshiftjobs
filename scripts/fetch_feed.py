@@ -179,7 +179,7 @@ VAGUE_LONDON = re.compile(
 NOT_LONDON = re.compile(
     r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
     r"nationwide|various locations|multiple locations)\s*$", re.I)
-RULES_VERSION = 7  # bump when the rules change, so older feed jobs are not carried over
+RULES_VERSION = 8  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -871,7 +871,13 @@ def fetch_nhs(status):
         employer = _txt(_first(k, "employer", "employername"))
         desc = _txt(k.get("description"))
         wp = (_txt(k.get("workingpattern")) + " " + _txt(k.get("type"))).lower()
-        jt = "Part-time" if "part" in wp else "Full-time"
+        both = (wp + " " + title + " " + desc).lower()
+        if re.search(r"part[- ]?time|\bbank\b|job share|flexible hours", both):
+            jt = "Part-time"
+        elif re.search(r"full[- ]?time", both):
+            jt = "Full-time"
+        else:
+            jt = ""
         sal_txt, hourly = tidy_salary(_txt(k.get("salary")), "YEAR")
         link = _txt(_first(k, "url", "link", "guid"))
         vid = _txt(_first(k, "id", "reference")) or link
