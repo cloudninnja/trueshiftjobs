@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T09:22:24Z",
+  "generated": "2026-11-25T09:33:16Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6539,
-      "kept": 507,
+      "fetched": 6542,
+      "kept": 494,
       "dropped": {
-        "too old or closed": 86
+        "too old or closed": 87
       }
     },
     "Employer": {
@@ -30,23 +30,34 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5749729</id><reference>C9337-26-00019</reference><title>Deputy Lead Sonographer</title><description>An exciting oppoturnity has arisen for a highly motivated sonographer to undertake a band 8a role which will allow the right candidate to expand their...</description><employer>London North West University Healthcare NHS Trust</employer><type>Permanent</type><salary>£63665.00 to £70887.00</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T09:22:46.333565899</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9337-26-00019</url><locations><location>London, HA1 3UJ</location></locations></vacancyDetails><vacancyDetails><id>5737111</id><reference>C9197-26-00003</reference><title>Consultant - Gen Surgery - Interest in Upper GI / Emergency Surgery</title><description>The job plan will consist of ten programmed activities (10 PAs), including 2.0 SPAs and 8.0 DCCs and emergency work. The appointee will contribute to ...</description><employer>Lewisham and Greenwich NHS Trust</employer><type>Permanent</type><salary>£113565.00 to £150569.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T09:22:35.536816006</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9197-26-00003</url><locations><location>London, SE18 4QH</location></locations></vacancyDetails><vacancyDetails><id>5736876</id><reference>C9197-26-00002</reference><title>Consultant in General Surgery with an interest in Col",
-      "fetched": 2080,
-      "pages": 209,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5744629</id><reference>C9276-26-00001</reference><title>Senior Cancer Pathway Navigator</title><description>The Senior Cancer Pathway Navigator is a key leadership role within the Cancer Services Team, responsible for overseeing the effective coordination an...</description><employer>Queen Victoria Hospital NHS Foundation Trust</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T09:32:23.611674723</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9276-26-00001</url><locations><location>East Grinstead, RH19 3DZ</location></locations></vacancyDetails><vacancyDetails><id>5744631</id><reference>C9276-26-00002</reference><title>Sonographer</title><description>To perform a wide range of ultrasound scans this could include renal, abdominal, DVT Doppler, gynaecological and some small parts according to Departm...</description><employer>Queen Victoria Hospital NHS Foundation Trust</employer><type>Permanent</type><salary>£49387.00 to £56515.00</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T09:32:20.229695250</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9276-26-00002</url><locations><location>East Grinstead, RH19 3DZ</location></locations></vacancyDetails><vacancyDetails><id>5744637</id><reference>C9276-26-00003</reference><title>Maxillofacial Scheduler</title><description>We are currently looking for a self motivated, ",
+      "fetched": 2090,
+      "pages": 210,
       "kept": 1456,
       "dropped": {
-        "outside London": 619,
-        "too old or closed": 5
+        "outside London": 628,
+        "too old or closed": 6
       }
     },
     "Careerjet": {
-      "skipped": "no CAREERJET_API_KEY secret"
+      "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     "Find an apprenticeship": {
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "error": "IncompleteRead: IncompleteRead(68910 bytes read, 17456 more expected)"
+      "fetched": 7713,
+      "uniqueFromSearches": 4252,
+      "kept": 2727,
+      "dropped": {
+        "too old or closed": 864,
+        "blocked words": 59,
+        "below adult minimum wage": 36,
+        "remote or not in London": 85,
+        "blocked advertiser": 96,
+        "outside London": 271,
+        "London area not given": 114
+      }
     },
     "Adzuna": {
       "fetched": 425,
@@ -57,22 +68,22 @@
       }
     }
   },
-  "total": 4227,
-  "duplicatesRemoved": 2258,
+  "total": 4275,
+  "duplicatesRemoved": 4997,
   "byRegion": {
-    "Central": 1226,
-    "North": 429,
-    "East": 954,
-    "South": 830,
-    "West": 788
+    "Central": 1240,
+    "North": 430,
+    "East": 960,
+    "South": 848,
+    "West": 797
   },
   "byJobType": {
-    "Part-time": 1077,
-    "Full-time": 1686,
-    "Not stated": 1464
+    "Part-time": 1083,
+    "Full-time": 1714,
+    "Not stated": 1478
   },
-  "carriedOver": 4154,
-  "areaApproximate": 302,
+  "carriedOver": 4227,
+  "areaApproximate": 307,
   "apprenticeships": 48,
   "apprenticeshipLevels": {
     "not stated": 21,
@@ -82,12 +93,12 @@
     "2": 6
   },
   "byGroup": {
-    "Students": 489,
-    "Parents": 319,
-    "(none)": 587,
-    "Experienced": 2548,
-    "Newcomers": 586,
-    "Graduates": 62,
+    "Experienced": 2571,
+    "Students": 494,
+    "Parents": 323,
+    "(none)": 595,
+    "Newcomers": 600,
+    "Graduates": 63,
     "Apprentices": 48
   }
 }
