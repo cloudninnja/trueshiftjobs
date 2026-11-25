@@ -702,7 +702,7 @@ function render(keepLimit){
 const up=src.dataset.updated;
 if(up){const t=new Date(up+'T12:00:00');if(!isNaN(t))el('updated').textContent=t.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
 el('compass').addEventListener('click',e=>{const b=e.target.closest('.reg');if(!b)return;state.region=state.region===b.dataset.r?'All':b.dataset.r;state.borough='All';fillBoroughs();render()});
-const ALERT_FORM={action:'',email:'',consent:'',consentText:'I agree to TrueShift Jobs emailing me about new jobs. I can unsubscribe at any time.'};
+const ALERT_FORM={action:'https://docs.google.com/forms/d/e/1FAIpQLSfDVSUWs800TxAqThCrnI3MQ9NwuA4m5HHOzTBWrKQY9PUAEg/formResponse',email:'entry.181581647',consent:'entry.1272065490',consentText:'I agree to TrueShift Jobs emailing me about new jobs. I can unsubscribe at any time.'};
 (function(){const f=el('alerts');if(!f||!ALERT_FORM.action)return;f.hidden=false;
   let done=false;try{done=localStorage.getItem('ts_alert')==='1'}catch(e){}
   const msg=(t,bad)=>{el('amsg').textContent=t;el('amsg').classList.toggle('err',!!bad)};
