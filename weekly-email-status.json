@@ -1,8 +1,8 @@
 {
  "date": "2026-11-25",
- "confirmedSubscribers": 0,
+ "confirmedSubscribers": 1,
  "subscribersByType": {
-  "Student jobs": 0,
+  "Student jobs": 1,
   "Apprenticeships": 0,
   "Graduate jobs": 0,
   "Professional jobs": 0,
@@ -12,5 +12,7 @@
  },
  "oldDraftsRemoved": 0,
  "newJobsThisWeek": 2667,
- "drafts": {}
+ "drafts": {
+  "Student jobs": "draft ready"
+ }
 }
