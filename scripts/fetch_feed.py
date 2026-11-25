@@ -181,7 +181,7 @@ VAGUE_LONDON = re.compile(
 NOT_LONDON = re.compile(
     r"^\s*(united kingdom|uk|england|great britain|gb|south east england|home based|homebased|remote|"
     r"nationwide|various locations|multiple locations)\s*$", re.I)
-RULES_VERSION = 8  # bump when the rules change, so older feed jobs are not carried over
+RULES_VERSION = 9  # bump when the rules change, so older feed jobs are not carried over
 
 GROUP_RULES = {
     "Students": re.compile(r"(weekend|evening|student|flexible|zero hours|bank|casual|retail|barista|"
@@ -465,6 +465,20 @@ def groups_for(job, text):
     return ", ".join(out)
 
 
+def senior_pay(salary):
+    """True when the advertised pay is clearly above entry level (not an FTE figure)."""
+    sal = salary or ""
+    nums = [float(x.replace(",", "")) for x in re.findall(r"£([\d,]+(?:\.\d+)?)", sal)]
+    if not nums:
+        return False
+    low = min(nums)
+    if "an hour" in sal:
+        return low > 25
+    if "a year" in sal and not re.search(r"full-time equivalent|\bFTE\b", sal, re.I):
+        return low > 35000
+    return False
+
+
 def keep(job, text):
     """Audience, safety and pay rules. Returns a reason to drop, or None."""
     t = job["title"]
@@ -477,7 +491,7 @@ def keep(job, text):
     if emp and any(emp.startswith(b) for b in BLOCK_EMPLOYERS):
         return "blocked advertiser"
     if not job.get("apprenticeship") and not job.get("graduate"):
-        if SENIOR.search(t) or (job.get("jobType") != "Part-time" and not ENTRY.search(t)):
+        if SENIOR.search(t) or senior_pay(job.get("salary")) or (job.get("jobType") != "Part-time" and not ENTRY.search(t)):
             # Senior and professional jobs are kept, but only under the Experienced tab.
             job["experienced"] = True
             job["bestFor"] = "Experienced"
