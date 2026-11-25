@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T08:00:34Z",
+  "generated": "2026-11-25T08:06:41Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6573,
-      "kept": 493,
+      "fetched": 6575,
+      "kept": 490,
       "dropped": {
-        "too old or closed": 88
+        "too old or closed": 86
       }
     },
     "Employer": {
@@ -33,9 +33,9 @@
       "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5749837</id><reference>E0177-26-00309</reference><title>Care Home Clinical Lead (RGN/RMN)</title><description>ABOUT THE ROLEAs a Care Home Clinical Lead at Barchester, you'll use your compassion and experience to help deliver clinical care to the high standard...</description><employer>Barchester Healthcare</employer><type>Permanent</type><salary>£25.75</salary><closeDate>2027-01-24</closeDate><postDate>2026-11-25T05:46:04.218041996</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0177-26-00309</url><locations><location>Oxted, RH8 0NH</location></locations></vacancyDetails><vacancyDetails><id>5749800</id><reference>L0034-26-00119</reference><title>Registered Nurse - Nights</title><description>At Avery Healthcare, we are all about supporting the people who care for our residents. We know how hard our teams work, and were here to celebrate an...</description><employer>Avery Healthcare Group Ltd.</employer><type>Permanent</type><salary>£25.00</salary><closeDate>2026-12-14</closeDate><postDate>2026-11-25T05:43:07.399407955</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/L0034-26-00119</url><locations><location>Barnet, EN5 4BS</location></locations></vacancyDetails><vacancyDetails><id>5749688</id><reference>L0034-26-00115</reference><title>Receptionist - Bank</title><description>At Avery Healthcare, we are all about supporting the people who care for our residents. We know how hard our teams",
       "fetched": 2060,
       "pages": 207,
-      "kept": 1441,
+      "kept": 1442,
       "dropped": {
-        "outside London": 618,
+        "outside London": 617,
         "too old or closed": 1
       }
     },
@@ -44,16 +44,16 @@
     },
     "Reed": {
       "fetched": 7712,
-      "uniqueFromSearches": 4292,
-      "kept": 2770,
+      "uniqueFromSearches": 4283,
+      "kept": 2763,
       "dropped": {
-        "too old or closed": 861,
+        "too old or closed": 858,
         "blocked words": 60,
         "below adult minimum wage": 36,
-        "remote or not in London": 82,
+        "remote or not in London": 84,
         "blocked advertiser": 97,
-        "outside London": 253,
-        "London area not given": 133
+        "outside London": 256,
+        "London area not given": 129
       }
     },
     "Adzuna": {
@@ -65,37 +65,37 @@
       }
     }
   },
-  "total": 4605,
-  "duplicatesRemoved": 3716,
+  "total": 4154,
+  "duplicatesRemoved": 905,
   "byRegion": {
-    "Central": 1406,
-    "North": 447,
-    "East": 1018,
-    "South": 871,
-    "West": 863
+    "Central": 1203,
+    "North": 418,
+    "East": 945,
+    "South": 809,
+    "West": 779
   },
   "byJobType": {
-    "Part-time": 983,
-    "Full-time": 3170,
-    "Not stated": 452
+    "Part-time": 1061,
+    "Full-time": 1649,
+    "Not stated": 1444
   },
-  "carriedOver": 3253,
-  "areaApproximate": 403,
-  "apprenticeships": 50,
+  "carriedOver": 0,
+  "areaApproximate": 295,
+  "apprenticeships": 48,
   "apprenticeshipLevels": {
-    "not stated": 22,
+    "not stated": 21,
     "3": 19,
     "6": 1,
-    "2": 7,
-    "4": 1
+    "4": 1,
+    "2": 6
   },
   "byGroup": {
-    "Experienced": 2856,
-    "(none)": 600,
-    "Newcomers": 634,
-    "Students": 458,
-    "Parents": 341,
-    "Graduates": 72,
-    "Apprentices": 50
+    "Experienced": 2504,
+    "Students": 475,
+    "Newcomers": 576,
+    "(none)": 579,
+    "Parents": 309,
+    "Graduates": 62,
+    "Apprentices": 48
   }
 }
