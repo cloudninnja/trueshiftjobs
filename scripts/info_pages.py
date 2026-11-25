@@ -10,7 +10,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://trueshiftjobs.com"
 UPDATED = "25 November 2026"
 FEEDBACK = "https://docs.google.com/forms/d/e/1FAIpQLSeW3k2cq7yW0AW4c_R-y6liaAuuLxNshU0PUutiYNMoTfz62w/viewform"
-EMAIL = ""  # set to e.g. "hello@trueshiftjobs.com" once forwarding works
+EMAIL = "hello@trueshiftjobs.com"
 
 NAV = [("about", "About us"), ("contact", "Contact us"), ("privacy", "Privacy policy"), ("cookies", "Cookie policy"),
        ("terms", "Terms of use"), ("accessibility", "Accessibility"), ("data-sources", "Data sources"),
