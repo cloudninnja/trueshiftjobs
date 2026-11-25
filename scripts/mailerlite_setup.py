@@ -61,6 +61,11 @@ def main():
 
             st, forms = call("GET", "/forms/embedded?limit=50")
             out["embeddedForms"] = [{"id": x.get("id"), "name": x.get("name")} for x in forms.get("data", [])] if st == 200 else st
+            for x in (forms.get("data", []) if st == 200 else []):
+                st3, d = call("GET", "/forms/%s" % x.get("id"))
+                d = d.get("data", d)
+                keep = {k: v for k, v in d.items() if k not in ("stats", "html", "screenshot_url")}
+                out.setdefault("formDetails", []).append(keep)
 
             if out.get("jobAlertsGroupId"):
                 body = {"name": "API check - safe to delete", "type": "regular",
