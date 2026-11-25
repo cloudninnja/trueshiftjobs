@@ -25,20 +25,25 @@ def contact_line():
 
 
 PAGES = {
-    "about": ("About TrueShift Jobs", "A free London job site that shows real, current jobs and leaves out the noise.", f"""
-<p>Job hunting in London can be exhausting. The same vacancy appears ten times through different agencies, adverts stay up long after the job has gone, and some "jobs" turn out to be paid training courses or scams.</p>
-<p>TrueShift Jobs was built to fix that. Every morning we collect real, current vacancies across London, remove duplicates, drop anything older than 30 days, filter out scam wording and pay below the legal minimum, and sort every job by borough.</p>
-<h2>Who it is for</h2>
-<p>We focus on people who are often poorly served by big job boards: students looking for part-time work, people new to the UK, school leavers looking for apprenticeships, graduates, parents returning to work, and experienced professionals who want a cleaner list.</p>
-<h2>How it works</h2>
+    "about": ("About TrueShift Jobs", "Why I built a free London job site that shows real, current jobs and leaves out the noise.", f"""
+<h2>Why TrueShift Jobs exists</h2>
+<p>I'm Vamsi Are, an IT consultant based in London. TrueShift Jobs started at my own kitchen table, helping my daughter look for an apprenticeship.</p>
+<p>What should have been exciting quickly became frustrating. The same vacancy appeared again and again through different agencies. Adverts stayed up long after the job had gone. Some "apprenticeships" turned out to be paid training courses, and some adverts paid less than the legal minimum. We spent hours searching and very little of that time went on jobs that were really there.</p>
+<p>I realised that if it was this hard for us, it was harder still for many others: students looking for part-time work, parents going back to work after raising children, and people who have just moved to the UK and don't yet know what a genuine advert looks like, or that a real employer never asks you to pay.</p>
+<p>I spend my working days building systems that automate tedious work for businesses, so I pointed those skills at this problem. TrueShift Jobs does the boring filtering for you.</p>
+<h2>What it does</h2>
 <ul>
-<li>Thousands of jobs come from official job feeds every night. See <a href="/data-sources/">Data sources</a>.</li>
-<li>A smaller number are checked one by one against eight checks, such as a real employer, legal pay and no fees, and are marked "Checked".</li>
-<li>Employers can post jobs for free. Every employer post is checked by a person before it goes live.</li>
+<li>Collects real, current London vacancies every morning from official job feeds. See <a href="/data-sources/">Data sources</a>.</li>
+<li>Shows each job once, even when it appears on several job sites.</li>
+<li>Removes adverts older than 30 days, scam wording, paid-course "jobs" and pay below the legal minimum. Apprenticeships stay until their closing date, because they are often advertised months ahead.</li>
+<li>Sorts everything by borough, so you can find work close to home.</li>
+<li>Groups jobs for students, people new to the UK, apprentices, graduates, parents returning to work and experienced professionals.</li>
+<li>Lets employers post jobs for free. Every employer post is checked by a person before it goes live.</li>
 </ul>
-<h2>What we are not</h2>
-<p>TrueShift Jobs is not an employer or a recruitment agency. We do not take applications, and we never charge jobseekers. When you apply, you apply on the employer's or job site's own advert.</p>
-<p>TrueShift Jobs was started in 2026 by an IT consultant based in London. Questions or ideas? Please {contact_line()}.</p>
+<h2>What it is not</h2>
+<p>TrueShift Jobs is not an employer or a recruitment agency. We don't take applications, and we never charge jobseekers. When you apply, you apply on the employer's or job site's own advert.</p>
+<p>It is free for jobseekers and always will be. If it saves you even one wasted application, it has done its job.</p>
+<p>Vamsi Are, founder. Questions or ideas? Please {contact_line()}.</p>
 """),
     "contact": ("Contact us", "Questions, ideas, a broken link, or a job that has closed? We would like to hear from you.", f"""
 <h2>Jobseekers and general questions</h2>
