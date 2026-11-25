@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T16:27:34Z",
+  "generated": "2026-11-25T17:27:58Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6815,
-      "kept": 530,
+      "fetched": 6840,
+      "kept": 558,
       "dropped": {
-        "too old or closed": 92
+        "too old or closed": 87
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752344</id><reference>C9334-26-00030</reference><title>Psychotherapist/Psychologist/Psychological Therapist</title><description>We are seeking applicants for a Band 8A highly specialist psychological therapy post across specialist community and inpatient services in Lambeth. Ap...</description><employer>South London and Maudsley NHS Foundation Trust</employer><type>Permanent</type><salary>£66274.00 to £73496.00</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T16:28:00.642881813</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9334-26-00030</url><locations><location>London, SE58AZ</location></locations></vacancyDetails><vacancyDetails><id>5751211</id><reference>C9334-26-00027</reference><title>Specialist Psychologist/Psychological Therapist/Psychotherapist</title><description>We are pleased to be recruiting a part-time 0.6 wte Band 7 Specialist Psychologist/Psychological Therapist/Psychotherapist - trauma, providing CBT and...</description><employer>South London and Maudsley NHS Foundation Trust</employer><type>Permanent</type><salary>£55524.00 to £62652.00</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T16:27:48.300237392</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9334-26-00027</url><locations><location>Croydon, CR0 1FE</location></locations></vacancyDetails><vacancyDetails><id>5750898</id><reference>D9491-26-00004</reference><title>DCO for Special Educ",
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752378</id><reference>C9289-PC-327</reference><title>Clinical Fellowship in Obstetric Anaesthesia WM site</title><description>Clinical Fellowship in Obstetric Anaesthesia WM site This new post will be ideal for those applying for ST4 posts as it offers time during the working...</description><employer>Chelsea and Westminster Hospital NHS Foundation Trust</employer><type>Fixed-Term</type><salary>Negotiable</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T17:00:07.046138323</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9289-PC-327</url><locations><location>London, TW7 6AF</location></locations></vacancyDetails><vacancyDetails><id>5751713</id><reference>E0132-26-00060</reference><title>Support Services Manager</title><description>If you enjoy creating a well-presented and safe environment, then join the team at Jacobs Neurological Centre as a Support Services Manager and become...</description><employer>Elysium Healthcare</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-31</closeDate><postDate>2026-11-25T16:53:25.153122712</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0132-26-00060</url><locations><location>Hertfordshire, CM21 0HH</location></locations></vacancyDetails><vacancyDetails><id>5751712</id><reference>E0132-26-00059</reference><title>Social Worker Assistant</title><description>Are you looking to step into the world of social care w",
       "fetched": 2230,
       "pages": 224,
-      "kept": 1556,
+      "kept": 1557,
       "dropped": {
-        "outside London": 664,
-        "too old or closed": 10
+        "outside London": 668,
+        "too old or closed": 5
       }
     },
     "Careerjet": {
@@ -46,45 +46,45 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7638,
-      "uniqueFromSearches": 4231,
-      "kept": 2746,
+      "fetched": 7630,
+      "uniqueFromSearches": 4252,
+      "kept": 2774,
       "dropped": {
-        "too old or closed": 830,
-        "blocked words": 59,
-        "remote or not in London": 81,
+        "too old or closed": 829,
+        "blocked words": 58,
+        "remote or not in London": 83,
         "below adult minimum wage": 36,
-        "blocked advertiser": 100,
-        "outside London": 267,
-        "London area not given": 112
+        "blocked advertiser": 95,
+        "outside London": 264,
+        "London area not given": 113
       }
     },
     "Adzuna": {
-      "fetched": 433,
-      "kept": 376,
+      "fetched": 422,
+      "kept": 374,
       "dropped": {
-        "remote or not in London": 4,
-        "below adult minimum wage": 2,
-        "blocked words": 10
+        "blocked words": 8,
+        "remote or not in London": 2,
+        "below adult minimum wage": 1
       }
     }
   },
-  "total": 4248,
-  "duplicatesRemoved": 960,
+  "total": 4486,
+  "duplicatesRemoved": 5025,
   "byRegion": {
-    "Central": 1252,
-    "North": 401,
-    "East": 951,
-    "South": 836,
-    "West": 808
+    "Central": 1330,
+    "North": 436,
+    "East": 988,
+    "South": 900,
+    "West": 832
   },
   "byJobType": {
-    "Part-time": 1060,
-    "Full-time": 1649,
-    "Not stated": 1539
+    "Part-time": 1114,
+    "Full-time": 1805,
+    "Not stated": 1567
   },
-  "carriedOver": 0,
-  "areaApproximate": 349,
+  "carriedOver": 4248,
+  "areaApproximate": 366,
   "apprenticeships": 49,
   "apprenticeshipLevels": {
     "not stated": 24,
@@ -93,11 +93,11 @@
     "2": 5
   },
   "byGroup": {
-    "Students": 441,
-    "Parents": 274,
-    "Experienced": 2713,
-    "(none)": 520,
-    "Newcomers": 532,
+    "Students": 470,
+    "Parents": 309,
+    "Newcomers": 553,
+    "Experienced": 2884,
+    "(none)": 536,
     "Graduates": 93,
     "Apprentices": 49
   }
