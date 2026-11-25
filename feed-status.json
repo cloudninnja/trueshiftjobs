@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T09:49:27Z",
+  "generated": "2026-11-25T10:40:01Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6570,
-      "kept": 494,
+      "fetched": 6617,
+      "kept": 502,
       "dropped": {
-        "too old or closed": 86
+        "too old or closed": 85
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750183</id><reference>C9323-26-00021</reference><title>Audiologist (Fixed Term, 12 Months)</title><description>Join Our Adult Audiology Team An opportunity has arisen to join our friendly and supportive team. Who We're Looking For: Whether you are newly qualifi...</description><employer>Ashford &amp; St. Peter's Hospitals NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£33677.00 to £40996.00</salary><closeDate>2026-11-26</closeDate><postDate>2026-11-25T09:49:25.925094492</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9323-26-00021</url><locations><location>Ashford and Chertsey, TW15 3AA</location></locations></vacancyDetails><vacancyDetails><id>5750159</id><reference>E0341-26-00007</reference><title>Dermatology Outpatient Nurse - Hampshire</title><description>Location: Hampshire Availability: Saturdays &amp; Sundays Hours: 08:0018:00 Rates: Competitive About the Role: We are currently seeking experienced Dermat...</description><employer>18 Week Support Limited</employer><type>Locum</type><salary>Negotiable</salary><closeDate>2026-12-30</closeDate><postDate>2026-11-25T09:47:34.719465532</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0341-26-00007</url><locations><location>London, EC3R 5AR</location></locations></vacancyDetails><vacancyDetails><id>5750155</id><reference>E0341-26-00006</reference><title>Dermatology Outpatient Nurse - Dorset</title><description>Dermatolog",
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750416</id><reference>U0055-26-00009</reference><title>Bank Emergency Care Practitioner (ECP)</title><description>This is the perfect opportunity to be part of a diverse team providing assessment, diagnostics, diagnosis, treatment, advice, and referrals. As a UTC ...</description><employer>Greenwich Health Ltd</employer><type>Permanent</type><salary>£57847.00 to £75843.00</salary><closeDate>2026-12-06</closeDate><postDate>2026-11-25T10:33:09.639564202</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/U0055-26-00009</url><locations><location>London, SE18 4QH</location></locations></vacancyDetails><vacancyDetails><id>5750293</id><reference>C9824-26-00035</reference><title>Multi-Agency Child Protection Team Lead - RBKCW</title><description>CLCH is seeking a Registered Nurse, Midwife or Specialist Community Public Health Practitioner to lead Health's contribution to the Families First Par...</description><employer>Central London Community Health Trust</employer><type>Fixed-Term</type><salary>£66274.00 to £73496.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T10:27:52.431019950</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9824-26-00035</url><locations><location>London, W1D 3QS</location></locations></vacancyDetails><vacancyDetails><id>5750328</id><reference>A2960-26-00000</reference><title>Medical Receptionist</title><description>GP surgery multi-site receptionist: Opport",
       "fetched": 2100,
       "pages": 211,
-      "kept": 1461,
+      "kept": 1463,
       "dropped": {
-        "outside London": 629,
-        "too old or closed": 10
+        "outside London": 633,
+        "too old or closed": 4
       }
     },
     "Careerjet": {
@@ -46,59 +46,58 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7713,
-      "uniqueFromSearches": 4270,
-      "kept": 2742,
+      "fetched": 7721,
+      "uniqueFromSearches": 4218,
+      "kept": 2746,
       "dropped": {
-        "too old or closed": 866,
+        "too old or closed": 853,
         "blocked words": 59,
         "below adult minimum wage": 36,
-        "remote or not in London": 84,
+        "remote or not in London": 82,
         "blocked advertiser": 96,
-        "outside London": 264,
-        "London area not given": 123
+        "outside London": 245,
+        "London area not given": 101
       }
     },
     "Adzuna": {
-      "fetched": 422,
-      "kept": 374,
+      "fetched": 427,
+      "kept": 373,
       "dropped": {
-        "blocked words": 11,
-        "remote or not in London": 1
+        "blocked words": 20
       }
     }
   },
-  "total": 4339,
-  "duplicatesRemoved": 5011,
+  "total": 4584,
+  "duplicatesRemoved": 4839,
   "byRegion": {
-    "Central": 1281,
-    "North": 435,
-    "East": 969,
-    "South": 851,
-    "West": 803
+    "Central": 1436,
+    "North": 460,
+    "East": 1002,
+    "South": 865,
+    "West": 821
   },
   "byJobType": {
-    "Part-time": 1089,
-    "Full-time": 1753,
-    "Not stated": 1497
+    "Part-time": 1114,
+    "Full-time": 1913,
+    "Not stated": 1557
   },
-  "carriedOver": 4279,
-  "areaApproximate": 327,
-  "apprenticeships": 49,
+  "carriedOver": 4339,
+  "areaApproximate": 391,
+  "apprenticeships": 52,
   "apprenticeshipLevels": {
-    "3": 20,
-    "not stated": 21,
+    "3": 22,
+    "not stated": 22,
     "6": 1,
     "4": 1,
     "2": 6
   },
   "byGroup": {
-    "Experienced": 2610,
-    "Students": 506,
-    "Parents": 326,
-    "Newcomers": 609,
-    "(none)": 601,
-    "Graduates": 64,
-    "Apprentices": 49
+    "Newcomers": 629,
+    "Experienced": 2749,
+    "Students": 557,
+    "Parents": 333,
+    "(none)": 621,
+    "Graduates": 76,
+    "Apprentices": 52
   }
 }
