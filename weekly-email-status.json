@@ -1,0 +1,16 @@
+{
+ "date": "2026-11-25",
+ "confirmedSubscribers": 0,
+ "subscribersByType": {
+  "Student jobs": 0,
+  "Apprenticeships": 0,
+  "Graduate jobs": 0,
+  "Professional jobs": 0,
+  "Jobs for people new to the UK": 0,
+  "Jobs for parents returning to work": 0,
+  "All jobs": 0
+ },
+ "oldDraftsRemoved": 0,
+ "newJobsThisWeek": 2667,
+ "drafts": {}
+}
