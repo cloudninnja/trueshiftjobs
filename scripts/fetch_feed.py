@@ -871,6 +871,60 @@ def apply_link(text):
     return ""
 
 
+MONTHS = {m: i for i, m in enumerate(["january", "february", "march", "april", "may", "june", "july", "august",
+                                       "september", "october", "november", "december"], 1)}
+
+
+def read_advert(text):
+    """Pick job details out of an advert the employer pasted into the form."""
+    t = str(text or "").replace("\r", "")
+    flat = clean(t, 5000)
+    out = {}
+    m = re.search(r"(?im)^\s*(?:job title|role|position)\s*[:\-]\s*(.+)$", t)
+    if m:
+        out["title"] = clean(m.group(1), 90)
+    else:
+        for line in t.split("\n"):
+            line = clean(line, 200)
+            if line and not re.match(r"https?://", line) and len(line) <= 90:
+                out["title"] = line.rstrip(".:")
+                break
+    m = re.search(r"£\s?\d[\d,]*(?:\.\d{1,2})?(?:\s*(?:-|–|to)\s*£?\s?\d[\d,]*(?:\.\d{1,2})?)?"
+                  r"(?:\s*(?:per|an|a|/)\s*(?:hour|hr|year|annum|week|month)|\s*p\.?\s?[ah]\.?)?", flat, re.I)
+    if m:
+        out["pay"] = m.group(0).strip()
+    m = re.search(r"(\d{1,2}(?:\.\d)?(?:\s*(?:-|–|to)\s*\d{1,2}(?:\.\d)?)?)\s*hours?(?:\s*(?:per|a)\s*week)?", flat, re.I)
+    if m:
+        out["hours"] = m.group(0).strip()
+    if re.search(r"apprentice", flat, re.I):
+        out["type"] = "Apprenticeship"
+    elif re.search(r"part[- ]?time", flat, re.I):
+        out["type"] = "Part-time"
+    elif re.search(r"full[- ]?time", flat, re.I):
+        out["type"] = "Full-time"
+    m = re.search(r"(?:closing date|closes|deadline|apply by)[^0-9a-z]{0,10}(\d{1,2})[/.-](\d{1,2})[/.-](\d{2,4})", flat, re.I)
+    if m:
+        y = int(m.group(3)); y = y + 2000 if y < 100 else y
+        try:
+            out["closes"] = date(y, int(m.group(2)), int(m.group(1))).strftime("%d/%m/%Y")
+        except ValueError:
+            pass
+    else:
+        m = re.search(r"(?:closing date|closes|deadline|apply by)\D{0,10}(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(\d{4})", flat, re.I)
+        if m and m.group(2).lower() in MONTHS:
+            try:
+                out["closes"] = date(int(m.group(3)), MONTHS[m.group(2).lower()], int(m.group(1))).strftime("%d/%m/%Y")
+            except ValueError:
+                pass
+    m = POSTCODE_IN_TEXT.search(t.upper())
+    if m:
+        out["postcode"] = m.group(1) + " " + m.group(2)
+    a = apply_link(flat)
+    if a:
+        out["apply"] = a
+    return out
+
+
 def fetch_employer_posts(url, status):
     """Approved jobs from the employer Google Form (published Public tab, CSV)."""
     rows = list(csv.reader(io.StringIO(http_text(url))))
@@ -889,13 +943,34 @@ def fetch_employer_posts(url, status):
         "time": ("timestamp",), "title": ("job title",), "company": ("company name", "employer"),
         "borough": ("borough",), "area": ("area", "postcode"), "type": ("job type",), "hours": ("hours",),
         "pay": ("pay", "salary"), "closes": ("closing",), "apply": ("how to apply", "apply"),
-        "desc": ("description", "about the job"), "status": ("status",), "website": ("website",)}.items()}
+        "desc": ("description", "about the job"), "status": ("status",), "website": ("website",),
+        "advert": ("paste", "your job advert")}.items()}
     jobs = []
+    auto = status.setdefault("autoFilled", [])
     for r in rows[1:]:
-        get = lambda k: (r[idx[k]].strip() if idx[k] is not None and idx[k] < len(r) else "")
-        if not get("title") or (idx["status"] is not None and get("status").lower() != "approved"):
+        sheet = lambda k: (r[idx[k]].strip() if idx[k] is not None and idx[k] < len(r) else "")
+        if idx["status"] is not None and sheet("status").lower() != "approved":
             continue
+        ad = read_advert(sheet("advert")) if sheet("advert") else {}
+        if ad.get("postcode") and not sheet("area"):
+            ad["area"] = ad["postcode"]
+        if not sheet("apply") and not ad.get("apply") and sheet("website"):
+            ad["apply"] = sheet("website")
+        if not sheet("desc") and sheet("advert"):
+            ad["desc"] = sheet("advert")
+        filled = [k for k in ("title", "type", "hours", "pay", "closes", "apply", "area", "desc") if not sheet(k) and ad.get(k)]
+        get = lambda k: sheet(k) or ad.get(k, "")
+        if not get("title"):
+            status.setdefault("needsDetails", []).append(sheet("company") or "(no company)")
+            continue
+        if filled:
+            auto.append({"title": get("title"), "filled": filled})
         borough = get("borough") if get("borough") in BOROUGH_REGION else borough_from_text(get("borough"), get("area"))
+        if not borough and UK_POSTCODE.match(get("area")):
+            hit = postcode_info([get("area")]).get(pc_key(get("area")))
+            borough = hit[0] if hit else None
+        if not borough and sheet("advert"):
+            borough = borough_from_text(sheet("advert")[:600])
         jtype = get("type").lower()
         jt = "Part-time" if "part" in jtype else "Full-time"
         pay_txt = clean(get("pay"), 80)
