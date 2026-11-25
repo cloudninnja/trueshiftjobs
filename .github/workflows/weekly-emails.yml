@@ -1,0 +1,40 @@
+name: Weekly job emails (drafts)
+
+on:
+  schedule:
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/weekly_emails.py
+      - .github/workflows/weekly-emails.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-emails
+  cancel-in-progress: false
+
+jobs:
+  drafts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Prepare this week's job emails as drafts in MailerLite
+        env:
+          MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
+        run: python scripts/weekly_emails.py
+      - name: Save the result
+        run: |
+          git config user.name cloudninnja
+          git config user.email 246280380+cloudninnja@users.noreply.github.com
+          git add weekly-email-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Weekly email drafts prepared"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 20; done
+          exit 1
