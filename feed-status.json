@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T14:56:52Z",
+  "generated": "2026-11-25T15:32:04Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6747,
-      "kept": 546,
+      "fetched": 6777,
+      "kept": 528,
       "dropped": {
-        "too old or closed": 87
+        "too old or closed": 85
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5751983</id><reference>C9282-26-00025</reference><title>Locum Consultant Radiologist</title><description>The locum consultant post has been created as a new position to support increased activity within the diagnostic radiology department and to expand th...</description><employer>The Royal Marsden NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£113565.00 to £150569.00</salary><closeDate>2026-12-16</closeDate><postDate>2026-11-25T14:57:28.074982630</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9282-26-00025</url><locations><location>Chelsea, SW3 6JJ</location></locations></vacancyDetails><vacancyDetails><id>5751925</id><reference>C9151-26-00043</reference><title>Critical Care Lead Pharmacist</title><description>Band 8a Specialist Pharmacist - Critical Care &amp; Theatres Full-time | Permanent Are you an experienced and forward-thinking pharmacist looking for your...</description><employer>Frimley Health NHS Foundation Trust</employer><type>Permanent</type><salary>£59798.00 to £67020.00</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T14:49:31.281153036</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9151-26-00043</url><locations><location>Slough, SL2 4HL</location></locations></vacancyDetails><vacancyDetails><id>5751908</id><reference>C9151-26-00042</reference><title>Elective Bookings Officer</title><description>Elective Bookings Officer (Band 3)37.5 hour",
-      "fetched": 2180,
-      "pages": 219,
-      "kept": 1522,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752033</id><reference>C9151-26-00044</reference><title>Advanced Practitioner - Sonographer</title><description>We have an opportunity for enthusiastic and motivated Sonographers to come and join us. We are a vibrant, friendly, supportive team providing a wide r...</description><employer>Frimley Health NHS Foundation Trust</employer><type>Permanent</type><salary>£51657.00 to £58785.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:31:01.916247727</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9151-26-00044</url><locations><location>Slough, SL2 4HL</location></locations></vacancyDetails><vacancyDetails><id>5751923</id><reference>C9396-26-00009</reference><title>Community Staff Nurse - Tissue Viability Service</title><description>Are you ready for a new challenge? Could you make a difference? Are you: A Registered General Nurse Committed to giving the highest standard of patien...</description><employer>Kingston and Richmond NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£36943.00 to £44900.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:30:28.139161373</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9396-26-00009</url><locations><location>Teddington, TW11 8LP</location></locations></vacancyDetails><vacancyDetails><id>5752125</id><reference>C9391-26-00079</reference><title>Consultant Oral &amp; Maxillofacial Surgeon</title><descripti",
+      "fetched": 2200,
+      "pages": 221,
+      "kept": 1535,
       "dropped": {
-        "outside London": 656,
-        "too old or closed": 2
+        "outside London": 659,
+        "too old or closed": 6
       }
     },
     "Careerjet": {
@@ -46,54 +46,60 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7722,
-      "uniqueFromSearches": 4290,
-      "kept": 2776,
+      "fetched": 7726,
+      "uniqueFromSearches": 4267,
+      "kept": 2771,
       "dropped": {
-        "too old or closed": 856,
-        "blocked words": 59,
+        "too old or closed": 854,
+        "blocked words": 61,
+        "remote or not in London": 83,
         "below adult minimum wage": 36,
-        "remote or not in London": 81,
         "blocked advertiser": 98,
-        "outside London": 253,
-        "London area not given": 131
+        "outside London": 238,
+        "London area not given": 126
       }
     },
     "Adzuna": {
-      "error": "HTTPError: HTTP Error 503: Service Temporarily Unavailable"
+      "fetched": 439,
+      "kept": 394,
+      "dropped": {
+        "remote or not in London": 4,
+        "below adult minimum wage": 1,
+        "blocked words": 11
+      }
     }
   },
   "total": 5000,
-  "duplicatesRemoved": 4812,
+  "duplicatesRemoved": 5022,
   "byRegion": {
-    "Central": 1626,
-    "North": 476,
-    "East": 1072,
-    "South": 945,
-    "West": 881
+    "Central": 1715,
+    "North": 456,
+    "East": 1036,
+    "South": 915,
+    "West": 878
   },
   "byJobType": {
-    "Part-time": 1174,
-    "Full-time": 2129,
-    "Not stated": 1697
+    "Part-time": 1141,
+    "Full-time": 2132,
+    "Not stated": 1727
   },
   "carriedOver": 5000,
-  "areaApproximate": 471,
-  "apprenticeships": 44,
+  "areaApproximate": 533,
+  "apprenticeships": 47,
   "apprenticeshipLevels": {
-    "3": 22,
-    "not stated": 15,
+    "not stated": 17,
+    "3": 23,
     "6": 1,
     "4": 1,
     "2": 5
   },
   "byGroup": {
-    "Students": 601,
-    "Parents": 364,
-    "Experienced": 3035,
-    "(none)": 661,
-    "Newcomers": 681,
-    "Graduates": 90,
-    "Apprentices": 44
+    "Students": 599,
+    "Parents": 351,
+    "Experienced": 3041,
+    "(none)": 645,
+    "Newcomers": 684,
+    "Graduates": 115,
+    "Apprentices": 47
   }
 }
