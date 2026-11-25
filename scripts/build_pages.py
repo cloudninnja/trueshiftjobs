@@ -346,6 +346,12 @@ def build_page(base, p, borough_jobs=None):
              % (esc(p["heading"]), "\n".join("    <p>%s</p>" % b for b in p["body"])))
     marker = '<section class="band info" id="checks">'
     assert marker in out
+    if p.get("group") == "Students":
+        faq = json.loads((ROOT / "scripts" / "student_faq.json").read_text())
+        schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in faq]}
+        out = out.replace('<section class="band info" id="sfaq" hidden>', '<section class="band info" id="sfaq">', 1)
+        out = out.replace("</head>", '<script type="application/ld+json">%s</script>\n</head>' % json.dumps(schema, ensure_ascii=False), 1)
     out = out.replace(marker, guide + marker, 1)
     return out
 
