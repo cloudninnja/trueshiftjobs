@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T11:53:31Z",
+  "generated": "2026-11-25T12:09:23Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6688,
-      "kept": 519,
+      "fetched": 6607,
+      "kept": 507,
       "dropped": {
-        "too old or closed": 88
+        "too old or closed": 87
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5749634</id><reference>C9326-26-00015</reference><title>Highly Specialist Paediatric Dietitian - Allergy and General</title><description>Are you an experienced paediatric dietitian looking for a new challenge? We have an exciting opportunity for a dietitian to join our team as a Paediat...</description><employer>Surrey and Sussex Healthcare NHS Trust</employer><type>Permanent</type><salary>£39510.00 to £45212.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:53:52.534526384</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9326-26-00015</url><locations><location>Redhill, RH1 5RH</location></locations></vacancyDetails><vacancyDetails><id>5750923</id><reference>C9290-26-00025</reference><title>Assistant Service Manager - Inpatients &amp; Theatres</title><description>We are looking for two motivated and proactive Band 5 Assistant Service Managers to join our Maternity &amp; Neonatology team in substantive roles, with o...</description><employer>Imperial College Healthcare NHS Trust</employer><type>Permanent</type><salary>£38488.00 to £46852.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:51:23.902238929</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9290-26-00025</url><locations><location>London, W2 1NY</location></locations></vacancyDetails><vacancyDetails><id>5750900</id><reference>C9162-26-00009</reference><title>Band 4 Orthopaedic Physiotherapy As",
-      "fetched": 2120,
-      "pages": 213,
-      "kept": 1481,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750704</id><reference>C9282-26-00024</reference><title>Clinical Research Doctor</title><description>This is a one-year medical oncology clinical fellowship, conducting projects focused on clinical research (Gynaecology cancers). The research will be ...</description><employer>The Royal Marsden NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£76582.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T12:05:35.430562960</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9282-26-00024</url><locations><location>Sutton, SM2 5PT</location></locations></vacancyDetails><vacancyDetails><id>5750702</id><reference>C9282-26-00023</reference><title>Registrar Doctor in Paediatric Oncology</title><description>This post in paediatric oncology is suitable for trainees wishing to gain experience in paediatric oncology, for those wishing to pursue a career in T...</description><employer>The Royal Marsden NHS Foundation Trust</employer><type>Permanent</type><salary>£76582.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T12:05:33.037012467</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9282-26-00023</url><locations><location>Sutton, SM2 5PT</location></locations></vacancyDetails><vacancyDetails><id>5750793</id><reference>E0157-26-windsor</reference><title>Senior SACT Nurse</title><description>Are you ready to embark on an exciting journey as a Senior SACT Nurse at ",
+      "fetched": 2130,
+      "pages": 214,
+      "kept": 1483,
       "dropped": {
-        "outside London": 636,
-        "too old or closed": 3
+        "outside London": 641,
+        "too old or closed": 6
       }
     },
     "Careerjet": {
@@ -47,42 +47,42 @@
     },
     "Reed": {
       "fetched": 7716,
-      "uniqueFromSearches": 4302,
-      "kept": 2777,
+      "uniqueFromSearches": 4284,
+      "kept": 2776,
       "dropped": {
-        "too old or closed": 852,
-        "below adult minimum wage": 35,
-        "remote or not in London": 84,
+        "too old or closed": 853,
         "blocked words": 59,
+        "below adult minimum wage": 36,
+        "remote or not in London": 81,
         "blocked advertiser": 96,
-        "outside London": 270,
-        "London area not given": 129
+        "outside London": 248,
+        "London area not given": 135
       }
     },
     "Adzuna": {
       "fetched": 418,
-      "kept": 361,
+      "kept": 362,
       "dropped": {
-        "blocked words": 19
+        "blocked words": 18
       }
     }
   },
-  "total": 4770,
-  "duplicatesRemoved": 5096,
+  "total": 4794,
+  "duplicatesRemoved": 5104,
   "byRegion": {
-    "Central": 1516,
+    "Central": 1522,
     "North": 466,
-    "East": 1036,
-    "South": 895,
-    "West": 857
+    "East": 1037,
+    "South": 904,
+    "West": 865
   },
   "byJobType": {
-    "Part-time": 1148,
-    "Full-time": 2012,
-    "Not stated": 1610
+    "Part-time": 1154,
+    "Full-time": 2021,
+    "Not stated": 1619
   },
-  "carriedOver": 4728,
-  "areaApproximate": 442,
+  "carriedOver": 4770,
+  "areaApproximate": 446,
   "apprenticeships": 52,
   "apprenticeshipLevels": {
     "3": 22,
@@ -92,12 +92,12 @@
     "2": 6
   },
   "byGroup": {
-    "Experienced": 2874,
-    "(none)": 637,
-    "Newcomers": 655,
-    "Students": 572,
-    "Parents": 354,
-    "Graduates": 82,
+    "Experienced": 2889,
+    "Students": 579,
+    "Parents": 357,
+    "(none)": 638,
+    "Newcomers": 659,
+    "Graduates": 83,
     "Apprentices": 52
   }
 }
