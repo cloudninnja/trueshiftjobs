@@ -186,10 +186,13 @@ button.apply.alt{border:2px solid var(--sea)}
 .paper .samp{margin-top:16px;font-size:13px;color:var(--muted)}
 .skyline{display:block;width:100%;height:auto;aspect-ratio:1200/170;min-height:72px;margin-top:clamp(18px,3vw,28px)}
 .hero{position:relative}
-.hero .skyline{margin-top:clamp(16px,2.5vw,28px)}
+.who{overflow:hidden}
+.who .skyline{position:absolute;left:0;right:0;top:12px;bottom:0;width:100%;height:calc(100% - 12px);aspect-ratio:auto;margin:0;min-height:0;opacity:.4;pointer-events:none;z-index:0}
+.who>*:not(.skyline){position:relative;z-index:1}
+.who{padding-bottom:clamp(24px,4vw,56px)}
 .bar{margin-top:clamp(14px,2vw,22px)}
 @media(max-width:600px){.who{padding:14px}.who .chips{flex-wrap:wrap;overflow:visible;margin:0;padding:0}.who .chips .chip{font-size:15px;padding:0 14px;min-height:44px}}
-@media(max-width:760px){.hero{display:flex;flex-direction:column}.hero .top{display:contents}.hero .top>div:first-child{order:1}.hero .who{order:2}.hero .mapcol{order:3;margin-top:20px}.hero .skyline{order:4}}
+@media(max-width:760px){.hero{display:flex;flex-direction:column}.hero .top{display:contents}.hero .top>div:first-child{order:1}.hero .who{order:2}.hero .mapcol{order:3;margin-top:20px}}
 
 .skyline .near,.skyline .eye circle{fill:#8fd3ff;fill-opacity:.24}
 .skyline .far rect{fill:#8fd3ff;fill-opacity:.11}
@@ -242,6 +245,18 @@ header.band{overflow-x:clip}
       </div>
     </div>
     <div class="who" role="group" aria-label="Who are you looking for work as?">
+      <svg class="skyline" id="skyline" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax meet" role="img" aria-label="London skyline with the Houses of Parliament, Big Ben and the London Eye">
+        <g class="far" id="far"></g>
+        <g class="near">
+          <rect x="420" y="96" width="200" height="54"/>
+          <g id="pinn"></g>
+          <rect x="412" y="58" width="36" height="92"/><path d="M412 58h36l-6-14h-24z"/><path d="M424 44h12l-6-16z"/>
+          <rect x="624" y="44" width="26" height="106"/><circle class="clock" cx="637" cy="62" r="8"/><path d="M620 44h34l-4-8h-26z"/><path d="M626 36h22l-11-30z"/>
+          <path d="M950 150h52l-21-128z"/>
+        </g>
+        <g class="eye" id="eye"><circle cx="790" cy="84" r="62" fill="none" stroke-width="3"/><circle cx="790" cy="84" r="6"/><path d="M790 84L756 150M790 84L824 150" fill="none" stroke-width="4"/></g>
+        <path class="river" d="M0 150 C 120 140, 240 160, 360 150 S 600 140, 720 152 S 960 162, 1080 150 S 1200 146, 1200 146 V170 H0z"/>
+      </svg>
       <p class="who-q">I'm looking for work as</p>
       <div class="chips">
         <button class="chip" type="button" data-g="All" aria-pressed="true">Anyone</button>
@@ -255,18 +270,6 @@ header.band{overflow-x:clip}
       </div>
       <div id="types"></div>
     </div>
-    <svg class="skyline" id="skyline" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax slice" role="img" aria-label="London skyline with the Houses of Parliament, Big Ben and the London Eye">
-      <g class="far" id="far"></g>
-      <g class="near">
-        <rect x="420" y="96" width="200" height="54"/>
-        <g id="pinn"></g>
-        <rect x="412" y="58" width="36" height="92"/><path d="M412 58h36l-6-14h-24z"/><path d="M424 44h12l-6-16z"/>
-        <rect x="624" y="44" width="26" height="106"/><circle class="clock" cx="637" cy="62" r="8"/><path d="M620 44h34l-4-8h-26z"/><path d="M626 36h22l-11-30z"/>
-        <path d="M950 150h52l-21-128z"/>
-      </g>
-      <g class="eye" id="eye"><circle cx="790" cy="84" r="62" fill="none" stroke-width="3"/><circle cx="790" cy="84" r="6"/><path d="M790 84L756 150M790 84L824 150" fill="none" stroke-width="4"/></g>
-      <path class="river" d="M0 150 C 120 140, 240 160, 360 150 S 600 140, 720 152 S 960 162, 1080 150 S 1200 146, 1200 146 V170 H0z"/>
-    </svg>
     </div>
     <div class="bar">
       <input class="ctl" id="q" type="search" placeholder="Search job, employer or area" aria-label="Search jobs">
