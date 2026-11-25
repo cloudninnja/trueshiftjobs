@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: site-commit
+  group: mailerlite-setup
   cancel-in-progress: false
 
 jobs:
