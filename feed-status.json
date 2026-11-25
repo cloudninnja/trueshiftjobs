@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T11:38:28Z",
+  "generated": "2026-11-25T11:53:31Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6680,
-      "kept": 527,
+      "fetched": 6688,
+      "kept": 519,
       "dropped": {
-        "too old or closed": 87
+        "too old or closed": 88
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750830</id><reference>C9196-26-00021</reference><title>Senior Clinical Fellow in Severe Respiratory Failure (ECMO)</title><description>The critical care department at GSTT has an international reputation for clinical excellence and a prominent research profile. As well as serving the ...</description><employer>Guy's and St Thomas' NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£76582.00</salary><closeDate>2026-11-28</closeDate><postDate>2026-11-25T11:36:56.137918892</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9196-26-00021</url><locations><location>London, SE1 7EH</location></locations></vacancyDetails><vacancyDetails><id>5749922</id><reference>A6066-26-00000</reference><title>Practice Manager</title><description>Derry Court Medical Practice is seeking an experienced and motivated Practice Manager to lead the operational, financial, and strategic management of ...</description><employer>Derry Court Medical Practice</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-24</closeDate><postDate>2026-11-25T11:36:15.280598208</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/A6066-26-00000</url><locations><location>SOUTH OCKENDON, RM15 5GN</location></locations></vacancyDetails><vacancyDetails><id>5750029</id><reference>C9824-26-00032</reference><title>SCPHN School Nurse</title><description>Central London Community Healthcare NHS Trust (CLCH) has an",
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5749634</id><reference>C9326-26-00015</reference><title>Highly Specialist Paediatric Dietitian - Allergy and General</title><description>Are you an experienced paediatric dietitian looking for a new challenge? We have an exciting opportunity for a dietitian to join our team as a Paediat...</description><employer>Surrey and Sussex Healthcare NHS Trust</employer><type>Permanent</type><salary>£39510.00 to £45212.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:53:52.534526384</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9326-26-00015</url><locations><location>Redhill, RH1 5RH</location></locations></vacancyDetails><vacancyDetails><id>5750923</id><reference>C9290-26-00025</reference><title>Assistant Service Manager - Inpatients &amp; Theatres</title><description>We are looking for two motivated and proactive Band 5 Assistant Service Managers to join our Maternity &amp; Neonatology team in substantive roles, with o...</description><employer>Imperial College Healthcare NHS Trust</employer><type>Permanent</type><salary>£38488.00 to £46852.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:51:23.902238929</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9290-26-00025</url><locations><location>London, W2 1NY</location></locations></vacancyDetails><vacancyDetails><id>5750900</id><reference>C9162-26-00009</reference><title>Band 4 Orthopaedic Physiotherapy As",
       "fetched": 2120,
       "pages": 213,
-      "kept": 1476,
+      "kept": 1481,
       "dropped": {
-        "outside London": 634,
-        "too old or closed": 10
+        "outside London": 636,
+        "too old or closed": 3
       }
     },
     "Careerjet": {
@@ -46,43 +46,43 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7718,
-      "uniqueFromSearches": 4294,
-      "kept": 2768,
+      "fetched": 7716,
+      "uniqueFromSearches": 4302,
+      "kept": 2777,
       "dropped": {
-        "too old or closed": 857,
+        "too old or closed": 852,
         "below adult minimum wage": 35,
-        "remote or not in London": 82,
+        "remote or not in London": 84,
         "blocked words": 59,
         "blocked advertiser": 96,
-        "outside London": 258,
-        "London area not given": 139
+        "outside London": 270,
+        "London area not given": 129
       }
     },
     "Adzuna": {
-      "fetched": 419,
-      "kept": 353,
+      "fetched": 418,
+      "kept": 361,
       "dropped": {
         "blocked words": 19
       }
     }
   },
-  "total": 4728,
-  "duplicatesRemoved": 5117,
+  "total": 4770,
+  "duplicatesRemoved": 5096,
   "byRegion": {
-    "Central": 1501,
-    "North": 465,
-    "East": 1025,
-    "South": 891,
-    "West": 846
+    "Central": 1516,
+    "North": 466,
+    "East": 1036,
+    "South": 895,
+    "West": 857
   },
   "byJobType": {
-    "Part-time": 1143,
-    "Full-time": 2006,
-    "Not stated": 1579
+    "Part-time": 1148,
+    "Full-time": 2012,
+    "Not stated": 1610
   },
-  "carriedOver": 4721,
-  "areaApproximate": 432,
+  "carriedOver": 4728,
+  "areaApproximate": 442,
   "apprenticeships": 52,
   "apprenticeshipLevels": {
     "3": 22,
@@ -92,12 +92,12 @@
     "2": 6
   },
   "byGroup": {
-    "Experienced": 2840,
-    "(none)": 635,
-    "Newcomers": 651,
-    "Students": 570,
-    "Parents": 352,
-    "Graduates": 81,
+    "Experienced": 2874,
+    "(none)": 637,
+    "Newcomers": 655,
+    "Students": 572,
+    "Parents": 354,
+    "Graduates": 82,
     "Apprentices": 52
   }
 }
