@@ -1,18 +1,19 @@
 {
  "date": "2026-11-25",
- "confirmedSubscribers": 1,
+ "confirmedSubscribers": 2,
  "subscribersByType": {
   "Student jobs": 1,
   "Apprenticeships": 0,
   "Graduate jobs": 0,
-  "Professional jobs": 0,
+  "Professional jobs": 1,
   "Jobs for people new to the UK": 0,
   "Jobs for parents returning to work": 0,
   "All jobs": 0
  },
  "oldDraftsRemoved": 0,
- "newJobsThisWeek": 2667,
+ "newJobsThisWeek": 2041,
  "drafts": {
-  "Student jobs": "draft ready"
+  "Student jobs": "draft ready",
+  "Professional jobs": "draft ready"
  }
 }
