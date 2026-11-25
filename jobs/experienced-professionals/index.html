@@ -122,6 +122,9 @@ footer p{margin:0 0 6px;max-width:80ch}
 .quick{margin-top:16px;background:var(--sea2);border:1px solid #2f5b88;border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:16px 28px;align-items:start}
 .quick h2{margin:0;font-size:22px;font-weight:600;line-height:1.2}
 .quick p.sub{margin:6px 0 0;color:var(--sub);font-size:15px}
+.qtoggle{margin-top:12px;font:inherit;font-size:14px;font-weight:600;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #5b86b3;background:transparent;color:#fff;cursor:pointer}
+.qtoggle:hover{background:var(--sea3)}.qtoggle:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.quick.closed{grid-template-columns:minmax(0,1fr) auto;align-items:center}.quick.closed .steps{display:none}.quick.closed .qtoggle{margin-top:0}
 .stypes{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .stl{width:100%;margin:0;font-size:14px;font-weight:600;color:#fff}
 .stype{font:inherit;font-size:14px;min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid #5b86b3;background:transparent;color:#fff;cursor:pointer}
@@ -200,7 +203,7 @@ button.apply.alt{border:2px solid var(--sea)}
  .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bar #q{grid-column:1/-1}.bar .ctl{width:100%;min-width:0}
  .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(-1 * max(5vw,16px));padding:2px max(5vw,16px) 6px}
  .chips::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;white-space:nowrap}
- .quick:not(.st) .steps{display:none}.quick.st .steps{grid-template-columns:minmax(0,1fr);gap:8px}.quick.st .steps li{padding:10px 12px;font-size:14px}.quick{padding:16px 18px}.quick h2{font-size:1.15rem}
+ .quick .steps{grid-template-columns:minmax(0,1fr);gap:8px}.quick .steps li{padding:10px 12px;font-size:14px}.quick{padding:16px 18px}.quick h2{font-size:1.15rem}
  .lead{font-size:1.02rem}}
 header.band{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){.rbar i{transition:none}}
@@ -640,6 +643,8 @@ function card(j){
     +(url?'<a class="apply" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+(url.startsWith('mailto:')?'Apply by email':'Apply on advert')+'</a>':'')
     +'</div></article>';
 }
+const tipsOpen=()=>typeof state.tips==='boolean'?state.tips:!(window.matchMedia&&matchMedia('(max-width:760px)').matches);
+el('quick').addEventListener('click',e=>{const b=e.target.closest('.qtoggle');if(!b)return;state.tips=!tipsOpen();render(true);const t=el('quick').querySelector('.qtoggle');if(t)t.focus()});
 function render(keepLimit){
   if(!keepLimit)limit=30;
   store.set(state);
@@ -662,7 +667,8 @@ function render(keepLimit){
   if(fq&&el('sfaq').dataset.g!==state.group){el('sfaq').dataset.g=state.group;el('faqh').textContent=fq.h;el('faqlist').innerHTML=fq.q.map(x=>'<details><summary>'+x[0]+'</summary><p>'+x[1]+'</p></details>').join('')}
   el('quick').classList.toggle('st',!!QUICK[state.group]&&state.group!=='All'&&state.group!=='Saved');
   el('types').innerHTML=qx;
-  el('quick').innerHTML='<div><h2>'+qk.h+'</h2><p class="sub">'+qk.p+'</p></div><ol class="steps">'+qk.s.map(s=>'<li><b>'+s[0]+'</b>'+s[1]+'</li>').join('')+'</ol>';
+  const tOpen=tipsOpen();el('quick').classList.toggle('closed',!tOpen);
+  el('quick').innerHTML='<div><h2>'+qk.h+'</h2>'+(tOpen?'<p class="sub">'+qk.p+'</p>':'')+(tOpen?'<button class="qtoggle" type="button" aria-expanded="true" aria-controls="qsteps">Hide tips</button>':'')+'</div>'+(tOpen?'':'<button class="qtoggle" type="button" aria-expanded="false" aria-controls="qsteps">Show '+qk.s.length+' tips</button>')+'<ol class="steps" id="qsteps">'+qk.s.map(s=>'<li><b>'+s[0]+'</b>'+s[1]+'</li>').join('')+'</ol>';
   el('q').value=state.q;el('sort').value=state.sort;el('jtype').value=state.jtype||'All';
   el('level').hidden=state.group!=='Apprentices';el('cat').hidden=state.group!=='Experienced';el('cat').value=state.cat||'All';el('level').value=state.level||'All';
   const shown=jobs.filter(j=>matches(j,false)).sort((a,b)=>state.sort==='pay'?payNum(b)-payNum(a):String(dateOf(b)).localeCompare(String(dateOf(a))));
