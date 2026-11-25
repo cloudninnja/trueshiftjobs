@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T07:06:45Z",
+  "generated": "2026-11-25T07:29:22Z",
   "sources": {
     "Teaching Vacancies": {
       "fetched": 6583,
-      "kept": 506,
+      "kept": 510,
       "dropped": {
-        "too old or closed": 84
+        "too old or closed": 86
       }
     },
     "Employer": {
@@ -25,6 +25,7 @@
         "Job description",
         "Status"
       ],
+      "autoFilled": [],
       "kept": 0,
       "dropped": {}
     },
@@ -33,44 +34,43 @@
     },
     "Reed": {
       "fetched": 7712,
-      "uniqueFromSearches": 4243,
-      "kept": 2723,
+      "uniqueFromSearches": 4291,
+      "kept": 2766,
       "dropped": {
-        "too old or closed": 857,
+        "too old or closed": 859,
         "blocked words": 60,
         "below adult minimum wage": 36,
-        "remote or not in London": 84,
-        "blocked advertiser": 92,
-        "outside London": 268,
-        "London area not given": 123
+        "remote or not in London": 83,
+        "blocked advertiser": 98,
+        "outside London": 262,
+        "London area not given": 127
       }
     },
     "Adzuna": {
-      "fetched": 425,
-      "kept": 372,
+      "fetched": 430,
+      "kept": 380,
       "dropped": {
-        "blocked words": 16,
-        "remote or not in London": 1,
-        "blocked advertiser": 1
+        "blocked words": 14,
+        "remote or not in London": 1
       }
     }
   },
-  "total": 3199,
-  "duplicatesRemoved": 3289,
+  "total": 3253,
+  "duplicatesRemoved": 3602,
   "byRegion": {
-    "Central": 944,
-    "North": 333,
-    "East": 683,
-    "South": 629,
-    "West": 610
+    "Central": 979,
+    "North": 335,
+    "East": 688,
+    "South": 634,
+    "West": 617
   },
   "byJobType": {
-    "Part-time": 975,
-    "Full-time": 1807,
-    "Not stated": 417
+    "Part-time": 980,
+    "Full-time": 1830,
+    "Not stated": 443
   },
-  "carriedOver": 2887,
-  "areaApproximate": 373,
+  "carriedOver": 3199,
+  "areaApproximate": 397,
   "apprenticeships": 48,
   "apprenticeshipLevels": {
     "3": 19,
@@ -80,11 +80,11 @@
     "4": 1
   },
   "byGroup": {
-    "Newcomers": 535,
-    "(none)": 492,
-    "Students": 448,
-    "Experienced": 1675,
-    "Parents": 338,
+    "Newcomers": 544,
+    "(none)": 496,
+    "Students": 453,
+    "Experienced": 1713,
+    "Parents": 340,
     "Graduates": 64,
     "Apprentices": 48
   }
