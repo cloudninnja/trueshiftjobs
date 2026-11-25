@@ -61,7 +61,7 @@ PAGES = {
 <p>This policy explains how TrueShift Jobs ("we", "us") handles personal data when you use trueshiftjobs.com. We aim to collect as little as possible.</p>
 <h2>Jobseekers browsing the site</h2>
 <ul>
-<li><b>No accounts and no tracking.</b> You do not need to sign up. We do not use analytics, advertising trackers or tracking cookies.</li>
+<li><b>No accounts and no tracking.</b> You do not need to sign up to use the site. We do not use analytics, advertising trackers or tracking cookies.</li>
 <li><b>Saved jobs and filters stay on your device.</b> If you save a job or choose filters, they are stored in your own browser (local storage) so the site remembers them. We never receive this information. You can clear it at any time by clearing your browser's site data.</li>
 <li><b>Hosting.</b> The site is hosted on GitHub Pages. Like any web host, GitHub receives technical information such as your IP address when your browser requests a page, to deliver it and keep the service secure. See GitHub's privacy statement.</li>
 <li><b>Links to other sites.</b> When you click "Apply", you leave our site and go to the employer's or job site's own advert, which has its own privacy policy.</li>
@@ -69,10 +69,13 @@ PAGES = {
 <h2>Contact form and employer job posts</h2>
 <p>Our contact form and our employer job form run on Google Forms. If you use them, we receive what you type in, such as your message, name, email address and job details. We use this only to reply to you, to check and publish job adverts, and to deal with problems. Google processes this data for us under its own terms.</p>
 <p>When an employer job is published, only the job details are shown on the site (such as the job title, company, location, pay and how to apply). The poster's name and email address are never published.</p>
+<h2>Job alert emails</h2>
+<p>If you choose to sign up for job emails, we collect only your email address and your agreement to receive them. The sign-up form sends this to a Google Form, so Google processes it for us under its own terms. We use your email address only to send you new jobs from TrueShift Jobs. We never sell it or share it with employers or advertisers.</p>
+<p>Every email will include a way to unsubscribe. You can also ask us to remove your email address at any time using our <a href="{FEEDBACK}">contact form</a>, and we will delete it.</p>
 <h2>Our lawful basis</h2>
-<p>We rely on our legitimate interests in running a free job site, answering messages and checking job adverts, and on your request when you ask us to publish a job.</p>
+<p>We rely on our legitimate interests in running a free job site, answering messages and checking job adverts, on your request when you ask us to publish a job, and on your consent for job alert emails. You can withdraw your consent at any time.</p>
 <h2>How long we keep data</h2>
-<p>We keep contact messages for up to 12 months and employer posts for up to 12 months after the job closes, unless we need them longer to deal with a complaint or a legal requirement.</p>
+<p>We keep job alert email addresses until you unsubscribe or ask us to remove them. We keep contact messages for up to 12 months and employer posts for up to 12 months after the job closes, unless we need them longer to deal with a complaint or a legal requirement.</p>
 <h2>Your rights</h2>
 <p>Under UK data protection law you can ask to see, correct or delete personal data we hold about you, and you can object to how we use it. To make a request, please {contact_line()} and write "Privacy request". You also have the right to complain to the Information Commissioner's Office (ico.org.uk).</p>
 <p>Last updated {UPDATED}.</p>
