@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T11:21:58Z",
+  "generated": "2026-11-25T11:32:39Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6671,
-      "kept": 521,
+      "fetched": 6676,
+      "kept": 523,
       "dropped": {
-        "too old or closed": 88
+        "too old or closed": 90
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750654</id><reference>C9197-26-00025</reference><title>Anatomical Pathology Technologist</title><description>This is an exciting opportunity for a dedicated Anatomical PathologyTechnologist to join a committed and compassionate team providing a safe, secure a...</description><employer>Lewisham and Greenwich NHS Trust</employer><type>Permanent</type><salary>£32073.00 to £39043.00</salary><closeDate>2026-12-08</closeDate><postDate>2026-11-25T11:22:00.286777072</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9197-26-00025</url><locations><location>London, SE13 6LH</location></locations></vacancyDetails><vacancyDetails><id>5750626</id><reference>C9197-26-00024</reference><title>Clinical Vascular Scientist</title><description>We are seeking exceptionally motivated individuals to join our friendly dynamic team of Vascular Ultrasound Team.Our vascular scientists and specialis...</description><employer>Lewisham and Greenwich NHS Trust</employer><type>Permanent</type><salary>£49387.00 to £56515.00</salary><closeDate>2026-12-08</closeDate><postDate>2026-11-25T11:21:45.764263263</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9197-26-00024</url><locations><location>London, SE18 4QH</location></locations></vacancyDetails><vacancyDetails><id>5750630</id><reference>C9343-26-00019</reference><title>Nursing Associate</title><description>There is an exciting opportunity for newly created roles as Ban",
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750518</id><reference>B0441-26-00000</reference><title>GP Practice Receptionist</title><description>We are looking for a friendly, professional and organised Receptionist to join our busy primary care team. As one of the first points of contact for p...</description><employer>LCW UCC</employer><type>Permanent</type><salary>£27008.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:33:21.962590600</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/B0441-26-00000</url><locations><location>London, W12 0HS</location><location>London, W6 8RF</location></locations></vacancyDetails><vacancyDetails><id>5750757</id><reference>C9392-26-00005</reference><title>Operating Department Practitioner / Anaesthetic Nurse</title><description>To undertake any and all duties required of a theatre practitioner in Anaesthetics with some occasional scrub responsibilities.</description><employer>Royal National Orthopaedic Hospital NHS Trust</employer><type>Permanent</type><salary>£36943.00 to £44900.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T11:30:40.504439276</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9392-26-00005</url><locations><location>Stanmore, HA7 4LP</location></locations></vacancyDetails><vacancyDetails><id>5750663</id><reference>C9371-26-00029</reference><title>Co-Production Enabler</title><description>Slough Mental Health Services' Co-production Pathway is se",
       "fetched": 2110,
       "pages": 212,
-      "kept": 1472,
+      "kept": 1475,
       "dropped": {
-        "outside London": 632,
-        "too old or closed": 6
+        "outside London": 633,
+        "too old or closed": 2
       }
     },
     "Careerjet": {
@@ -46,17 +46,17 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7719,
-      "uniqueFromSearches": 4283,
-      "kept": 2778,
+      "fetched": 7718,
+      "uniqueFromSearches": 4327,
+      "kept": 2793,
       "dropped": {
-        "too old or closed": 856,
-        "below adult minimum wage": 35,
-        "remote or not in London": 81,
+        "too old or closed": 857,
+        "below adult minimum wage": 36,
+        "remote or not in London": 83,
         "blocked words": 59,
         "blocked advertiser": 96,
-        "outside London": 251,
-        "London area not given": 127
+        "outside London": 261,
+        "London area not given": 142
       }
     },
     "Adzuna": {
@@ -67,21 +67,21 @@
       }
     }
   },
-  "total": 4712,
-  "duplicatesRemoved": 5057,
+  "total": 4721,
+  "duplicatesRemoved": 5135,
   "byRegion": {
-    "Central": 1495,
+    "Central": 1496,
     "North": 465,
     "East": 1025,
-    "South": 882,
-    "West": 845
+    "South": 888,
+    "West": 847
   },
   "byJobType": {
     "Part-time": 1139,
-    "Full-time": 1999,
-    "Not stated": 1574
+    "Full-time": 2005,
+    "Not stated": 1577
   },
-  "carriedOver": 4645,
+  "carriedOver": 4712,
   "areaApproximate": 432,
   "apprenticeships": 52,
   "apprenticeshipLevels": {
@@ -92,9 +92,9 @@
     "2": 6
   },
   "byGroup": {
-    "(none)": 633,
-    "Experienced": 2830,
-    "Newcomers": 648,
+    "Experienced": 2836,
+    "(none)": 634,
+    "Newcomers": 650,
     "Students": 570,
     "Parents": 350,
     "Graduates": 81,
