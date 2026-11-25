@@ -913,7 +913,18 @@ def fetch_careerjet(key, status):
             q = urllib.parse.urlencode({"locale_code": "en_GB", "location": borough + ", London", "radius": 3,
                                         "sort": "date", "page_size": 100, "page": page, "fragment_size": 300,
                                         "user_ip": ip, "user_agent": UA})
-            res = http_json("https://search.api.careerjet.net/v4/query?" + q, headers={"Authorization": auth})
+            try:
+                res = http_json("https://search.api.careerjet.net/v4/query?" + q,
+                                headers={"Authorization": auth, "Referer": "https://trueshiftjobs.com/"})
+            except urllib.error.HTTPError as e:
+                body = ""
+                try:
+                    body = e.read().decode("utf-8", "replace")[:300]
+                except Exception:  # noqa: BLE001
+                    pass
+                status["httpError"] = "%s %s" % (e.code, body)
+                status["keyLength"] = len(key)
+                raise
             if res.get("type") != "JOBS":
                 status.setdefault("locationMessages", {})[borough] = res.get("message")
                 break
