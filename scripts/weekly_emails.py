@@ -91,7 +91,11 @@ def wanted_types(sub):
 
 
 def fresh_jobs():
-    jobs = json.loads((ROOT / "feed.json").read_text())["jobs"]
+    try:  # the live site has today's jobs; the repository copy is only a fallback
+        with urllib.request.urlopen(SITE + "/feed.json", timeout=60) as r:
+            jobs = json.loads(r.read().decode())["jobs"]
+    except Exception:  # noqa: BLE001
+        jobs = json.loads((ROOT / "feed.json").read_text())["jobs"]
     since = (datetime.date.today() - datetime.timedelta(days=DAYS)).isoformat()
     out = [j for j in jobs if (j.get("posted") or j.get("found") or "") >= since and j.get("link")]
     out.sort(key=lambda j: (j.get("posted") or "", bool(j.get("pay") or j.get("salary"))), reverse=True)

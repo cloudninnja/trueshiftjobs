@@ -1,0 +1,46 @@
+name: Tests
+
+# Runs on every push and pull request: quick checks of the job rules, then the
+# browser tests (filters, tabs, data loading, buttons and every internal link)
+# against a freshly built copy of the site. GitHub emails you if anything fails.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test tools
+        run: |
+          pip install pytest playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Check the job rules
+        run: python -m pytest tests -q
+
+      - name: Build the site with the live jobs
+        run: |
+          curl -fsSL --retry 3 https://trueshiftjobs.com/feed.json -o feed.json.live && mv feed.json.live feed.json || echo "Using the repository copy of feed.json"
+          python scripts/build_pages.py
+          python scripts/info_pages.py
+          python scripts/assemble_site.py
+
+      - name: Browser tests
+        run: |
+          python -m http.server 8765 --directory _site > /dev/null 2>&1 &
+          sleep 2
+          SITE_DIR=_site python tests/browser_check.py

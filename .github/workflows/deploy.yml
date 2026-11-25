@@ -1,0 +1,81 @@
+name: Build and deploy site
+
+# Builds the whole site in GitHub Actions and publishes it straight to GitHub Pages.
+# Nothing is committed back to the repository, so the history no longer grows every day.
+# - Every morning (and when run by hand) it collects new jobs first.
+# - On a normal push it reuses the live site's current jobs and just rebuilds the pages.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/deploy.yml"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Get the jobs currently on the live site
+        run: |
+          curl -fsSL --retry 3 https://trueshiftjobs.com/feed.json -o feed.json.live && mv feed.json.live feed.json || echo "Live feed not reachable, using the repository copy"
+          curl -fsSL --retry 3 https://trueshiftjobs.com/feed-status.json -o feed-status.json.live && mv feed-status.json.live feed-status.json || true
+
+      - name: Collect new jobs from the feeds
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          REED_API_KEY: ${{ secrets.REED_API_KEY }}
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+          APPRENTICESHIP_API_KEY: ${{ secrets.APPRENTICESHIP_API_KEY }}
+          CAREERJET_API_KEY: ${{ secrets.CAREERJET_API_KEY }}
+          EMPLOYER_JOBS_CSV: ${{ secrets.EMPLOYER_JOBS_CSV || 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQABrLZoHkkK4tXTue7feLKOT60bibkHlmTm-TDOI1_U0kqkR59G78kMY3N9ISRjm-mbA5oHRlLC1Ha/pub?gid=265293053&single=true&output=csv' }}
+        run: python scripts/fetch_feed.py
+
+      - name: Safety check before publishing
+        run: |
+          python - <<'EOF'
+          import json, sys
+          jobs = json.load(open("feed.json"))["jobs"]
+          print(f"{len(jobs)} jobs")
+          if len(jobs) < 1000:
+              sys.exit("Fewer than 1,000 jobs: not publishing, the live site keeps its current jobs")
+          EOF
+
+      - name: Build pages
+        run: |
+          python scripts/build_pages.py
+          python scripts/info_pages.py
+
+      - name: Put the site together
+        run: python scripts/assemble_site.py
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
