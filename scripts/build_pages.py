@@ -30,7 +30,7 @@ PAGES = [
         "heading": "Finding a part-time job as a student in London",
         "body": [
             "Most students in London work part-time in retail, hospitality, tutoring, events or campus jobs. The jobs on this page are picked because the hours suit study: weekends, evenings, short shifts and holiday work. Every job was posted in the last 30 days and is still open, and if the same job appears on several job sites we show it once.",
-            "Use the map to pick your part of London, then choose your borough, so you only see jobs you can easily reach from home or university. Switch the job type filter to part-time if you only want shorter hours.",
+            "Pick your part of London, then choose your borough, so you only see jobs you can easily reach from home or university. Switch the job type filter to part-time if you only want shorter hours.",
             "<b>Know your pay.</b> From April 2026 the National Minimum Wage is £12.71 an hour if you are 21 or over, £10.85 if you are 18 to 20 and £8.00 if you are under 18. Many London employers pay the London Living Wage of £14.80 an hour or more. We leave out adverts that pay less than the legal minimum.",
             "<b>International students:</b> if you are on a Student visa, check how many hours you are allowed to work. Students on degree-level courses can usually work up to 20 hours a week during term time, but your own visa conditions are what count, so check your eVisa before you accept a job.",
             "Never pay a fee to get a job, and be careful with adverts that ask you to message on WhatsApp or Telegram. Use our free student CV template to apply.",
@@ -77,7 +77,7 @@ PAGES = [
             "London has more graduate jobs than anywhere else in the UK, but they are spread across hundreds of sites. This page brings together graduate schemes, internships, placements, trainee roles and junior jobs from the main job sites, shows each job once and keeps only adverts that are still open.",
             "<b>Graduate schemes</b> usually last one to two years and rotate you through different teams, often with training or a professional qualification. Many recruit a year ahead and close early, so check the closing date on each advert.",
             "<b>Junior and trainee roles</b> are a quicker route in. You start in one team straight away, often with on-the-job training. They are common in finance, marketing, recruitment, IT, property and engineering. Starting salaries in London vary widely by sector, and many adverts show them, so you can compare before you apply.",
-            "<b>Search by subject.</b> Type your degree subject or the kind of job you want, such as engineering, marketing or data, then pick your part of London on the map.",
+            "<b>Search by subject.</b> Type your degree subject or the kind of job you want, such as engineering, marketing or data, then pick your part of London.",
             "<b>Make your CV work for you.</b> Put your degree, final-year project and any part-time or volunteering work near the top, and show what you did with numbers where you can. If you are an international graduate, check what your visa lets you do before you apply.",
         ],
     },
