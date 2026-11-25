@@ -10,7 +10,7 @@ Sources (each is skipped if its key is missing or it fails):
   - Reed Jobseeker API (secret REED_API_KEY)
   - Adzuna API (secrets ADZUNA_APP_ID and ADZUNA_APP_KEY)
   - NHS Jobs public search feed (no key needed)
-  - Careerjet publisher API (secret CAREERJET_API_KEY)
+  - Careerjet publisher API (secret CAREERJET_API_KEY), newest jobs per borough
   - GOV.UK Find an apprenticeship, Display advert API (secret APPRENTICESHIP_API_KEY)
   - Jobs posted by employers through the TrueShift Google Form, once approved
     (secret EMPLOYER_JOBS_CSV: the published CSV link of the sheet's Public tab)
