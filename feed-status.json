@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T07:29:22Z",
+  "generated": "2026-11-25T08:00:34Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6583,
-      "kept": 510,
+      "fetched": 6573,
+      "kept": 493,
       "dropped": {
-        "too old or closed": 86
+        "too old or closed": 88
       }
     },
     "Employer": {
@@ -29,63 +29,73 @@
       "kept": 0,
       "dropped": {}
     },
+    "NHS Jobs": {
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5749837</id><reference>E0177-26-00309</reference><title>Care Home Clinical Lead (RGN/RMN)</title><description>ABOUT THE ROLEAs a Care Home Clinical Lead at Barchester, you'll use your compassion and experience to help deliver clinical care to the high standard...</description><employer>Barchester Healthcare</employer><type>Permanent</type><salary>£25.75</salary><closeDate>2027-01-24</closeDate><postDate>2026-11-25T05:46:04.218041996</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0177-26-00309</url><locations><location>Oxted, RH8 0NH</location></locations></vacancyDetails><vacancyDetails><id>5749800</id><reference>L0034-26-00119</reference><title>Registered Nurse - Nights</title><description>At Avery Healthcare, we are all about supporting the people who care for our residents. We know how hard our teams work, and were here to celebrate an...</description><employer>Avery Healthcare Group Ltd.</employer><type>Permanent</type><salary>£25.00</salary><closeDate>2026-12-14</closeDate><postDate>2026-11-25T05:43:07.399407955</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/L0034-26-00119</url><locations><location>Barnet, EN5 4BS</location></locations></vacancyDetails><vacancyDetails><id>5749688</id><reference>L0034-26-00115</reference><title>Receptionist - Bank</title><description>At Avery Healthcare, we are all about supporting the people who care for our residents. We know how hard our teams",
+      "fetched": 2060,
+      "pages": 207,
+      "kept": 1441,
+      "dropped": {
+        "outside London": 618,
+        "too old or closed": 1
+      }
+    },
     "Find an apprenticeship": {
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
       "fetched": 7712,
-      "uniqueFromSearches": 4291,
-      "kept": 2766,
+      "uniqueFromSearches": 4292,
+      "kept": 2770,
       "dropped": {
-        "too old or closed": 859,
+        "too old or closed": 861,
         "blocked words": 60,
         "below adult minimum wage": 36,
-        "remote or not in London": 83,
-        "blocked advertiser": 98,
-        "outside London": 262,
-        "London area not given": 127
+        "remote or not in London": 82,
+        "blocked advertiser": 97,
+        "outside London": 253,
+        "London area not given": 133
       }
     },
     "Adzuna": {
-      "fetched": 430,
-      "kept": 380,
+      "fetched": 417,
+      "kept": 364,
       "dropped": {
         "blocked words": 14,
         "remote or not in London": 1
       }
     }
   },
-  "total": 3253,
-  "duplicatesRemoved": 3602,
+  "total": 4605,
+  "duplicatesRemoved": 3716,
   "byRegion": {
-    "Central": 979,
-    "North": 335,
-    "East": 688,
-    "South": 634,
-    "West": 617
+    "Central": 1406,
+    "North": 447,
+    "East": 1018,
+    "South": 871,
+    "West": 863
   },
   "byJobType": {
-    "Part-time": 980,
-    "Full-time": 1830,
-    "Not stated": 443
+    "Part-time": 983,
+    "Full-time": 3170,
+    "Not stated": 452
   },
-  "carriedOver": 3199,
-  "areaApproximate": 397,
-  "apprenticeships": 48,
+  "carriedOver": 3253,
+  "areaApproximate": 403,
+  "apprenticeships": 50,
   "apprenticeshipLevels": {
+    "not stated": 22,
     "3": 19,
-    "not stated": 20,
     "6": 1,
     "2": 7,
     "4": 1
   },
   "byGroup": {
-    "Newcomers": 544,
-    "(none)": 496,
-    "Students": 453,
-    "Experienced": 1713,
-    "Parents": 340,
-    "Graduates": 64,
-    "Apprentices": 48
+    "Experienced": 2856,
+    "(none)": 600,
+    "Newcomers": 634,
+    "Students": 458,
+    "Parents": 341,
+    "Graduates": 72,
+    "Apprentices": 50
   }
 }
