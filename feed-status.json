@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T09:38:37Z",
+  "generated": "2026-11-25T09:49:27Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6548,
-      "kept": 511,
+      "fetched": 6570,
+      "kept": 494,
       "dropped": {
-        "too old or closed": 85
+        "too old or closed": 86
       }
     },
     "Employer": {
@@ -30,77 +30,75 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750127</id><reference>E0341-26-00004</reference><title>Dermatology Outpatient Nurse - Buckinghamshire</title><description>Location: Buckinghamshire Availability: Saturdays &amp; Sundays Hours: 08:0018:00 Rates: Competitive About the Role: We are currently seeking experienced ...</description><employer>18 Week Support Limited</employer><type>Locum</type><salary>Negotiable</salary><closeDate>2026-12-30</closeDate><postDate>2026-11-25T09:39:09.844494059</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0341-26-00004</url><locations><location>London, EC3R 5AR</location></locations></vacancyDetails><vacancyDetails><id>5750045</id><reference>C9326-26-00020</reference><title>Temporary Staffing Coordinator</title><description>The post holder will be responsible for providing comprehensive administrative support to ensure the effective deployment, management and payment of t...</description><employer>Surrey and Sussex Healthcare NHS Trust</employer><type>Permanent</type><salary>£28392.00 to £31157.00</salary><closeDate>2026-12-06</closeDate><postDate>2026-11-25T09:37:55.430511512</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9326-26-00020</url><locations><location>Redhill, RH15RH</location></locations></vacancyDetails><vacancyDetails><id>5744629</id><reference>C9276-26-00001</reference><title>Senior Cancer Pathway Navigator</title><description>The Senior Cancer Pathway Navigator is a key lead",
-      "fetched": 2090,
-      "pages": 210,
-      "kept": 1458,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750183</id><reference>C9323-26-00021</reference><title>Audiologist (Fixed Term, 12 Months)</title><description>Join Our Adult Audiology Team An opportunity has arisen to join our friendly and supportive team. Who We're Looking For: Whether you are newly qualifi...</description><employer>Ashford &amp; St. Peter's Hospitals NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£33677.00 to £40996.00</salary><closeDate>2026-11-26</closeDate><postDate>2026-11-25T09:49:25.925094492</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9323-26-00021</url><locations><location>Ashford and Chertsey, TW15 3AA</location></locations></vacancyDetails><vacancyDetails><id>5750159</id><reference>E0341-26-00007</reference><title>Dermatology Outpatient Nurse - Hampshire</title><description>Location: Hampshire Availability: Saturdays &amp; Sundays Hours: 08:0018:00 Rates: Competitive About the Role: We are currently seeking experienced Dermat...</description><employer>18 Week Support Limited</employer><type>Locum</type><salary>Negotiable</salary><closeDate>2026-12-30</closeDate><postDate>2026-11-25T09:47:34.719465532</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0341-26-00007</url><locations><location>London, EC3R 5AR</location></locations></vacancyDetails><vacancyDetails><id>5750155</id><reference>E0341-26-00006</reference><title>Dermatology Outpatient Nurse - Dorset</title><description>Dermatolog",
+      "fetched": 2100,
+      "pages": 211,
+      "kept": 1461,
       "dropped": {
         "outside London": 629,
-        "too old or closed": 3
+        "too old or closed": 10
       }
     },
     "Careerjet": {
-      "httpError": "403 {\"error\":\"Unauthorized access from IP 172.184.166.109\",\"type\":\"ERROR\"}",
-      "keyLength": 32,
-      "error": "HTTPError: HTTP Error 403: Forbidden"
+      "skipped": "switched off: needs a fixed IP address"
     },
     "Find an apprenticeship": {
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
       "fetched": 7713,
-      "uniqueFromSearches": 4295,
-      "kept": 2762,
+      "uniqueFromSearches": 4270,
+      "kept": 2742,
       "dropped": {
         "too old or closed": 866,
         "blocked words": 59,
         "below adult minimum wage": 36,
-        "remote or not in London": 83,
+        "remote or not in London": 84,
         "blocked advertiser": 96,
-        "outside London": 265,
-        "London area not given": 128
+        "outside London": 264,
+        "London area not given": 123
       }
     },
     "Adzuna": {
-      "fetched": 425,
-      "kept": 368,
+      "fetched": 422,
+      "kept": 374,
       "dropped": {
-        "blocked words": 14,
+        "blocked words": 11,
         "remote or not in London": 1
       }
     }
   },
-  "total": 4279,
-  "duplicatesRemoved": 5095,
+  "total": 4339,
+  "duplicatesRemoved": 5011,
   "byRegion": {
-    "Central": 1242,
-    "North": 430,
-    "East": 962,
-    "South": 848,
-    "West": 797
+    "Central": 1281,
+    "North": 435,
+    "East": 969,
+    "South": 851,
+    "West": 803
   },
   "byJobType": {
-    "Part-time": 1084,
-    "Full-time": 1716,
-    "Not stated": 1479
+    "Part-time": 1089,
+    "Full-time": 1753,
+    "Not stated": 1497
   },
-  "carriedOver": 4275,
-  "areaApproximate": 308,
-  "apprenticeships": 48,
+  "carriedOver": 4279,
+  "areaApproximate": 327,
+  "apprenticeships": 49,
   "apprenticeshipLevels": {
+    "3": 20,
     "not stated": 21,
-    "3": 19,
     "6": 1,
     "4": 1,
     "2": 6
   },
   "byGroup": {
-    "Experienced": 2574,
-    "Students": 495,
-    "Parents": 324,
-    "(none)": 595,
-    "Newcomers": 600,
-    "Graduates": 63,
-    "Apprentices": 48
+    "Experienced": 2610,
+    "Students": 506,
+    "Parents": 326,
+    "Newcomers": 609,
+    "(none)": 601,
+    "Graduates": 64,
+    "Apprentices": 49
   }
 }
