@@ -100,7 +100,7 @@ PAGES = [
         "slug": "experienced-professionals", "group": "Experienced",
         "title": "Professional and Experienced Jobs in London | TrueShift Jobs",
         "description": "Experienced and professional jobs in London, from IT and finance to engineering, education and healthcare. Updated every morning, with no duplicates.",
-        "h1": "Jobs for experienced professionals in London",
+        "h1": "Find Professional & Skilled Jobs Across London",
         "lead": "Skilled, professional and senior roles across London, filtered by category and borough.",
         "heading": "Professional jobs across London, without the noise",
         "body": [
@@ -368,6 +368,15 @@ def main():
     JOBS = load_jobs()
     orig = base = (ROOT / "index.html").read_text()
     base = re.sub(r"/\*FAQS\*/.*?/\*/FAQS\*/", lambda m: "/*FAQS*/const FAQS=%s;/*/FAQS*/" % json.dumps(FAQS, ensure_ascii=False).replace("</", "<\\/"), base, count=1, flags=re.S)
+    heads = {"All": {"title": html.unescape(re.search(r"<title>(.*?)</title>", base).group(1)),
+                     "h1": html.unescape(re.sub(r"<[^>]+>", "", re.search(r"<h1>(.*?)</h1>", base, re.S).group(1))),
+                     "lead": html.unescape(re.sub(r"<[^>]+>", "", re.search(r'<p class="lead">(.*?)</p>', base, re.S).group(1)))},
+             "Saved": {"title": "Your saved jobs | TrueShift Jobs", "h1": "Your saved jobs",
+                       "lead": "Jobs you have saved on this device. Jobs that close are removed automatically."}}
+    for p in PAGES:
+        if p.get("group"):
+            heads[p["group"]] = {"title": p["title"], "h1": p["h1"], "lead": p["lead"]}
+    base = re.sub(r"/\*HEADS\*/.*?/\*/HEADS\*/", lambda m: "/*HEADS*/const HEADS=%s;/*/HEADS*/" % json.dumps(heads, ensure_ascii=False).replace("</", "<\\/"), base, count=1, flags=re.S)
     # The home page gets the newest jobs written into its HTML too.
     home = put_jobs(base, JOBS)
     if home != orig:
