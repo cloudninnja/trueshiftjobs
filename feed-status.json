@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T15:42:08Z",
+  "generated": "2026-11-25T15:58:12Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6786,
-      "kept": 523,
+      "fetched": 6798,
+      "kept": 530,
       "dropped": {
-        "too old or closed": 88
+        "too old or closed": 89
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5751872</id><reference>C9199-8448021-NA-B</reference><title>Clinical Coding &amp; Data Quality Supervisor</title><description>Clinical Coding &amp; Data Quality Supervisor Band 6 equivalent Clinical Coding &amp; Data Quality (DQ) Services is looking for an experienced Clinical Coding...</description><employer>Croydon Health Services NHS Trust</employer><type>Permanent</type><salary>£45953.00 to £54254.00</salary><closeDate>2026-12-06</closeDate><postDate>2026-11-25T15:42:47.515553556</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9199-8448021-NA-B</url><locations><location>Croydon, CR7 7YE</location></locations></vacancyDetails><vacancyDetails><id>5752105</id><reference>C9282-26-00026</reference><title>Research Operations Manager - Lung &amp; Mesothelioma Research</title><description>The Royal Marsden is one of the world's leading cancer centres, renowned for innovation, excellence in patient care, and pioneering research that chan...</description><employer>The Royal Marsden NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£63665.00 to £70887.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:42:46.388484441</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9282-26-00026</url><locations><location>Sutton, SM2 5PT</location></locations></vacancyDetails><vacancyDetails><id>5752209</id><reference>C9325-26-00035</reference><title>Mindworks Hub Outreach Liaison ",
-      "fetched": 2210,
-      "pages": 222,
-      "kept": 1538,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752231</id><reference>A3428-26-00000</reference><title>Healthcare  Assistant </title><description>An opportunity has arisen for a Healthcare Assistant to join our team here at The Mission Practice. The successful candidate will work within our curr...</description><employer>The Mission Practice</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-04</closeDate><postDate>2026-11-25T15:53:27.943135933</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/A3428-26-00000</url><locations><location>London, E2 9LS</location></locations></vacancyDetails><vacancyDetails><id>5752172</id><reference>F0058-4465</reference><title>Specialist Safeguarding Nurse</title><description>The Safeguarding Children Team aims to ensure that all children and young people are effectively protected when using our services; that processes are...</description><employer>London Borough of Sutton Council</employer><type>Permanent</type><salary>£50676.00 to £59298.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:53:10.228302839</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/F0058-4465</url><locations><location>Sutton, SM1 1EA</location></locations></vacancyDetails><vacancyDetails><id>5752166</id><reference>A4942-26-00000</reference><title>Health Care Assistant (HCA)</title><description>We are looking for a friendly, caring and reliable Healthcare Assistant to join our nursing and w",
+      "fetched": 2220,
+      "pages": 223,
+      "kept": 1548,
       "dropped": {
-        "outside London": 663,
-        "too old or closed": 9
+        "outside London": 662,
+        "too old or closed": 10
       }
     },
     "Careerjet": {
@@ -46,22 +46,22 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7726,
-      "uniqueFromSearches": 4280,
-      "kept": 2767,
+      "fetched": 7727,
+      "uniqueFromSearches": 4298,
+      "kept": 2779,
       "dropped": {
-        "too old or closed": 858,
+        "too old or closed": 861,
         "blocked words": 61,
-        "remote or not in London": 82,
+        "remote or not in London": 83,
         "below adult minimum wage": 36,
         "blocked advertiser": 98,
-        "outside London": 256,
-        "London area not given": 122
+        "outside London": 263,
+        "London area not given": 117
       }
     },
     "Adzuna": {
       "fetched": 439,
-      "kept": 394,
+      "kept": 386,
       "dropped": {
         "remote or not in London": 4,
         "below adult minimum wage": 1,
@@ -70,21 +70,21 @@
     }
   },
   "total": 5000,
-  "duplicatesRemoved": 5016,
+  "duplicatesRemoved": 5013,
   "byRegion": {
-    "Central": 1712,
-    "North": 457,
-    "East": 1036,
-    "South": 919,
-    "West": 876
+    "Central": 1700,
+    "North": 455,
+    "East": 1031,
+    "South": 928,
+    "West": 886
   },
   "byJobType": {
-    "Part-time": 1143,
-    "Full-time": 2127,
-    "Not stated": 1730
+    "Part-time": 1139,
+    "Full-time": 2138,
+    "Not stated": 1723
   },
   "carriedOver": 5000,
-  "areaApproximate": 529,
+  "areaApproximate": 530,
   "apprenticeships": 47,
   "apprenticeshipLevels": {
     "not stated": 17,
@@ -94,11 +94,11 @@
     "2": 5
   },
   "byGroup": {
-    "Students": 600,
-    "Parents": 352,
-    "Experienced": 3041,
-    "(none)": 642,
-    "Newcomers": 686,
+    "Students": 599,
+    "Parents": 350,
+    "Experienced": 3038,
+    "(none)": 644,
+    "Newcomers": 690,
     "Graduates": 115,
     "Apprentices": 47
   }
