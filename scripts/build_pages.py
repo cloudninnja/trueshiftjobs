@@ -313,9 +313,10 @@ table{border-collapse:collapse;margin:0 0 20px}th{text-align:left;padding:4px 18
 <p class="note">This job was posted directly by the employer and checked by a person before going live. Never pay a fee to apply for a job.</p>
 <p><a href="/jobs/%(bslug)s/">More jobs in %(borough)s</a> · <a href="/">All London jobs</a></p>
 </main>
+%(cf)s
 </body>
 </html>
-""" % {"title": esc(title), "meta": esc(("%s at %s in %s, London. %s" % (j.get("title"), j.get("employer"), j.get("borough"), j.get("about") or ""))[:155]),
+""" % {"cf": CF, "title": esc(title), "meta": esc(("%s at %s in %s, London. %s" % (j.get("title"), j.get("employer"), j.get("borough"), j.get("about") or ""))[:155]),
        "url": url, "schema": job_schema(j), "h1": esc(j.get("title")), "emp": esc(j.get("employer")), "rows": rows,
        "apply_html": ('<a class="apply" href="%s" rel="noopener">%s</a>' % (esc(apply), apply_label)) if apply else "",
        "desc": desc or "<p>See the advert for full details.</p>", "bslug": slug(j.get("borough") or ""), "borough": esc(j.get("borough") or "London")}
@@ -360,6 +361,7 @@ def build_page(base, p, borough_jobs=None):
 
 
 JOBS = []
+CF = '<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "9e7884d556a84616886e38aff893e657"}\'></script><!-- End Cloudflare Web Analytics -->'
 FAQS = json.loads((ROOT / "scripts" / "faqs.json").read_text())
 
 
