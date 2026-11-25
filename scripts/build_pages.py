@@ -303,7 +303,7 @@ table{border-collapse:collapse;margin:0 0 20px}th{text-align:left;padding:4px 18
 </style>
 </head>
 <body>
-<div class="top"><div class="wrap" style="padding:16px 20px"><a href="/">TrueShift Jobs</a></div></div>
+<header class="top"><div class="wrap" style="padding:16px 20px"><a href="/">TrueShift Jobs</a></div></header>
 <main class="wrap">
 <h1>%(h1)s</h1>
 <p class="emp">%(emp)s</p>

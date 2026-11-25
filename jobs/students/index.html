@@ -79,6 +79,8 @@ h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spac
 .empty h3{margin:0;font-size:22px;font-weight:600}
 .empty p{margin:0;color:var(--sub);max-width:62ch}
 .info{background:#fff;color:var(--ink)}
+.info a{color:#0b4f8a}
+@media(min-width:601px) and (max-width:1100px){.bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.bar #q{grid-column:1/-1}.bar .ctl{width:100%;min-width:0}}
 .info h2,.safe h2{font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1;letter-spacing:-.01em;margin:0 0 8px}
 .info .intro{color:var(--muted);margin:0 0 22px;max-width:65ch}
 .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px 28px;margin:0 0 36px;padding:0;list-style:none;counter-reset:c}
@@ -132,7 +134,7 @@ footer p{margin:0 0 6px;max-width:80ch}
 .cvband h3{font-size:18px;margin:22px 0 8px}
 .cvgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(20px,3vw,40px);align-items:start}
 .cvtabs .chip{color:var(--ink);border-color:var(--sea)}
-.cvtabs .chip[aria-pressed=true]{background:var(--sea);color:#fff}
+.cvtabs .chip[aria-selected=true]{background:var(--sea);color:#fff;font-weight:600}
 .cvbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .apply.alt{background:#fff;color:var(--ink);border:2px solid var(--sea)}
 button.apply{border:0;font:inherit;font-weight:600;cursor:pointer}
@@ -179,6 +181,7 @@ header.band{overflow-x:clip}
 </style>
 </head>
 <body>
+<main id="main">
 <header class="band">
   <div class="wrap">
     <div class="top">
@@ -353,10 +356,10 @@ header.band{overflow-x:clip}
       <h2>Free UK CV template</h2>
       <p class="intro">Not sure what a UK CV looks like? Pick the template closest to you, then copy it or download it for Word and fill in the parts in [square brackets].</p>
       <div class="chips cvtabs" role="tablist" aria-label="CV templates">
-        <button class="chip" type="button" role="tab" data-cv="Students" aria-selected="true" aria-pressed="true">Student</button>
-        <button class="chip" type="button" role="tab" data-cv="Parents" aria-selected="false" aria-pressed="false">Parent returning to work</button>
-        <button class="chip" type="button" role="tab" data-cv="Newcomers" aria-selected="false" aria-pressed="false">New to the UK</button>
-        <button class="chip" type="button" role="tab" data-cv="Apprentices" aria-selected="false" aria-pressed="false">School leaver or apprentice</button>
+        <button class="chip" type="button" role="tab" data-cv="Students" aria-selected="true">Student</button>
+        <button class="chip" type="button" role="tab" data-cv="Parents" aria-selected="false">Parent returning to work</button>
+        <button class="chip" type="button" role="tab" data-cv="Newcomers" aria-selected="false">New to the UK</button>
+        <button class="chip" type="button" role="tab" data-cv="Apprentices" aria-selected="false">School leaver or apprentice</button>
       </div>
       <div class="cvbtns">
         <button class="apply" type="button" id="cvcopy">Copy CV text</button>
@@ -445,6 +448,8 @@ header.band{overflow-x:clip}
   </div>
 </section>
 
+</main>
+
 <footer class="band">
   <div class="wrap">
     <p>TrueShift Jobs is a free list of part-time and full-time jobs and apprenticeships in London. It is not an employer or a recruitment agency and never charges jobseekers.</p>
@@ -487,7 +492,11 @@ function sameJob(a,b){
 function addFeed(d){
   const list=(d&&Array.isArray(d.jobs))?d.jobs:[];
   const checked=jobs.filter(j=>!j.source);
-  jobs=checked.concat(list.filter(f=>f&&f.title&&f.borough&&f.source&&!checked.some(c=>sameJob(c,f))));
+  const fresh=[];
+  list.forEach(f=>{if(!(f&&f.title&&f.borough&&f.source))return;const c=checked.find(c=>sameJob(c,f));
+    if(!c){fresh.push(f);return}
+    const g=groupsOf(c);groupsOf(f).forEach(x=>{if(x!=='Experienced'&&!g.includes(x))g.push(x)});c.bestFor=g.join(', ')});
+  jobs=checked.concat(fresh);
   feedInfo=d;
 }
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -587,7 +596,7 @@ function render(keepLimit){
     b.setAttribute('aria-pressed',String(state.region===r));
     b.querySelector('b').textContent=jobs.filter(j=>regionOf(j)===r&&matches(j,true)).length;
   });
-  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(state.group===c.dataset.g)));
+  document.querySelectorAll('.chip[data-g]').forEach(c=>c.setAttribute('aria-pressed',String(state.group===c.dataset.g)));
   if(feedReady){saved=saved.filter(k=>jobs.some(j=>keyOf(j)===k));saves.set(saved)}
   el('savedn').textContent=saved.length;
   const qk=QUICK[state.group]||QUICK.All;
@@ -708,7 +717,7 @@ function cvRtf(c){
   return o+'}';
 }
 function renderCv(){
-  document.querySelectorAll('.cvtabs .chip').forEach(b=>{const on=b.dataset.cv===cvKey;b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-selected',String(on))});
+  document.querySelectorAll('.cvtabs .chip').forEach(b=>{const on=b.dataset.cv===cvKey;b.setAttribute('aria-selected',String(on))});
   el('cvpaper').innerHTML=cvHtml(CVS[cvKey]);
   el('cvmsg').textContent='';
 }
