@@ -734,24 +734,29 @@ function render(keepLimit){
 const up=src.dataset.updated;
 if(up){const t=new Date(up+'T12:00:00');if(!isNaN(t))el('updated').textContent=t.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
 el('compass').addEventListener('click',e=>{const b=e.target.closest('.reg');if(!b)return;state.region=state.region===b.dataset.r?'All':b.dataset.r;state.borough='All';fillBoroughs();render()});
-const ALERT_FORM={action:'https://docs.google.com/forms/d/e/1FAIpQLSfDVSUWs800TxAqThCrnI3MQ9NwuA4m5HHOzTBWrKQY9PUAEg/formResponse',email:'entry.181581647',interests:'entry.1044573736',areas:'entry.602913384',consent:'entry.1272065490',consentText:'I agree to TrueShift Jobs emailing me about new jobs. I can unsubscribe at any time.'};
+const ALERT_FORM={action:'https://assets.mailerlite.com/jsonp/2824229/forms/205123467554588173/subscribe'};
 (function(){const f=el('alerts');if(!f||!ALERT_FORM.action)return;f.hidden=false;f.classList.add('closed');
   const open=on=>{f.classList.toggle('closed',!on);el('aopen').setAttribute('aria-expanded',String(on));if(on)el('aemail').focus()};
   el('aopen').addEventListener('click',()=>open(true));
   let done=false;try{done=localStorage.getItem('ts_alert')==='1'}catch(e){}
   const msg=(t,bad)=>{el('amsg').textContent=t;el('amsg').classList.toggle('err',!!bad)};
-  const setDone=()=>{el('aopen').textContent='Sign up another email';const h=f.querySelector('h2');h.textContent="You're signed up for London job emails";};
-  if(done)setDone();
-  f.addEventListener('change',e=>{if(e.target.name==='ai'||e.target.name==='aa')f.dataset.touched='1'});
+  const setDone=()=>{el('aopen').textContent='Sign up another email';const h=f.querySelector('h2');h.textContent="Check your inbox to confirm your job emails";};
+  if(done){setDone();f.querySelector('h2').textContent="You're signed up for London job emails"}
+  f.addEventListener('change',e=>{const t=e.target;if(t.name!=='ai'&&t.name!=='aa')return;f.dataset.touched='1';
+    if(t.name==='aa'&&t.checked)f.querySelectorAll('input[name=aa]').forEach(x=>{if(x!==t&&((t.dataset.k==='All')!==(x.dataset.k==='All')))x.checked=false})});
   f.addEventListener('submit',e=>{e.preventDefault();const v=el('aemail').value.trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){msg('Please enter a valid email address.',true);el('aemail').focus();return}
     if(!el('aconsent').checked){msg('Please tick the box to agree to job emails.',true);el('aconsent').focus();return}
-    const body=new URLSearchParams();body.append(ALERT_FORM.email,v);
-    f.querySelectorAll('input[name=ai]:checked').forEach(x=>body.append(ALERT_FORM.interests,x.value));
-    const ar=[...f.querySelectorAll('input[name=aa]:checked')].map(x=>x.value);(ar.length?ar:['Anywhere in London']).forEach(x=>body.append(ALERT_FORM.areas,x));
-    body.append(ALERT_FORM.consent,ALERT_FORM.consentText);
+    const body=new FormData();body.append('fields[email]',v);
+    const ints=[...f.querySelectorAll('input[name=ai]:checked')].map(x=>x.value);
+    const ar=[...f.querySelectorAll('input[name=aa]:checked')].map(x=>x.value);
+    body.append('fields[interests]',ints.length?ints.join(', '):'All jobs');
+    body.append('fields[areas]',ar.length?ar.join(', '):'Anywhere in London');
+    body.append('ml-submit','1');body.append('anticsrf','true');
     el('asend').disabled=true;msg('Signing you up...');
-    fetch(ALERT_FORM.action,{method:'POST',mode:'no-cors',body}).then(()=>{msg("Thank you, you're signed up. We'll email you new London jobs.");el('aemail').value='';el('aconsent').checked=false;setTimeout(()=>{setDone();open(false);el('aopen').focus()},2500);try{localStorage.setItem('ts_alert','1')}catch(e){}})
+    const ok=()=>{msg("Nearly done. Check your inbox and click the link in our email to confirm. If you can't see it, check your spam folder.");el('aemail').value='';el('aconsent').checked=false;try{localStorage.setItem('ts_alert','1')}catch(e){}setTimeout(()=>{setDone();open(false);el('aopen').focus()},6000)};
+    fetch(ALERT_FORM.action,{method:'POST',body}).then(r=>r.json().catch(()=>({}))).then(d=>{if(d&&d.success===false){msg('Sorry, that did not go through. Please check your email address and try again.',true);return}ok()})
+      .catch(()=>fetch(ALERT_FORM.action,{method:'POST',mode:'no-cors',body}).then(ok))
       .catch(()=>msg('Sorry, that did not go through. Please check your connection and try again.',true)).finally(()=>{el('asend').disabled=false})});
 })();
 el('listtoggle').addEventListener('click',()=>{state.listOpen=state.listOpen===false;render(true)});
