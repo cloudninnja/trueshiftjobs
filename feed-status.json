@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T15:32:04Z",
+  "generated": "2026-11-25T15:42:08Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6777,
-      "kept": 528,
+      "fetched": 6786,
+      "kept": 523,
       "dropped": {
-        "too old or closed": 85
+        "too old or closed": 88
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752033</id><reference>C9151-26-00044</reference><title>Advanced Practitioner - Sonographer</title><description>We have an opportunity for enthusiastic and motivated Sonographers to come and join us. We are a vibrant, friendly, supportive team providing a wide r...</description><employer>Frimley Health NHS Foundation Trust</employer><type>Permanent</type><salary>£51657.00 to £58785.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:31:01.916247727</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9151-26-00044</url><locations><location>Slough, SL2 4HL</location></locations></vacancyDetails><vacancyDetails><id>5751923</id><reference>C9396-26-00009</reference><title>Community Staff Nurse - Tissue Viability Service</title><description>Are you ready for a new challenge? Could you make a difference? Are you: A Registered General Nurse Committed to giving the highest standard of patien...</description><employer>Kingston and Richmond NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£36943.00 to £44900.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:30:28.139161373</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9396-26-00009</url><locations><location>Teddington, TW11 8LP</location></locations></vacancyDetails><vacancyDetails><id>5752125</id><reference>C9391-26-00079</reference><title>Consultant Oral &amp; Maxillofacial Surgeon</title><descripti",
-      "fetched": 2200,
-      "pages": 221,
-      "kept": 1535,
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5751872</id><reference>C9199-8448021-NA-B</reference><title>Clinical Coding &amp; Data Quality Supervisor</title><description>Clinical Coding &amp; Data Quality Supervisor Band 6 equivalent Clinical Coding &amp; Data Quality (DQ) Services is looking for an experienced Clinical Coding...</description><employer>Croydon Health Services NHS Trust</employer><type>Permanent</type><salary>£45953.00 to £54254.00</salary><closeDate>2026-12-06</closeDate><postDate>2026-11-25T15:42:47.515553556</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9199-8448021-NA-B</url><locations><location>Croydon, CR7 7YE</location></locations></vacancyDetails><vacancyDetails><id>5752105</id><reference>C9282-26-00026</reference><title>Research Operations Manager - Lung &amp; Mesothelioma Research</title><description>The Royal Marsden is one of the world's leading cancer centres, renowned for innovation, excellence in patient care, and pioneering research that chan...</description><employer>The Royal Marsden NHS Foundation Trust</employer><type>Fixed-Term</type><salary>£63665.00 to £70887.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:42:46.388484441</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9282-26-00026</url><locations><location>Sutton, SM2 5PT</location></locations></vacancyDetails><vacancyDetails><id>5752209</id><reference>C9325-26-00035</reference><title>Mindworks Hub Outreach Liaison ",
+      "fetched": 2210,
+      "pages": 222,
+      "kept": 1538,
       "dropped": {
-        "outside London": 659,
-        "too old or closed": 6
+        "outside London": 663,
+        "too old or closed": 9
       }
     },
     "Careerjet": {
@@ -47,16 +47,16 @@
     },
     "Reed": {
       "fetched": 7726,
-      "uniqueFromSearches": 4267,
-      "kept": 2771,
+      "uniqueFromSearches": 4280,
+      "kept": 2767,
       "dropped": {
-        "too old or closed": 854,
+        "too old or closed": 858,
         "blocked words": 61,
-        "remote or not in London": 83,
+        "remote or not in London": 82,
         "below adult minimum wage": 36,
         "blocked advertiser": 98,
-        "outside London": 238,
-        "London area not given": 126
+        "outside London": 256,
+        "London area not given": 122
       }
     },
     "Adzuna": {
@@ -70,21 +70,21 @@
     }
   },
   "total": 5000,
-  "duplicatesRemoved": 5022,
+  "duplicatesRemoved": 5016,
   "byRegion": {
-    "Central": 1715,
-    "North": 456,
+    "Central": 1712,
+    "North": 457,
     "East": 1036,
-    "South": 915,
-    "West": 878
+    "South": 919,
+    "West": 876
   },
   "byJobType": {
-    "Part-time": 1141,
-    "Full-time": 2132,
-    "Not stated": 1727
+    "Part-time": 1143,
+    "Full-time": 2127,
+    "Not stated": 1730
   },
   "carriedOver": 5000,
-  "areaApproximate": 533,
+  "areaApproximate": 529,
   "apprenticeships": 47,
   "apprenticeshipLevels": {
     "not stated": 17,
@@ -94,11 +94,11 @@
     "2": 5
   },
   "byGroup": {
-    "Students": 599,
-    "Parents": 351,
+    "Students": 600,
+    "Parents": 352,
     "Experienced": 3041,
-    "(none)": 645,
-    "Newcomers": 684,
+    "(none)": 642,
+    "Newcomers": 686,
     "Graduates": 115,
     "Apprentices": 47
   }
