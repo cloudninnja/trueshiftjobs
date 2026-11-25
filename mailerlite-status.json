@@ -1,0 +1,24 @@
+{
+ "keyPresent": true,
+ "authOk": true,
+ "groupCreate": 201,
+ "jobAlertsGroupId": "205123185170973898",
+ "fieldCreate_Interests": 201,
+ "fieldCreate_Areas": 201,
+ "fields": [
+  "areas",
+  "city",
+  "company",
+  "country",
+  "interests",
+  "last_name",
+  "name",
+  "phone",
+  "state",
+  "z_i_p"
+ ],
+ "embeddedForms": [],
+ "campaignWithContent": 201,
+ "campaignMessage": null,
+ "campaignDeleted": 204
+}
