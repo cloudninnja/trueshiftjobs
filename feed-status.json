@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T15:58:12Z",
+  "generated": "2026-11-25T16:09:23Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6798,
-      "kept": 530,
+      "fetched": 6807,
+      "kept": 523,
       "dropped": {
-        "too old or closed": 89
+        "too old or closed": 88
       }
     },
     "Employer": {
@@ -31,12 +31,12 @@
     },
     "NHS Jobs": {
       "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752231</id><reference>A3428-26-00000</reference><title>Healthcare  Assistant </title><description>An opportunity has arisen for a Healthcare Assistant to join our team here at The Mission Practice. The successful candidate will work within our curr...</description><employer>The Mission Practice</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-04</closeDate><postDate>2026-11-25T15:53:27.943135933</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/A3428-26-00000</url><locations><location>London, E2 9LS</location></locations></vacancyDetails><vacancyDetails><id>5752172</id><reference>F0058-4465</reference><title>Specialist Safeguarding Nurse</title><description>The Safeguarding Children Team aims to ensure that all children and young people are effectively protected when using our services; that processes are...</description><employer>London Borough of Sutton Council</employer><type>Permanent</type><salary>£50676.00 to £59298.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T15:53:10.228302839</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/F0058-4465</url><locations><location>Sutton, SM1 1EA</location></locations></vacancyDetails><vacancyDetails><id>5752166</id><reference>A4942-26-00000</reference><title>Health Care Assistant (HCA)</title><description>We are looking for a friendly, caring and reliable Healthcare Assistant to join our nursing and w",
-      "fetched": 2220,
-      "pages": 223,
-      "kept": 1548,
+      "fetched": 2210,
+      "pages": 222,
+      "kept": 1547,
       "dropped": {
         "outside London": 662,
-        "too old or closed": 10
+        "too old or closed": 1
       }
     },
     "Careerjet": {
@@ -46,60 +46,60 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7727,
-      "uniqueFromSearches": 4298,
-      "kept": 2779,
+      "fetched": 7709,
+      "uniqueFromSearches": 4267,
+      "kept": 2759,
       "dropped": {
-        "too old or closed": 861,
-        "blocked words": 61,
+        "too old or closed": 856,
+        "blocked words": 62,
         "remote or not in London": 83,
         "below adult minimum wage": 36,
         "blocked advertiser": 98,
-        "outside London": 263,
-        "London area not given": 117
+        "outside London": 261,
+        "London area not given": 112
       }
     },
     "Adzuna": {
-      "fetched": 439,
-      "kept": 386,
+      "fetched": 435,
+      "kept": 378,
       "dropped": {
         "remote or not in London": 4,
-        "below adult minimum wage": 1,
-        "blocked words": 11
+        "below adult minimum wage": 2,
+        "blocked words": 10
       }
     }
   },
   "total": 5000,
-  "duplicatesRemoved": 5013,
+  "duplicatesRemoved": 4967,
   "byRegion": {
     "Central": 1700,
-    "North": 455,
-    "East": 1031,
-    "South": 928,
-    "West": 886
+    "North": 458,
+    "East": 1033,
+    "South": 924,
+    "West": 885
   },
   "byJobType": {
-    "Part-time": 1139,
-    "Full-time": 2138,
-    "Not stated": 1723
+    "Part-time": 1140,
+    "Full-time": 2139,
+    "Not stated": 1721
   },
   "carriedOver": 5000,
-  "areaApproximate": 530,
-  "apprenticeships": 47,
+  "areaApproximate": 533,
+  "apprenticeships": 48,
   "apprenticeshipLevels": {
-    "not stated": 17,
+    "not stated": 18,
     "3": 23,
     "6": 1,
     "4": 1,
     "2": 5
   },
   "byGroup": {
-    "Students": 599,
+    "Students": 602,
     "Parents": 350,
-    "Experienced": 3038,
-    "(none)": 644,
-    "Newcomers": 690,
+    "Experienced": 3037,
+    "(none)": 643,
+    "Newcomers": 685,
     "Graduates": 115,
-    "Apprentices": 47
+    "Apprentices": 48
   }
 }
