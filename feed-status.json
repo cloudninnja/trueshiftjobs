@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T10:40:01Z",
+  "generated": "2026-11-25T10:59:03Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6617,
-      "kept": 502,
+      "fetched": 6649,
+      "kept": 518,
       "dropped": {
-        "too old or closed": 85
+        "too old or closed": 87
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750416</id><reference>U0055-26-00009</reference><title>Bank Emergency Care Practitioner (ECP)</title><description>This is the perfect opportunity to be part of a diverse team providing assessment, diagnostics, diagnosis, treatment, advice, and referrals. As a UTC ...</description><employer>Greenwich Health Ltd</employer><type>Permanent</type><salary>£57847.00 to £75843.00</salary><closeDate>2026-12-06</closeDate><postDate>2026-11-25T10:33:09.639564202</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/U0055-26-00009</url><locations><location>London, SE18 4QH</location></locations></vacancyDetails><vacancyDetails><id>5750293</id><reference>C9824-26-00035</reference><title>Multi-Agency Child Protection Team Lead - RBKCW</title><description>CLCH is seeking a Registered Nurse, Midwife or Specialist Community Public Health Practitioner to lead Health's contribution to the Families First Par...</description><employer>Central London Community Health Trust</employer><type>Fixed-Term</type><salary>£66274.00 to £73496.00</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T10:27:52.431019950</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9824-26-00035</url><locations><location>London, W1D 3QS</location></locations></vacancyDetails><vacancyDetails><id>5750328</id><reference>A2960-26-00000</reference><title>Medical Receptionist</title><description>GP surgery multi-site receptionist: Opport",
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5749596</id><reference>C9199-8319999-NA-A</reference><title>Decontamination Technician</title><description>Decontamination Technician Band 2 *Please do not apply for this role if you have previously applied in the last six months* We are looking for a enthu...</description><employer>Croydon Health Services NHS Trust</employer><type>Permanent</type><salary>£30142.00</salary><closeDate>2026-12-08</closeDate><postDate>2026-11-25T10:53:17.610767039</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9199-8319999-NA-A</url><locations><location>London, CR7 7YE</location></locations></vacancyDetails><vacancyDetails><id>5750517</id><reference>E0358-26-00009</reference><title>Director of Clinical Services</title><description>Priory Hospital North London Full Time | 37.5 hours per week | Site based Salary is £65,000 per annum</description><employer>Priory Healthcare</employer><type>Permanent</type><salary>£65000.00</salary><closeDate>2026-12-31</closeDate><postDate>2026-11-25T10:52:28.952254617</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0358-26-00009</url><locations><location>The Bourne, N14 6RA</location></locations></vacancyDetails><vacancyDetails><id>5750472</id><reference>E0358-26-00008</reference><title>Director of Clinical Services</title><description>Priory Hospital Avesbury House Full Time | 37.5 hours per week | Site based Salary is £60,000 per annum</description><employer>Priory Heal",
       "fetched": 2100,
       "pages": 211,
-      "kept": 1463,
+      "kept": 1466,
       "dropped": {
-        "outside London": 633,
-        "too old or closed": 4
+        "outside London": 632,
+        "too old or closed": 2
       }
     },
     "Careerjet": {
@@ -46,43 +46,43 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7721,
-      "uniqueFromSearches": 4218,
-      "kept": 2746,
+      "fetched": 7722,
+      "uniqueFromSearches": 4261,
+      "kept": 2755,
       "dropped": {
-        "too old or closed": 853,
+        "too old or closed": 852,
         "blocked words": 59,
         "below adult minimum wage": 36,
-        "remote or not in London": 82,
+        "remote or not in London": 84,
         "blocked advertiser": 96,
-        "outside London": 245,
-        "London area not given": 101
+        "outside London": 259,
+        "London area not given": 120
       }
     },
     "Adzuna": {
-      "fetched": 427,
-      "kept": 373,
+      "fetched": 421,
+      "kept": 350,
       "dropped": {
-        "blocked words": 20
+        "blocked words": 18
       }
     }
   },
-  "total": 4584,
-  "duplicatesRemoved": 4839,
+  "total": 4645,
+  "duplicatesRemoved": 5028,
   "byRegion": {
-    "Central": 1436,
-    "North": 460,
-    "East": 1002,
-    "South": 865,
-    "West": 821
+    "Central": 1465,
+    "North": 462,
+    "East": 1019,
+    "South": 873,
+    "West": 826
   },
   "byJobType": {
-    "Part-time": 1114,
-    "Full-time": 1913,
-    "Not stated": 1557
+    "Part-time": 1125,
+    "Full-time": 1958,
+    "Not stated": 1562
   },
-  "carriedOver": 4339,
-  "areaApproximate": 391,
+  "carriedOver": 4584,
+  "areaApproximate": 412,
   "apprenticeships": 52,
   "apprenticeshipLevels": {
     "3": 22,
@@ -92,12 +92,12 @@
     "2": 6
   },
   "byGroup": {
-    "Newcomers": 629,
-    "Experienced": 2749,
-    "Students": 557,
-    "Parents": 333,
-    "(none)": 621,
-    "Graduates": 76,
+    "(none)": 628,
+    "Experienced": 2788,
+    "Newcomers": 639,
+    "Students": 563,
+    "Parents": 342,
+    "Graduates": 79,
     "Apprentices": 52
   }
 }
