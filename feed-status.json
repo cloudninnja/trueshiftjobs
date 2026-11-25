@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T17:27:58Z",
+  "generated": "2026-11-25T22:44:44Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6840,
-      "kept": 558,
+      "fetched": 6854,
+      "kept": 565,
       "dropped": {
-        "too old or closed": 87
+        "too old or closed": 88
       }
     },
     "Employer": {
@@ -30,13 +30,13 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752378</id><reference>C9289-PC-327</reference><title>Clinical Fellowship in Obstetric Anaesthesia WM site</title><description>Clinical Fellowship in Obstetric Anaesthesia WM site This new post will be ideal for those applying for ST4 posts as it offers time during the working...</description><employer>Chelsea and Westminster Hospital NHS Foundation Trust</employer><type>Fixed-Term</type><salary>Negotiable</salary><closeDate>2026-12-09</closeDate><postDate>2026-11-25T17:00:07.046138323</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9289-PC-327</url><locations><location>London, TW7 6AF</location></locations></vacancyDetails><vacancyDetails><id>5751713</id><reference>E0132-26-00060</reference><title>Support Services Manager</title><description>If you enjoy creating a well-presented and safe environment, then join the team at Jacobs Neurological Centre as a Support Services Manager and become...</description><employer>Elysium Healthcare</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-31</closeDate><postDate>2026-11-25T16:53:25.153122712</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0132-26-00060</url><locations><location>Hertfordshire, CM21 0HH</location></locations></vacancyDetails><vacancyDetails><id>5751712</id><reference>E0132-26-00059</reference><title>Social Worker Assistant</title><description>Are you looking to step into the world of social care w",
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5752587</id><reference>B0474-26-00002</reference><title>Housekeeping Assistant Days (Full-Time)</title><description>An exciting opportunity has arisen for a Housekeeping Assistant to join our Housekeeping Team on a full-time basis working Monday to Friday. This role...</description><employer>The Children's Trust</employer><type>Permanent</type><salary>£13.45</salary><closeDate>2026-12-08</closeDate><postDate>2026-11-25T22:19:38.395447566</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/B0474-26-00002</url><locations><location>Tadworth, KT20 5RU</location></locations></vacancyDetails><vacancyDetails><id>5752578</id><reference>A3680-26-00000</reference><title>Clinical Pharmacist</title><description>Spring Grove Medical Practice has about 7,000 patients, and is an established training practice for GP trainees and allied health professionals such a...</description><employer>Spring Grove Medical Practice</employer><type>Permanent</type><salary>£58300.00 to £65785.00</salary><closeDate>2026-12-26</closeDate><postDate>2026-11-25T22:18:36.866300672</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/A3680-26-00000</url><locations><location>Isleworth, TW7 4HQ</location></locations></vacancyDetails><vacancyDetails><id>5752548</id><reference>E0132-26-00062</reference><title>Care Administrator </title><description>Join the team at Luton Residential Homes as a Care Administrator, where you will play a vi",
       "fetched": 2230,
       "pages": 224,
-      "kept": 1557,
+      "kept": 1561,
       "dropped": {
         "outside London": 668,
-        "too old or closed": 5
+        "too old or closed": 1
       }
     },
     "Careerjet": {
@@ -46,59 +46,59 @@
       "skipped": "no APPRENTICESHIP_API_KEY secret"
     },
     "Reed": {
-      "fetched": 7630,
-      "uniqueFromSearches": 4252,
-      "kept": 2774,
+      "fetched": 7629,
+      "uniqueFromSearches": 4216,
+      "kept": 2758,
       "dropped": {
-        "too old or closed": 829,
-        "blocked words": 58,
-        "remote or not in London": 83,
+        "too old or closed": 820,
+        "blocked words": 57,
         "below adult minimum wage": 36,
-        "blocked advertiser": 95,
-        "outside London": 264,
-        "London area not given": 113
+        "remote or not in London": 81,
+        "blocked advertiser": 92,
+        "outside London": 263,
+        "London area not given": 109
       }
     },
     "Adzuna": {
-      "fetched": 422,
-      "kept": 374,
+      "fetched": 438,
+      "kept": 401,
       "dropped": {
-        "blocked words": 8,
-        "remote or not in London": 2,
-        "below adult minimum wage": 1
+        "below adult minimum wage": 1,
+        "blocked words": 5,
+        "remote or not in London": 1
       }
     }
   },
-  "total": 4486,
-  "duplicatesRemoved": 5025,
+  "total": 4713,
+  "duplicatesRemoved": 5058,
   "byRegion": {
-    "Central": 1330,
-    "North": 436,
-    "East": 988,
-    "South": 900,
-    "West": 832
+    "Central": 1469,
+    "North": 452,
+    "East": 1013,
+    "South": 917,
+    "West": 862
   },
   "byJobType": {
-    "Part-time": 1114,
-    "Full-time": 1805,
-    "Not stated": 1567
+    "Part-time": 1147,
+    "Full-time": 1916,
+    "Not stated": 1650
   },
-  "carriedOver": 4248,
-  "areaApproximate": 366,
-  "apprenticeships": 49,
+  "carriedOver": 4486,
+  "areaApproximate": 420,
+  "apprenticeships": 50,
   "apprenticeshipLevels": {
     "not stated": 24,
-    "3": 19,
+    "3": 20,
     "4": 1,
     "2": 5
   },
   "byGroup": {
-    "Students": 470,
-    "Parents": 309,
-    "Newcomers": 553,
-    "Experienced": 2884,
-    "(none)": 536,
-    "Graduates": 93,
-    "Apprentices": 49
+    "Experienced": 3052,
+    "Students": 490,
+    "Parents": 316,
+    "Newcomers": 576,
+    "Graduates": 100,
+    "(none)": 552,
+    "Apprentices": 50
   }
 }
