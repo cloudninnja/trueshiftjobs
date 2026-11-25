@@ -346,26 +346,31 @@ def build_page(base, p, borough_jobs=None):
              % (esc(p["heading"]), "\n".join("    <p>%s</p>" % b for b in p["body"])))
     marker = '<section class="band info" id="checks">'
     assert marker in out
-    if p.get("group") == "Students":
-        faq = json.loads((ROOT / "scripts" / "student_faq.json").read_text())
+    fq = FAQS.get(p.get("group") or "")
+    if fq:
         schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in faq]}
-        out = out.replace('<section class="band info" id="sfaq" hidden>', '<section class="band info" id="sfaq">', 1)
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", a)}} for q, a in fq["q"]]}
+        items = "".join("<details><summary>%s</summary><p>%s</p></details>" % (q, a) for q, a in fq["q"])
+        out = out.replace('<section class="band info" id="sfaq" hidden>', '<section class="band info" id="sfaq" data-g="%s">' % p["group"], 1)
+        out = out.replace('<h2 id="faqh"></h2>', '<h2 id="faqh">%s</h2>' % esc(fq["h"]), 1)
+        out = out.replace('<div class="faq" id="faqlist"></div>', '<div class="faq" id="faqlist">%s</div>' % items, 1)
         out = out.replace("</head>", '<script type="application/ld+json">%s</script>\n</head>' % json.dumps(schema, ensure_ascii=False), 1)
     out = out.replace(marker, guide + marker, 1)
     return out
 
 
 JOBS = []
+FAQS = json.loads((ROOT / "scripts" / "faqs.json").read_text())
 
 
 def main():
     global JOBS
     JOBS = load_jobs()
-    base = (ROOT / "index.html").read_text()
+    orig = base = (ROOT / "index.html").read_text()
+    base = re.sub(r"/\*FAQS\*/.*?/\*/FAQS\*/", lambda m: "/*FAQS*/const FAQS=%s;/*/FAQS*/" % json.dumps(FAQS, ensure_ascii=False).replace("</", "<\\/"), base, count=1, flags=re.S)
     # The home page gets the newest jobs written into its HTML too.
     home = put_jobs(base, JOBS)
-    if home != base:
+    if home != orig:
         (ROOT / "index.html").write_text(home)
         base = home
     urls = [SITE + "/"]
