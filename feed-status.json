@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-25T09:33:16Z",
+  "generated": "2026-11-25T09:38:37Z",
   "sources": {
     "Teaching Vacancies": {
-      "fetched": 6542,
-      "kept": 494,
+      "fetched": 6548,
+      "kept": 511,
       "dropped": {
-        "too old or closed": 87
+        "too old or closed": 85
       }
     },
     "Employer": {
@@ -30,16 +30,18 @@
       "dropped": {}
     },
     "NHS Jobs": {
-      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5744629</id><reference>C9276-26-00001</reference><title>Senior Cancer Pathway Navigator</title><description>The Senior Cancer Pathway Navigator is a key leadership role within the Cancer Services Team, responsible for overseeing the effective coordination an...</description><employer>Queen Victoria Hospital NHS Foundation Trust</employer><type>Permanent</type><salary>Negotiable</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T09:32:23.611674723</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9276-26-00001</url><locations><location>East Grinstead, RH19 3DZ</location></locations></vacancyDetails><vacancyDetails><id>5744631</id><reference>C9276-26-00002</reference><title>Sonographer</title><description>To perform a wide range of ultrasound scans this could include renal, abdominal, DVT Doppler, gynaecological and some small parts according to Departm...</description><employer>Queen Victoria Hospital NHS Foundation Trust</employer><type>Permanent</type><salary>£49387.00 to £56515.00</salary><closeDate>2026-12-07</closeDate><postDate>2026-11-25T09:32:20.229695250</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9276-26-00002</url><locations><location>East Grinstead, RH19 3DZ</location></locations></vacancyDetails><vacancyDetails><id>5744637</id><reference>C9276-26-00003</reference><title>Maxillofacial Scheduler</title><description>We are currently looking for a self motivated, ",
+      "sample": "<?xml version='1.0' encoding='UTF-8'?><nhsJobs><vacancyDetails><id>5750127</id><reference>E0341-26-00004</reference><title>Dermatology Outpatient Nurse - Buckinghamshire</title><description>Location: Buckinghamshire Availability: Saturdays &amp; Sundays Hours: 08:0018:00 Rates: Competitive About the Role: We are currently seeking experienced ...</description><employer>18 Week Support Limited</employer><type>Locum</type><salary>Negotiable</salary><closeDate>2026-12-30</closeDate><postDate>2026-11-25T09:39:09.844494059</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/E0341-26-00004</url><locations><location>London, EC3R 5AR</location></locations></vacancyDetails><vacancyDetails><id>5750045</id><reference>C9326-26-00020</reference><title>Temporary Staffing Coordinator</title><description>The post holder will be responsible for providing comprehensive administrative support to ensure the effective deployment, management and payment of t...</description><employer>Surrey and Sussex Healthcare NHS Trust</employer><type>Permanent</type><salary>£28392.00 to £31157.00</salary><closeDate>2026-12-06</closeDate><postDate>2026-11-25T09:37:55.430511512</postDate><url>https://beta.jobs.nhs.uk/candidate/jobadvert/C9326-26-00020</url><locations><location>Redhill, RH15RH</location></locations></vacancyDetails><vacancyDetails><id>5744629</id><reference>C9276-26-00001</reference><title>Senior Cancer Pathway Navigator</title><description>The Senior Cancer Pathway Navigator is a key lead",
       "fetched": 2090,
       "pages": 210,
-      "kept": 1456,
+      "kept": 1458,
       "dropped": {
-        "outside London": 628,
-        "too old or closed": 6
+        "outside London": 629,
+        "too old or closed": 3
       }
     },
     "Careerjet": {
+      "httpError": "403 {\"error\":\"Unauthorized access from IP 172.184.166.109\",\"type\":\"ERROR\"}",
+      "keyLength": 32,
       "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     "Find an apprenticeship": {
@@ -47,16 +49,16 @@
     },
     "Reed": {
       "fetched": 7713,
-      "uniqueFromSearches": 4252,
-      "kept": 2727,
+      "uniqueFromSearches": 4295,
+      "kept": 2762,
       "dropped": {
-        "too old or closed": 864,
+        "too old or closed": 866,
         "blocked words": 59,
         "below adult minimum wage": 36,
-        "remote or not in London": 85,
+        "remote or not in London": 83,
         "blocked advertiser": 96,
-        "outside London": 271,
-        "London area not given": 114
+        "outside London": 265,
+        "London area not given": 128
       }
     },
     "Adzuna": {
@@ -68,22 +70,22 @@
       }
     }
   },
-  "total": 4275,
-  "duplicatesRemoved": 4997,
+  "total": 4279,
+  "duplicatesRemoved": 5095,
   "byRegion": {
-    "Central": 1240,
+    "Central": 1242,
     "North": 430,
-    "East": 960,
+    "East": 962,
     "South": 848,
     "West": 797
   },
   "byJobType": {
-    "Part-time": 1083,
-    "Full-time": 1714,
-    "Not stated": 1478
+    "Part-time": 1084,
+    "Full-time": 1716,
+    "Not stated": 1479
   },
-  "carriedOver": 4227,
-  "areaApproximate": 307,
+  "carriedOver": 4275,
+  "areaApproximate": 308,
   "apprenticeships": 48,
   "apprenticeshipLevels": {
     "not stated": 21,
@@ -93,9 +95,9 @@
     "2": 6
   },
   "byGroup": {
-    "Experienced": 2571,
-    "Students": 494,
-    "Parents": 323,
+    "Experienced": 2574,
+    "Students": 495,
+    "Parents": 324,
     "(none)": 595,
     "Newcomers": 600,
     "Graduates": 63,
