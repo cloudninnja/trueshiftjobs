@@ -1285,11 +1285,13 @@ def main():
     else:
         status["sources"]["Employer"] = {"skipped": "no EMPLOYER_JOBS_CSV secret"}
     run("NHS Jobs", fetch_nhs)
-    cj_key = os.environ.get("CAREERJET_API_KEY", "").strip()
+    # Careerjet only accepts calls from fixed, declared IP addresses, which GitHub's runners do not have.
+    # Switched off unless CAREERJET_ENABLED=1 (for example on a server with a fixed IP).
+    cj_key = os.environ.get("CAREERJET_API_KEY", "").strip() if os.environ.get("CAREERJET_ENABLED") == "1" else ""
     if cj_key:
         run("Careerjet", fetch_careerjet, cj_key)
     else:
-        status["sources"]["Careerjet"] = {"skipped": "no CAREERJET_API_KEY secret"}
+        status["sources"]["Careerjet"] = {"skipped": "switched off: needs a fixed IP address"}
     faa_key = os.environ.get("APPRENTICESHIP_API_KEY", "").strip()
     if faa_key:
         run("Find an apprenticeship", fetch_apprenticeships, faa_key)
