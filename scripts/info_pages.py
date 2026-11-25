@@ -1,3 +1,4 @@
+import json
 #!/usr/bin/env python3
 """Write the site's information pages (About, Contact, Privacy and so on).
 
@@ -71,7 +72,7 @@ PAGES = {
 <p>When an employer job is published, only the job details are shown on the site (such as the job title, company, location, pay and how to apply). The poster's name and email address are never published.</p>
 <h2>Job alert emails</h2>
 <p>If you choose to sign up for job emails, we collect only your email address and your agreement to receive them. The sign-up form sends this to a Google Form, so Google processes it for us under its own terms. We use your email address only to send you new jobs from TrueShift Jobs. We never sell it or share it with employers or advertisers.</p>
-<p>Every email will include a way to unsubscribe. You can also ask us to remove your email address at any time using our <a href="{FEEDBACK}">contact form</a>, and we will delete it.</p>
+<p>Every email will include a way to unsubscribe, and you can unsubscribe at any time on our <a href="/unsubscribe/">unsubscribe page</a>. You can also ask us to remove your email address at any time using our <a href="{FEEDBACK}">contact form</a>, and we will delete it.</p>
 <h2>Our lawful basis</h2>
 <p>We rely on our legitimate interests in running a free job site, answering messages and checking job adverts, on your request when you ask us to publish a job, and on your consent for job alert emails. You can withdraw your consent at any time.</p>
 <h2>How long we keep data</h2>
@@ -173,6 +174,42 @@ PAGES = {
 }
 
 
+UNSUB_FORM = "https://docs.google.com/forms/d/e/1FAIpQLScDtESWm1REt6qY-0XykjFTtQqhb0BNfjro9y86yxT9iJomBA/formResponse"
+UNSUB_ENTRY = "entry.95951508"
+
+UNSUB_BODY = """
+<p>Enter the email address you signed up with and we will stop sending you job emails. We will delete your address from our list.</p>
+<form id="unsub" novalidate>
+<label for="uemail"><b>Email address</b></label>
+<div class="urow"><input id="uemail" type="email" autocomplete="email" inputmode="email" required><button type="submit" id="usend">Unsubscribe me</button></div>
+<p id="umsg" role="status" aria-live="polite"></p>
+</form>
+<p>Changed your mind? You can sign up again at any time on the <a href="/">home page</a>. Questions? See our <a href="/privacy/">privacy policy</a>.</p>
+<style>
+.urow{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}.urow input{flex:1 1 240px;min-height:48px;font:inherit;padding:0 14px;border:1px solid #9bb3c9;border-radius:12px}
+.urow button{min-height:48px;padding:0 20px;font:inherit;font-weight:700;border:0;border-radius:999px;background:#0a2540;color:#fff;cursor:pointer}.urow button:disabled{opacity:.6}
+.urow input:focus-visible,.urow button:focus-visible{outline:3px solid #0b4f8a;outline-offset:2px}
+#umsg{font-weight:700;min-height:1.2em}#umsg.err{color:#b3123a}
+</style>
+<script>
+(function(){
+  var ACTION=%s, ENTRY=%s;
+  var f=document.getElementById('unsub'), e=document.getElementById('uemail'), m=document.getElementById('umsg'), b=document.getElementById('usend');
+  try{var q=new URLSearchParams(location.search).get('email');if(q)e.value=q}catch(x){}
+  function say(t,bad){m.textContent=t;m.className=bad?'err':''}
+  f.addEventListener('submit',function(ev){ev.preventDefault();var v=e.value.trim();
+    if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(v)){say('Please enter a valid email address.',true);e.focus();return}
+    if(!ENTRY){say('Sorry, unsubscribing is not available yet. Please use our contact form.',true);return}
+    var body=new URLSearchParams();body.append(ENTRY,v);b.disabled=true;say('Sending...');
+    fetch(ACTION,{method:'POST',mode:'no-cors',body:body}).then(function(){say("Done. You will not get any more job emails from us. We will remove "+v+" from our list.");f.reset()})
+      .catch(function(){say('Sorry, that did not go through. Please check your connection and try again.',true)}).finally(function(){b.disabled=false})});
+})();
+</script>
+""" % (json.dumps(UNSUB_FORM), json.dumps(UNSUB_ENTRY))
+
+PAGES["unsubscribe"] = ("Unsubscribe from job emails", "Stop getting job emails from TrueShift Jobs.", UNSUB_BODY)
+
+
 def page(slug, title, lead, body):
     nav = " · ".join('<a href="/%s/">%s</a>' % (s, n) for s, n in NAV)
     return f"""<!DOCTYPE html>
@@ -180,7 +217,7 @@ def page(slug, title, lead, body):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title} | TrueShift Jobs</title>
+<title>{title} | TrueShift Jobs</title>{'<meta name="robots" content="noindex">' if slug == "unsubscribe" else ""}
 <meta name="description" content="{lead}">
 <link rel="canonical" href="{SITE}/{slug}/">
 <style>

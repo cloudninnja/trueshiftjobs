@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unsubscribe from job emails | TrueShift Jobs</title><meta name="robots" content="noindex">
+<meta name="description" content="Stop getting job emails from TrueShift Jobs.">
+<link rel="canonical" href="https://trueshiftjobs.com/unsubscribe/">
+<style>
+@font-face{font-family:'Hanken Grotesk';font-weight:400;font-display:swap;src:url(/fonts/hanken-grotesk-400.woff2) format('woff2')}
+@font-face{font-family:'Hanken Grotesk';font-weight:700;font-display:swap;src:url(/fonts/hanken-grotesk-700.woff2) format('woff2')}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;font:17px/1.65 "Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;background:#f3f7fb;color:#0a2540}
+.top{background:#0a2540;color:#fff}.top .wrap{padding:16px 20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.top a{color:#8fd3ff;font-weight:700;text-decoration:none}
+.wrap{max-width:760px;margin:0 auto;padding:28px 20px 40px}main.wrap{flex:1 0 auto;width:100%}
+h1{font-size:2rem;line-height:1.2;margin:8px 0 6px}.lead{font-size:1.15rem;color:#4b6178;margin:0 0 22px}
+h2{font-size:1.25rem;margin:28px 0 6px}a{color:#0b4f8a}ul{padding-left:22px}li{margin-bottom:6px}
+footer{background:#0a2540;color:#c5ddec;font-size:.92rem}footer a{color:#8fd3ff}footer .wrap{padding:22px 20px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a href="/">TrueShift Jobs</a><a href="/">Find jobs</a></div></header>
+<main class="wrap">
+<h1>Unsubscribe from job emails</h1>
+<p class="lead">Stop getting job emails from TrueShift Jobs.</p>
+<p>Enter the email address you signed up with and we will stop sending you job emails. We will delete your address from our list.</p>
+<form id="unsub" novalidate>
+<label for="uemail"><b>Email address</b></label>
+<div class="urow"><input id="uemail" type="email" autocomplete="email" inputmode="email" required><button type="submit" id="usend">Unsubscribe me</button></div>
+<p id="umsg" role="status" aria-live="polite"></p>
+</form>
+<p>Changed your mind? You can sign up again at any time on the <a href="/">home page</a>. Questions? See our <a href="/privacy/">privacy policy</a>.</p>
+<style>
+.urow{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}.urow input{flex:1 1 240px;min-height:48px;font:inherit;padding:0 14px;border:1px solid #9bb3c9;border-radius:12px}
+.urow button{min-height:48px;padding:0 20px;font:inherit;font-weight:700;border:0;border-radius:999px;background:#0a2540;color:#fff;cursor:pointer}.urow button:disabled{opacity:.6}
+.urow input:focus-visible,.urow button:focus-visible{outline:3px solid #0b4f8a;outline-offset:2px}
+#umsg{font-weight:700;min-height:1.2em}#umsg.err{color:#b3123a}
+</style>
+<script>
+(function(){
+  var ACTION="https://docs.google.com/forms/d/e/1FAIpQLScDtESWm1REt6qY-0XykjFTtQqhb0BNfjro9y86yxT9iJomBA/formResponse", ENTRY="entry.95951508";
+  var f=document.getElementById('unsub'), e=document.getElementById('uemail'), m=document.getElementById('umsg'), b=document.getElementById('usend');
+  try{var q=new URLSearchParams(location.search).get('email');if(q)e.value=q}catch(x){}
+  function say(t,bad){m.textContent=t;m.className=bad?'err':''}
+  f.addEventListener('submit',function(ev){ev.preventDefault();var v=e.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){say('Please enter a valid email address.',true);e.focus();return}
+    if(!ENTRY){say('Sorry, unsubscribing is not available yet. Please use our contact form.',true);return}
+    var body=new URLSearchParams();body.append(ENTRY,v);b.disabled=true;say('Sending...');
+    fetch(ACTION,{method:'POST',mode:'no-cors',body:body}).then(function(){say("Done. You will not get any more job emails from us. We will remove "+v+" from our list.");f.reset()})
+      .catch(function(){say('Sorry, that did not go through. Please check your connection and try again.',true)}).finally(function(){b.disabled=false})});
+})();
+</script>
+</main>
+<footer><div class="wrap"><p><a href="/about/">About us</a> · <a href="/contact/">Contact us</a> · <a href="/privacy/">Privacy policy</a> · <a href="/cookies/">Cookie policy</a> · <a href="/terms/">Terms of use</a> · <a href="/accessibility/">Accessibility</a> · <a href="/data-sources/">Data sources</a> · <a href="/advertise/">Advertise with us</a></p><p>&copy; 2026 TrueShift Jobs. Free for jobseekers, always.</p></div></footer>
+</body>
+</html>
