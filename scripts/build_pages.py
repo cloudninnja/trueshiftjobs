@@ -378,6 +378,9 @@ def main():
         (d / "index.html").write_text(borough_page(base, b, JOBS, cats, len(JOBS)))
         urls.append("%s/jobs/%s/" % (SITE, slug(b)))
     print("built %d borough pages" % len(BOROUGH_REGION))
+    for info in ("about", "contact", "privacy", "cookies", "terms", "accessibility", "data-sources", "advertise"):
+        if (ROOT / info / "index.html").exists():
+            urls.append("%s/%s/" % (SITE, info))
     posted = ROOT / "jobs" / "posted"
     if posted.exists():
         shutil.rmtree(posted)  # closed jobs disappear with their pages
