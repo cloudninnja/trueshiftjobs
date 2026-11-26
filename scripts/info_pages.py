@@ -39,7 +39,7 @@ PAGES = {
 <li>Removes adverts older than 30 days, scam wording, paid-course "jobs" and pay below the legal minimum. Apprenticeships stay until their closing date, because they are often advertised months ahead.</li>
 <li>Sorts everything by borough, so you can find work close to home.</li>
 <li>Groups jobs for students, people new to the UK, apprentices, graduates, parents returning to work and experienced professionals.</li>
-<li>Lets employers post jobs for free. Every employer post is checked by a person before it goes live.</li>
+<li>Lets employers post jobs for free. Every employer post is checked against our rules before it goes live.</li>
 </ul>
 <h2>What it is not</h2>
 <p>TrueShift Jobs is not an employer or a recruitment agency. We don't take applications, and we never charge jobseekers. When you apply, you apply on the employer's or job site's own advert.</p>
@@ -51,7 +51,7 @@ PAGES = {
 <p>Please <a href="{FEEDBACK}">use our contact form</a>. Tell us what you need, and include your email address if you would like a reply.</p>
 {('<p>You can also email <a href="mailto:%s">%s</a>.</p>' % (EMAIL, EMAIL)) if EMAIL else ''}
 <h2>Employers</h2>
-<p>To advertise a vacancy for free, <a href="/post-a-job/">post a job</a>. Every post is checked by a person before it goes live. For featured listings or partnerships, see <a href="/advertise/">Advertise with us</a>.</p>
+<p>To advertise a vacancy for free, <a href="/post-a-job/">post a job</a>. Every post is checked against our rules before it goes live. For featured listings or partnerships, see <a href="/advertise/">Advertise with us</a>.</p>
 <h2>Report a problem with a job</h2>
 <p>If a job looks like a scam, asks you for money, or has closed, please tell us through the <a href="{FEEDBACK}">contact form</a> with a link to the job. We review reports and remove jobs that break our rules.</p>
 <h2>Privacy requests</h2>
@@ -103,7 +103,7 @@ PAGES = {
 <p>TrueShift Jobs is a free website that lists job vacancies in London. We are not an employer, a recruitment agency or a party to any job application or employment relationship. Using the site is free for jobseekers.</p>
 <h2>Job listings</h2>
 <ul>
-<li>Most jobs come from third-party job feeds and are filtered automatically, not checked one by one. Jobs marked "Checked" or "Posted by employer" have been reviewed, but we cannot guarantee that any job is accurate, available or suitable.</li>
+<li>Most jobs come from third-party job feeds and are filtered automatically, not checked one by one. Jobs marked "Checked" or "Posted by employer" have passed our automatic checks, but we cannot guarantee that any job is accurate, available or suitable.</li>
 <li>Always read the full advert on the employer's or job site's own page, and check the details before you apply.</li>
 <li>No real employer should ask you to pay a fee for a job, training, a uniform or a check. If you are asked for money, do not pay, and please report the job to us.</li>
 </ul>
@@ -151,9 +151,9 @@ PAGES = {
 <li><b>Teaching Vacancies</b>: school jobs from <a href="https://teaching-vacancies.service.gov.uk">GOV.UK Teaching Vacancies</a>, used under the Open Government Licence v3.0.</li>
 </ul>
 <h2>Jobs checked one by one</h2>
-<p>Each night we also look for jobs on employers' own career sites and on public job sites such as GOV.UK Find a job, Civil Service Jobs, council job sites and other job boards, and check each one against eight checks before it is marked "Checked".</p>
+<p>Each night we also look for jobs on employers' own career sites and on public job sites such as GOV.UK Find a job, Civil Service Jobs, council job sites and other job boards, and Claude, an AI assistant, checks each one against eight checks before it is marked "Checked". Jobs it cannot fully confirm are not shown.</p>
 <h2>Employer posts</h2>
-<p>Employers can post jobs directly through our free form. Each post is checked by a person before it is published, and marked "Posted by employer".</p>
+<p>Employers can post jobs directly through our free form. Each post is checked against our rules before it is published, and marked "Posted by employer".</p>
 <h2>Locations</h2>
 <p>We match postcodes to London boroughs using <a href="https://postcodes.io">postcodes.io</a>. Contains OS data © Crown copyright and database right. Contains Royal Mail data © Royal Mail copyright and database right. Contains National Statistics data © Crown copyright and database right.</p>
 <h2>Pay rates and guidance</h2>
@@ -162,7 +162,7 @@ PAGES = {
 """),
     "advertise": ("Advertise with us", "Reach students, school leavers, graduates, parents returning to work and people new to the UK across London.", f"""
 <h2>Post a job for free</h2>
-<p>Posting a vacancy on TrueShift Jobs is free. <a href="/post-a-job/">Post a job</a> in about a minute: paste your advert, add your company name and email, and we do the rest. Every post is checked by a person before it goes live, and it appears on the right borough page and in the right groups, such as students or parents returning to work.</p>
+<p>Posting a vacancy on TrueShift Jobs is free. <a href="/post-a-job/">Post a job</a> in about a minute: paste your advert, add your company name and email, and we do the rest. Every post is checked against our rules before it goes live, and it appears on the right borough page and in the right groups, such as students or parents returning to work.</p>
 <p>Published employer jobs get their own page on our site, marked up so search engines can show them in job searches.</p>
 <h2>Coming soon</h2>
 <ul>

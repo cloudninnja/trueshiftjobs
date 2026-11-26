@@ -310,7 +310,7 @@ table{border-collapse:collapse;margin:0 0 20px}th{text-align:left;padding:4px 18
 <table>%(rows)s</table>
 %(apply_html)s
 <div class="box">%(desc)s</div>
-<p class="note">This job was posted directly by the employer and checked by a person before going live. Never pay a fee to apply for a job.</p>
+<p class="note">This job was posted directly by the employer and checked against our rules before going live. Never pay a fee to apply for a job.</p>
 <p><a href="/jobs/%(bslug)s/">More jobs in %(borough)s</a> · <a href="/">All London jobs</a></p>
 </main>
 %(cf)s

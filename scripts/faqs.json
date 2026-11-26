@@ -44,5 +44,5 @@
   ["Are these jobs from agencies?", "Some are. Jobs come from official job feeds, which include adverts from employers and recruitment agencies. Each advert shows who is hiring. We remove adverts that ask for fees or look like scams."],
   ["Can I ask for flexible working in a new job?", "Yes. Every employee can make a formal flexible working request from their first day, up to twice a year, and the employer must decide within two months."],
   ["How fresh are the jobs?", "New jobs are added every morning, and jobs older than 30 days are removed, so every job here was posted recently."],
-  ["Can my company advertise here?", "Yes, for free. Use <a href=\"/post-a-job/\">Post a job</a>. Every advert is checked by a person before it goes live."]]}
+  ["Can my company advertise here?", "Yes, for free. Use <a href=\"/post-a-job/\">Post a job</a>. Every advert is checked against our rules before it goes live."]]}
 }
