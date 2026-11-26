@@ -12,6 +12,9 @@ from playwright.async_api import async_playwright
 BASE = "http://trueshiftjobs.com"
 SITE_DIR = os.environ.get("SITE_DIR", "_site")
 FEED = json.load(open(os.path.join(SITE_DIR, "feed.json")))["jobs"]
+_page = open(os.path.join(SITE_DIR, "index.html")).read()
+_m = re.search(r'<script id="jobs-data"[^>]*>(.*?)</script>', _page, re.S)
+CHECKED = len(json.loads(_m.group(1))) if _m else 0
 results = []
 
 
@@ -61,7 +64,8 @@ async def main():
             n, t = await count(pg)
             exp = sum(1 for j in FEED if g in [x.strip() for x in str(j.get("bestFor") or "").split(",")])
             pressed = await pg.get_attribute(f"button[data-g={g}]", "aria-pressed")
-            check(f"Tab '{g}' filters jobs", 0 < n <= prev and pressed == "true" and n >= exp, f"{t} (feed has {exp}) pressed={pressed}")
+            # Hand-checked jobs replace matching feed jobs, so a tab can show a few fewer than the raw feed.
+            check(f"Tab '{g}' filters jobs", 0 < n <= prev and pressed == "true" and n >= exp - CHECKED, f"{t} (feed has {exp}, checked {CHECKED}) pressed={pressed}")
             # every visible card is tagged with the group (first 10)
         # level filter
         await pg.click("button[data-g=Apprentices]"); await pg.wait_for_timeout(300)
