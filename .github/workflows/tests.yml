@@ -1,8 +1,10 @@
 name: Tests
 
-# Runs on every push and pull request: quick checks of the job rules, then the
-# browser tests (filters, tabs, data loading, buttons and every internal link)
-# against a freshly built copy of the site. GitHub emails you if anything fails.
+# Runs on every push and pull request against a freshly built copy of the site:
+# 1. quick checks of the job rules
+# 2. browser tests: filters, tabs, data loading, buttons and every internal link
+# 3. layout tests on 8 key pages at 8 screen sizes, plus axe-core accessibility scans
+# GitHub emails you if anything fails.
 
 on:
   push:
@@ -16,7 +18,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -28,6 +30,7 @@ jobs:
         run: |
           pip install pytest playwright
           python -m playwright install --with-deps chromium
+          npm install --no-save axe-core@4
 
       - name: Check the job rules
         run: python -m pytest tests -q
@@ -44,3 +47,6 @@ jobs:
           python -m http.server 8765 --directory _site > /dev/null 2>&1 &
           sleep 2
           SITE_DIR=_site python tests/browser_check.py
+
+      - name: Layout and accessibility tests (8 pages x 8 screen sizes)
+        run: python tests/layout_check.py
