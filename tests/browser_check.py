@@ -128,13 +128,18 @@ async def main():
         # save
         await pg.locator("#list article .star").first.click(); await pg.wait_for_timeout(200)
         check("Save updates Saved jobs counter", (await pg.inner_text("#savedn")).strip() == "1", await pg.inner_text("#savedn"))
-        await pg.click("button[data-g=Saved]"); await pg.wait_for_timeout(300)
-        check("Saved tab shows the saved job", await cards(pg) == 1, await cards(pg))
+        check("Saved jobs is no longer one of the 'looking for work as' tabs", await pg.locator("button[data-g=Saved]").count() == 0)
+        await pg.click("#savedbtn"); await pg.wait_for_timeout(300)
+        check("Saved jobs button shows only the saved job", await cards(pg) == 1 and await pg.get_attribute("#savedbtn", "aria-pressed") == "true", await cards(pg))
+        await pg.click("button[data-g=Students]"); await pg.wait_for_timeout(300)
+        check("Saved filter stays on when changing tab", await pg.get_attribute("#savedbtn", "aria-pressed") == "true" and "saved" in (await pg.inner_text("#count")), await pg.inner_text("#count"))
+        await pg.click("button[data-g=All]"); await pg.wait_for_timeout(300)
         await pg.reload(); await pg.wait_for_timeout(2000)
         check("Saved job survives a page reload", (await pg.inner_text("#savedn")).strip() == "1")
         await pg.locator("#list article .star").first.click(); await pg.wait_for_timeout(200)
         check("Unsave removes it", (await pg.inner_text("#savedn")).strip() == "0")
-        await pg.click("button[data-g=All]"); await pg.wait_for_timeout(300)
+        await pg.click("#savedbtn"); await pg.wait_for_timeout(300)
+        check("Saved jobs button turns off again", await pg.get_attribute("#savedbtn", "aria-pressed") == "false" and await cards(pg) == 30)
 
         # apply links on cards
         hrefs = await pg.locator("#list article a.apply").evaluate_all("els=>els.map(e=>e.href)")
