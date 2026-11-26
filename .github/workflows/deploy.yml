@@ -4,12 +4,15 @@ name: Build and deploy site
 # Nothing is committed back to the repository, so the history no longer grows every day.
 # - Every morning (and when run by hand) it collects new jobs first.
 # - On a normal push it reuses the live site's current jobs and just rebuilds the pages.
+#   Put [update jobs] in a commit message to collect new jobs on a push too.
 
 on:
-  workflow_dispatch:
-  push:
+  schedule:
+    - cron: "17 5 * * *"   # every day at 05:17 UTC (05:17 London time in winter, 06:17 in summer)
+  workflow_dispatch:        # run it any time from the Actions tab
+  push:                     # rebuild the site whenever the code or content changes
     branches: [main]
-    paths: [".github/workflows/deploy.yml"]
+    paths-ignore: ["weekly-email-status.json", "mailerlite-status.json", "README.md", "tests/**"]
 
 permissions:
   contents: read
@@ -37,7 +40,7 @@ jobs:
           curl -fsSL --retry 3 https://trueshiftjobs.com/feed-status.json -o feed-status.json.live && mv feed-status.json.live feed-status.json || true
 
       - name: Collect new jobs from the feeds
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[update jobs]')
         env:
           REED_API_KEY: ${{ secrets.REED_API_KEY }}
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
