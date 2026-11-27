@@ -23,19 +23,19 @@
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
 html{scroll-padding-top:24px}
-body{margin:0;background:var(--sea);color:var(--text);font:16px/1.55 "Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
+body{margin:0;background:var(--sea);color:var(--text);font:17px/1.55 "Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
 a{color:var(--sky)}
 .band{padding-block:clamp(28px,4vw,56px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
 .wrap{max-width:min(1680px,100%);margin:0 auto}
 .top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
-.brand{font-weight:700;font-size:17px;margin:0 0 18px;color:var(--sky)}
+.brand{font-weight:700;font-size:18px;margin:0 0 18px;color:var(--sky)}
 h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
-.lead{color:var(--sub);font-size:17px;max-width:58ch;margin:0 0 18px}
-.facts{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--sub);font-size:14px;margin:0;padding:0;list-style:none}
+.lead{color:var(--sub);font-size:18px;max-width:58ch;margin:0 0 18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--sub);font-size:15px;margin:0;padding:0;list-style:none}
 .facts b{color:#fff;font-weight:600}
 .mapcol{width:100%;max-width:520px;justify-self:end}
-.stepn{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--sky);color:var(--ink);font-size:13px;font-weight:700;margin-right:8px;vertical-align:1px}
-.maplabel{margin:0 0 10px;font-size:18px}
+.stepn{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--sky);color:var(--ink);font-size:14px;font-weight:700;margin-right:8px;vertical-align:1px}
+.maplabel{margin:0 0 10px;font-size:19px}
 #types:empty{display:none}#types .stypes{margin-top:12px}
 .regions{display:flex;flex-direction:column;gap:6px;margin-top:6px}
 .reg,.rall{appearance:none;font:inherit;color:#fff;cursor:pointer;display:grid;grid-template-columns:8.5em minmax(0,1fr) 3.5em 12px;align-items:center;gap:12px;box-sizing:border-box;height:48px;padding:0 14px;border-radius:12px;border:1px solid #2f5b88;background:var(--sea2);text-align:left;transition:background .15s,border-color .15s,transform .15s}
@@ -44,28 +44,28 @@ h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spac
 .reg:hover,.rall:hover{background:var(--sea3);border-color:var(--sky)}
 .reg:hover::after,.rall:hover::after{transform:translateX(3px) rotate(45deg);opacity:1}
 .reg:focus-visible,.rall:focus-visible,.chip:focus-visible,.ctl:focus-visible,.apply:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
-.rn{font-size:15px;font-weight:600;white-space:nowrap}
-.reg b,.rall b{font-size:17px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.rn{font-size:16px;font-weight:600;white-space:nowrap}
+.reg b,.rall b{font-size:18px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
 .rbar{height:10px;border-radius:999px;background:rgba(143,211,255,.14);overflow:hidden}
 .rbar i{display:block;height:100%;width:0;border-radius:999px;background:var(--sky);transition:width .25s}
 .reg[aria-pressed=true],.rall[aria-pressed=true]{background:var(--sea3);border:2px solid var(--sky);color:#fff}
-.reg[aria-pressed=true] .rn::after,.rall[aria-pressed=true] .rn::after{content:' (selected)';font-weight:400;font-size:13px;color:var(--sub)}
+.reg[aria-pressed=true] .rn::after,.rall[aria-pressed=true] .rn::after{content:' (selected)';font-weight:400;font-size:14px;color:var(--sub)}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:clamp(20px,3vw,32px)}
-.ctl{height:46px;border-radius:10px;border:1px solid #2f5b88;background:#fff;color:var(--ink);font:inherit;font-size:16px;padding:0 12px}
+.ctl{height:46px;border-radius:10px;border:1px solid #2f5b88;background:#fff;color:var(--ink);font:inherit;font-size:17px;padding:0 12px}
 #q{flex:1 1 240px}
 #borough{flex:0 1 220px}
 #sort{flex:0 1 170px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{min-height:44px;border-radius:999px;border:1px solid var(--sky);background:transparent;color:#fff;font:inherit;font-size:15px;padding:0 16px;cursor:pointer}
+.chip{min-height:44px;border-radius:999px;border:1px solid var(--sky);background:transparent;color:#fff;font:inherit;font-size:16px;padding:0 16px;cursor:pointer}
 .chip[aria-pressed=true]{background:var(--sky);color:var(--ink);font-weight:600}
-.count{margin:0;color:var(--sub);font-size:15px}
+.count{margin:0;color:var(--sub);font-size:16px}
 .alerts{margin:28px 0 8px;background:var(--sea2);border:1px solid #2f5b88;border-radius:16px;padding:20px 22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px 28px;align-items:center}
-.alerts h2{margin:0;font-size:22px;color:#fff}.alerts .sub{margin:6px 0 0;color:var(--sub);font-size:15px}
+.alerts h2{margin:0;font-size:22px;color:#fff}.alerts .sub{margin:6px 0 0;color:var(--sub);font-size:16px}
 .a-row{display:flex;gap:10px}.a-row .ctl{flex:1;min-width:0;min-height:46px}.a-row .apply{white-space:nowrap;background:var(--sky);color:var(--ink);border-color:var(--sky);font-weight:700}.a-row .apply:hover{background:#b8e4ff}.a-row .apply:disabled{opacity:.6}
 .a-pick{border:0;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.a-pick legend{padding:0;margin-bottom:8px;font-size:14px;font-weight:600;color:#fff}.a-pick legend span{font-weight:400;color:var(--sub)}
+.a-pick legend{padding:0;margin-bottom:8px;font-size:15px;font-weight:600;color:#fff}.a-pick legend span{font-weight:400;color:var(--sub)}
 .pill{position:relative;display:inline-flex}.pill input{position:absolute;opacity:0;width:1px;height:1px}
-.pill span{display:inline-flex;align-items:center;min-height:36px;padding:4px 12px;border-radius:999px;border:1px solid #5b86b3;color:#fff;font-size:14px;cursor:pointer;user-select:none}
+.pill span{display:inline-flex;align-items:center;min-height:36px;padding:4px 12px;border-radius:999px;border:1px solid #5b86b3;color:#fff;font-size:15px;cursor:pointer;user-select:none}
 .pill span::before{content:'';width:14px;height:14px;margin-right:8px;border-radius:4px;border:1.5px solid #9fc3e6;flex:none}
 .pill input:checked+span{background:var(--sky);border-color:var(--sky);color:var(--ink);font-weight:600}
 .pill input:checked+span::before{background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-5' fill='none' stroke='%238fd3ff' stroke-width='1.8'/%3E%3C/svg%3E") center/11px no-repeat;border-color:var(--ink)}
@@ -73,11 +73,11 @@ h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spac
 .alerts{align-items:start}
 .alerts.closed{grid-template-columns:minmax(0,1fr);padding:16px 22px}.alerts.closed .a-form,.alerts.closed .a-text .sub{display:none}
 .alerts.closed .a-text{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.alerts.closed h2{font-size:19px}.alerts .a-text #aopen{display:none}.alerts.closed .a-text #aopen{display:inline-flex;align-items:center;margin:0;background:var(--sky);color:var(--ink);border-color:var(--sky);font-weight:700}
-.a-done{margin:0;font-size:14px;color:var(--sub)}
-.a-consent{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:14px;color:var(--sub);line-height:1.45}
+.alerts.closed h2{font-size:20px}.alerts .a-text #aopen{display:none}.alerts.closed .a-text #aopen{display:inline-flex;align-items:center;margin:0;background:var(--sky);color:var(--ink);border-color:var(--sky);font-weight:700}
+.a-done{margin:0;font-size:15px;color:var(--sub)}
+.a-consent{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:15px;color:var(--sub);line-height:1.45}
 .a-consent input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--sky)}.a-consent a{color:var(--sky)}
-.a-msg{margin:8px 0 0;font-size:14px;font-weight:600;color:#fff;min-height:1em}.a-msg.err{color:#ffb3c7}
+.a-msg{margin:8px 0 0;font-size:15px;font-weight:600;color:#fff;min-height:1em}.a-msg.err{color:#ffb3c7}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media(max-width:760px){.alerts{grid-template-columns:minmax(0,1fr)}.a-row{flex-direction:column}}
 .counthead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 14px}
@@ -89,21 +89,21 @@ h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spac
 .ticket{background:var(--paper);color:var(--ink);border-radius:14px;display:flex;flex-direction:column}
 .t-body{padding:18px 18px 14px;display:grid;gap:6px}
 .t-head{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}
-.t-title{font-size:19px;font-weight:700;line-height:1.25;margin:0}
+.t-title{font-size:20px;font-weight:700;line-height:1.25;margin:0}
 .pay{font-size:22px;font-weight:700;white-space:nowrap;text-align:right;line-height:1.1}
-.pay small{display:block;font-size:13px;font-weight:400;color:var(--muted)}
+.pay small{display:block;font-size:14px;font-weight:400;color:var(--muted)}
 .pay small.nopay{white-space:normal;max-width:64px;line-height:1.25}
 .t-head .t-title{min-width:0}
 .emp{margin:0;font-weight:600}
-.where,.hours{margin:0;color:var(--muted);font-size:15px}
+.where,.hours{margin:0;color:var(--muted);font-size:16px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.tag{font-size:13px;background:var(--soft);border-radius:999px;padding:3px 10px;white-space:nowrap}
-.note{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.tag{font-size:14px;background:var(--soft);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.note{margin:4px 0 0;font-size:15px;color:var(--muted)}
 .t-meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:6px}
 .t-foot{margin-top:auto;border-top:2px dashed var(--line);padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-.stamp{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#b3003a}
+.stamp{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:#b3003a}
 .stamp svg{width:20px;height:20px}
-.posted{font-size:13px;color:var(--muted);white-space:nowrap}
+.posted{font-size:14px;color:var(--muted);white-space:nowrap}
 .apply{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--sea);color:#fff;text-decoration:none;font-weight:600;white-space:nowrap}
 .empty{background:var(--sea2);border:1px solid #2f5b88;border-radius:14px;padding:clamp(20px,3vw,32px);display:grid;gap:8px}
 .empty h3{margin:0;font-size:22px;font-weight:600}
@@ -114,25 +114,27 @@ h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spac
 .fold>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 16px;padding:4px 0}
 .fold>summary::-webkit-details-marker{display:none}
 .fold>summary h2{margin:0}
-.fold>summary::after{content:'Show';grid-row:1/3;grid-column:2;font-size:15px;font-weight:600;padding:8px 16px;border:1px solid var(--line);border-radius:999px;color:var(--ink)}
+.fold>summary::after{content:'Show';grid-row:1/3;grid-column:2;font-size:16px;font-weight:600;padding:8px 16px;border:1px solid var(--line);border-radius:999px;color:var(--ink)}
 .fold[open]>summary::after{content:'Hide'}
 .fold>summary:focus-visible{outline:3px solid #0b4f8a;outline-offset:4px;border-radius:8px}
-.foldhint{color:var(--muted);font-size:15px}
+.foldhint{color:var(--muted);font-size:16px}
 .fold[open]>summary{margin-bottom:16px}
+.pages .foldhint{color:var(--sub)}
+.pages .fold>summary h2{font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1}
 .info h2,.safe h2{font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1;letter-spacing:-.01em;margin:0 0 8px}
 .info .intro{color:var(--muted);margin:0 0 22px;max-width:65ch}
 .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px 28px;margin:0 0 36px;padding:0;list-style:none}
 .checks li{counter-increment:c;padding-left:40px;position:relative}
-.checks li::before{content:'\2713';position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--sea);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:600}
+.checks li::before{content:'\2713';position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--sea);color:#fff;display:grid;place-items:center;font-size:15px;font-weight:600}
 .checks b{display:block}
 .guides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media(min-width:1100px){.guides{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .guide{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--soft)}
-.guide h3{margin:0 0 8px;font-size:20px}
+.guide h3{margin:0 0 8px;font-size:21px}
 .guide ul{margin:0;padding-left:18px}
 .guide li{margin-bottom:6px}
 .guide a{color:#0b4f8a}
-.paytable{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:15px}
+.paytable{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:16px}
 .paytable td{padding:4px 0;border-bottom:1px solid var(--line)}
 .paytable td:last-child{text-align:right;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
 .safe{background:var(--sea2)}
@@ -142,11 +144,11 @@ h1{font-weight:300;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spac
 .safe li b{color:#fff}
 .report{background:var(--sea);border-radius:14px;padding:20px;border:1px solid #2f5b88}
 .report p{margin:0 0 10px;color:var(--sub)}
-footer{color:var(--sub);font-size:14px}
+footer{color:var(--sub);font-size:15px}
 footer p{margin:0 0 6px;max-width:80ch}
 .who{position:relative;z-index:1;margin-top:clamp(20px,3vw,28px);background:var(--sea2);border:1px solid #2f5b88;border-radius:16px;padding:16px 18px 18px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
-.who > .who-q{font-size:18px;margin-bottom:12px}
-.who .chips .chip{background:var(--sea);border-color:#5b86b3;font-size:16px;font-weight:600;min-height:46px;padding:0 18px}
+.who > .who-q{font-size:19px;margin-bottom:12px}
+.who .chips .chip{background:var(--sea);border-color:#5b86b3;font-size:17px;font-weight:600;min-height:46px;padding:0 18px}
 .who .chips .chip:hover{background:var(--sea3);border-color:var(--sky)}
 .who .chips .chip[aria-pressed=true]{background:var(--sky);border-color:var(--sky);color:var(--ink);box-shadow:0 0 0 3px rgba(143,211,255,.25)}
 .who .chips .chip.saved{background:transparent}
@@ -156,13 +158,13 @@ footer p{margin:0 0 6px;max-width:80ch}
 .chip span{font-variant-numeric:tabular-nums}
 .quick{margin-top:16px;background:var(--sea2);border:1px solid #2f5b88;border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:16px 28px;align-items:start}
 .quick h2{margin:0;font-size:22px;font-weight:600;line-height:1.2}
-.quick p.sub{margin:6px 0 0;color:var(--sub);font-size:15px}
-.qtoggle{margin-top:12px;font:inherit;font-size:14px;font-weight:600;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #5b86b3;background:transparent;color:#fff;cursor:pointer}
+.quick p.sub{margin:6px 0 0;color:var(--sub);font-size:16px}
+.qtoggle{margin-top:12px;font:inherit;font-size:15px;font-weight:600;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #5b86b3;background:transparent;color:#fff;cursor:pointer}
 .qtoggle:hover{background:var(--sea3)}.qtoggle:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 .quick.closed{grid-template-columns:minmax(0,1fr) auto;align-items:center}.quick.closed .steps{display:none}.quick.closed .qtoggle{margin-top:0}
 .stypes{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.stl{width:100%;margin:0;font-size:14px;font-weight:600;color:#fff}
-.stype{font:inherit;font-size:14px;min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid #5b86b3;background:transparent;color:#fff;cursor:pointer}
+.stl{width:100%;margin:0;font-size:15px;font-weight:600;color:#fff}
+.stype{font:inherit;font-size:15px;min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid #5b86b3;background:transparent;color:#fff;cursor:pointer}
 .stype span{color:var(--sub);font-variant-numeric:tabular-nums;margin-left:2px}
 .stype[aria-pressed=true]{background:var(--sky);border-color:var(--sky);color:var(--ink);font-weight:600}.stype[aria-pressed=true] span{color:var(--ink)}
 .stype:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
@@ -172,16 +174,16 @@ footer p{margin:0 0 6px;max-width:80ch}
 .faq details p{margin:0 0 14px}
 @media(max-width:760px){.faq{grid-template-columns:minmax(0,1fr)}}
 .steps{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.steps li{background:var(--sea);border-radius:12px;padding:14px;color:var(--sub);font-size:15px}
-.steps b{display:block;color:#fff;margin-bottom:4px;font-size:16px}
+.steps li{background:var(--sea);border-radius:12px;padding:14px;color:var(--sub);font-size:16px}
+.steps b{display:block;color:#fff;margin-bottom:4px;font-size:17px}
 .steps a{color:var(--sky)}
 .stamp.feed{color:var(--muted)}
-.jt{font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap}
-.also{font-size:13px;color:var(--muted)}
+.jt{font-size:13px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.also{font-size:14px;color:var(--muted)}
 .morewrap{display:flex;justify-content:center;margin-top:18px}
-.credit{font-size:13px}
-.new{font-size:12px;font-weight:700;background:var(--pink);color:var(--ink);border-radius:999px;padding:2px 8px;white-space:nowrap}
-.star{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;min-height:44px;padding:0 14px;font:inherit;font-size:14px;cursor:pointer}
+.credit{font-size:14px}
+.new{font-size:13px;font-weight:700;background:var(--pink);color:var(--ink);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.star{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;min-height:44px;padding:0 14px;font:inherit;font-size:15px;cursor:pointer}
 .star[aria-pressed=true]{background:var(--soft);border-color:var(--sea);font-weight:600}
 .star:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
 .foot-r{display:flex;gap:8px;flex-wrap:wrap}
@@ -189,14 +191,14 @@ footer p{margin:0 0 6px;max-width:80ch}
 .cvband{background:var(--soft);color:var(--ink)}
 .cvband h2{font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1;margin:0 0 8px}
 .cvband .intro{color:var(--muted);margin:0 0 16px}
-.cvband h3{font-size:18px;margin:22px 0 8px}
+.cvband h3{font-size:19px;margin:22px 0 8px}
 .cvgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(20px,3vw,40px);align-items:start}
 .cvtabs .chip{color:var(--ink);border-color:var(--sea)}
 .cvtabs .chip[aria-selected=true]{background:var(--sea);color:#fff;font-weight:600}
 .cvbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .apply.alt{background:#fff;color:var(--ink);border:2px solid var(--sea)}
 button.apply{border:0;font:inherit;font-weight:600;cursor:pointer}
-@media(min-width:1500px){.lead{font-size:19px;max-width:62ch}.top{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+@media(min-width:1500px){.lead{font-size:20px;max-width:62ch}.top{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
 .pagelinks{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
 .pagelinks a{display:block;padding:12px 16px;border-radius:12px;background:#fff;color:#0b4f8a;font-weight:600;text-decoration:none;border:1px solid #d6e2ee}
 .pagelinks a:hover{text-decoration:underline}
@@ -205,18 +207,18 @@ button.apply{border:0;font:inherit;font-weight:600;cursor:pointer}
 .seo h2{margin-top:0}
 [hidden]{display:none!important}
 button.apply.alt{border:2px solid var(--sea)}
-.cvmsg{min-height:22px;margin:8px 0 0;font-size:14px;color:var(--muted)}
+.cvmsg{min-height:22px;margin:8px 0 0;font-size:15px;color:var(--muted)}
 .tips{margin:0;padding-left:18px;color:var(--ink)}
 .tips li{margin-bottom:6px}
-.paper{background:#fff;color:#1d2b38;border-radius:6px;box-shadow:0 1px 0 #c9d8e5,0 12px 30px rgba(10,37,64,.12);padding:clamp(20px,3.5vw,40px);font-size:15px;line-height:1.5}
+.paper{background:#fff;color:#1d2b38;border-radius:6px;box-shadow:0 1px 0 #c9d8e5,0 12px 30px rgba(10,37,64,.12);padding:clamp(20px,3.5vw,40px);font-size:16px;line-height:1.5}
 .paper h3{margin:0;font-size:24px;color:var(--ink);letter-spacing:-.01em}
-.paper .contact{margin:4px 0 14px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
-.paper h4{margin:16px 0 6px;font-size:13px;letter-spacing:.02em;color:var(--sea);border-bottom:1px solid var(--line);padding-bottom:4px}
+.paper .contact{margin:4px 0 14px;color:var(--muted);font-size:15px;overflow-wrap:anywhere}
+.paper h4{margin:16px 0 6px;font-size:14px;letter-spacing:.02em;color:var(--sea);border-bottom:1px solid var(--line);padding-bottom:4px}
 .paper p{margin:0 0 6px}
 .paper .role{font-weight:700;margin:8px 0 2px}
 .paper .when{color:var(--muted);font-weight:400}
 .paper ul{margin:2px 0 6px;padding-left:18px}
-.paper .samp{margin-top:16px;font-size:13px;color:var(--muted)}
+.paper .samp{margin-top:16px;font-size:14px;color:var(--muted)}
 .skyline{display:block;width:100%;height:auto;aspect-ratio:1200/170;min-height:72px;margin-top:clamp(18px,3vw,28px)}
 .hero{position:relative}
 .who{overflow:hidden}
@@ -224,7 +226,7 @@ button.apply.alt{border:2px solid var(--sea)}
 .who>*:not(.skyline){position:relative;z-index:1}
 .who{padding-bottom:clamp(24px,4vw,56px)}
 .bar{margin-top:clamp(14px,2vw,22px)}
-@media(max-width:600px){.who{padding:14px}.who .chips{flex-wrap:wrap;overflow:visible;margin:0;padding:0}.who .chips .chip{font-size:15px;padding:0 14px;min-height:44px}}
+@media(max-width:600px){.who{padding:14px}.who .chips{flex-wrap:wrap;overflow:visible;margin:0;padding:0}.who .chips .chip{font-size:16px;padding:0 14px;min-height:44px}}
 @media(max-width:760px){.hero{display:flex;flex-direction:column}.hero .top{display:contents}.hero .top>div:first-child{order:1}.hero .who{order:2}.hero .mapcol{order:3;margin-top:20px}}
 
 .skyline .near,.skyline .eye circle{fill:#8fd3ff;fill-opacity:.24}
@@ -241,10 +243,47 @@ button.apply.alt{border:2px solid var(--sea)}
  .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bar #q{grid-column:1/-1}.bar .ctl{width:100%;min-width:0}
  .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(-1 * max(5vw,16px));padding:2px max(5vw,16px) 6px}
  .chips::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;white-space:nowrap}
- .quick .steps{grid-template-columns:minmax(0,1fr);gap:8px}.quick .steps li{padding:10px 12px;font-size:14px}.quick{padding:16px 18px}.quick h2{font-size:1.15rem}
+ .quick .steps{grid-template-columns:minmax(0,1fr);gap:8px}.quick .steps li{padding:10px 12px;font-size:15px}.quick{padding:16px 18px}.quick h2{font-size:1.15rem}
  .lead{font-size:1.02rem}}
 header.band{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){.rbar i,.reg,.rall,.reg::after,.rall::after{transition:none}}
+/* one blue theme for every section */
+.info,.cvband{background:var(--sea);color:#fff}
+#safe,#sfaq,#checks,#cv,#pages{border-top:1px solid #234a74}
+.safe{background:var(--sea)}
+.info a,.guide a{color:var(--sky)}
+.info .intro,.cvband .intro,.foldhint,.cvmsg,.tips{color:var(--sub)}
+.checks li::before{background:var(--sky);color:var(--ink)}
+.guide{background:var(--sea2);border-color:#2f5b88;color:#fff}
+.paytable td{border-color:#2f5b88}
+.faq details{background:var(--sea2);border-color:#2f5b88}
+.cvtabs .chip{color:#fff;border-color:#5b86b3}
+.cvtabs .chip[aria-selected=true]{background:var(--sky);border-color:var(--sky);color:var(--ink)}
+.cvband .apply:not(.alt){background:var(--sky);color:var(--ink)}
+.apply.alt,button.apply.alt{background:transparent;color:#fff;border:2px solid var(--sky)}
+.fold>summary::after{content:'Show';font-size:17px;font-weight:600;min-height:48px;min-width:104px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:0 24px;border-radius:999px;border:2px solid var(--sky);background:var(--sky);color:var(--ink)}
+.fold>summary:hover::after{background:#b5e3ff;border-color:#b5e3ff}
+.fold[open]>summary::after{content:'Hide';background:transparent;color:#fff}
+.fold>summary:focus-visible{outline:3px solid var(--pink);outline-offset:4px;border-radius:12px}
+.band:has(>.wrap>details.fold:not([open])){padding-block:20px}
+/* every section heading matches Stay safe */
+main h2,main .alerts h2,main .alerts.closed h2,main .closed h2,main .quick h2,main .cvband h2,main .fold>summary h2{font-family:inherit;font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.foldhint,.quick p.sub,.alerts .sub{font-size:17px}
+main .alerts.closed .a-text #aopen{min-height:48px;padding:0 24px;font-size:17px;border-radius:999px}
+.savedbtn{display:inline-flex;align-items:center;gap:7px}
+.heart{fill:none;stroke:currentColor;stroke-width:2;flex:none}
+.savedbtn.has{border-style:solid;border-color:var(--pink);font-weight:700}
+.savedbtn.has .heart{fill:var(--pink);stroke:var(--pink)}
+.savedbtn[aria-pressed=true] .heart{stroke:var(--ink)}
+.fold>summary{grid-template-columns:auto minmax(0,1fr) auto;column-gap:16px}
+.fold>summary h2,.fold>summary .foldhint{grid-column:2}
+.fold>summary::after{grid-column:3}
+.ficon{grid-row:1/3;grid-column:1;width:48px;height:48px;border-radius:50%;background:var(--sea2);border:1px solid #2f5b88;display:grid;place-items:center}
+.ficon svg{fill:none;stroke:var(--sky);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:600px){.ficon{display:none}.fold>summary{grid-template-columns:minmax(0,1fr) auto}.fold>summary h2,.fold>summary .foldhint{grid-column:1}.fold>summary::after{grid-column:2}}
+.band.safe{padding-block:clamp(22px,3vw,36px)}
+.safe li{margin-bottom:4px}
+.safe .report p{margin:0}
 </style>
 </head>
 <body>
@@ -340,7 +379,7 @@ header.band{overflow-x:clip}
       </select>
     </div>
     <div class="quick" id="quick" aria-live="polite"></div>
-    <div class="counthead"><p class="count" id="count" aria-live="polite"></p><div class="countbtns"><button class="qtoggle savedbtn" id="savedbtn" type="button" aria-pressed="false" aria-controls="list">Saved jobs (<span id="savedn">0</span>)</button><button class="qtoggle" id="listtoggle" type="button" aria-controls="list" aria-expanded="true">Hide jobs</button></div></div>
+    <div class="counthead"><p class="count" id="count" aria-live="polite"></p><div class="countbtns"><button class="qtoggle savedbtn" id="savedbtn" type="button" aria-pressed="false" aria-controls="list"><svg class="heart" aria-hidden="true" viewBox="0 0 24 24" width="17" height="17"><path d="M12 20.5s-7.3-4.5-9.3-9C1.3 8.1 3.3 4.5 6.9 4.5c2 0 3.5 1.1 5.1 2.9 1.6-1.8 3.1-2.9 5.1-2.9 3.6 0 5.6 3.6 4.2 7-2 4.5-9.3 9-9.3 9z"/></svg><span>Saved jobs (<span id="savedn">0</span>)</span></button><button class="qtoggle" id="listtoggle" type="button" aria-controls="list" aria-expanded="true">Hide jobs</button></div></div>
     <div class="list" id="list"><!--JOBS--><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/teacher-of-business-studies-316ced99-4b1d-42bc-876d-25dd3a92a518" rel="nofollow noopener" style="color:inherit">Teacher of Business Studies</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Leigh Academy Bexley</p><p class="where">Erith, Bexley</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/admissions-and-cover-co-ordinator" rel="nofollow noopener" style="color:inherit">Admissions and Cover Co-ordinator</a></h3><div class="pay"><small>Scale 6 point 18 £36,820 + benefits a year (Salary; actual pay)</small></div></div><p class="t-emp">Chestnut Grove Academy</p><p class="where">Wandsworth</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/midday-assistant-35bfce88-1281-4fa4-b8cb-3b0098152238" rel="nofollow noopener" style="color:inherit">Midday Assistant</a></h3><div class="pay"><small>£29,561 to £29,983 Salary is £4,129 to £4,188 a year (as 13.97; full-time equivalent)</small></div></div><p class="t-emp">The Frances Bardsley Academy for Girls</p><p class="where">Romford, Havering</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/learning-support-assistant-london-south-east-colleges" rel="nofollow noopener" style="color:inherit">Learning Support Assistant</a></h3><div class="pay"><small>£27,875 to £28,701 Fulltime Equivalent a year</small></div></div><p class="t-emp">London South East Colleges</p><p class="where">Bromley</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/employer-experience-industry-placement-advisor-cross-campus" rel="nofollow noopener" style="color:inherit">Employer Experience &amp; Industry Placement Advisor (cross campus)</a></h3><div class="pay"><small>£34,106 to £38,358 a year</small></div></div><p class="t-emp">London South East Colleges</p><p class="where">Bromley</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/data-manager-the-heathland-school" rel="nofollow noopener" style="color:inherit">Data Manager</a></h3><div class="pay"><small>£35,847 to £37,916 a year (full-time equivalent)</small></div></div><p class="t-emp">The Heathland School</p><p class="where">Hounslow</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/nursery-keyperson" rel="nofollow noopener" style="color:inherit">Nursery Keyperson</a></h3><div class="pay"><small></small></div></div><p class="t-emp">West Thames College</p><p class="where">Isleworth, Hounslow</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-cf8d720b-8c62-474e-933c-58f57f5c613c" rel="nofollow noopener" style="color:inherit">Teacher of Science</a></h3><div class="pay"><small>£40,317 to £62,496 Teachers Inner London Main/Upper pay range a year (actual pay)</small></div></div><p class="t-emp">St Mark&#x27;s Church of England Academy</p><p class="where">Mitcham, Merton</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/variable-lecturer-motor-vehicle" rel="nofollow noopener" style="color:inherit">Variable Lecturer - Motor Vehicle</a></h3><div class="pay"><small>£35,112 to £47,148 a year</small></div></div><p class="t-emp">London South East Colleges</p><p class="where">Bromley</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/class-teacher-cognition-learning-inclusion-base" rel="nofollow noopener" style="color:inherit">Class Teacher- Cognition &amp; Learning Inclusion Base</a></h3><div class="pay"><small>Pay: MPS/UPS</small></div></div><p class="t-emp">Chessington School</p><p class="where">Chessington, Kingston upon Thames</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/student-achievement-tutor" rel="nofollow noopener" style="color:inherit">Student Achievement Tutor</a></h3><div class="pay"><small>£34,106 to £36,158 Full-time Equivalent a year (full-time equivalent)</small></div></div><p class="t-emp">London South East Colleges</p><p class="where">Bromley</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/curriculum-leader-essential-skills-0-6-fte" rel="nofollow noopener" style="color:inherit">Curriculum Leader – Essential Skills (0.6 FTE)</a></h3><div class="pay"><small>£43,339 a year</small></div></div><p class="t-emp">Morley College London</p><p class="where">Lambeth</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/italian-language-assistant" rel="nofollow noopener" style="color:inherit">Italian Language Assistant</a></h3><div class="pay"><small>Pay: Scale 4</small></div></div><p class="t-emp">Sarah Bonnell School</p><p class="where">Newham</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/cleaner-the-frances-bardsley-academy-for-girls-romford-essex" rel="nofollow noopener" style="color:inherit">Cleaner</a></h3><div class="pay"><small>£12,317 to £24,634 Full time salary - £29, 561 - salary £12,317/£24, 634 a year (full-time equivalent)</small></div></div><p class="t-emp">The Frances Bardsley Academy for Girls</p><p class="where">Romford, Havering</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/head-of-teaching-learning-assessment-cross-campus" rel="nofollow noopener" style="color:inherit">Head of Teaching, Learning &amp; Assessment (cross campus)</a></h3><div class="pay"><small>£54,651 to £61,784 a year</small></div></div><p class="t-emp">London South East Colleges</p><p class="where">Bromley</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/learning-support-assistant-f1db7dde-791a-4ce0-b6e8-43063b42645d" rel="nofollow noopener" style="color:inherit">Learning Support Assistant</a></h3><div class="pay"><small>£32,112 a year</small></div></div><p class="t-emp">Saint John Bosco College</p><p class="where">Wandsworth</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/science-technician-shirley-high-school-performing-arts-college-croydon-surrey" rel="nofollow noopener" style="color:inherit">Science Technician</a></h3><div class="pay"><small>Pay: Grade 3 SCP 5</small></div></div><p class="t-emp">Shirley High School Performing Arts College</p><p class="where">Croydon</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/lunch-time-supervisor-assistant-islamia-primary-school" rel="nofollow noopener" style="color:inherit">Lunch Time Supervisor Assistant</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Islamia Primary School</p><p class="where">Brent</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/student-engagement-coordinator-croydon-college" rel="nofollow noopener" style="color:inherit">Student Engagement Coordinator</a></h3><div class="pay"><small>£26,799.37 a year</small></div></div><p class="t-emp">Croydon College</p><p class="where">Croydon</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/teacher-year-6-crawford-primary-school" rel="nofollow noopener" style="color:inherit">Teacher Year 6</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Crawford Primary School</p><p class="where">Southwark</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/send-teaching-assistant-greatfields-primary-school" rel="nofollow noopener" style="color:inherit">SEND TEACHING ASSISTANT</a></h3><div class="pay"><small>£25,353 Scale 3 a year (term-time only; actual pay)</small></div></div><p class="t-emp">Greatfields Primary School</p><p class="where">Barking, Barking and Dagenham</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/medical-room-and-admin-assistant" rel="nofollow noopener" style="color:inherit">Medical Room and Admin Assistant</a></h3><div class="pay"><small>£29,562 to £30,843 a year (full-time equivalent)</small></div></div><p class="t-emp">Glenthorne High School</p><p class="where">Sutton</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/ks2-teacher-upper-key-stage-two-english-specialism-preferred" rel="nofollow noopener" style="color:inherit">KS2 Teacher (Upper Key Stage Two) - English specialism preferred</a></h3><div class="pay"><small>£41,729 to £54,131 a year (actual pay)</small></div></div><p class="t-emp">East Lane Primary School</p><p class="where">Wembley, Brent</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/hlta-oakleigh-school-acorn-assessment-centre" rel="nofollow noopener" style="color:inherit">HLTA</a></h3><div class="pay"><small>£37,794 Salary stated will be pro-rata to hours worked a year (actual pay)</small></div></div><p class="t-emp">Oakleigh School &amp; Acorn Assessment Centre</p><p class="where">Barnet</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-kingsmead-school" rel="nofollow noopener" style="color:inherit">Teacher of Design &amp; Technology</a></h3><div class="pay"><small>£39,196 to £58,120 Leadership responsibility can be considered for a suitable successful candidat a year (actu</small></div></div><p class="t-emp">Kingsmead School</p><p class="where">Enfield</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/nursery-nurse-or-suitably-qualified-teaching-assistant-maternity-cover-aylward-primary-school" rel="nofollow noopener" style="color:inherit">Nursery Nurse or Suitably Qualified Teaching Assistant Maternity Cover</a></h3><div class="pay"><small>£29,562 to £30,843 a year (full-time equivalent)</small></div></div><p class="t-emp">Aylward Primary School</p><p class="where">Stanmore, Harrow</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/sixth-form-learning-mentor-academic-pastoral-wren-academy-finchley" rel="nofollow noopener" style="color:inherit">Sixth Form Learning Mentor - Academic &amp; Pastoral</a></h3><div class="pay"><small>£32,228 to £33,691 NJC salary scale 17-20 a year (actual pay)</small></div></div><p class="t-emp">Wren Academy Finchley</p><p class="where">Barnet</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/teacher-of-2ic-science" rel="nofollow noopener" style="color:inherit">Teacher of 2ic Science</a></h3><div class="pay"><small>£45,209 to £65,230 a year (full-time equivalent)</small></div></div><p class="t-emp">Ernest Bevin Academy</p><p class="where">Wandsworth</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/design-and-technology-technician-handyperson" rel="nofollow noopener" style="color:inherit">Design and Technology Technician/Handyperson</a></h3><div class="pay"><small>£26,056 to £27,195 a year (full-time equivalent)</small></div></div><p class="t-emp">The Heathland School</p><p class="where">Hounslow</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/assistant-head-of-year-286426c1-2227-4cfd-be2f-df8b2eefb369" rel="nofollow noopener" style="color:inherit">Assistant Head of Year</a></h3><div class="pay"><small>£27,142.36 a year (£31,731 full-time equivalent)</small></div></div><p class="t-emp">Shirley High School Performing Arts College</p><p class="where">Croydon</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/teaching-assistant-lsa-with-mid-day-meal-supervisor-responsibility-betty-layward-primary-school" rel="nofollow noopener" style="color:inherit">Teaching Assistant/LSA with Mid-Day Meal supervisor responsibility</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Betty Layward Primary School</p><p class="where">Hackney</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/teacher-of-business-studies-cross-site-teaching-canterbury-campus-and-lavender-campus" rel="nofollow noopener" style="color:inherit">Teacher of Business Studies - Cross site teaching</a></h3><div class="pay"><small></small></div></div><p class="t-emp">Canterbury Campus and Lavender Campus</p><p class="where">Morden, Merton</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/pastoral-support-assistant-saint-john-bosco-college" rel="nofollow noopener" style="color:inherit">Pastoral Support Assistant</a></h3><div class="pay"><small>£35,493 a year</small></div></div><p class="t-emp">Saint John Bosco College</p><p class="where">Wandsworth</p><p class="t-note">Part-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://teaching-vacancies.service.gov.uk/jobs/senior-it-technician-the-latymer-school" rel="nofollow noopener" style="color:inherit">Senior IT Technician</a></h3><div class="pay"><small>Pay: Scale 6, point 18 - 22</small></div></div><p class="t-emp">The Latymer School</p><p class="where">Enfield</p><p class="t-note">Full-time · Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://beta.jobs.nhs.uk/candidate/jobadvert/A3680-26-00000" rel="nofollow noopener" style="color:inherit">Clinical Pharmacist</a></h3><div class="pay"><small>£58,300 to £65,785 a year</small></div></div><p class="t-emp">Spring Grove Medical Practice</p><p class="where">Isleworth, Hounslow</p><p class="t-note">Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://beta.jobs.nhs.uk/candidate/jobadvert/E0115-0053635" rel="nofollow noopener" style="color:inherit">Lead Production Pharmacist</a></h3><div class="pay"><small>Pay: Negotiable</small></div></div><p class="t-emp">HCA Healthcare UK</p><p class="where">Westminster</p><p class="t-note">Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://beta.jobs.nhs.uk/candidate/jobadvert/C9293-26-00021" rel="nofollow noopener" style="color:inherit">Locum Cons Radiologist in Cardiothoracic, MSK and General Radiology</a></h3><div class="pay"><small>£113,565 to £150,569 a year</small></div></div><p class="t-emp">Homerton Healthcare NHS Foundation Trust</p><p class="where">Homerton, Hackney</p><p class="t-note">Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://beta.jobs.nhs.uk/candidate/jobadvert/C9213-26-00037" rel="nofollow noopener" style="color:inherit">Band 6 Rotational Paediatric Physiotherapist</a></h3><div class="pay"><small>£47,951 to £56,863 a year</small></div></div><p class="t-emp">King&#x27;s College Hospital NHS Foundation Trust</p><p class="where">Lambeth</p><p class="t-note">Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://beta.jobs.nhs.uk/candidate/jobadvert/C9213-26-00036" rel="nofollow noopener" style="color:inherit">Senior Dental Officer</a></h3><div class="pay"><small>£84,781 to £99,163 a year</small></div></div><p class="t-emp">King&#x27;s College Hospital NHS Foundation Trust</p><p class="where">Lambeth</p><p class="t-note">Live advert. Posted 25 Nov 2026.</p></div></article><article class="ticket"><div class="t-body"><div class="t-head"><h3 class="t-title"><a href="https://beta.jobs.nhs.uk/candidate/jobadvert/C9213-26-00038" rel="nofollow noopener" style="color:inherit">Customer Care Assistant</a></h3><div class="pay"><small>£31,554 to £33,270 a year</small></div></div><p class="t-emp">King&#x27;s College Hospital NHS Foundation Trust</p><p class="where">Lambeth</p><p class="t-note">Live advert. Posted 25 Nov 2026.</p></div></article><!--/JOBS--></div>
     <div class="morewrap"><button class="apply alt" type="button" id="more" hidden>Show more jobs</button></div>
     <form class="alerts" id="alerts" hidden novalidate>
@@ -356,6 +395,27 @@ header.band{overflow-x:clip}
   </div>
 </header>
 
+<section class="band safe" id="safe">
+  <div class="wrap">
+  <details class="fold">
+  <summary><span class="ficon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 3 5 6v5c0 4.6 3 8.4 7 10 4-1.6 7-5.4 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h2>Stay safe while you apply</h2><span class="foldhint">How to spot fake jobs and where to report them</span></summary>
+  <div class="cols">
+    <div>
+      <ul>
+        <li><b>Never pay to get a job.</b> Real employers don't charge for training, uniforms or checks.</li>
+        <li><b>Big names get copied.</b> Amazon UK warehouse jobs are only on <a href="https://www.jobsatamazon.co.uk/">jobsatamazon.co.uk</a>.</li>
+        <li><b>Ignore surprise messages</b> offering easy money by text, WhatsApp or Telegram.</li>
+        <li><b>Apply only through the job's own link.</b></li>
+      </ul>
+    </div>
+    <div class="report">
+      <p><b>Seen a fake job?</b> Get free advice from <a href="https://www.jobsaware.co.uk/">JobsAware</a>. Report it to <a href="https://www.reportfraud.police.uk/">Report Fraud</a> on 0300 123 2040 (England, Wales and Northern Ireland) or Police Scotland on 101.</p>
+    </div>
+  </div>
+  </details>
+  </div>
+</section>
+
 <section class="band info" id="sfaq" hidden>
   <div class="wrap">
     <h2 id="faqh"></h2>
@@ -366,7 +426,7 @@ header.band{overflow-x:clip}
 <section class="band info" id="checks">
   <div class="wrap">
     <details class="fold">
-    <summary><h2>How every job is checked</h2><span class="foldhint">8 checks every job passes, pay rates and tips for each group</span></summary>
+    <summary><span class="ficon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 4h6v3H9z"/><path d="M15 5h3v15H6V5h3"/><path d="m9 13 2 2 4-4"/></svg></span><h2>How every job is checked</h2><span class="foldhint">8 checks every job passes, pay rates and tips for each group</span></summary>
     <p class="intro">A job only appears here after it passes all eight checks. Claude, an AI assistant, does the checks every morning and re-checks each job daily, removing it once it closes. Anything it cannot confirm is not shown. The same job often appears on several job sites, so we show it once, linked to the employer's own advert where there is one. We never ask you for money or personal details.</p>
     <p class="intro">Jobs marked <b>Live advert</b> come straight from official job feeds, which are credited at the bottom of this page. We keep only London jobs posted in the last 30 days, except apprenticeships, which stay until their closing date because they are often advertised months ahead. We show each job once across all the sites, list senior and professional roles under Experienced, and leave out pay below the minimum wage and common scam wording. These feed jobs have not been checked one by one, so always read the advert before you apply. Jobs marked <b>Posted by employer</b> were sent to us directly by the employer and checked against our rules before going live.</p>
     <ul class="checks">
@@ -425,9 +485,11 @@ header.band{overflow-x:clip}
 </section>
 
 <section class="band cvband" id="cv">
-  <div class="wrap cvgrid">
+  <div class="wrap">
+  <details class="fold">
+  <summary><span class="ficon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span><h2>Free UK CV template</h2><span class="foldhint">Four CV templates to copy or download for Word, plus UK CV basics</span></summary>
+  <div class="cvgrid">
     <div class="cvside">
-      <h2>Free UK CV template</h2>
       <p class="intro">Not sure what a UK CV looks like? Pick the template closest to you, then copy it or download it for Word and fill in the parts in [square brackets].</p>
       <div class="chips cvtabs" role="tablist" aria-label="CV templates">
         <button class="chip" type="button" role="tab" data-cv="Students" aria-selected="true">Student</button>
@@ -452,30 +514,15 @@ header.band{overflow-x:clip}
     </div>
     <article class="paper" id="cvpaper" aria-label="CV template"></article>
   </div>
-</section>
-
-<section class="band safe" id="safe">
-  <div class="wrap cols">
-    <div>
-      <h2>Stay safe while you apply</h2>
-      <ul>
-        <li><b>Never pay to get a job.</b> Real employers do not charge for training, uniforms or checks.</li>
-        <li><b>Big names get copied.</b> Official Amazon UK warehouse jobs are only on <a href="https://www.jobsatamazon.co.uk/">jobsatamazon.co.uk</a>.</li>
-        <li><b>Be wary of messages out of the blue</b> offering easy money by text, WhatsApp or Telegram.</li>
-        <li><b>Apply only through the link on the job.</b> It takes you to the employer or a known job site.</li>
-      </ul>
-    </div>
-    <div class="report">
-      <p><b>Seen a fake job?</b> Get free advice from <a href="https://www.jobsaware.co.uk/">JobsAware</a>.</p>
-      <p>Report fraud in England, Wales and Northern Ireland to <a href="https://www.reportfraud.police.uk/">Report Fraud</a>, or call 0300 123 2040. In Scotland, call Police Scotland on 101.</p>
-    </div>
+  </details>
   </div>
 </section>
 
 <section class="band pages" id="pages">
   <div class="wrap">
-    <h2>Find London jobs for you</h2>
-    <ul class="pagelinks">
+  <details class="fold">
+  <summary><span class="ficon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 21s-6-5.6-6-11a6 6 0 0 1 12 0c0 5.4-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg></span><h2>Find London jobs for you</h2><span class="foldhint">Job pages for each group and all 33 London boroughs</span></summary>
+        <ul class="pagelinks">
       <li><a href="/jobs/students/">Part-time jobs for students</a></li>
       <li><a href="/jobs/new-to-the-uk/">Jobs for people new to the UK</a></li>
       <li><a href="/jobs/apprenticeships/">Apprenticeships in London</a></li>
@@ -519,6 +566,7 @@ header.band{overflow-x:clip}
       <li><a href="/jobs/wandsworth/">Wandsworth</a></li>
       <li><a href="/jobs/westminster/">Westminster</a></li>
     </ul>
+  </details>
   </div>
 </section>
 
@@ -690,7 +738,7 @@ function render(keepLimit){
    el('alln').textContent=tot;el('allbtn').setAttribute('aria-pressed',String(state.region==='All'));}
   document.querySelectorAll('.chip[data-g]').forEach(c=>c.setAttribute('aria-pressed',String(state.group===c.dataset.g)));
   if(feedReady){saved=saved.filter(k=>jobs.some(j=>keyOf(j)===k));saves.set(saved)}
-  el('savedn').textContent=saved.length;el('savedbtn').setAttribute('aria-pressed',String(!!state.savedOnly));
+  el('savedn').textContent=saved.length;el('savedbtn').classList.toggle('has',saved.length>0);el('savedbtn').setAttribute('aria-pressed',String(!!state.savedOnly));
   const qk=QUICK[state.group]||QUICK.All;
   let qx='';
   if(GTYPES[state.group]){const base=jobs.filter(j=>matches(j,false,true));const all=jobs.filter(j=>groupsOf(j).includes(state.group));
@@ -918,5 +966,6 @@ cvKey=(state.group in CVS)?state.group:'Students';renderCv();
 }
 </script>
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9e7884d556a84616886e38aff893e657"}'></script><!-- End Cloudflare Web Analytics -->
+<script>(function(){function o(h){try{var t=h&&document.querySelector(h);var d=t&&t.querySelector('details.fold');if(d)d.open=true}catch(e){}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a)o(a.getAttribute('href'))});window.addEventListener('hashchange',function(){o(location.hash)});o(location.hash)})();</script>
 </body>
 </html>

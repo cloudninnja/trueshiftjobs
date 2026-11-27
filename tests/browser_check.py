@@ -153,6 +153,12 @@ async def main():
         check("Tab click updates address to its page", pg.url.endswith("/jobs/students/"), pg.url)
         await pg.click("button[data-g=All]"); await pg.wait_for_timeout(300)
 
+        # CV and Stay safe sections start collapsed
+        folds = await pg.eval_on_selector_all("#safe details.fold, #checks details.fold, #cv details.fold, #pages details.fold", "e=>e.map(d=>d.open)")
+        check("Stay safe, checks, CV and job links sections start collapsed", folds == [False, False, False, False], folds)
+        check("Stay safe section comes straight after the jobs", await pg.evaluate("()=>{const s=document.getElementById('safe');return s.compareDocumentPosition(document.getElementById('checks'))===4 && document.getElementById('list').compareDocumentPosition(s)===4}"))
+        await pg.click('a[href="#cv"]'); await pg.wait_for_timeout(300)
+        check("Free UK CV template link opens the CV section", await pg.eval_on_selector("#cv details.fold", "d=>d.open"))
         # CV section
         for key in ["Students", "Parents", "Newcomers", "Apprentices"]:
             await pg.click(f"button[data-cv={key}]"); await pg.wait_for_timeout(200)
